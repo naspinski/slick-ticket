@@ -1,0 +1,17 @@
+Thanks for checking out SlickTicket!
+
+===========
+== SETUP ==
+===========
+* Requirements can be found at: http://www.codeplex.com/slickticket
+
+1. Load all the files to a directory and make that directory an Asp.Net 2.0 website
+2. Browse to [your root directory]/setup in a web-browser
+3. Follow the directions (read carefully!)
+
+=============
+== SUPPORT ==
+=============
+http://slick-ticket.com
+http://naspinski.net
+http://www.codeplex.com/slickticket

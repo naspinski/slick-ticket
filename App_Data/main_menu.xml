@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<pages>
+    <page name="Dashboard" image="~/images/icons/page_process.png">~/Default.aspx</page>
+    <page name="New Ticket" image="~/images/icons/add_page.png">~/new_ticket.aspx</page>
+    <page name="View Ticket" image="~/images/icons/search_page.png">~/ticket.aspx</page>
+    <page name="My Issues" image="~/images/icons/folder_full.png">~/my_issues.aspx</page>
+    <page name="Profile" image="~/images/icons/user.png">~/profile.aspx</page>
+    <page name="Search" image="~/images/icons/search.png">~/search.aspx</page>
+    <page name="Help/FAQ" image="~/images/icons/help.png">~/help.aspx</page>
+    <page name="Contact" image="~/images/icons/comment.png">~/contact.aspx</page>
+    <admin>
+        <admin_page name="Permissions" image="~/images/icons/lock.png">~/admin/permissions.aspx</admin_page>
+        <admin_page name="Groups" image="~/images/icons/promotion.png">~/admin/groups.aspx</admin_page>
+        <admin_page name="Users" image="~/images/icons/users.png">~/admin/users.aspx</admin_page>
+        <admin_page name="Settings" image="~/images/icons/process.png">~/admin/settings.aspx</admin_page>
+        <admin_page name="Information" image="~/images/icons/info.png">~/admin/info.aspx</admin_page>
+        <admin_page name="Statistics" image="~/images/icons/chart.png">~/admin/stats.aspx</admin_page>
+    </admin>
+</pages>

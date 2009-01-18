@@ -1,0 +1,232 @@
+﻿//Slick-Ticket v1.0 - 2008
+//http://slick-ticket.com :: http://naspinski.net
+//Developed by Stan Naspinski - stan@naspinski.net
+
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data;
+using System.Text;
+using SlickTicketExtensions;
+
+public partial class admin_stats : System.Web.UI.Page
+{
+    dbDataContext db;
+    int max;
+    public string thisUnit, thisSubUnit;
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        db = new dbDataContext();
+        if (!IsPostBack)
+        {
+            this.groups();
+        }
+    }
+
+    protected void groups()
+    {
+        max = 0;
+        DataTable dt = new DataTable();
+        dt.Columns.Add(new DataColumn("name", typeof(string)));
+        dt.Columns.Add(new DataColumn("id", typeof(int)));
+        dt.Columns.Add(new DataColumn("count", typeof(int)));
+        foreach (unit u in dbi.groups.list(db, 10))
+        {
+            IEnumerable<ticket> tix = dbi.groups.openTickets(db, u.id);
+            if (tix.Count() > max) max = tix.Count();
+            DataRow row = dt.NewRow();
+            try
+            {
+                row["count"] = tix.Count();
+            }
+            catch
+            {
+                row["count"] = 0;
+            }
+            finally
+            {
+                row["name"] = u.unit_name;
+                row["id"] = u.id;
+                dt.Rows.Add(row);
+            }
+        }
+        rptGroups.DataSource = dt;
+        rptGroups.DataBind();
+        lblSubGroupDetails.Visible = false;
+
+        this.displayStats(dbi.tickets.listOpen(db), dbi.tickets.listClosed(db));
+    }
+
+
+    protected void btnGrp_Click(object sender, EventArgs e)
+    {
+        int unit_ref;
+        try { unit_ref = Int32.Parse(((Button)sender).CommandArgument); }
+        catch { unit_ref = Int32.Parse(((LinkButton)sender).CommandArgument); }
+        currentGroup.Text = unit_ref.ToString();
+        currentSubGroup.Text = "0";
+        this.sub_groups(unit_ref);
+        this.displayStats(dbi.groups.openTickets(db, unit_ref), dbi.groups.closedTickets(db, unit_ref));
+        pnlGroups.Visible = false;
+        pnlSubGroups.Visible = true;
+        lblSubGroupDetails.Visible = false;
+        rptSubGroups.Visible = true;
+    }
+
+    protected void sub_groups(int unit_ref)
+    {
+        unit thisGroup = dbi.groups.getByID(db, unit_ref);
+        thisUnit = thisGroup.unit_name;
+        max = 0;
+        DataTable dt = new DataTable();
+        dt.Columns.Add(new DataColumn("name", typeof(string)));
+        dt.Columns.Add(new DataColumn("id", typeof(int)));
+        dt.Columns.Add(new DataColumn("count", typeof(int)));
+        foreach (sub_unit u in dbi.groups.subGroups.list(db, unit_ref, 10))
+        {
+            IEnumerable<ticket> tix = dbi.groups.subGroups.openTickets(db, u.id);
+            if (tix.Count() > max) max = tix.Count();
+            DataRow row = dt.NewRow();
+            try
+            {
+                row["count"] = tix.Count();
+            }
+            catch
+            {
+                row["count"] = 0;
+            }
+            finally
+            {
+                row["name"] = u.sub_unit_name;
+                row["id"] = u.id;
+                dt.Rows.Add(row);
+            }
+        }
+        rptSubGroups.DataSource = dt;
+        rptSubGroups.DataBind();
+    }
+
+    protected void btnSubGrp_Click(object sender, EventArgs e)
+    {
+        int sub_unit_ref = Int32.Parse(((Button)sender).CommandArgument);
+        currentSubGroup.Text = sub_unit_ref.ToString();
+        this.subDetails(sub_unit_ref);
+        lblSubGroupDetails.Visible = true;
+        rptSubGroups.Visible = false;
+    }
+
+    protected void subDetails(int sub_unit_ref)
+    {
+        sub_unit suClicked = dbi.groups.subGroups.getByID(db, sub_unit_ref);
+        thisUnit = suClicked.unit.unit_name;
+        currentGroup.Text = suClicked.unit.id.ToString();
+        thisSubUnit = suClicked.sub_unit_name;
+
+        this.displayStats(dbi.groups.subGroups.openTickets(db, sub_unit_ref), dbi.groups.subGroups.closedTickets(db, sub_unit_ref));
+    }
+
+    protected void btnHome_Click(object sender, EventArgs e)
+    {
+        currentGroup.Text = "0";
+        currentSubGroup.Text = "0";
+        this.groups();
+        pnlSubGroups.Visible = false;
+        pnlGroups.Visible = true;
+    }
+
+    protected void btnSubHome_Click(object sender, EventArgs e)
+    {
+        LinkButton lbClicked = (LinkButton)sender;
+        thisUnit = lbClicked.CommandArgument;
+        int unit_ref = Int32.Parse(currentGroup.Text);
+        lblSubGroupDetails.Visible = false;
+        rptSubGroups.Visible = true;
+        currentSubGroup.Text = "0";
+        this.displayStats(dbi.groups.openTickets(db, unit_ref), dbi.groups.closedTickets(db, unit_ref));
+    }
+
+    protected string getWidth(object input)
+    {
+        int inp = Int32.Parse(input.ToString());
+        if (inp != 0)
+        {
+            return "width:" + (100 * Convert.ToDouble(inp) / Convert.ToDouble(max)).ToString() + "%;";
+        }
+        else
+        {
+            return "filter:alpha(opacity=70); opacity:0.7;";
+        }
+    }
+
+    public string getThisUnit()
+    {
+        return thisUnit;
+    }
+
+    protected void displayStats(IEnumerable<ticket> openTix, IEnumerable<ticket> closedTix)
+    {
+        DataTable dt = new DataTable();
+        dt.Columns.Add(new DataColumn("header", typeof(string)));
+        dt.Columns.Add(new DataColumn("data", typeof(string)));
+
+        try
+        {
+            DataRow row1 = dt.NewRow();
+            row1["header"] = "<a style='font-size:1.1em;' href='../search.aspx?group=" + currentGroup.Text + "&subgroup=" + currentSubGroup.Text + "'>Open Tickets</a>";
+            row1["data"] = openTix.Count().ToString();
+            dt.Rows.Add(row1);
+
+            DataRow row2 = dt.NewRow();
+            row2["header"] = "&nbsp;<a href='../search.aspx?group=" + currentGroup.Text + "&subgroup=" + currentSubGroup.Text + "&to=" + DateTime.Now.AddDays(-1).ToShortDateString() + "'>Older than 1 day</a>";
+            row2["data"] = openTix.olderThan(1).Count();
+            dt.Rows.Add(row2);
+
+            DataRow row3 = dt.NewRow();
+            row3["header"] = "&nbsp;<a href='../search.aspx?group=" + currentGroup.Text + "&subgroup=" + currentSubGroup.Text + "&to=" + DateTime.Now.AddDays(-3).ToShortDateString() + "'>Older than 3 day</a>";
+            row3["data"] = openTix.olderThan(3).Count();
+            dt.Rows.Add(row3);
+
+            DataRow row4 = dt.NewRow();
+            row4["header"] = "&nbsp;<a href='../search.aspx?group=" + currentGroup.Text + "&subgroup=" + currentSubGroup.Text + "&to=" + DateTime.Now.AddDays(-7).ToShortDateString() + "'>Older than 7 day</a>";
+            row4["data"] = openTix.olderThan(7).Count();
+            dt.Rows.Add(row4);
+
+            DataRow row5 = dt.NewRow();
+            row5["header"] = "&nbsp;Average age";
+            row5["data"] = openTix.averageAge() + " days";
+            dt.Rows.Add(row5);
+        }
+        catch { }
+
+        DataRow blank1 = dt.NewRow();
+        blank1["header"] = "<br />";
+        blank1["data"] = "<br />";
+        dt.Rows.Add(blank1);
+
+        try
+        {
+            DataRow row6 = dt.NewRow();
+            row6["header"] = "<span style='font-size:1.1em;'>Closed Tickets</span>";
+            row6["data"] = closedTix.Count();
+            dt.Rows.Add(row6);
+
+            DataRow row7 = dt.NewRow();
+            row7["header"] = "&nbsp;Average ticket closure time";
+            row7["data"] = closedTix.averageCloseTime() + " days";
+            dt.Rows.Add(row7);
+        }
+        catch { }
+
+        rptDetails.DataSource = dt;
+        rptDetails.DataBind();
+    }
+
+    public string setTopLevel(string s)
+    {
+        return s.Length > 0 ? s : "Top Level";
+    }
+}
