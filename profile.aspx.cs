@@ -30,9 +30,9 @@ public partial class profile : System.Web.UI.Page
         userName = utils.userName();
         userIsRegistered = dbi.users.exists(db, userName);
         List<string> groups = new List<string>();
-        try 
+        try
         {
-            groups = utils.userGroups(); 
+            groups = utils.userGroups();
             accessLevel = utils.accessLevel().security_level;
         }
         catch { accessLevel = 0; }
@@ -60,7 +60,7 @@ public partial class profile : System.Web.UI.Page
             {
                 if (string.IsNullOrEmpty(txtPhone.Text))
                 {
-                    try 
+                    try
                     {
                         fillPhone();
                     }
@@ -92,7 +92,7 @@ public partial class profile : System.Web.UI.Page
                 foreach (string s in groups)
                 {
                     cssClass = x ? "alt_row" : string.Empty;
-                    lblGroups.Text += "<div class='"+cssClass+"'>" + s + "</div>";
+                    lblGroups.Text += "<div class='" + cssClass + "'>" + s + "</div>";
                     x = !x;
                 }
             }
@@ -102,7 +102,7 @@ public partial class profile : System.Web.UI.Page
             }
         }
 
-        if(!string.IsNullOrEmpty(strPhone)) txtPhone.Text = strPhone;
+        if (!string.IsNullOrEmpty(strPhone)) txtPhone.Text = strPhone;
     }
 
     protected void fillPhone()
@@ -127,7 +127,7 @@ public partial class profile : System.Web.UI.Page
                 //foreach (string key in effectiveAttributes)//uncomment this line to show all attributes
                 {
                     if (sr.Properties.Contains(key))
-                        strPhone =  sr.Properties[key][0].ToString();
+                        strPhone = sr.Properties[key][0].ToString();
                 }
             }
         }

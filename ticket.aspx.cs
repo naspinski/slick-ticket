@@ -24,7 +24,7 @@ public partial class _ticket : System.Web.UI.Page
         db = new dbDataContext();
         txtGoToTicket.Focus();
         if (Request.QueryString["ticketID"] != null)
-           populateTicket(Request.QueryString["ticketID"].ToString()); 
+            populateTicket(Request.QueryString["ticketID"].ToString());
     }
 
     protected void populateTicket(string ticketID)
@@ -38,7 +38,7 @@ public partial class _ticket : System.Web.UI.Page
             lblDetails.Text = t.details;
             lblSubmitter.Text = " <a href='javascript:void();' class='tooltip limited'>" + t.user.userName + "<span class='border_color'><q class='inner_color base_text'>";
             lblSubmitter.Text += t.user.email;
-            lblSubmitter.Text += "<br />" + t.user.phone+"<br />" + t.user.sub_unit1.unit.unit_name + "<br />" + t.user.sub_unit1.sub_unit_name + "</q></span></a>";
+            lblSubmitter.Text += "<br />" + t.user.phone + "<br />" + t.user.sub_unit1.unit.unit_name + "<br />" + t.user.sub_unit1.sub_unit_name + "</q></span></a>";
             lblSubmitted.Text = t.submitted.ToString();
 
             ////populate comments
@@ -59,13 +59,13 @@ public partial class _ticket : System.Web.UI.Page
             {
                 intToPopATG = 10; //if the user has too low a level to change this ticket, thi s is set to 10;
                 userCanEditThisTicket = false;
-            } 
+            }
 
             if (!IsPostBack)
             {
                 btnOpen.Visible = (t.ticket_status == 5);
                 btnClose.Visible = !(t.ticket_status == 5);
-                if(userCanEditThisTicket) // full edit privs
+                if (userCanEditThisTicket) // full edit privs
                 {
                     foreach (priority p in dbi.priorities.list(db, 10)) ddlPriority.Items.Add(new ListItem(p.priority_name, p.id.ToString()));
                     foreach (statuse s in dbi.statuses.list(db)) ddlStatus.Items.Add(new ListItem(s.status_name, s.id.ToString()));
@@ -73,7 +73,7 @@ public partial class _ticket : System.Web.UI.Page
                     ddlPriority.set(t.priority.ToString());
                     var units = dbi.groups.list(db, accessLevel);
                     foreach (unit u in units.OrderBy(p => p.unit_name))
-                            ddlUnit.Items.Add(new ListItem(u.unit_name, u.id.ToString()));
+                        ddlUnit.Items.Add(new ListItem(u.unit_name, u.id.ToString()));
                     ddlUnit.set(t.sub_unit.unit.id.ToString());
                     utils.populateSubUnits(db, ddlUnit, ddlSubUnit, accessLevel);
                     ddlSubUnit.set(t.assigned_to_group.ToString());
@@ -102,7 +102,7 @@ public partial class _ticket : System.Web.UI.Page
             pnlShowTicket.Style.Add(HtmlTextWriterStyle.Display, "block");
             pnlNoQuery.Visible = false;
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
             lblTopReport.report(false, "Error - No Ticket Number " + Request.QueryString["ticketID"].ToString(), ex);
         }
@@ -127,7 +127,7 @@ public partial class _ticket : System.Web.UI.Page
         foreach (attachment a in c.attachments.AsEnumerable())
         {
             lblComments.Controls.Add(new LiteralControl("<div class='iconize'>"));
-            LinkButton lb = new LinkButton() 
+            LinkButton lb = new LinkButton()
             {
                 CommandArgument = a.attachment_name,
                 Text = a.attachment_name + " (" + a.attachment_size + " bytes)",
@@ -155,7 +155,7 @@ public partial class _ticket : System.Web.UI.Page
         ddlStatus.Items.Add(new ListItem("Resolved", "4"));
         btnUpdate_Click(null, null);
     }
-    
+
     protected void btnUpdate_Click(object sender, EventArgs e)
     {
         string error = "Error";
@@ -216,7 +216,7 @@ public partial class _ticket : System.Web.UI.Page
     {
         Response.Redirect("ticket.aspx?ticketID=" + txtGoToTicket.Text);
     }
-    
+
     protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
     {
         utils.populateSubUnits(db, ddlUnit, ddlSubUnit, accessLevel);
@@ -226,7 +226,7 @@ public partial class _ticket : System.Web.UI.Page
     protected void btnAttachment_Click(object sender, EventArgs e)
     {
         LinkButton clicked = (LinkButton)sender;
-        string root = utils.settings.get("attachments") + Request.QueryString["ticketID"].ToString() + "/"; 
+        string root = utils.settings.get("attachments") + Request.QueryString["ticketID"].ToString() + "/";
         Response.AppendHeader("Content-Disposition", "attachment; filename=" + clicked.CommandArgument);
         Response.TransmitFile(Server.MapPath("~/" + root + clicked.CommandArgument));
         Response.End();

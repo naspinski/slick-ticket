@@ -39,8 +39,7 @@ public partial class admin_units : System.Web.UI.Page
         else
         {
             lblUnitReport.report(true, "Unit Deleted", null);
-            ddlUnitSelected.DataBind();
-            ddlNewSubUnit.DataBind();
+            updateDdls();
         }
     }
 
@@ -59,9 +58,15 @@ public partial class admin_units : System.Web.UI.Page
         }
     }
 
-    protected void gvUnits_RowUpdated(object sender, GridViewUpdatedEventArgs e)
+    protected void updateDdls()
     {
         ddlUnitSelected.DataBind();
+        ddlNewSubUnit.DataBind();
+    }
+
+    protected void gvUnits_RowUpdated(object sender, GridViewUpdatedEventArgs e)
+    {
+        updateDdls();
     }
 
     protected void btnNewUnitSubmit_Click(object sender, EventArgs e)
@@ -72,8 +77,7 @@ public partial class admin_units : System.Web.UI.Page
             lblUnitReport.report(true, "group Added", null);
 
             gvUnits.DataBind();
-            ddlUnitSelected.DataBind();
-            ddlNewSubUnit.DataBind();
+            updateDdls();
             txtNewUnit.Text = string.Empty;
             lblSubUnitReport.Text = string.Empty;
         }

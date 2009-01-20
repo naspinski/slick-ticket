@@ -56,10 +56,10 @@ public class dbi
         public static IEnumerable<unit> list(dbDataContext db, int access_level)
         {
             return (from p in db.sub_units
-                     where
-                         p.access_level <= access_level
-                     orderby p.unit.unit_name
-                     select p.unit).Distinct();
+                    where
+                        p.access_level <= access_level
+                    orderby p.unit.unit_name
+                    select p.unit).Distinct();
         }
 
         public static unit getByID(dbDataContext db, int id)
@@ -169,8 +169,8 @@ public class dbi
         }
 
         public static style get(dbDataContext db, int theme)
-        { 
-            return db.styles.First(t => t.id == theme); 
+        {
+            return db.styles.First(t => t.id == theme);
         }
 
         public static void delete(dbDataContext db, int theme)
@@ -180,8 +180,8 @@ public class dbi
         }
 
         public static style current(dbDataContext db)
-        { 
-            return get(db, 1); 
+        {
+            return get(db, 1);
         }
 
         public static void reset(dbDataContext db)
@@ -210,7 +210,7 @@ public class dbi
     }
 
     public class tickets
-    {       
+    {
         public static IEnumerable<ticket> ICommentedIn(dbDataContext db, int userID)
         {
             return (from p in db.comments where p.submitter == userID && p.ticket.closed == DateTime.Parse("1/1/2001") select p.ticket).Distinct();
@@ -225,7 +225,7 @@ public class dbi
         {
             IEnumerable<ticket> groupTix = from p in db.tickets where p.submitter != usr.id && (p.assigned_to_group == usr.sub_unit || p.originating_group == usr.sub_unit) select p;
             IEnumerable<ticket> ITix = tickets.ICommentedIn(db, usr.id);
-            if(groupTix != null && ITix != null)
+            if (groupTix != null && ITix != null)
                 return groupTix.Except(ITix).OrderByDescending(p => p.priority1.level).OrderBy(p => p.submitted);
             else
                 return groupTix.OrderByDescending(p => p.priority1.level).OrderBy(p => p.submitted);
@@ -279,33 +279,34 @@ public class dbi
             return from p in db.tickets where p.closed != DateTime.Parse("1/1/2001") select p;
         }
 
-        public static IEnumerable<ticket> search(dbDataContext db, string[] keywords,  int usr, DateTime dtFrom, DateTime dtTo, int prty, int stat, bool onlyOpen, int grp, int subgrp)
+        public static IEnumerable<ticket> search(dbDataContext db, string[] keywords, int usr, DateTime dtFrom, DateTime dtTo, int prty, int stat, bool onlyOpen, int grp, int subgrp)
         {
-            return from p in db.tickets where 
-                                p.title.Contains(keywords[0]) &&
-                                p.title.Contains(keywords[1]) &&
-                                p.title.Contains(keywords[2]) &&
-                                p.title.Contains(keywords[3]) &&
-                                p.title.Contains(keywords[4]) &&
-                                p.title.Contains(keywords[5]) &&
-                                p.title.Contains(keywords[6]) &&
-                                p.title.Contains(keywords[7]) &&
-                                p.title.Contains(keywords[8]) &&
-                                p.title.Contains(keywords[9]) &&
-                                
-                                p.submitter == (usr < 0 ? p.submitter : usr) &&
-                                p.submitted >= dtFrom &&
-                                p.submitted <= dtTo &&
-                                (prty == 0 ? true : p.priority == prty) &&
-                                (stat == 0 ? true : p.ticket_status == stat) &&
-                                (!onlyOpen ? true : p.ticket_status != 5) &&
-                                (grp == 0 ? true : (
-                                    (p.sub_unit2.unit_ref == grp) ||
-                                    (p.sub_unit.unit_ref == grp))) &&
-                                (subgrp == 0 ? true : (
-                                    (p.originating_group == subgrp) ||
-                                    (p.assigned_to_group == subgrp)))
-                     select p;
+            return from p in db.tickets
+                   where
+                       p.title.Contains(keywords[0]) &&
+                       p.title.Contains(keywords[1]) &&
+                       p.title.Contains(keywords[2]) &&
+                       p.title.Contains(keywords[3]) &&
+                       p.title.Contains(keywords[4]) &&
+                       p.title.Contains(keywords[5]) &&
+                       p.title.Contains(keywords[6]) &&
+                       p.title.Contains(keywords[7]) &&
+                       p.title.Contains(keywords[8]) &&
+                       p.title.Contains(keywords[9]) &&
+
+                       p.submitter == (usr < 0 ? p.submitter : usr) &&
+                       p.submitted >= dtFrom &&
+                       p.submitted <= dtTo &&
+                       (prty == 0 ? true : p.priority == prty) &&
+                       (stat == 0 ? true : p.ticket_status == stat) &&
+                       (!onlyOpen ? true : p.ticket_status != 5) &&
+                       (grp == 0 ? true : (
+                       (p.sub_unit2.unit_ref == grp) ||
+                       (p.sub_unit.unit_ref == grp))) &&
+                       (subgrp == 0 ? true : (
+                       (p.originating_group == subgrp) ||
+                       (p.assigned_to_group == subgrp)))
+                   select p;
         }
 
         public class attachments
