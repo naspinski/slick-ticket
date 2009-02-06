@@ -17,9 +17,16 @@ public class utils
     public static List<string> userGroups()
     {
         List<string> groups = new List<string>();
-        groups.Add("System Administrators");
-        groups.Add("Everyone");
-        groups.Add("Authenticated Users");
+        List<string> groups_share = new List<string>();
+        foreach (System.Security.Principal.IdentityReference group in System.Web.HttpContext.Current.Request.LogonUserIdentity.Groups)
+        {
+            string fullGroupName = group.Translate(typeof(System.Security.Principal.NTAccount)).ToString();
+            int slashIndex = fullGroupName.IndexOf("\\");
+            if (slashIndex > -1)
+                fullGroupName = fullGroupName.Substring(slashIndex + 1, fullGroupName.Length - slashIndex - 1);
+            groups.Add(fullGroupName);
+            groups_share.Add(fullGroupName);
+        }
         return groups;
     }
 
