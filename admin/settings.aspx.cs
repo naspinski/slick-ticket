@@ -27,6 +27,7 @@ public partial class admin_settings : System.Web.UI.Page
             txtImage.Text = utils.settings.get("image");
             txtAdminEmail.Text = utils.settings.get("admin_email");
             txtSysEmail.Text = utils.settings.get("system_email");
+            txtDC.Text = utils.settings.get("domain_controller");
             txtSmtp.Text = utils.settings.get("smtp");
             resetTheme();
 
@@ -92,7 +93,8 @@ public partial class admin_settings : System.Web.UI.Page
     
     protected void btnApplyAppearance_Click(object sender, EventArgs e)
     {
-        utils.settings.update("sidebar", utils.settings.get("sidebar").Equals("left") ? "right" : "left");
+        string sidebarLocation = "right";
+        if (left.Checked == true) sidebarLocation = "left";        
         dbi.themes.set(db, styleText.Text, styleBorders.Text, styleBody.Text, styleLink.Text, styleLinkHover.Text, styleButtonText.Text, styleAlternatingRows.Text, styleHeader.Text, styleBg.Text);
         reWriteCss(styleText.Text, styleBorders.Text, styleBody.Text, styleLink.Text, styleLinkHover.Text, styleButtonText.Text, styleAlternatingRows.Text, styleHeader.Text, styleBg.Text);
         resetTheme();
