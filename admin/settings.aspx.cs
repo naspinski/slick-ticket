@@ -94,7 +94,8 @@ public partial class admin_settings : System.Web.UI.Page
     protected void btnApplyAppearance_Click(object sender, EventArgs e)
     {
         string sidebarLocation = "right";
-        if (left.Checked == true) sidebarLocation = "left";        
+        if (left.Checked == true) sidebarLocation = "left";
+        utils.settings.update("sidebar", sidebarLocation);
         dbi.themes.set(db, styleText.Text, styleBorders.Text, styleBody.Text, styleLink.Text, styleLinkHover.Text, styleButtonText.Text, styleAlternatingRows.Text, styleHeader.Text, styleBg.Text);
         reWriteCss(styleText.Text, styleBorders.Text, styleBody.Text, styleLink.Text, styleLinkHover.Text, styleButtonText.Text, styleAlternatingRows.Text, styleHeader.Text, styleBg.Text);
         resetTheme();
