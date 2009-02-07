@@ -32,7 +32,8 @@ public class utils
 
     public static string userName()
     {
-        return (HttpContext.Current.User.Identity.Name.Split(new char[] { '\\' }))[1];
+        try { return (HttpContext.Current.User.Identity.Name.Split(new char[] { '\\' }))[1]; }
+        catch { return HttpContext.Current.User.Identity.Name; } // if the user is not on a domain
     }
 
     public static string trimForSideBar(string trimThis, int toLength)
