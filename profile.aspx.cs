@@ -100,9 +100,8 @@ public partial class profile : System.Web.UI.Page
             {
                 lblGroups.Text = "Not part of any groups";
             }
+            if (!string.IsNullOrEmpty(strPhone)) txtPhone.Text = strPhone;
         }
-
-        if (!string.IsNullOrEmpty(strPhone)) txtPhone.Text = strPhone;
     }
 
     protected void fillPhone()
