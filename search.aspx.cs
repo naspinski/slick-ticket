@@ -109,7 +109,9 @@ public partial class search : System.Web.UI.Page
         su = Int32.Parse(ddlSubUnit.SelectedValue);
 
         gvResults.EmptyDataText = "<h5>No results for your search</h5>";
-        gvResults.DataSource = dbi.tickets.search(db, keywords, usr, dtFrom, dtTo, prty, stat, onlyOpen, u, su);
+        var results = dbi.tickets.search(db, keywords, usr, dtFrom, dtTo, prty, stat, onlyOpen, u, su);
+        gvResults.DataSource = results;
+        Session["searchResults"] = results;
         gvResults.DataBind();
     }
 
