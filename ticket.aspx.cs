@@ -182,7 +182,7 @@ public partial class _ticket : System.Web.UI.Page
             catch { error += " - saving attachments"; }
             if ((bool.Parse(utils.settings.get("email_notification"))))
             {
-                try { buildAndSendEmail(fromGroup, toGroup, t.user.userName, t.title, t.statuse.status_name, t.priority1.priority_name, _t.id, t.user.email, t.sub_unit.mailto); }
+                try { buildAndSendEmail(fromGroup, toGroup, t.user.userName, t.title, t.statuse.status_name, t.priority1.priority_name, _t.id, t.user.email, _t.sub_unit.mailto); }
                 catch { error += " - sending email"; }
             }
             Response.Redirect(Request.Url.ToString());
