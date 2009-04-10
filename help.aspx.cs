@@ -83,6 +83,8 @@ public partial class info : System.Web.UI.Page
     }
     protected void btnCancel_Click(object sender, EventArgs e)
     {
+        txtQ.Text = string.Empty;
+        txtA.Text = string.Empty;
         btnSubmit.CommandArgument = "0";
     }
 }

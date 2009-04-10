@@ -20,11 +20,10 @@ Developed by Stan Naspinski - stan@naspinski.net
 http://naspinski.net
 --%>
 <asp:Content ID="Content2" ContentPlaceHolderID="body" Runat="Server">
-<%--    <asp:UpdatePanel ID="up" runat="server">
+    <asp:UpdatePanel ID="up" runat="server">
         <ContentTemplate>
-        </ContentTemplate>
-    </asp:UpdatePanel>--%>
             <fieldset class="inner_color">
+                <a id="home"></a>
                 <span class="larger bold"><asp:Label ID="lblReport" runat="server" /></span>
                 <h2>
                     <% if(isAdmin) { %>
@@ -149,6 +148,8 @@ http://naspinski.net
                     </fieldset>
                 </div>
             </asp:Panel>
+        </ContentTemplate>
+    </asp:UpdatePanel>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="sidebar" Runat="Server">
 </asp:Content>
