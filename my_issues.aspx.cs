@@ -40,6 +40,9 @@ public partial class my_issues : System.Web.UI.Page
         urgency.Add(3, "#ff7700");
         urgency.Add(4, "#ff2f00");
 
+        myTickets = dbi.tickets.myTickets(db, me.id);
+        groupTickets = dbi.tickets.myGroupsTickets(db, me);
+
         if (!IsPostBack)
         {
             System.Drawing.Color alt_color = System.Drawing.ColorTranslator.FromHtml(dbi.themes.current(db).alt_rows);
@@ -48,9 +51,9 @@ public partial class my_issues : System.Web.UI.Page
                 gv.HeaderStyle.BackColor = alt_color;
                 gv.AlternatingRowStyle.BackColor = alt_color;
             }
-            gvMy.DataSource = dbi.tickets.myTickets(db, me.id);
+            gvMy.DataSource = myTickets;
             gvMy.DataBind();
-            gvGroup.DataSource = dbi.tickets.myGroupsTickets(db, me);
+            gvGroup.DataSource = groupTickets;
             gvGroup.DataBind();
         }
     }
