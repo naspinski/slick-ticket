@@ -223,7 +223,7 @@ public class dbi
 
         public static IEnumerable<ticket> myGroupsTickets(dbDataContext db, user usr)
         {
-            IEnumerable<ticket> groupTix = from p in db.tickets where p.submitter != usr.id && (p.assigned_to_group == usr.sub_unit || p.originating_group == usr.sub_unit) select p;
+            IEnumerable<ticket> groupTix = from p in db.tickets where p.submitter != usr.id && (p.assigned_to_group == usr.sub_unit || p.originating_group == usr.sub_unit) && p.closed == DateTime.Parse("1/1/2001") select p;
             IEnumerable<ticket> ITix = tickets.ICommentedIn(db, usr.id);
             if (groupTix != null && ITix != null)
                 return groupTix.Except(ITix).OrderByDescending(p => p.priority1.level).OrderBy(p => p.submitted);
