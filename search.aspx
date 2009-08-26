@@ -95,7 +95,7 @@ http://naspinski.net
                                     <a class="tooltip large" href="ticket.aspx?ticketID=<%# Eval("id") %>">
                                         <em><%# utils.trimForSideBar(Eval("title").ToString(), 50) %></em>
                                         <span class='border_color'><q class='inner_color base_text'>
-                                            <div><b>Last Action: </b><%# Eval("last_action") %></div>
+                                            <div><b>Last Action: </b><%# Convert.ToDateTime(Eval("last_action")).ToString()%></div>
                                             <div><b>Ticket Number: </b><%# Eval("id") %></div>
                                             <div><b>Submitter: </b><%# Eval("user.userName")%></div>
                                             <div><b>Assigned To: </b><%# Eval("sub_unit.unit.unit_name") %> - <%# Eval("sub_unit.sub_unit_name") %></div>
