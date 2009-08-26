@@ -106,7 +106,7 @@ http://naspinski.net
                                 <HeaderStyle Width="400px"></HeaderStyle>
                             </asp:TemplateField>
                             
-                            <asp:BoundField DataField="submitted" HeaderText="Submitted" SortExpression="submitted" DataFormatString="{0:MM/dd/yy}" HtmlEncode="false"
+                            <asp:BoundField DataField="submitted" HeaderText="Submitted" SortExpression="submitted" DataFormatString="{0:d}" HtmlEncode="false"
                                 HeaderStyle-Width="80px" ItemStyle-HorizontalAlign="Center" />
                             
                             <asp:TemplateField HeaderText="<div style='text-align:center;'>Status</div>" SortExpression="status" HeaderStyle-HorizontalAlign="Center">
