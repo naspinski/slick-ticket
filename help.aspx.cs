@@ -14,6 +14,7 @@ public partial class info : System.Web.UI.Page
     public bool isAdmin;
     protected void Page_Load(object sender, EventArgs e)
     {
+        this.Title = Resources.Common.Help;
         db = new dbDataContext();
 
         string userName = utils.userName();
@@ -39,12 +40,12 @@ public partial class info : System.Web.UI.Page
         try
         {
             dbi.faqs.delete(db, Int32.Parse(btn.CommandArgument));
-            lblReport.report(true, "Question/Answer Deleted", null);
+            lblReport.report(true, GetLocalResourceObject("Deleted").ToString() , null);
             rptIndex.DataBind();
             rpt.DataBind();
         }
         catch (Exception ex)
-        { lblReport.report(false, "Error", ex); }
+        { lblReport.report(false, Resources.Common.Error, ex); }
     }
 
     protected void btnSubmit_Click(object sender, EventArgs e)
@@ -55,12 +56,12 @@ public partial class info : System.Web.UI.Page
             if( cmdArg != 0 )
             {
                 dbi.faqs.edit(db, cmdArg, Server.HtmlEncode(txtQ.Text), txtA.Text);
-                lblReport.report(true, "Question/Answer updated", null);
+                lblReport.report(true, GetLocalResourceObject("Updated").ToString(), null);
             }
             else
             {
                 dbi.faqs.add(db, Server.HtmlEncode(txtQ.Text), txtA.Text);
-                lblReport.report(true, "Question/Answer inserted", null);
+                lblReport.report(true, GetLocalResourceObject("Inserted").ToString(), null);
             }
             rptIndex.DataBind();
             rpt.DataBind();
@@ -68,7 +69,7 @@ public partial class info : System.Web.UI.Page
             txtQ.Text = string.Empty;
         }
         catch (Exception ex)
-        { lblReport.report(false, "Error", ex); }
+        { lblReport.report(false, Resources.Common.Error, ex); }
         btnSubmit.CommandArgument="0";
     }
 

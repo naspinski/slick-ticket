@@ -4,7 +4,7 @@ http://slick-ticket.com
 Developed by Stan Naspinski - stan@naspinski.net
 http://naspinski.net
 --%>
-<%@ Page Title="Dashboard" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" %>
+<%@ Page Title="Dashboard" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Default.aspx.cs" Inherits="_Default" culture="auto" meta:resourcekey="PageResource1" uiculture="auto" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
@@ -16,15 +16,19 @@ http://naspinski.net
                 <td>
                     <a class="big_button" href="new_ticket.aspx">
                         <img style="float:left;" src="images/icons/add_page.png" alt="" />
-                        <span>New Ticket</span>
-                        <q class="base_text">Enter a new ticket into the system</q>
+                        <span><%= Resources.Common.NewTicket %></span>
+                        <q class="base_text">
+                            <asp:Literal id="litNewTicket" runat="server"  meta:resourcekey="litNewTicketResource1"  />
+                        </q>
                     </a>
                 </td>
                 <td>
                     <a class="big_button" href="ticket.aspx">
                         <img style="float:left;" src="images/icons/search_page.png" alt="" />
-                        <span>View Ticket</span>
-                        <q class="base_text">View or Contribute to a ticket</q>
+                        <span><%= Resources.Common.ViewTicket %></span>
+                        <q class="base_text">
+                            <asp:Literal id="litViewTicket" runat="server"  meta:resourcekey="litViewTicketResource1"  />
+                        </q>
                     </a>
                 </td>
             </tr>
@@ -32,15 +36,19 @@ http://naspinski.net
                 <td>
                     <a class="big_button" href="my_issues.aspx">
                         <img style="float:left;" src="images/icons/folder_full.png" alt="" />
-                        <span>My Issues</span>
-                        <q class="base_text">You and your group's open tickets</q>
+                        <span><%= Resources.Common.MyIssues %></span>
+                        <q class="base_text">
+                            <asp:Literal id="litMyIssues" runat="server" meta:resourcekey="litMyIssuesResource1" />
+                        </q>
                     </a>
                 </td>
                 <td>
                     <a class="big_button" href="profile.aspx">
                         <img style="float:left;" src="images/icons/user.png" alt="" />
-                        <span>Profile</span>
-                        <q class="base_text">Change your profile settings</q>
+                        <span><%= Resources.Common.Profile %></span>
+                        <q class="base_text">
+                            <asp:Literal id="litProfile" runat="server" meta:resourcekey="litProfileResource1" />
+                        </q>
                     </a>
                 </td>
             </tr>
@@ -48,15 +56,19 @@ http://naspinski.net
                 <td>
                     <a class="big_button" href="search.aspx">
                         <img style="float:left;" src="images/icons/search.png" alt="" />
-                        <span>Search</span>
-                        <q class="base_text">Search tickets</q>
+                        <span><%= Resources.Common.Dashboard %></span>
+                        <q class="base_text">
+                            <asp:Literal id="litSearch" runat="server" meta:resourcekey="litSearchResource1" />
+                        </q>
                     </a>
                 </td>
                 <td>
                     <a class="big_button" href="help.aspx">
                         <img style="float:left;" src="images/icons/help.png" alt="" />
-                        <span>Help/FAQ</span>
-                        <q class="base_text">Have some questions? Get them answered</q>
+                        <span><%= Resources.Common.Help %></span>
+                        <q class="base_text">
+                            <asp:Literal id="litHelp" runat="server" meta:resourcekey="litHelpResource1" />
+                        </q>
                     </a>
                 </td>
             </tr>
@@ -64,8 +76,10 @@ http://naspinski.net
                 <td>
                     <a class="big_button" href="contact.aspx">
                         <img style="float:left;" src="images/icons/comment.png" alt="" />
-                        <span>Contact Administrator</span>
-                        <q class="base_text">Question, problem or comment?</q>
+                        <span><%= Resources.Common.Contact %></span>
+                        <q class="base_text">
+                            <asp:Literal id="LlitContact" runat="server" meta:resourcekey="LlitContactResource1" />
+                        </q>
                     </a>
                 </td>
                 <td></td>
@@ -73,9 +87,9 @@ http://naspinski.net
         </table>
     </fieldset>
     <div class="divider"></div>
-    <asp:Panel ID="pnlAdmin" runat="server" Visible="false">
+    <asp:Panel ID="pnlAdmin" runat="server" Visible="False" >
         <fieldset class="inner_color">
-            <h2>Administration</h2>
+            <h2><asp:Literal id="litAdmin" runat="server" meta:resourcekey="litAdminResource1" /></h2>
             <ctrl:AdminPanel ID="admPanel" runat="server" />
         </fieldset>
     </asp:Panel>

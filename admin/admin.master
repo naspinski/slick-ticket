@@ -18,8 +18,6 @@ http://naspinski.net
             <span class="clear"></span>
         </div>
         <div class="divider"></div>
-        <%--<fieldset style="text-align:center;font-weight:bold;" class="inner_color">--%>
-        <%--</fieldset>--%>
     </asp:Panel>
     <asp:ContentPlaceHolder ID="adminBody" runat="server" />
 </asp:Content>

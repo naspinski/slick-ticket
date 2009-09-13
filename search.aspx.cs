@@ -15,6 +15,7 @@ public partial class search : System.Web.UI.Page
     public Dictionary<int, string> urgency = new Dictionary<int, string>();
     protected void Page_Load(object sender, EventArgs e)
     {
+        this.Title = Resources.Common.Search;
         db = new dbDataContext();
         urgency.Add(1, "transparent");
         urgency.Add(2, "#ffe800");
@@ -25,9 +26,9 @@ public partial class search : System.Web.UI.Page
             var units = dbi.groups.list(db, 10);
             foreach (unit u in units.OrderBy(p => p.unit_name))
                 ddlUnit.Items.Add(new ListItem(u.unit_name, u.id.ToString()));
-            ddlUnit.Items.Insert(0, new ListItem("Any", "0"));
+            ddlUnit.Items.Insert(0, new ListItem(Resources.Common.Any, "0"));
             utils.populateSubUnits(db, ddlUnit, ddlSubUnit, 10);
-            ddlSubUnit.Items.Insert(0, new ListItem("Any", "0"));
+            ddlSubUnit.Items.Insert(0, new ListItem(Resources.Common.Any, "0"));
 
             System.Drawing.Color alt_color = System.Drawing.ColorTranslator.FromHtml(dbi.themes.current(db).alt_rows);
             gvResults.HeaderStyle.BackColor = alt_color;
@@ -108,7 +109,7 @@ public partial class search : System.Web.UI.Page
         u = Int32.Parse(ddlUnit.SelectedValue);
         su = Int32.Parse(ddlSubUnit.SelectedValue);
 
-        gvResults.EmptyDataText = "<h5>No results for your search</h5>";
+        gvResults.EmptyDataText = "<h5>" + GetLocalResourceObject("NoResults") + "</h5>";
         var results = dbi.tickets.search(db, keywords, usr, dtFrom, dtTo, prty, stat, onlyOpen, u, su);
         gvResults.DataSource = results;
         Session["searchResults"] = results;

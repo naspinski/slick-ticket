@@ -82,7 +82,7 @@ ul.list_menu li a:hover{ text-decoration:none;}
 .right{float:right;}
 .ajax__calendar_days table tr td { padding:0; margin:0; }
 .top_header { margin-left:auto; margin-right:auto; width:995px; position:relative; }
-
+.center { text-align:center; }
 .iframeText{ width:100% ;}
 .full_window{ width:100%; }
 

@@ -26,6 +26,7 @@ public partial class my_issues : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        this.Title = Resources.Common.MyIssues;
         GridView[] gvs = new GridView[] { gvMy, gvGroup };
         db = new dbDataContext();
         userName = utils.userName();

@@ -14,6 +14,7 @@ public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        this.Title = Resources.Common.Dashboard;
         dbDataContext db = new dbDataContext();
         string userName = utils.userName();
         bool showAdmin;

@@ -164,7 +164,7 @@ public class utils
                         db.SubmitChanges(); //inefficient to submit each time, *but* this will tell which faqs got inserted and which didn't
                         output += "<div class='success'>-" + xe.FirstAttribute.Value + " successfully imported</div>";
                     }
-                    catch (Exception ex)
+                    catch// (Exception ex)
                     {
                         output += "<div class='error'>-Error importing " + xe.FirstAttribute.Value + "</div>";
                     }
@@ -230,7 +230,7 @@ public class utils
                         db.SubmitChanges(); //inefficient to submit each time, *but* this will tell which styles got inserted and which didn't
                         output += "<div class='success'>-" + styleAttributes["style_name"] + " successfully imported</div>";
                     }
-                    catch (Exception ex)
+                    catch// (Exception ex)
                     {
                         output += "<div class='error'>-Error importing " + styleAttributes["style_name"] + " - <span class='smaller'>most likely a duplicate</span></div>";
                     }

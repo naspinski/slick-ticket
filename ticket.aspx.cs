@@ -20,6 +20,7 @@ public partial class _ticket : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        this.Title = Resources.Common.ViewTicket;
         userName = utils.userName();
         db = new dbDataContext();
         txtGoToTicket.Focus();
@@ -48,7 +49,7 @@ public partial class _ticket : System.Web.UI.Page
                 buildComments(c);
 
             if (sb.Length > 0)
-                lblComments.Text = "<h6>Comments</h6>" + sb.ToString();
+                lblComments.Text = "<h6>" + GetLocalResourceObject("Comments") + "</h6>" + sb.ToString();
 
 
             //only do the user is at the right level... if not, read only
@@ -90,11 +91,11 @@ public partial class _ticket : System.Web.UI.Page
                     ddlStatus.Enabled = false;
 
                     if (me.sub_unit == t.user.sub_unit || dbi.tickets.comments.commentingGroups(db, t.id).Contains(me.sub_unit))
-                        lblReport.report(false, "Your access level is too low to do anything but comment, attach to and close this ticket", null);
+                        lblReport.report(false, GetLocalResourceObject("CommentAttachClose").ToString(), null);
                     else
                     {
                         pnlComment.Style.Add(HtmlTextWriterStyle.Display, "none");
-                        lblReport.report(false, "Your access level is too low to do anything but view this ticket", null);
+                        lblReport.report(false, GetLocalResourceObject("ViewOnly").ToString(), null);
                     }
                 }
             }
@@ -104,7 +105,7 @@ public partial class _ticket : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblTopReport.report(false, "Error - No Ticket Number " + Request.QueryString["ticketID"].ToString(), ex);
+            lblTopReport.report(false, Resources.Common.Error + " - " + GetLocalResourceObject("NoTicket").ToString() + Request.QueryString["ticketID"].ToString(), ex);
         }
     }
 
@@ -130,7 +131,7 @@ public partial class _ticket : System.Web.UI.Page
             LinkButton lb = new LinkButton()
             {
                 CommandArgument = a.attachment_name,
-                Text = a.attachment_name + " (" + a.attachment_size + " bytes)",
+                Text = a.attachment_name + " (" + a.attachment_size + " " + Resources.Common.Bytes + ")",
                 CssClass = getExtension(a.attachment_name)
             };
             lb.Click += new EventHandler(btnAttachment_Click);
@@ -144,7 +145,7 @@ public partial class _ticket : System.Web.UI.Page
     {
         ddlStatus.set("5");
         ddlStatus.Items.Clear();
-        ddlStatus.Items.Add(new ListItem("Closed", "5"));
+        ddlStatus.Items.Add(new ListItem(Resources.Common.Closed, "5"));
         btnUpdate_Click(null, null);
     }
 
@@ -152,19 +153,19 @@ public partial class _ticket : System.Web.UI.Page
     {
         ddlStatus.set("5");
         ddlStatus.Items.Clear();
-        ddlStatus.Items.Add(new ListItem("Resolved", "4"));
+        ddlStatus.Items.Add(new ListItem(Resources.Common.Resolved, "4"));
         btnUpdate_Click(null, null);
     }
 
     protected void btnUpdate_Click(object sender, EventArgs e)
     {
-        string error = "Error";
+        string error = Resources.Common.Error;
         try
         {
             FileUpload[] fuControls = new FileUpload[] { FileUpload1, FileUpload2, FileUpload3, FileUpload4, FileUpload5 };
             user me = dbi.users.get(db, userName);
-            string strComment = "<div class='comment_header'><span style='float:left'><span class='bold'>Assigned to: </span>" + ddlUnit.SelectedItem.Text + " - " + ddlSubUnit.SelectedItem.Text + "</span>";
-            strComment += "<span style='float:right'><span class='bold'>Status: </span>" + ddlStatus.SelectedItem.Text + " <span class='bold'>Priority: </span>" + ddlPriority.SelectedItem.Text + "</span>";
+            string strComment = "<div class='comment_header'><span style='float:left'><span class='bold'>" + Resources.Common.AssignedTo + ": </span>" + ddlUnit.SelectedItem.Text + " - " + ddlSubUnit.SelectedItem.Text + "</span>";
+            strComment += "<span style='float:right'><span class='bold'>Status: </span>" + ddlStatus.SelectedItem.Text + " <span class='bold'>"+ Resources.Common.Priority + ": </span>" + ddlPriority.SelectedItem.Text + "</span>";
             strComment += "<span  class='clear'></span></div>";
             strComment += "<div>" + txtDetails.Text + "</div>";
             int commentID = dbi.tickets.comments.add(db, strComment, t.id, me.id);
@@ -179,11 +180,11 @@ public partial class _ticket : System.Web.UI.Page
 
             try { dbi.tickets.attachments.saveMultiple(db2, fuControls, t_id, commentID); }
             //dbi.tickets.attachments.saveMultiple(db, fuControls, Server.MapPath("~") + "\\" + utils.settings.get("attachments"), newTicket.id, 0);
-            catch { error += " - saving attachments"; }
+            catch { error += " - " + GetLocalResourceObject("ErrorSaving").ToString(); }
             if ((bool.Parse(utils.settings.get("email_notification"))))
             {
                 try { buildAndSendEmail(fromGroup, toGroup, _t.user.userName, _t.title, _t.statuse.status_name, _t.priority1.priority_name, _t.id, t.user.email, _t.sub_unit.mailto); }
-                catch { error += " - sending email"; }
+                catch { error += " - " + Resources.Common.EmailError; }
             }
             Response.Redirect(Request.Url.ToString());
         }
@@ -198,15 +199,15 @@ public partial class _ticket : System.Web.UI.Page
         if (status.Equals("closed", StringComparison.CurrentCultureIgnoreCase))
         {
             sendToGroup = false;
-            subject = ddlPriority.SelectedItem.Text + " priority ticket number " + id + " has been closed";
-            body = submitterName + " (" + fromGroup + ") has closed ticket number " + id + ": " + title + ".   If this is incorrect, please re-open the ticket.\n\n" + rootUrl + "/ticket.aspx?ticketID=" + id;
+            subject = ddlPriority.SelectedItem.Text + " " + Resources.Common.Priority.ToLower() + " " + Resources.Common.TicketNumber.ToLower() + " " + id + " " + GetLocalResourceObject("BeenClosed").ToString();
+            body = submitterName + " (" + fromGroup + ") " + GetLocalResourceObject("HasClosed").ToString() +" " + id + ": " + title + ".   " + GetLocalResourceObject("ReOpen").ToString() + "\n\n" + rootUrl + "/ticket.aspx?ticketID=" + id;
         }
         else
         {
-            subject = "Ticket number " + id + " has been updated - assigned to " + toGroup;
-            body = submitterName + " (" + fromGroup + ") has updated ticket number " + id + ":\n" + title + "\n\n";
-            body += "Priority: " + _priority + "\n" + "Status: " + status;
-            body += "\n\nView the ticket:\nhttp://" + rootUrl + "/ticket.aspx?ticketID=" + id;
+            subject = Resources.Common.TicketNumber + " " + id + " " + GetLocalResourceObject("BeenUpdated") + " - " + Resources.Common.AssignedTo.ToLower()+ " " + toGroup;
+            body = submitterName + " (" + fromGroup + ") " + GetLocalResourceObject("HasUpdated").ToString() + " " + Resources.Common.TicketNumber.ToLower() + " " + id + ":\n" + title + "\n\n";
+            body += "Priority: " + _priority + "\n" + Resources.Common.Status + ": " + status;
+            body += "\n\n" + GetLocalResourceObject("ViewIt").ToString() + ":\nhttp://" + rootUrl + "/ticket.aspx?ticketID=" + id;
         }
         utils.sendEmail(originalEmail, subject, body);
         if (sendToGroup) utils.sendEmail(groupEmail, subject, body);

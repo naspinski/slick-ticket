@@ -46,8 +46,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
             if (thisUser.is_admin) isAdmin = true;
             lblEmail.Text = "<a href='mailto:" + thisUser.email + "'>" + utils.trimForSideBar(thisUser.email, 25) + "</a>";
             lblPhone.Text = thisUser.phone;
-            lblUnit.Controls.Add(new HyperLink() { Text = thisUser.sub_unit1.unit.unit_name, NavigateUrl = "~/search.aspx?group=" + thisUser.sub_unit1.unit_ref , ToolTip="Open Tickets"});
-            lblSubUnit.Controls.Add(new HyperLink() { Text = thisUser.sub_unit1.sub_unit_name, NavigateUrl = "~/search.aspx?group=" + thisUser.sub_unit1.unit_ref + "&subgroup=" + thisUser.sub_unit, ToolTip = "Open Tickets" });
+            lblUnit.Controls.Add(new HyperLink() { Text = thisUser.sub_unit1.unit.unit_name, NavigateUrl = "~/search.aspx?group=" + thisUser.sub_unit1.unit_ref });
+            lblSubUnit.Controls.Add(new HyperLink() { Text = thisUser.sub_unit1.sub_unit_name, NavigateUrl = "~/search.aspx?group=" + thisUser.sub_unit1.unit_ref + "&subgroup=" + thisUser.sub_unit });
             //this.myIssues(lblSubUnit,  dbi.tickets.myGroupsTickets(db, thisUser).Count());
             string accessName;
             int accessLevel;
@@ -55,12 +55,12 @@ public partial class MasterPage : System.Web.UI.MasterPage
             if (ugAccessLevel == null)
             {
                 accessLevel = 0;
-                accessName = "No Access";
+                accessName = Resources.Common.NoAccess;
             }
             else
             {
                 accessLevel = ugAccessLevel.security_level;
-                accessName = string.IsNullOrEmpty(ugAccessLevel.security_level1.security_level_name) ? "<i>undefined</i>" : ugAccessLevel.security_level1.security_level_name;
+                accessName = string.IsNullOrEmpty(ugAccessLevel.security_level1.security_level_name) ? "<i>" + Resources.Common.Undefined + "</i>" : ugAccessLevel.security_level1.security_level_name;
             }
             lblAccess.Text = accessLevel.ToString();
             lblAccessName.Text = accessName;
@@ -68,8 +68,8 @@ public partial class MasterPage : System.Web.UI.MasterPage
         catch
         {
             userIsRegistered = false;
-            lblPhone.CssClass = "error";
-            lblPhone.Text = "Please Update and Save Profile";
+            lblPhone.CssClass = Resources.Common.Error;
+            lblPhone.Text = GetLocalResourceObject("PleaseUpdate").ToString();
         }
         setMenu();
     }
@@ -109,11 +109,14 @@ public partial class MasterPage : System.Web.UI.MasterPage
                 imgCurrentPage.ImageUrl = "~/images/icons/warning.png";
                 lblCurrentPage.Text = "<span class='smaller'>Administration</span><br />Dashboard";
             }
-            pnl.Controls.Add(new LiteralControl(li));
-            pnl.Controls.Add(new HyperLink() { Text = xe.FirstAttribute.Value, NavigateUrl = xe.Value, CssClass = "inner_color" });
-            pnl.Controls.Add(new LiteralControl("</li>"));
-            lblFooter.Controls.Add(new HyperLink() { Text = xe.FirstAttribute.Value, NavigateUrl = xe.Value });
-            if (count++ < xes.Count()) lblFooter.Controls.Add(new LiteralControl(" | "));
+            if(xe.Attribute("hidden").Value.Equals("false"))
+            {
+                pnl.Controls.Add(new LiteralControl(li));
+                pnl.Controls.Add(new HyperLink() { Text = xe.FirstAttribute.Value, NavigateUrl = xe.Value, CssClass = "inner_color" });
+                pnl.Controls.Add(new LiteralControl("</li>"));
+                lblFooter.Controls.Add(new HyperLink() { Text = xe.FirstAttribute.Value, NavigateUrl = xe.Value });
+                if (count++ < xes.Count() -1) lblFooter.Controls.Add(new LiteralControl(" | "));
+            }
         }
         if (isAdmin)
         {

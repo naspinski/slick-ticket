@@ -25,6 +25,7 @@ public partial class profile : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        this.Title = Resources.Common.Profile;
         txtPhone.Focus();
         db = new dbDataContext();
         userName = utils.userName();
@@ -49,8 +50,8 @@ public partial class profile : System.Web.UI.Page
             var units = dbi.groups.list(db, accessLevel);
             if (units.Count() < 1)
             {
-                ddlUnit.Items.Add(new ListItem("No groups available to you", "0"));
-                lblProfileHeader.report(false, "There are no groups with a low enough access level for you to join, please <a href='contact.aspx'>contact your administrator</a><br /><br />", null);
+                ddlUnit.Items.Add(new ListItem(Resources.Common.NoGroups, "0"));
+                lblProfileHeader.report(false, Resources.Common.NoGroupsExplanation + "<a href='contact.aspx'>" + Resources.Common.Contact.ToLower() + "</a><br /><br />", null);
             }
             var _units = dbi.groups.list(db, accessLevel);
             foreach (unit u in _units.OrderBy(p => p.unit_name))
@@ -67,7 +68,8 @@ public partial class profile : System.Web.UI.Page
                     catch { }
                 }
                 lblProfileHeader.CssClass = "error top_error";
-                lblProfileHeader.Text = "<h2>It is required that you fill in your Profile</h2>If you already have filled in your profile, please <a href='profile.aspx'>reload</a><br /><br />";
+                lblProfileHeader.Text = "<h2>" + GetLocalResourceObject("ProfileRequired").ToString() + "</h2>" + 
+                    GetLocalResourceObject("Reload").ToString() + "<br /><br />";
                 txtEmail.Text = userName;
             }
             else
@@ -98,7 +100,7 @@ public partial class profile : System.Web.UI.Page
             }
             catch
             {
-                lblGroups.Text = "Not part of any groups";
+                lblGroups.Text = GetLocalResourceObject("NotInGroup").ToString();
             }
             if (!string.IsNullOrEmpty(strPhone)) txtPhone.Text = strPhone;
         }
@@ -161,18 +163,18 @@ public partial class profile : System.Web.UI.Page
             try
             {
                 dbi.users.add(db, userName, email, txtPhone.Text, Int32.Parse(ddlSubUnit.SelectedValue));
-                lblProfileHeader.Text = "<div class='success'><h2>Your profile has been created</h2></div>";
+                lblProfileHeader.Text = "<div class='success'><h2>" + GetLocalResourceObject("Saved").ToString() + "</h2></div>";
             }
-            catch (Exception ex) { lblProfileHeader.report(false, "Error saving profile", ex); }
+            catch (Exception ex) { lblProfileHeader.report(false, GetLocalResourceObject("ErrorSaving").ToString(), ex); }
         }
         else
         {
             try
             {
                 dbi.users.update(db, userName, email, txtPhone.Text, Int32.Parse(ddlSubUnit.SelectedValue));
-                lblProfileHeader.Text = "<div class='success'><h2>Your profile has been saved</h2></div>";
+                lblProfileHeader.Text = "<div class='success'><h2>" + GetLocalResourceObject("Saved").ToString() + "</h2></div>";
             }
-            catch (Exception ex) { lblProfileHeader.report(false, "Error saving profile", ex); }
+            catch (Exception ex) { lblProfileHeader.report(false, GetLocalResourceObject("ErrorSaving").ToString(), ex); }
         }
     }
 }

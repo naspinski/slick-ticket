@@ -11,7 +11,7 @@ public partial class contact : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        this.Title = Resources.Common.Contact;
     }
     protected void btnSend_Click(object sender, EventArgs e)
     {
@@ -20,15 +20,16 @@ public partial class contact : System.Web.UI.Page
             string userName = utils.userName();
             dbDataContext db = new dbDataContext();
             user u = dbi.users.get(db, userName);
-            string strBody = u.userName + " (" + u.sub_unit1.unit.unit_name + " - " + u.sub_unit1.sub_unit_name + ") has sent a question/comment:\n\n" + txtSubject.Text + "\n\n" + txtBody.Text;
-            MailMessage message = new MailMessage(u.email, utils.settings.get("admin_email"), utils.settings.get("title") + " Contact", strBody);
+            string strBody = u.userName + " (" + u.sub_unit1.unit.unit_name + " - " + u.sub_unit1.sub_unit_name + ") " +  GetLocalResourceObject("SentText").ToString() + 
+                ":\n\n" + txtSubject.Text + "\n\n" + txtBody.Text;
+            MailMessage message = new MailMessage(u.email, utils.settings.get("admin_email"), utils.settings.get("title") + " " + Resources.Common.Contact, strBody);
             SmtpClient smtp = new SmtpClient(utils.settings.get("smtp"));
             smtp.Send(message);
-            lblReport.report(true, "Message sent", null);
+            lblReport.report(true, GetLocalResourceObject("MessageSent").ToString(), null);
         }
         catch(Exception ex)
         {
-            lblReport.report(false, "Error sending message", ex);
+            lblReport.report(false, Resources.Common.EmailError , ex);
         }
         pnlInput.Visible = false;
         pnlOutput.Visible = true;

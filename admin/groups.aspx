@@ -17,7 +17,7 @@ http://naspinski.net
         <span class="smaller"><asp:Label ID="lblReport" runat="server" /></span>
     </h4>
     <div style="text-align:left;" class="header">
-        Here you can set the groups and sub-groups that users are able to set within their profiles.
+        <asp:literal runat="server" Text="Here you can set the groups and sub-groups that users are able to set within their profiles." ID="litDescription" />
     </div>
     <div class="divider"></div>
     <asp:UpdatePanel ID="upUnit" runat="server">
