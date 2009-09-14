@@ -12,6 +12,7 @@ public partial class admin_user_groups : System.Web.UI.Page
     dbDataContext db;
     protected void Page_Load(object sender, EventArgs e)
     {
+        this.Title = Resources.Common.Admin + " - " + Resources.Common.Permissions;
         db = new dbDataContext();
         if (!IsPostBack)
         {
@@ -27,14 +28,14 @@ public partial class admin_user_groups : System.Web.UI.Page
         try
         {
             dbi.permissions.addGroup(db, txtADGroup.Text, Int32.Parse(ddlSecurityLevel.SelectedValue));
-            lblReport.report(true, "Group Saved", null);
+            lblReport.report(true, Resources.Common.Updated, null);
             txtADGroup.Text = string.Empty;
             ddlSecurityLevel.set("1");
             gvADGroups.DataBind();
         }
         catch (Exception ex)
         {
-            lblReport.report(false, "Error Saving Group", ex);
+            lblReport.report(false, Resources.Common.Error, ex);
         }
     }
     protected void btnResetADxml_Click(object sender, EventArgs e)
@@ -42,13 +43,13 @@ public partial class admin_user_groups : System.Web.UI.Page
         try
         {
             int numberOfGroups = utils.ADGroupListUpdate();
-            lblReport.report(true, "AD groups xml file refreshed - " + numberOfGroups + " groups", null);
+            lblReport.report(true, Resources.Common.Updated +" [" + numberOfGroups + "]", null);
             lblReport.CssClass = "success top_error";
             utils.settings.update("ad_groups", numberOfGroups.ToString());
         }
         catch (Exception ex)
         {
-            lblReport.report(false, "Error refreshing the AD group xml file; this often has to be done from the web server itself and by an administrator with domain rights", ex);
+            lblReport.report(false, GetLocalResourceObject("ADRefreshError").ToString(), ex);
         }
     }
 

@@ -16,6 +16,7 @@ public partial class admin_settings : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        this.Title = Resources.Common.Admin + " - " + Resources.Common.Settings;
         db = new dbDataContext();
 
         if (!IsPostBack)
@@ -81,13 +82,13 @@ public partial class admin_settings : System.Web.UI.Page
         try
         {
             dbi.domains.add(db, txtDomainAdd.Text);
-             lblEmail.report(true, "Domain Added", null);
+             lblEmail.report(true, Resources.Common.Updated, null);
             txtDomainAdd.Text = string.Empty;
             gvDomains.DataBind();
         }
         catch (Exception ex)
         {
-            lblEmail.report(false, "Error Adding Domain", ex);
+            lblEmail.report(false, Resources.Common.Error, ex);
         }
     }
     
@@ -145,11 +146,11 @@ public partial class admin_settings : System.Web.UI.Page
             path = path.EndsWith("\\") ? path : path + "\\";
             utils.settings.update("attachments", path);
             txtAttachment.Text = path;
-            lblAttachmentReport.report(true, "Directory Updated", null);
+            lblAttachmentReport.report(true, Resources.Common.Updated, null);
         }
         catch (Exception ex)
         {
-            lblAttachmentReport.report(false, "Error", ex);
+            lblAttachmentReport.report(false, Resources.Common.Error, ex);
         }
     }
 
@@ -163,11 +164,11 @@ public partial class admin_settings : System.Web.UI.Page
         clear();
         if(e.Exception == null)
         {
-            lblEmail.report(true, "Domain removed from choices", null);
+            lblEmail.report(true, Resources.Common.Deleted, null);
             gvDomains.DataBind();
         }
         else
-            lblEmail.report(false, "Error removing domain", e.Exception);
+            lblEmail.report(false, Resources.Common.Error, e.Exception);
     }
 
     protected void updateSettings_Click(object sender, EventArgs e)
@@ -177,10 +178,10 @@ public partial class admin_settings : System.Web.UI.Page
             Button clicked = (Button)sender;
             TextBox txt = (TextBox)pnlSettings.FindControl(clicked.CommandName);
             utils.settings.update(clicked.CommandArgument, txt.Text);
-            lblAttachmentReport.report(true, clicked.CommandArgument.Replace("_", " ") + " Updated", null);
+            lblAttachmentReport.report(true, clicked.CommandArgument.Replace("_", " ") + " " + Resources.Common.Updated, null);
         }
         catch(Exception ex)
-        { lblAttachmentReport.report(true, "Error", ex); }
+        { lblAttachmentReport.report(true, Resources.Common.Error, ex); }
 
     }
     
@@ -199,7 +200,7 @@ public partial class admin_settings : System.Web.UI.Page
                 styleBody.Text, styleLink.Text, styleLinkHover.Text, styleButtonText.Text, styleHeader.Text,
                 styleAlternatingRows.Text, styleBg.Text);
             resetThemes();
-            lblNewTheme.report(true, txtNewTheme.Text + " saved", null);
+            lblNewTheme.report(true, txtNewTheme.Text + " " + Resources.Common.Saved, null);
             lblThemeDelete.Text = string.Empty;
         }
         catch(Exception ex)
@@ -216,7 +217,7 @@ public partial class admin_settings : System.Web.UI.Page
         {
             case "btnStyleImport": lblImportReport.Text = utils.styles.import(fuImport.FileContent); break;
             case "btnFaqImport": lblImportReport.Text = utils.faqs.import(fuImport.FileContent); break;
-            default: lblImportReport.Text = "<div class='error'>How the hell did you get this to show up?</div>"; break;
+            default: lblImportReport.Text = "<div class='error'>" + Resources.Common.Error + "</div>"; break;
         }
 
     }
@@ -246,7 +247,7 @@ public partial class admin_settings : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblImportReport.report(false, "Error", ex);
+            lblImportReport.report(false, Resources.Common.Error, ex);
         }
     }
     protected void btnThemeDelete_Click(object sender, EventArgs e)
@@ -254,13 +255,13 @@ public partial class admin_settings : System.Web.UI.Page
         try
         {
             dbi.themes.delete(db, Int32.Parse(ddlThemes.SelectedValue));
-            lblThemeDelete.report(true, "Theme Deleted", null);
+            lblThemeDelete.report(true, Resources.Common.Deleted, null);
             lblNewTheme.Text = string.Empty;
             resetThemes();
         }
         catch (Exception ex)
         {
-            lblThemeDelete.report(false, "Error", ex);
+            lblThemeDelete.report(false, Resources.Common.Error, ex);
             lblNewTheme.Text = string.Empty;
         }
 
@@ -269,7 +270,7 @@ public partial class admin_settings : System.Web.UI.Page
     protected void resetThemes()
     {
         ddlThemes.Items.Clear();
-        ddlThemes.Items.Add(new ListItem("Pre-Set Themes", "0"));
+        ddlThemes.Items.Add(new ListItem(GetLocalResourceObject("ListItemResource1.Text").ToString(), "0"));
         ddlThemes.DataBind();
     }
 

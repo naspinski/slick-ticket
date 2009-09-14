@@ -117,67 +117,22 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnCancelResource1.Text" xml:space="preserve">
-    <value>Cancel</value>
+  <data name="litGroupsResource1.Text" xml:space="preserve">
+    <value>Set groups and sub-groups</value>
   </data>
-  <data name="btnDeleteResource1.Text" xml:space="preserve">
-    <value>Delete</value>
+  <data name="litInfoResource1.Text" xml:space="preserve">
+    <value>Admin information/instructions</value>
   </data>
-  <data name="btnEditResource1.Text" xml:space="preserve">
-    <value>Edit</value>
+  <data name="litPermissionsResource1.Text" xml:space="preserve">
+    <value>Grant your users access based on AD groups</value>
   </data>
-  <data name="btnNewResource1.Text" xml:space="preserve">
-    <value>New Question/Answer</value>
+  <data name="litSettingsResource1.Text" xml:space="preserve">
+    <value>Miscellaneous system settings</value>
   </data>
-  <data name="btnSubmitResource1.Text" xml:space="preserve">
-    <value>Save</value>
+  <data name="litStatsResource1.Text" xml:space="preserve">
+    <value>Quick overview of ticket status</value>
   </data>
-  <data name="lblAnswerResource1.Text" xml:space="preserve">
-    <value>Answer</value>
-  </data>
-  <data name="lblQuestionResource1.Text" xml:space="preserve">
-    <value>Question</value>
-  </data>
-  <data name="litIndexTitleResource1.Text" xml:space="preserve">
-    <value>Help/FAQ Index</value>
-  </data>
-  <data name="litNewQuestionResource1.Text" xml:space="preserve">
-    <value>I have a question that is not covered here...</value>
-  </data>
-  <data name="litPermissionsSystemExplainedPanel1Resource1.Text" xml:space="preserve">
-    <value>First thing the system does is to log the user in with your Windows credentials, then it immediately pulls all the groups you are a member of in your domain:</value>
-  </data>
-  <data name="litPermissionsSystemExplainedPanel2Resource1.Text" xml:space="preserve">
-    <value>
-                                    Next the system compares your AD memberships with the permission groups that are set by the administrator.              
-                                    Each permission group is related to a single AD group and has an 'Access Level' associated with it.            
-                                    You are then assigned the highest access level available to you.</value>
-  </data>
-  <data name="litPermissionsSystemExplainedPanel3Resource1.Text" xml:space="preserve">
-    <value>Now that the system has your access level, it can decide which groups you are able to join and assign tickets to.</value>
-  </data>
-  <data name="litPermissionsSystemExplainedPanel4Resource1.Text" xml:space="preserve">
-    <value>
-                                    Also, you will notice that you can view and comment any ticket, but only change status, priority, attachments and assignment of tickets if it is at or under your access level. 
-                                    Basically your Active Directory groups decide your access level which then determines what you can do; think of access levels as the highest level that a particular AD group can assign tickets to, that should simplify things.</value>
-  </data>
-  <data name="litPermissionSystemLinkResource1.Text" xml:space="preserve">
-    <value>Permission system explained</value>
-  </data>
-  <data name="rfvSubjectResource1.ErrorMessage" xml:space="preserve">
-    <value>Required</value>
-  </data>
-  <data name="btnDeleteResource1.OnClientClick" xml:space="preserve">
-    <value>return confirm('Are you sure?');</value>
-    <comment>return confirm('TEXT HERE]');</comment>
-  </data>
-  <data name="Deleted" xml:space="preserve">
-    <value>Question/Answer deleted</value>
-  </data>
-  <data name="Inserted" xml:space="preserve">
-    <value>Question/Answer inserted</value>
-  </data>
-  <data name="Updated" xml:space="preserve">
-    <value>Question/Answer updated</value>
+  <data name="litUsersResource1.Text" xml:space="preserve">
+    <value>View users and set admin privileges</value>
   </data>
 </root>

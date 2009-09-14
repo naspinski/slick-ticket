@@ -14,6 +14,7 @@ public partial class admin_units : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        this.Title = Resources.Common.Admin + " - " + Resources.Common.Groups;
         db = new dbDataContext();
         if (!IsPostBack)
         {
@@ -33,12 +34,12 @@ public partial class admin_units : System.Web.UI.Page
         if (e.Exception != null)
         {
             lblUnitReport.CssClass = "error top_error";
-            lblUnitReport.Text = "You can not delete a unit that still has sub-units<div class='sub_error'>" + e.Exception.Message + "</div>";
+            lblUnitReport.Text = GetLocalResourceObject("HasSubUnits").ToString() + "<div class='sub_error'>" + e.Exception.Message + "</div>";
             e.ExceptionHandled = true;
         }
         else
         {
-            lblUnitReport.report(true, "Unit Deleted", null);
+            lblUnitReport.report(true, Resources.Common.Deleted, null);
             updateDdls();
         }
     }
@@ -48,13 +49,13 @@ public partial class admin_units : System.Web.UI.Page
         clear();
         if (e.Exception != null)
         {
-            lblSubUnitReport.report(false, "Error Deleting - <span class='smaller'>A group can't be deleted if it has any tickets assigned to it or users joined to it</span>", e.Exception);
+            lblSubUnitReport.report(false, Resources.Common.Error + " - <span class='smaller'>" + GetLocalResourceObject("UsersAssigned").ToString() + "</span>", e.Exception);
             e.ExceptionHandled = true;
             ddlUnitSelected.DataBind();
         }
         else
         {
-            lblSubUnitReport.report(true, "Sub-Unit Deleted", null);
+            lblSubUnitReport.report(true, Resources.Common.Deleted, null);
         }
     }
 

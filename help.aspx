@@ -65,7 +65,7 @@ http://naspinski.net
                                 <asp:literal ID="litPermissionsSystemExplainedTitle" runat="server" meta:resourcekey="litPermissionSystemLinkResource1" />
                             </span>
                             <span class="smaller right">
-                                <a href="#home"><asp:literal ID="litBackToTopHeadTop" runat="server" meta:resourcekey="litBackToTop1Resource1" /></a>
+                                <a href="#home"><%= Resources.Common.BackToTop %></a>
                             </span>
                             <span class="clear"></span>
                         </h2>
@@ -85,7 +85,7 @@ http://naspinski.net
                             <br />       
                             <div><asp:literal ID="litPermissionsSystemExplainedPanel4" runat="server"  meta:resourcekey="litPermissionsSystemExplainedPanel4Resource1" /></div> 
                             <br />
-                            <a class="bold" href="#home"><asp:literal ID="litBackToTopHead" runat="server" meta:resourcekey="litBackToTop1Resource1" /></a>
+                            <a class="bold" href="#home"><%= Resources.Common.BackToTop %></a>
                         </div>
                     </fieldset>
                     <div class="divider"></div>
@@ -105,9 +105,7 @@ http://naspinski.net
                                 <a id="<%# trimJunk(Eval("title").ToString()) %>"><%# Eval("title").ToString() %></a>
                             </span>
                                     <span class="smaller right">
-                                        <a href="#home">
-                                            <asp:literal ID="litBackToTop1" runat="server" meta:resourcekey="litBackToTop1Resource1" />
-                                        </a>
+                                        <a href="#home"><%= Resources.Common.BackToTop %></a>
                                     </span>
                                     <span class="clear"></span>
                                 </h2>
@@ -115,9 +113,7 @@ http://naspinski.net
                             <%# Eval("body") %>
                         </div>
                         <br />
-                        <a class="bold" href="#home">
-                            <asp:literal ID="litBackToTop2" runat="server" meta:resourcekey="litBackToTop1Resource1" />
-                        </a>
+                        <a class="bold" href="#home"><%= Resources.Common.BackToTop %></a>
                     </fieldset>
                     <div class="divider"></div>
                 </ItemTemplate>
@@ -129,9 +125,7 @@ http://naspinski.net
                                 <asp:literal runat="server" ID="litQuestoinNotCoveredTitle" meta:resourcekey="litNewQuestionResource1" />
                             </span>
                             <span class="smaller right">
-                                <a href="#home">
-                                    <asp:literal ID="litBackToTopFoot1" runat="server" meta:resourcekey="litBackToTop1Resource1" />
-                                </a>
+                                <a href="#home"><%= Resources.Common.BackToTop %></a>
                             </span>
                             <span class="clear"></span>
                         </h2>
@@ -141,9 +135,7 @@ http://naspinski.net
                                 </a> 
                         </div>
                         <br />
-                        <a class="bold" href="#home">
-                            <asp:literal ID="litBackToTopFoot2" runat="server" meta:resourcekey="litBackToTop1Resource1" />
-                        </a>
+                        <a class="bold" href="#home"><%= Resources.Common.BackToTop %></a>
                     </fieldset>
                 </FooterTemplate>
             </asp:Repeater>   

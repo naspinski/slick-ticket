@@ -9,6 +9,6 @@ public partial class admin_info : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-
+        this.Title = Resources.Common.Admin + " - " + Resources.Common.Information;
     }
 }

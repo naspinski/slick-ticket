@@ -17,9 +17,9 @@ public partial class admin_controls_security_levels : System.Web.UI.UserControl
             
 
             securityLevelExplanations += "<div><span class='bold'>[" + sl.id.ToString() + "] ";
-            securityLevelExplanations += string.IsNullOrEmpty(sl.security_level_name) ? "<span style='font-style:italic;'>undefined</span>" : sl.security_level_name;
+            securityLevelExplanations += string.IsNullOrEmpty(sl.security_level_name) ? "<span style='font-style:italic;'>" + Resources.Common.Undefined + "</span>" : sl.security_level_name;
             securityLevelExplanations += " : </span>";
-            securityLevelExplanations += string.IsNullOrEmpty(sl.security_level_description) ? "<span style='font-style:italic;'>undefined</span>" : sl.security_level_description;
+            securityLevelExplanations += string.IsNullOrEmpty(sl.security_level_description) ? "<span style='font-style:italic;'>" + Resources.Common.Undefined + "</span>" : sl.security_level_description;
             securityLevelExplanations += "</div><br />";
         }
         lblSecurityLevelExplanations.Text = securityLevelExplanations;

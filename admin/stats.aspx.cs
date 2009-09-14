@@ -20,6 +20,7 @@ public partial class admin_stats : System.Web.UI.Page
     public string thisUnit, thisSubUnit;
     protected void Page_Load(object sender, EventArgs e)
     {
+        this.Title = Resources.Common.Admin + " - " + Resources.Common.Statistics;
         db = new dbDataContext();
         if (!IsPostBack)
         {
@@ -176,28 +177,28 @@ public partial class admin_stats : System.Web.UI.Page
         try
         {
             DataRow row1 = dt.NewRow();
-            row1["header"] = "<a style='font-size:1.1em;' href='../search.aspx?group=" + currentGroup.Text + "&subgroup=" + currentSubGroup.Text + "'>Open Tickets</a>";
+            row1["header"] = "<a style='font-size:1.1em;' href='../search.aspx?group=" + currentGroup.Text + "&subgroup=" + currentSubGroup.Text + "'>" + GetLocalResourceObject("OpenTickets").ToString() + "</a>";
             row1["data"] = openTix.Count().ToString();
             dt.Rows.Add(row1);
 
             DataRow row2 = dt.NewRow();
-            row2["header"] = "&nbsp;<a href='../search.aspx?group=" + currentGroup.Text + "&subgroup=" + currentSubGroup.Text + "&to=" + DateTime.Now.AddDays(-1).ToShortDateString() + "'>Older than 1 day</a>";
+            row2["header"] = "&nbsp;<a href='../search.aspx?group=" + currentGroup.Text + "&subgroup=" + currentSubGroup.Text + "&to=" + DateTime.Now.AddDays(-1).ToShortDateString() + "'>" + GetLocalResourceObject("OneDay").ToString() + "</a>";
             row2["data"] = openTix.olderThan(1).Count();
             dt.Rows.Add(row2);
 
             DataRow row3 = dt.NewRow();
-            row3["header"] = "&nbsp;<a href='../search.aspx?group=" + currentGroup.Text + "&subgroup=" + currentSubGroup.Text + "&to=" + DateTime.Now.AddDays(-3).ToShortDateString() + "'>Older than 3 day</a>";
+            row3["header"] = "&nbsp;<a href='../search.aspx?group=" + currentGroup.Text + "&subgroup=" + currentSubGroup.Text + "&to=" + DateTime.Now.AddDays(-3).ToShortDateString() + "'>" + GetLocalResourceObject("ThreeDays").ToString() + "</a>";
             row3["data"] = openTix.olderThan(3).Count();
             dt.Rows.Add(row3);
 
             DataRow row4 = dt.NewRow();
-            row4["header"] = "&nbsp;<a href='../search.aspx?group=" + currentGroup.Text + "&subgroup=" + currentSubGroup.Text + "&to=" + DateTime.Now.AddDays(-7).ToShortDateString() + "'>Older than 7 day</a>";
+            row4["header"] = "&nbsp;<a href='../search.aspx?group=" + currentGroup.Text + "&subgroup=" + currentSubGroup.Text + "&to=" + DateTime.Now.AddDays(-7).ToShortDateString() + "'>" + GetLocalResourceObject("SevenDays").ToString() + "</a>";
             row4["data"] = openTix.olderThan(7).Count();
             dt.Rows.Add(row4);
 
             DataRow row5 = dt.NewRow();
-            row5["header"] = "&nbsp;Average age";
-            row5["data"] = openTix.averageAge() + " days";
+            row5["header"] = "&nbsp;" + GetLocalResourceObject("Average").ToString();
+            row5["data"] = openTix.averageAge() + " " + GetLocalResourceObject("Days").ToString();
             dt.Rows.Add(row5);
         }
         catch { }
@@ -210,13 +211,13 @@ public partial class admin_stats : System.Web.UI.Page
         try
         {
             DataRow row6 = dt.NewRow();
-            row6["header"] = "<span style='font-size:1.1em;'>Closed Tickets</span>";
+            row6["header"] = "<span style='font-size:1.1em;'>" + GetLocalResourceObject("Closed").ToString() +"</span>";
             row6["data"] = closedTix.Count();
             dt.Rows.Add(row6);
 
             DataRow row7 = dt.NewRow();
-            row7["header"] = "&nbsp;Average ticket closure time";
-            row7["data"] = closedTix.averageCloseTime() + " days";
+            row7["header"] = "&nbsp;" + GetLocalResourceObject("AvgClosure").ToString();
+            row7["data"] = closedTix.averageCloseTime() + " " + GetLocalResourceObject("Days").ToString();
             dt.Rows.Add(row7);
         }
         catch { }
@@ -227,6 +228,6 @@ public partial class admin_stats : System.Web.UI.Page
 
     public string setTopLevel(string s)
     {
-        return s.Length > 0 ? s : "Top Level";
+        return s.Length > 0 ? s : GetLocalResourceObject("TopLevel").ToString();
     }
 }

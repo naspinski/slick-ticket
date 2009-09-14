@@ -10,7 +10,7 @@ http://naspinski.net
     <asp:ContentPlaceHolder ID="adminHead" runat="server" />
 </asp:Content>
 <asp:Content ID="contentBody" ContentPlaceHolderID="body" Runat="Server">
-    <asp:Panel ID="pnlAdminMenu" runat="server">
+     <asp:Panel ID="pnlAdminMenu" runat="server">
         <div class="inner_color" style="height:26px; padding:0px;">
             <ul class="list_menu" >
                 <asp:Label ID="lblAdminMenu" runat="server" />
@@ -19,12 +19,11 @@ http://naspinski.net
         </div>
         <div class="divider"></div>
     </asp:Panel>
-    <asp:ContentPlaceHolder ID="adminBody" runat="server" />
+    <asp:ContentPlaceHolder ID="adminBody" runat="server" > </asp:ContentPlaceHolder>
 </asp:Content>
-<asp:Content ID="Conttent3" ContentPlaceHolderID="sidebar" runat="server" >
-    <ctrl:SecurityLevels ID="secLev" runat="server" />
-    <asp:ContentPlaceHolder ID="adminSidebar" runat="server" />
-
+<asp:Content ID="Content3" ContentPlaceHolderID="sidebar" runat="server" >
+        <ctrl:SecurityLevels ID="secLev" runat="server" />
+        <asp:ContentPlaceHolder ID="adminSidebar" runat="server" > </asp:ContentPlaceHolder>
 </asp:Content>
 
 

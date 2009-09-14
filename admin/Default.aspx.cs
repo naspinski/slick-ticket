@@ -9,5 +9,6 @@ public partial class admin_Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        this.Title = Resources.Common.Admin + " - " + Resources.Common.Dashboard;
     }
 }

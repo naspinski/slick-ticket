@@ -137,9 +137,17 @@
     <value>Attachments</value>
     <comment>word used to describe attachments</comment>
   </data>
+  <data name="BackToTop" xml:space="preserve">
+    <value>Back to top</value>
+    <comment>return to top of page</comment>
+  </data>
   <data name="Bytes" xml:space="preserve">
     <value>bytes</value>
     <comment>bytes</comment>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+    <comment>Cancel</comment>
   </data>
   <data name="Closed" xml:space="preserve">
     <value>Closed</value>
@@ -152,6 +160,18 @@
   <data name="Dashboard" xml:space="preserve">
     <value>Dashboard</value>
     <comment>main menu</comment>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+    <comment>Delete</comment>
+  </data>
+  <data name="Deleted" xml:space="preserve">
+    <value>Deleted</value>
+    <comment>Deleted</comment>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>Edit</value>
+    <comment>Edit</comment>
   </data>
   <data name="EmailError" xml:space="preserve">
     <value>Error sending email</value>
@@ -175,6 +195,10 @@
   <data name="Information" xml:space="preserve">
     <value>Information</value>
     <comment>admin menu</comment>
+  </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>Invalid Email Address</value>
+    <comment>Invalid Email Error</comment>
   </data>
   <data name="LastAction" xml:space="preserve">
     <value>Last Action</value>
@@ -214,9 +238,17 @@
     <value>Profile</value>
     <comment>main menu</comment>
   </data>
+  <data name="Required" xml:space="preserve">
+    <value>Required</value>
+    <comment>Required</comment>
+  </data>
   <data name="Resolved" xml:space="preserve">
     <value>Resolved</value>
     <comment>make sure this lines up with row 4 in the status table</comment>
+  </data>
+  <data name="Saved" xml:space="preserve">
+    <value>Saved</value>
+    <comment>Saved</comment>
   </data>
   <data name="Search" xml:space="preserve">
     <value>Search</value>
@@ -256,6 +288,14 @@
   <data name="Undefined" xml:space="preserve">
     <value>undefined</value>
     <comment>Undefined</comment>
+  </data>
+  <data name="Update" xml:space="preserve">
+    <value>Update</value>
+    <comment>Update</comment>
+  </data>
+  <data name="Updated" xml:space="preserve">
+    <value>Updated</value>
+    <comment>Updated</comment>
   </data>
   <data name="Users" xml:space="preserve">
     <value>Users</value>
