@@ -77,7 +77,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
     protected void myIssues(Label lbl, int number, int number2)
     {
         lbl.Controls.Add(new LiteralControl("<div class='smaller' style='padding-left:10px;text-align:left;'>"));
-        lbl.Controls.Add(new HyperLink() { NavigateUrl = "~/my_issues.aspx", Text = "My Issues: [" + number.ToString() + "] [" + number2.ToString() + "]"  } );
+        lbl.Controls.Add(new HyperLink() { NavigateUrl = "~/my_issues.aspx", Text = Resources.Common.MyIssues + ": [" + number.ToString() + "] [" + number2.ToString() + "]"  } );
         lbl.Controls.Add(new LiteralControl("</div>"));
     }
 
@@ -101,18 +101,18 @@ public partial class MasterPage : System.Web.UI.MasterPage
             {
                 li = "<li class='current_tab'>";
                 imgCurrentPage.ImageUrl = xe.Attribute("image").Value;
-                lblCurrentPage.Text = xe.FirstAttribute.Value;
+                lblCurrentPage.Text = GetGlobalResourceObject("Common", xe.FirstAttribute.Value).ToString();
             }
             if (Request.Url.ToString().ToLower().Contains("/admin"))
             {
                 li = li.Replace("current_tab", "inner_color");
                 imgCurrentPage.ImageUrl = "~/images/icons/warning.png";
-                lblCurrentPage.Text = "<span class='smaller'>Administration</span><br />Dashboard";
+                lblCurrentPage.Text = "<span class='smaller'>" + Resources.Common.Admin + "</span><br />" + Resources.Common.Dashboard;
             }
             if(xe.Attribute("hidden").Value.Equals("false"))
             {
                 pnl.Controls.Add(new LiteralControl(li));
-                pnl.Controls.Add(new HyperLink() { Text = xe.FirstAttribute.Value, NavigateUrl = xe.Value, CssClass = "inner_color" });
+                pnl.Controls.Add(new HyperLink() { Text = GetGlobalResourceObject("Common", xe.FirstAttribute.Value).ToString(), NavigateUrl = xe.Value, CssClass = "inner_color" });
                 pnl.Controls.Add(new LiteralControl("</li>"));
                 lblFooter.Controls.Add(new HyperLink() { Text = xe.FirstAttribute.Value, NavigateUrl = xe.Value });
                 if (count++ < xes.Count() -1) lblFooter.Controls.Add(new LiteralControl(" | "));
@@ -122,7 +122,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         {
             HyperLink hl = new HyperLink();
             hl.NavigateUrl = "~/admin/";
-            hl.Text = "Administration";
+            hl.Text = Resources.Common.Admin;
             hl.CssClass = "inner_color";
             string liAdm = Request.Url.ToString().Contains("/admin/") ? "<li class='current_tab'>" : "<li class='inner_color'>";
             pnl.Controls.Add(new LiteralControl(liAdm));
@@ -135,7 +135,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
                 if (xmlPage.Equals(page.ToLower()))
                 {
                     imgCurrentPage.ImageUrl = xe.Attribute("image").Value;
-                    lblCurrentPage.Text = "<span class='smaller'>Administration</span><br />" + xe.FirstAttribute.Value;
+                    lblCurrentPage.Text = "<span class='smaller'>" + Resources.Common.Admin + "</span><br />" + xe.FirstAttribute.Value;
                 }
                 pnl.Controls.Add(new HyperLink() { Text = xe.FirstAttribute.Value, NavigateUrl = xe.Value });
             }
@@ -144,7 +144,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             pnl.Controls.Add(new LiteralControl("</li>"));
             lblFooter.Controls.Add(new LiteralControl(" | "));
             HyperLink hlF = new HyperLink();
-            hlF.Text = "Administration";
+            hlF.Text = Resources.Common.Admin;
             hlF.NavigateUrl = "~/admin/";
             lblFooter.Controls.Add(hlF);
         }
