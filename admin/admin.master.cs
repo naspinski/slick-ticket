@@ -32,7 +32,7 @@ public partial class admin_admin : System.Web.UI.MasterPage
             string xmlPage = xe.Value.ToLower().Replace("~/admin/", string.Empty).Replace(".aspx", string.Empty);
             if (xmlPage.Equals(page.ToLower())) lblAdminMenu.Controls.Add(new LiteralControl("<li class='current_tab'>"));
             else lblAdminMenu.Controls.Add(new LiteralControl("<li>"));
-            HyperLink hl = new HyperLink() { Text = xe.FirstAttribute.Value, NavigateUrl = xe.Value };
+            HyperLink hl = new HyperLink() { Text = GetGlobalResourceObject("Common", xe.FirstAttribute.Value).ToString(), NavigateUrl = xe.Value };
             lblAdminMenu.Controls.Add(hl);
             lblAdminMenu.Controls.Add(new LiteralControl("</li>"));
         }
