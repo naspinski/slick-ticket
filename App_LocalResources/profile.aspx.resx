@@ -175,6 +175,6 @@
     <value>If you already have filled in your profile, please reload</value>
   </data>
   <data name="Saved" xml:space="preserve">
-    <value>Your profile has been created</value>
+    <value>Your profile has been saved</value>
   </data>
 </root>
