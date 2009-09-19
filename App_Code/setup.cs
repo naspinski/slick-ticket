@@ -1,4 +1,4 @@
-﻿//Slick-Ticket v1.0 - 2008
+﻿//Slick-Ticket v2.0 - 2009
 //http://slick-ticket.com :: http://naspinski.net
 //Developed by Stan Naspinski - stan@naspinski.net
 
@@ -12,7 +12,7 @@ using System.Xml.Linq;
 /// </summary>
 
 public static class setup
-{    
+{
     public class settings
     {
         public static string get(string setting)
@@ -24,6 +24,24 @@ public static class setup
         public static void update(string setting, string value)
         {
             string file_location = HttpContext.Current.Server.MapPath(".") + "\\setup_Data\\setup.xml";
+            XElement x = XElement.Load(file_location);
+            XElement xe = (from p in x.Descendants(setting) select p).First();
+            xe.Value = value;
+            x.Save(file_location);
+        }
+    }
+
+    public class patch
+    {
+        public static string get(string setting)
+        {
+            XElement x = XElement.Load(HttpContext.Current.Server.MapPath(".") + "\\patch_Data\\patch.xml");
+            return (from p in x.Descendants(setting) select p).First().Value;
+        }
+
+        public static void update(string setting, string value)
+        {
+            string file_location = HttpContext.Current.Server.MapPath(".") + "\\patch_Data\\patch.xml";
             XElement x = XElement.Load(file_location);
             XElement xe = (from p in x.Descendants(setting) select p).First();
             xe.Value = value;

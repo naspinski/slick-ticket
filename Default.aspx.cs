@@ -1,4 +1,4 @@
-﻿//Slick-Ticket v1.0 - 2008
+﻿//Slick-Ticket v2.0 - 2009
 //http://slick-ticket.com :: http://naspinski.net
 //Developed by Stan Naspinski - stan@naspinski.net
 

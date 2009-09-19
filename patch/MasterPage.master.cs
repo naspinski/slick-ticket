@@ -2,13 +2,12 @@
 //http://slick-ticket.com :: http://naspinski.net
 //Developed by Stan Naspinski - stan@naspinski.net
 
-
 using System;
 
-public partial class error : System.Web.UI.Page
+public partial class patch_MasterPage : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        this.Title = Resources.Common.Error;
+
     }
 }

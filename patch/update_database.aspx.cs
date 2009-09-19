@@ -2,33 +2,54 @@
 //http://slick-ticket.com :: http://naspinski.net
 //Developed by Stan Naspinski - stan@naspinski.net
 
-
 using System;
 using System.Configuration;
 using System.Data.SqlClient;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Text;
 
-public partial class setup_build_database : System.Web.UI.Page
+public partial class patch_update_database : System.Web.UI.Page
 {
+    string fileUrl;
     protected void Page_Load(object sender, EventArgs e)
     {
-        bool done = bool.Parse(setup.settings.get("db_creation"));
+        fileUrl = Server.MapPath(".") + "\\patch_Data\\update.sql";
+        bool done = bool.Parse(setup.patch.get("db_updated"));
         btnRunSQL.Enabled = !done;
         lblDBCreation.Visible = done;
         lnkNext.Visible = done;
+        if (!done)
+        {
+            string templateUrl = Server.MapPath(".") + "\\patch_Data\\update_template.sql";
+            StreamReader sr = new StreamReader(templateUrl);
+            StreamWriter sw = new StreamWriter(fileUrl, false);
+            try
+            {
+                dbDataContext db = new dbDataContext();
+                int first_group = db.sub_units.First().id;
+                while (!sr.EndOfStream)
+                    sw.WriteLine(sr.ReadLine().Replace("_REPLACE_", first_group.ToString()));
+            }
+            catch (Exception ex)
+            {
+                lblOutput.Text = "An error occured: " + ex.ToString();
+                lblOutput.CssClass = "error";
+            }
+            finally
+            {
+                sr.Close(); sr.Dispose();
+                sw.Close(); sw.Dispose();
+            }
+        }
     }
 
     protected void btnRunSQL_Click(object sender, EventArgs e)
     {
-        string fileUrl = Server.MapPath(".") + "\\setup_Data\\setup.sql";
         string connectionString = ConfigurationManager.ConnectionStrings["SlickTicket"].ConnectionString;
         int timeout = 600;
         SqlConnection conn = null;
-
-        Stream stream = new FileStream(Server.MapPath(".") + "\\setup_Data\\styles.xml", FileMode.Open);
-        Stream FAQstream = new FileStream(Server.MapPath(".") + "\\setup_Data\\faq.xml", FileMode.Open);
 
         try
         {
@@ -68,14 +89,8 @@ public partial class setup_build_database : System.Web.UI.Page
 
             }
 
-            //fills styles
-            string nothing = utils.styles.import(stream);
-
-            //fills faq
-            utils.faqs.import(FAQstream);
-
-            setup.settings.update("db_creation", "True");
-            lblOutput.Text += "Tables built successfully";
+            setup.patch.update("db_updated", "True");
+            lblOutput.Text += "Tables updated successfully";
             lblOutput.CssClass = "success";
             lblDBCreation.Visible = true;
             btnRunSQL.Enabled = false;
@@ -88,9 +103,6 @@ public partial class setup_build_database : System.Web.UI.Page
         }
         finally
         {
-            stream.Close();
-            FAQstream.Close();
-
             // Close out the connection
             if (conn != null)
             {

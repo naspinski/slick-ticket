@@ -264,6 +264,9 @@ CREATE TABLE [dbo].[comments](
 	[ticket_ref] [int] NOT NULL,
 	[submitter] [int] NOT NULL,
 	[submitted] [datetime] NOT NULL,
+	[assigned_to] [int] NOT NULL,
+	[priority_id] [int] NOT NULL,
+	[status_id] [int] NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
@@ -276,6 +279,15 @@ REFERENCES [dbo].[users] ([id])
 GO
 ALTER TABLE [dbo].[comments]  WITH CHECK ADD FOREIGN KEY([ticket_ref])
 REFERENCES [dbo].[tickets] ([id])
+GO
+ALTER TABLE [dbo].[comments]  WITH CHECK ADD FOREIGN KEY([assigned_to])
+REFERENCES [dbo].[sub_units] ([id])
+GO
+ALTER TABLE [dbo].[comments]  WITH CHECK ADD FOREIGN KEY([priority_id])
+REFERENCES [dbo].[priority] ([id])
+GO
+ALTER TABLE [dbo].[comments]  WITH CHECK ADD FOREIGN KEY([status_id])
+REFERENCES [dbo].[statuses] ([id])
 
 /****** Object:  Table [dbo].[attachments]    Script Date: 10/21/2008 16:01:38 ******/
 SET ANSI_NULLS ON
