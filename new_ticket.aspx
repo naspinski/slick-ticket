@@ -84,25 +84,25 @@ http://naspinski.net
             <div>
                 <div><asp:FileUpload CssClass="attachment" ID="FileUpload1" runat="server" /></div>
                 <div id="add1">
-                    <a href="javascript:void();" onclick="showHide('att2', 'add1')"></a>
+                    <a href="javascript:void();" onclick="showHide('att2', 'add1')"><%= Resources.Common.AdditionalAttachment %></a>
                 </div>
             </div>
             <div id="att2" style="display:none;">
                 <div><asp:FileUpload CssClass="attachment" ID="FileUpload2" runat="server" /></div>
                 <div id="add2">
-                    <a href="javascript:void();" onclick="showHide('att3', 'add2')"></a>
+                    <a href="javascript:void();" onclick="showHide('att3', 'add2')"><%= Resources.Common.AdditionalAttachment %></a>
                 </div>
             </div>
             <div id="att3" style="display:none;">
                 <div><asp:FileUpload CssClass="attachment" ID="FileUpload3" runat="server" /></div>
                 <div id="add3">
-                    <a href="javascript:void();" onclick="showHide('att4', 'add3')"></a>
+                    <a href="javascript:void();" onclick="showHide('att4', 'add3')"><%= Resources.Common.AdditionalAttachment %></a>
                 </div>
             </div>
             <div id="att4" style="display:none;">
                 <div><asp:FileUpload CssClass="attachment" ID="FileUpload4" runat="server" /></div>
                 <div id="add4">
-                    <a href="javascript:void();" onclick="showHide('att5', 'add4')"></a>
+                    <a href="javascript:void();" onclick="showHide('att5', 'add4')"><%= Resources.Common.AdditionalAttachment %></a>
                 </div>
             </div>
             <div id="att5" style="display:none;">

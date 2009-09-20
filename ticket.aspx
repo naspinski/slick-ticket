@@ -45,7 +45,7 @@ http://naspinski.net
         <asp:Panel ID="pnlDisplay" runat="server">
             <h2 class="header">
                 <span class="title_header">
-                    <%= t.title %><span class="smaller">[ <%= t.id  %>]</span>
+                    <%= t.title %><span class="smaller">[<%= t.id  %>]</span>
                 </span>
                 <span class="clear"></span>
             <span class="smaller"><asp:Label ID="lblReport" runat="server" /></span>
@@ -71,7 +71,7 @@ http://naspinski.net
             <fieldset class="inner_color faq_body">
                 <div class="comment_header smaller">
                     <span style="float:left">
-                        <span class="bold"> <%= Resources.Common.AssignedTo %>:  </span>
+                        <span class="bold"><%= Resources.Common.AssignedTo %>:  </span>
                          <%= t.sub_unit2.unit.unit_name %> - <%=  t.sub_unit2.sub_unit_name %>
                     </span>
                     <span style="float:right">
