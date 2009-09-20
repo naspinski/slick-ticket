@@ -42,45 +42,72 @@ http://naspinski.net
         </fieldset>
     </asp:Panel>
     <asp:Panel ID="pnlShowTicket" runat="server" style="display:none;" DefaultButton="btnUpdate">
-        <h2 class="header">
-            <span class="title_header"><asp:Label ID="lblTitle" runat="server" /></span>
-            <span class="clear"></span>
-        <span class="smaller"><asp:Label ID="lblReport" runat="server" /></span>
-        </h2>
-        <h3 class="smaller header">
-            <span class="title_header iconize" style="text-align:left;">
-                <asp:Label ID="lblSubmitter" runat="server" />
-            </span>
-            <asp:Label ID="lblSubmitted" runat="server" />
-            <span class="clear" ></span>
-        </h3>
-        <fieldset class="inner_color faq_body">
-            <asp:Label ID="lblDetails" runat="server" /><br />
-            <div class="smaller bold iconize">
-                <asp:Repeater ID="rptAttachments" runat="server" DataSourceID="ldsAttachments">
-                    <ItemTemplate>
-                        <div class="iconize">
-                            <asp:LinkButton ID="btnAttachment" runat="server" OnClick="btnAttachment_Click" CommandArgument='<%# Eval("attachment_name") %>' 
-                                CssClass='<%# getExtension(Eval("attachment_name").ToString()) %>'> 
-                                <%# Eval("attachment_name") %> (<%# Eval("attachment_size") %>&nbsp;<%= Resources.Common.Bytes %>)
-                            </asp:LinkButton>
-                        </div>
-                    </ItemTemplate>
-                </asp:Repeater>
-            </div>
-            <asp:LinqDataSource ID="ldsAttachments" runat="server" 
-                ContextTypeName="dbDataContext" OrderBy="attachment_name" 
-                Select="new (ticket_ref, attachment_name, attachment_size)" 
-                TableName="attachments" Where="ticket_ref == @ticket_ref AND comment_ref == null">
-                <WhereParameters>
-                    <asp:QueryStringParameter DefaultValue="0" Name="ticket_ref" 
-                        QueryStringField="ticketID" Type="Int32" />
-                </WhereParameters>
-            </asp:LinqDataSource>
+        <asp:Panel ID="pnlDisplay" runat="server">
+            <h2 class="header">
+                <span class="title_header">
+                    <%= t.title %><span class="smaller">[ <%= t.id  %>]</span>
+                </span>
+                <span class="clear"></span>
+            <span class="smaller"><asp:Label ID="lblReport" runat="server" /></span>
+            </h2>
+            <h3 class="smaller header">
+                <span class="title_header iconize" style="text-align:left;">
+                    <a href="javascript:void();" class="tooltip limited">
+                        <%= t.user.userName %>
+                        <span class="border_color">
+                            <q class="inner_color base_text">
+                                <%= t.user.email %><br />
+                                <%= t.user.phone %><br />
+                                <%= t.user.sub_unit1.unit.unit_name %><br />
+                                <%= t.user.sub_unit1.sub_unit_name %>
+                            </q>
+                        </span>
+                    </a>
+                </span>
+                <%= t.submitted %>
+                <span class="clear" ></span>
             
-            <asp:Label ID="lblComments" CssClass="smaller" runat="server" 
-                meta:resourcekey="lblCommentsResource1" />
-        </fieldset>
+            </h3>
+            <fieldset class="inner_color faq_body">
+                <div class="comment_header smaller">
+                    <span style="float:left">
+                        <span class="bold"> <%= Resources.Common.AssignedTo %>:  </span>
+                         <%= t.sub_unit2.unit.unit_name %> - <%=  t.sub_unit2.sub_unit_name %>
+                    </span>
+                    <span style="float:right">
+                        <span class="bold"><%= Resources.Common.Priority %>: </span>
+                        <%= t.priority1.priority_name %>
+                    </span>
+                    <span  class="clear"></span>
+                </div>
+                <div><%= t.details %></div>
+                <br />
+                <div class="smaller bold iconize">
+                    <asp:Repeater ID="rptAttachments" runat="server" DataSourceID="ldsAttachments">
+                        <ItemTemplate>
+                            <div class="iconize">
+                                <asp:LinkButton ID="btnAttachment" runat="server" OnClick="btnAttachment_Click" CommandArgument='<%# Eval("attachment_name") %>' 
+                                    CssClass='<%# getExtension(Eval("attachment_name").ToString()) %>'> 
+                                    <%# Eval("attachment_name") %> (<%# Eval("attachment_size") %>&nbsp;<%= Resources.Common.Bytes %>)
+                                </asp:LinkButton>
+                            </div>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </div>
+                <asp:LinqDataSource ID="ldsAttachments" runat="server" 
+                    ContextTypeName="dbDataContext" OrderBy="attachment_name" 
+                    Select="new (ticket_ref, attachment_name, attachment_size)" 
+                    TableName="attachments" Where="ticket_ref == @ticket_ref AND comment_ref == null">
+                    <WhereParameters>
+                        <asp:QueryStringParameter DefaultValue="0" Name="ticket_ref" 
+                            QueryStringField="ticketID" Type="Int32" />
+                    </WhereParameters>
+                </asp:LinqDataSource>
+                
+                <asp:Label ID="lblComments" CssClass="smaller" runat="server" 
+                    meta:resourcekey="lblCommentsResource1" />
+            </fieldset>
+        </asp:Panel>
         <div class="divider"></div>
         <fieldset class="inner_color">
             <asp:UpdatePanel ID="up" runat="server">

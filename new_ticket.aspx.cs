@@ -50,11 +50,7 @@ public partial class new_ticket : System.Web.UI.Page
         user u = Users.Get(db, userName);
         try
         {
-            string strComment = "<div class='comment_header smaller'><span style='float:left'><span class='bold'>"+ GetLocalResourceObject("OriginallyAssignedTo").ToString()+": </span>" + ddlUnit.SelectedItem.Text + " - " + ddlSubUnit.SelectedItem.Text + "</span>";
-            strComment += "<span style='float:right'><span class='bold'>" + Resources.Common.Priority + ": </span>" + ddlPriority.SelectedItem.Text + "</span>";
-            strComment += "<span  class='clear'></span></div>";
-            strComment += "<div>" + txtDetails.Text + "</div>";
-            ticket newTicket = Tickets.Add(db, Server.HtmlEncode(txtTopic.Text), strComment, Int32.Parse(ddlSubUnit.SelectedValue), Int32.Parse(ddlPriority.SelectedValue), u.id, u.sub_unit);
+            ticket newTicket = Tickets.Add(db, Server.HtmlEncode(txtTopic.Text), txtDetails.Text, Int32.Parse(ddlSubUnit.SelectedValue), Int32.Parse(ddlPriority.SelectedValue), u.id, u.sub_unit);
 
             FileUpload[] fuControls = new FileUpload[] { FileUpload1, FileUpload2, FileUpload3, FileUpload4, FileUpload5 };
             Tickets.Attachments.SaveMultiple(db, fuControls, newTicket.id, 0);

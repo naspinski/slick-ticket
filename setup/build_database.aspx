@@ -10,8 +10,6 @@ http://naspinski.net
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
-    <asp:UpdatePanel ID="up" runat="server">
-        <ContentTemplate>
             <div class="container">
                 <h2>
                     <asp:HyperLink style="float:right;" ID="lnkNext" Visible="false" runat="server" NavigateUrl="active_directory.aspx" Text="next" />
@@ -33,8 +31,6 @@ http://naspinski.net
                     <asp:Label ID="lblOutput" runat="server" />
                  </asp:Panel>
             </div>
-        </ContentTemplate>
-    </asp:UpdatePanel>
 
 </asp:Content>
 

@@ -10,8 +10,6 @@ http://naspinski.net
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
-<asp:UpdatePanel ID="up" runat="server">
-    <ContentTemplate>
         <div class="container">
             <h2>
                 <asp:HyperLink style="float:right;" ID="lnkNext" Visible="false" runat="server" NavigateUrl="followup.aspx" Text="next" />
@@ -51,7 +49,6 @@ http://naspinski.net
                 OrderBy="security_level, ad_group" TableName="user_groups" />
             </div>
         </div>
-    </ContentTemplate>
-</asp:UpdatePanel>
+        
 </asp:Content>
 

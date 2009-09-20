@@ -14,7 +14,7 @@ using SlickTicketExtensions;
 public partial class _ticket : System.Web.UI.Page
 {
     dbDataContext db;
-    ticket t;
+    protected ticket t;
     int accessLevel;
     string userName;
 
@@ -26,6 +26,7 @@ public partial class _ticket : System.Web.UI.Page
         txtGoToTicket.Focus();
         if (Request.QueryString["ticketID"] != null)
             populateTicket(Request.QueryString["ticketID"].ToString());
+        else pnlDisplay.Visible = false;
     }
 
     protected void populateTicket(string ticketID)
@@ -35,13 +36,6 @@ public partial class _ticket : System.Web.UI.Page
             bool userCanEditThisTicket = true;
             user me = Users.Get(db, userName);
             t = Tickets.Get(db, Int32.Parse(ticketID));
-            lblTitle.Text = t.title + " <span class='smaller'>[" + t.id + "]</span>";
-            lblDetails.Text = "<div class='comment_header smaller'><span style='float:left'><span class='bold'>" + Resources.Common.AssignedTo + ": </span>" +
-                t.sub_unit2.unit.unit_name + " - " + t.sub_unit2.sub_unit_name + "</span><span style='float:right'><span class='bold'>" +
-                Resources.Common.Priority + ": </span>" + t.priority1.priority_name + "</span><span  class='clear'></span></div><div>" + t.details + "</div>";
-            lblSubmitter.Text = " <a href='javascript:void();' class='tooltip limited'>" + t.user.userName + "<span class='border_color'><q class='inner_color base_text'>" +
-                t.user.email + "<br />" + t.user.phone + "<br />" + t.user.sub_unit1.unit.unit_name + "<br />" + t.user.sub_unit1.sub_unit_name + "</q></span></a>";
-            lblSubmitted.Text = t.submitted.ToString();
 
             ////populate comments
             IEnumerable<comment> comments = Tickets.Comments.List(db, t.id);
@@ -50,7 +44,7 @@ public partial class _ticket : System.Web.UI.Page
                 buildComments(c);
 
             if (sb.Length > 0)
-                lblComments.Text = "<h6>" + GetLocalResourceObject("Comments") + "</h6>" + sb.ToString();
+                lblComments.Text = sb.ToString();
 
 
             //only do the user is at the right level... if not, read only
@@ -102,6 +96,7 @@ public partial class _ticket : System.Web.UI.Page
             }
             pnlShowTicket.Style.Clear();
             pnlShowTicket.Style.Add(HtmlTextWriterStyle.Display, "block");
+            pnlDisplay.Visible = true;
             pnlNoQuery.Visible = false;
         }
         catch (Exception ex)

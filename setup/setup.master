@@ -18,13 +18,7 @@ http://naspinski.net
 </head>
 <body>
     <form id="form1" runat="server">
-    <asp:ScriptManager ID="sm" runat="server" />
     <div>
-        <asp:UpdateProgress ID="udp" runat="server">
-            <ProgressTemplate>
-                <span id="working">working...</span>
-            </ProgressTemplate>
-        </asp:UpdateProgress>
         <h1>Slick Ticket Setup</h1>
         <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server">
         
