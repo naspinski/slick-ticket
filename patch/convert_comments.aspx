@@ -9,11 +9,11 @@
                     Comment Update
                     <asp:Label ID="lblFinished" CssClass="success" runat="server"> - finished</asp:Label>
                 </h2>
-                Almost done, now we just have to convert the comments from the old crappy version, to the new clean version; 
+                Almost done, now we just have to convert the comments and tickets from the old crappy version, to the new clean version; 
                 you won't actually see any difference, but it will be much better from a programming standpoint.
                 <br /><br />
                 Due to my poor implementation in v1.0, this is far from a perfect conversion.  
-                All errors will be logged, but if Group/Sub-Group names, Priorities or Statuses have been changed, there may be some lost parts of the data.
+                All errors will be logged, but if Group/Sub-Group names, Priorities or Statuses have been changed, there may be some lost parts of the data (nothing catastrophic).
                 I highly suggest running a backup before running this... just in case.
                 <br /><br />
                <asp:Button runat="server" ID="btnUpdate" Text="Fix my Comments" onclick="btnUpdate_Click" />

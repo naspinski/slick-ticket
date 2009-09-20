@@ -14,6 +14,7 @@
         I had no idea this program would be as successful as it is, so I felt it was my duty to improve it to where I think it should be.
         <br /><br />
         <div class="error">IMPORTANT</div>    
+        Only use this if you were previously running v1.05!<br />
         I highly suggest you make a database backup prior to this patch! 
         Also, if you need to revert to the last working copy prior to the patch, it is <a href="http://slickticket.codeplex.com/SourceControl/changeset/view/27685">build 27685</a>.
         <br /><br />
