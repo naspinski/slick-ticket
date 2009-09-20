@@ -13,7 +13,7 @@ public partial class setup_active_directory : System.Web.UI.Page
     dbDataContext db;
     protected void Page_Load(object sender, EventArgs e)
     {
-        bool done = bool.Parse(setup.settings.get("active_directory"));
+        bool done = bool.Parse(Setup.Settings.Get("active_directory"));
         lnkNext.Visible = done;
         lblFinished.Visible = done;
 
@@ -46,13 +46,13 @@ public partial class setup_active_directory : System.Web.UI.Page
     {
         try
         {
-            dbi.permissions.addGroup(db, ddlAD.SelectedValue, Int32.Parse(ddlLevels.SelectedValue));
+            Permissions.AddGroup(db, ddlAD.SelectedValue, Int32.Parse(ddlLevels.SelectedValue));
             gvADGroups.DataBind();
             lblError.Text = string.Empty;
             lnkNext.Visible = true;
             lblFinished.Visible = true;
-            setup.settings.update("active_directory", "True");
-            utils.settings.update("installed", "True");
+            Setup.Settings.Update("active_directory", "True");
+            Utils.Settings.Update("installed", "True");
         }
         catch (Exception ex)
         {

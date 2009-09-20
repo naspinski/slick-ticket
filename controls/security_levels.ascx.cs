@@ -12,7 +12,7 @@ public partial class admin_controls_security_levels : System.Web.UI.UserControl
         dbDataContext db = new dbDataContext();
 
         string securityLevelExplanations = string.Empty;
-        foreach (security_level sl in dbi.accessLevels.list(db, 0))
+        foreach (security_level sl in Dbi.AccessLevels.List(db, 0))
         {
             
 

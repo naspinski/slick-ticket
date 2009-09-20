@@ -35,9 +35,9 @@ public partial class admin_stats : System.Web.UI.Page
         dt.Columns.Add(new DataColumn("name", typeof(string)));
         dt.Columns.Add(new DataColumn("id", typeof(int)));
         dt.Columns.Add(new DataColumn("count", typeof(int)));
-        foreach (unit u in dbi.groups.list(db, 10))
+        foreach (unit u in Groups.List(db, 10))
         {
-            IEnumerable<ticket> tix = dbi.groups.openTickets(db, u.id);
+            IEnumerable<ticket> tix = Groups.OpenTickets(db, u.id);
             if (tix.Count() > max) max = tix.Count();
             DataRow row = dt.NewRow();
             try
@@ -59,7 +59,7 @@ public partial class admin_stats : System.Web.UI.Page
         rptGroups.DataBind();
         lblSubGroupDetails.Visible = false;
 
-        this.displayStats(dbi.tickets.listOpen(db), dbi.tickets.listClosed(db));
+        this.displayStats(Tickets.ListOpen(db), Tickets.ListClosed(db));
     }
 
 
@@ -71,7 +71,7 @@ public partial class admin_stats : System.Web.UI.Page
         currentGroup.Text = unit_ref.ToString();
         currentSubGroup.Text = "0";
         this.sub_groups(unit_ref);
-        this.displayStats(dbi.groups.openTickets(db, unit_ref), dbi.groups.closedTickets(db, unit_ref));
+        this.displayStats(Groups.OpenTickets(db, unit_ref), Groups.ClosedTickets(db, unit_ref));
         pnlGroups.Visible = false;
         pnlSubGroups.Visible = true;
         lblSubGroupDetails.Visible = false;
@@ -80,16 +80,16 @@ public partial class admin_stats : System.Web.UI.Page
 
     protected void sub_groups(int unit_ref)
     {
-        unit thisGroup = dbi.groups.getByID(db, unit_ref);
+        unit thisGroup = Groups.GetByID(db, unit_ref);
         thisUnit = thisGroup.unit_name;
         max = 0;
         DataTable dt = new DataTable();
         dt.Columns.Add(new DataColumn("name", typeof(string)));
         dt.Columns.Add(new DataColumn("id", typeof(int)));
         dt.Columns.Add(new DataColumn("count", typeof(int)));
-        foreach (sub_unit u in dbi.groups.subGroups.list(db, unit_ref, 10))
+        foreach (sub_unit u in Groups.SubGroups.List(db, unit_ref, 10))
         {
-            IEnumerable<ticket> tix = dbi.groups.subGroups.openTickets(db, u.id);
+            IEnumerable<ticket> tix = Groups.SubGroups.OpenTickets(db, u.id);
             if (tix.Count() > max) max = tix.Count();
             DataRow row = dt.NewRow();
             try
@@ -122,12 +122,12 @@ public partial class admin_stats : System.Web.UI.Page
 
     protected void subDetails(int sub_unit_ref)
     {
-        sub_unit suClicked = dbi.groups.subGroups.getByID(db, sub_unit_ref);
+        sub_unit suClicked = Groups.SubGroups.GetByID(db, sub_unit_ref);
         thisUnit = suClicked.unit.unit_name;
         currentGroup.Text = suClicked.unit.id.ToString();
         thisSubUnit = suClicked.sub_unit_name;
 
-        this.displayStats(dbi.groups.subGroups.openTickets(db, sub_unit_ref), dbi.groups.subGroups.closedTickets(db, sub_unit_ref));
+        this.displayStats(Groups.SubGroups.OpenTickets(db, sub_unit_ref), Groups.SubGroups.ClosedTickets(db, sub_unit_ref));
     }
 
     protected void btnHome_Click(object sender, EventArgs e)
@@ -147,7 +147,7 @@ public partial class admin_stats : System.Web.UI.Page
         lblSubGroupDetails.Visible = false;
         rptSubGroups.Visible = true;
         currentSubGroup.Text = "0";
-        this.displayStats(dbi.groups.openTickets(db, unit_ref), dbi.groups.closedTickets(db, unit_ref));
+        this.displayStats(Groups.OpenTickets(db, unit_ref), Groups.ClosedTickets(db, unit_ref));
     }
 
     protected string getWidth(object input)

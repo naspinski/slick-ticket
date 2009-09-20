@@ -17,42 +17,41 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        Response.Redirect("~/patch/");
-        if (!Convert.ToBoolean(utils.settings.get("installed"))) Response.Redirect("~/setup/");
+        if (!Convert.ToBoolean(Utils.Settings.Get("installed"))) Response.Redirect("~/setup/");
 
-        side_bar.CssClass = utils.settings.get("sidebar");
-        main_container.CssClass = utils.settings.get("sidebar").Equals("left") ? "right" : "left";
+        side_bar.CssClass = Utils.Settings.Get("sidebar");
+        main_container.CssClass = Utils.Settings.Get("sidebar").Equals("left") ? "right" : "left";
 
-        if (utils.settings.get("title").Length > 0)
-            this.Page.Title = utils.settings.get("title") + " :: " + this.Page.Title;
+        if (Utils.Settings.Get("title").Length > 0)
+            this.Page.Title = Utils.Settings.Get("title") + " :: " + this.Page.Title;
         else
             lblTitle.Visible = false;
-        lblTitle.Text = utils.settings.get("title");
-        imgTitle.ImageUrl = utils.settings.get("image");
-        if (utils.settings.get("image").Length < 1) imgTitle.Visible = false;
+        lblTitle.Text = Utils.Settings.Get("title");
+        imgTitle.ImageUrl = Utils.Settings.Get("image");
+        if (Utils.Settings.Get("image").Length < 1) imgTitle.Visible = false;
         db = new dbDataContext();
-        string userName = utils.userName();
-        userIsRegistered = dbi.users.exists(db, userName);
+        string userName = Utils.UserName();
+        userIsRegistered = Users.Exists(db, userName);
 
 
         lblUserName.Controls.Add(new LiteralControl(userName));
         try
         {
-            user thisUser = dbi.users.get(db, userName);
+            user thisUser = Users.Get(db, userName);
             lblUserName.Controls.Add(new LiteralControl("<div class='smaller' style='font-weight:normal;'>"));
-            int myTickets = dbi.tickets.myTickets(db, thisUser.id).Count();
-            int groupTix = dbi.tickets.myGroupsTickets(db, thisUser).Count();
+            int myTickets = Tickets.MyTickets(db, thisUser.id).Count();
+            int groupTix = Tickets.MyGroupsTickets(db, thisUser).Count();
             this.myIssues(lblTickets, myTickets, groupTix);
             lblUserName.Controls.Add( new LiteralControl("</div>"));
             if (thisUser.is_admin) isAdmin = true;
-            lblEmail.Text = "<a href='mailto:" + thisUser.email + "'>" + utils.trimForSideBar(thisUser.email, 25) + "</a>";
+            lblEmail.Text = "<a href='mailto:" + thisUser.email + "'>" + Utils.TrimForSideBar(thisUser.email, 25) + "</a>";
             lblPhone.Text = thisUser.phone;
             lblUnit.Controls.Add(new HyperLink() { Text = thisUser.sub_unit1.unit.unit_name, NavigateUrl = "~/search.aspx?group=" + thisUser.sub_unit1.unit_ref });
             lblSubUnit.Controls.Add(new HyperLink() { Text = thisUser.sub_unit1.sub_unit_name, NavigateUrl = "~/search.aspx?group=" + thisUser.sub_unit1.unit_ref + "&subgroup=" + thisUser.sub_unit });
-            //this.myIssues(lblSubUnit,  dbi.tickets.myGroupsTickets(db, thisUser).Count());
+            //this.myIssues(lblSubUnit,  Tickets.MyGroupsTickets(db, thisUser).Count());
             string accessName;
             int accessLevel;
-            user_group ugAccessLevel = utils.accessLevel();
+            user_group ugAccessLevel = Utils.AccessLevel();
             if (ugAccessLevel == null)
             {
                 accessLevel = 0;
@@ -93,7 +92,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
         int aspx = page.IndexOf('.');
         page = aspx > 0 ? page.Substring(0, aspx) : page;
         int count = 1;
-        var xes = utils.menus.main();
+        var xes = Utils.Menus.Main();
         foreach (XElement xe in xes)
         {
             string xmlPage = xe.Value.ToLower().Replace("~/", string.Empty).Replace(".aspx", string.Empty);
@@ -130,7 +129,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
             pnl.Controls.Add(hl);
             pnl.Controls.Add(new LiteralControl("<span><span id='stop_ie_from_moving' >"));
 
-            foreach (XElement xe in utils.menus.admin())
+            foreach (XElement xe in Utils.Menus.Admin())
             {
                 string xmlPage = xe.Value.ToLower().Replace("~/admin/", string.Empty).Replace(".aspx", string.Empty);
                 if (xmlPage.Equals(page.ToLower()))
@@ -153,10 +152,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
 
         phMenu.Controls.Add(pnl);
-    }
-    protected void test_Click(object sender, EventArgs e)
-    {
-        utils.ADGroupListUpdate();
     }
     protected void btnQuickJump_Click(object sender, EventArgs e)
     {

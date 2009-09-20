@@ -15,10 +15,10 @@ public partial class admin_users : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        userName = utils.userName();
+        userName = Utils.UserName();
         if(!IsPostBack)
         {
-            System.Drawing.Color alt_color = System.Drawing.ColorTranslator.FromHtml(dbi.themes.current(new dbDataContext()).alt_rows);
+            System.Drawing.Color alt_color = System.Drawing.ColorTranslator.FromHtml(Themes.Current(new dbDataContext()).alt_rows);
             gvUsers.HeaderStyle.BackColor = alt_color;
             gvUsers.AlternatingRowStyle.BackColor = alt_color;
         }
@@ -39,7 +39,7 @@ public partial class admin_users : System.Web.UI.Page
         {
             GridViewRow row = (GridViewRow)((CheckBox)sender).NamingContainer;
             int userID = Int32.Parse(gvUsers.DataKeys[row.RowIndex].Value.ToString());
-            dbi.users.flipAdmin(new dbDataContext(), userID);
+            Users.FlipAdmin(new dbDataContext(), userID);
         }
         catch (Exception ex)
         {

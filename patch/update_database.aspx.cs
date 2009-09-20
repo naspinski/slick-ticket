@@ -16,7 +16,7 @@ public partial class patch_update_database : System.Web.UI.Page
     protected void Page_Load(object sender, EventArgs e)
     {
         fileUrl = Server.MapPath(".") + "\\patch_Data\\update.sql";
-        bool done = bool.Parse(setup.patch.get("db_updated"));
+        bool done = bool.Parse(Setup.Patch.Get("db_updated"));
         btnRunSQL.Enabled = !done;
         lblDBCreation.Visible = done;
         lnkNext.Visible = done;
@@ -89,7 +89,7 @@ public partial class patch_update_database : System.Web.UI.Page
 
             }
 
-            setup.patch.update("db_updated", "True");
+            Setup.Patch.Update("db_updated", "True");
             lblOutput.Text += "Tables updated successfully";
             lblOutput.CssClass = "success";
             lblDBCreation.Visible = true;

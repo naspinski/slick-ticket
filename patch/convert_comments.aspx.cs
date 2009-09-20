@@ -15,7 +15,7 @@ public partial class patch_convert_comments : System.Web.UI.Page
     dbDataContext db = new dbDataContext();
     protected void Page_Load(object sender, EventArgs e)
     {
-        bool done = bool.Parse(setup.patch.get("comments"));
+        bool done = bool.Parse(Setup.Patch.Get("comments"));
         btnUpdate.Enabled = !done;
         lblFinished.Visible = done;
         lnkNext.Visible = done;
@@ -79,7 +79,7 @@ public partial class patch_convert_comments : System.Web.UI.Page
                 }
             }
             db.SubmitChanges();
-            setup.patch.update("comments", "True");
+            Setup.Patch.Update("comments", "True");
             lblOutput.Text += "Comments updated successfully";
             lblOutput.CssClass = "success";
             lblFinished.Visible = true;

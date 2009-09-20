@@ -21,18 +21,18 @@ public partial class admin_settings : System.Web.UI.Page
 
         if (!IsPostBack)
         {
-            chkRestrictDomains.Checked = utils.settings.emailIsRestricted();
-            chkEmail.Checked = bool.Parse(utils.settings.get("email_notification"));
-            txtAttachment.Text = utils.settings.get("attachments");
-            txtTitle.Text = utils.settings.get("title");
-            txtImage.Text = utils.settings.get("image");
-            txtAdminEmail.Text = utils.settings.get("admin_email");
-            txtSysEmail.Text = utils.settings.get("system_email");
-            txtDC.Text = utils.settings.get("domain_controller");
-            txtSmtp.Text = utils.settings.get("smtp");
+            chkRestrictDomains.Checked = Utils.Settings.EmailIsRestricted();
+            chkEmail.Checked = bool.Parse(Utils.Settings.Get("email_notification"));
+            txtAttachment.Text = Utils.Settings.Get("attachments");
+            txtTitle.Text = Utils.Settings.Get("title");
+            txtImage.Text = Utils.Settings.Get("image");
+            txtAdminEmail.Text = Utils.Settings.Get("admin_email");
+            txtSysEmail.Text = Utils.Settings.Get("system_email");
+            txtDC.Text = Utils.Settings.Get("domain_controller");
+            txtSmtp.Text = Utils.Settings.Get("smtp");
             resetTheme();
 
-            if (utils.settings.get("sidebar").Equals("left")) left.Checked = true;
+            if (Utils.Settings.Get("sidebar").Equals("left")) left.Checked = true;
             else right.Checked = true;
         }
         pnlDomains.Visible = chkRestrictDomains.Checked;
@@ -43,7 +43,7 @@ public partial class admin_settings : System.Web.UI.Page
     {
         clear();
         setThemeColorsToCurrent(1);
-        System.Drawing.Color alt_color = System.Drawing.ColorTranslator.FromHtml(dbi.themes.current(db).alt_rows);
+        System.Drawing.Color alt_color = System.Drawing.ColorTranslator.FromHtml(Themes.Current(db).alt_rows);
         gvDomains.AlternatingRowStyle.BackColor = alt_color;
         gvDomains.HeaderStyle.BackColor = alt_color;
         gvAccessLevels.AlternatingRowStyle.BackColor = alt_color;
@@ -52,7 +52,7 @@ public partial class admin_settings : System.Web.UI.Page
 
     protected void setThemeColorsToCurrent(int theme)
     {
-        style current = dbi.themes.get(db, theme);
+        style current = Themes.Get(db, theme);
         styleText.Text = current.text_color;
         styleBody.Text = current.body;
         styleBorders.Text = current.borders;
@@ -67,13 +67,13 @@ public partial class admin_settings : System.Web.UI.Page
     protected void chkRestrictDomains_CheckedChanged(object sender, EventArgs e)
     {
         clear();
-        utils.settings.update("restrict_email_addresses", (!utils.settings.emailIsRestricted()).ToString());
+        Utils.Settings.Update("restrict_email_addresses", (!Utils.Settings.EmailIsRestricted()).ToString());
     }
 
     protected void chkEmail_CheckedChanged(object sender, EventArgs e)
     {
         clear();
-        utils.settings.update("email_notification", (!(bool.Parse(utils.settings.get("email_notification")))).ToString());
+        Utils.Settings.Update("email_notification", (!(bool.Parse(Utils.Settings.Get("email_notification")))).ToString());
     }
     
     protected void btnAddDomain_Click(object sender, EventArgs e)
@@ -81,7 +81,7 @@ public partial class admin_settings : System.Web.UI.Page
         clear();
         try
         {
-            dbi.domains.add(db, txtDomainAdd.Text);
+            Dbi.Domains.Add(db, txtDomainAdd.Text);
              lblEmail.report(true, Resources.Common.Updated, null);
             txtDomainAdd.Text = string.Empty;
             gvDomains.DataBind();
@@ -96,8 +96,8 @@ public partial class admin_settings : System.Web.UI.Page
     {
         string sidebarLocation = "right";
         if (left.Checked == true) sidebarLocation = "left";
-        utils.settings.update("sidebar", sidebarLocation);
-        dbi.themes.set(db, styleText.Text, styleBorders.Text, styleBody.Text, styleLink.Text, styleLinkHover.Text, styleButtonText.Text, styleAlternatingRows.Text, styleHeader.Text, styleBg.Text);
+        Utils.Settings.Update("sidebar", sidebarLocation);
+        Themes.Set(db, styleText.Text, styleBorders.Text, styleBody.Text, styleLink.Text, styleLinkHover.Text, styleButtonText.Text, styleAlternatingRows.Text, styleHeader.Text, styleBg.Text);
         reWriteCss(styleText.Text, styleBorders.Text, styleBody.Text, styleLink.Text, styleLinkHover.Text, styleButtonText.Text, styleAlternatingRows.Text, styleHeader.Text, styleBg.Text);
         resetTheme();
         Response.Redirect(Request.Url.ToString());
@@ -105,8 +105,8 @@ public partial class admin_settings : System.Web.UI.Page
     
     protected void btnCssReset_Click(object sender, EventArgs e)
     {
-        dbi.themes.reset(db);
-        style d = dbi.themes.current(db);
+        Themes.Reset(db);
+        style d = Themes.Current(db);
         reWriteCss(d.text_color, d.borders, d.body, d.links, d.hover, d.button_text, d.alt_rows, d.header, d.background);
         resetTheme();
     }
@@ -144,7 +144,7 @@ public partial class admin_settings : System.Web.UI.Page
         {
             string path = txtAttachment.Text;
             path = path.EndsWith("\\") ? path : path + "\\";
-            utils.settings.update("attachments", path);
+            Utils.Settings.Update("attachments", path);
             txtAttachment.Text = path;
             lblAttachmentReport.report(true, Resources.Common.Updated, null);
         }
@@ -177,7 +177,7 @@ public partial class admin_settings : System.Web.UI.Page
         {
             Button clicked = (Button)sender;
             TextBox txt = (TextBox)pnlSettings.FindControl(clicked.CommandName);
-            utils.settings.update(clicked.CommandArgument, txt.Text);
+            Utils.Settings.Update(clicked.CommandArgument, txt.Text);
             lblAttachmentReport.report(true, clicked.CommandArgument.Replace("_", " ") + " " + Resources.Common.Updated, null);
         }
         catch(Exception ex)
@@ -196,7 +196,7 @@ public partial class admin_settings : System.Web.UI.Page
     {
         try
         {
-            dbi.themes.add(db, txtNewTheme.Text, styleText.Text, styleBorders.Text,
+            Themes.Add(db, txtNewTheme.Text, styleText.Text, styleBorders.Text,
                 styleBody.Text, styleLink.Text, styleLinkHover.Text, styleButtonText.Text, styleHeader.Text,
                 styleAlternatingRows.Text, styleBg.Text);
             resetThemes();
@@ -215,8 +215,8 @@ public partial class admin_settings : System.Web.UI.Page
         Button clicked = (Button)sender;
         switch (clicked.ID)
         {
-            case "btnStyleImport": lblImportReport.Text = utils.styles.import(fuImport.FileContent); break;
-            case "btnFaqImport": lblImportReport.Text = utils.faqs.import(fuImport.FileContent); break;
+            case "btnStyleImport": lblImportReport.Text = Styles.Import(fuImport.FileContent); break;
+            case "btnFaqImport": lblImportReport.Text = Faqs.Import(fuImport.FileContent); break;
             default: lblImportReport.Text = "<div class='error'>" + Resources.Common.Error + "</div>"; break;
         }
 
@@ -231,12 +231,12 @@ public partial class admin_settings : System.Web.UI.Page
             XDocument x;
             if (clicked.ID.Equals("btnExportStyles"))
             {
-                x = utils.styles.export();
+                x = Styles.Export();
                 filename = "SlickTicketThemes.xml";
             }
             else
             {
-                x = utils.faqs.export();
+                x = Faqs.Export();
                 filename = "SlicktTicketFaqs.xml";
             }
             Response.Clear();
@@ -254,7 +254,7 @@ public partial class admin_settings : System.Web.UI.Page
     {
         try
         {
-            dbi.themes.delete(db, Int32.Parse(ddlThemes.SelectedValue));
+            Themes.Delete(db, Int32.Parse(ddlThemes.SelectedValue));
             lblThemeDelete.report(true, Resources.Common.Deleted, null);
             lblNewTheme.Text = string.Empty;
             resetThemes();

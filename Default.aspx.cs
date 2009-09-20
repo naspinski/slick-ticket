@@ -16,9 +16,9 @@ public partial class _Default : System.Web.UI.Page
     {
         this.Title = Resources.Common.Dashboard;
         dbDataContext db = new dbDataContext();
-        string userName = utils.userName();
+        string userName = Utils.UserName();
         bool showAdmin;
-        try{ showAdmin = dbi.users.get(db, userName).is_admin; }
+        try{ showAdmin = Users.Get(db, userName).is_admin; }
         catch{ showAdmin = false; }
         pnlAdmin.Visible = showAdmin;
     }

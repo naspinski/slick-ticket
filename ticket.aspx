@@ -62,7 +62,7 @@ http://naspinski.net
                         <div class="iconize">
                             <asp:LinkButton ID="btnAttachment" runat="server" OnClick="btnAttachment_Click" CommandArgument='<%# Eval("attachment_name") %>' 
                                 CssClass='<%# getExtension(Eval("attachment_name").ToString()) %>'> 
-                                <%= Resources.Common.Bytes %>)
+                                <%# Eval("attachment_name") %> (<%# Eval("attachment_size") %>&nbsp;<%= Resources.Common.Bytes %>)
                             </asp:LinkButton>
                         </div>
                     </ItemTemplate>

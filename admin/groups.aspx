@@ -168,7 +168,7 @@ http://naspinski.net
                             SortExpression="mailto" meta:resourcekey="TemplateFieldResource5">
                             <ItemTemplate>
                                 <a href="mailto:<%# Eval("mailto") %>">
-                                    <%# utils.trimForSideBar(Eval("mailto").ToString(), 21) %>
+                                    <%# Utils.TrimForSideBar(Eval("mailto").ToString(), 21) %>
                                 </a>
                             </ItemTemplate>
                             <EditItemTemplate>

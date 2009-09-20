@@ -28,16 +28,16 @@ public partial class profile : System.Web.UI.Page
         this.Title = Resources.Common.Profile;
         txtPhone.Focus();
         db = new dbDataContext();
-        userName = utils.userName();
-        userIsRegistered = dbi.users.exists(db, userName);
+        userName = Utils.UserName();
+        userIsRegistered = Users.Exists(db, userName);
         List<string> groups = new List<string>();
         try
         {
-            groups = utils.userGroups();
-            accessLevel = utils.accessLevel().security_level;
+            groups = Utils.UserGroups();
+            accessLevel = Utils.AccessLevel().security_level;
         }
         catch { accessLevel = 0; }
-        bool emailIsRestricted = utils.settings.emailIsRestricted();
+        bool emailIsRestricted = Utils.Settings.EmailIsRestricted();
 
         ddlDomain.Visible = emailIsRestricted;
         txtDomain.Visible = !emailIsRestricted;
@@ -47,16 +47,16 @@ public partial class profile : System.Web.UI.Page
         if (!IsPostBack)
         {
             txtUserName.Text = userName;
-            var units = dbi.groups.list(db, accessLevel);
+            var units = Groups.List(db, accessLevel);
             if (units.Count() < 1)
             {
                 ddlUnit.Items.Add(new ListItem(Resources.Common.NoGroups, "0"));
                 lblProfileHeader.report(false, Resources.Common.NoGroupsExplanation + "<a href='contact.aspx'>" + Resources.Common.Contact.ToLower() + "</a><br /><br />", null);
             }
-            var _units = dbi.groups.list(db, accessLevel);
+            var _units = Groups.List(db, accessLevel);
             foreach (unit u in _units.OrderBy(p => p.unit_name))
                 ddlUnit.Items.Add(new ListItem(u.unit_name, u.id.ToString()));
-            utils.populateSubUnits(db, ddlUnit, ddlSubUnit, accessLevel);
+            Utils.PopulateSubUnits(db, ddlUnit, ddlSubUnit, accessLevel);
             if (!userIsRegistered)
             {
                 if (string.IsNullOrEmpty(txtPhone.Text))
@@ -74,12 +74,12 @@ public partial class profile : System.Web.UI.Page
             }
             else
             {
-                user thisUser = dbi.users.get(db, userName);
+                user thisUser = Users.Get(db, userName);
                 ddlUnit.SelectedIndex = ddlUnit.Items.IndexOf(ddlUnit.Items.FindByValue(thisUser.sub_unit1.unit.id.ToString()));
                 prefix = thisUser.email.Split(new char[] { '@' })[0];
                 domain = thisUser.email.Split(new char[] { '@' })[1];
                 txtEmail.Text = prefix;
-                utils.populateSubUnits(db, ddlUnit, ddlSubUnit, accessLevel);
+                Utils.PopulateSubUnits(db, ddlUnit, ddlSubUnit, accessLevel);
                 ddlDomain.DataBind();
                 strPhone = thisUser.phone;
                 ddlSubUnit.SelectedIndex = ddlSubUnit.Items.IndexOf(ddlSubUnit.Items.FindByValue(thisUser.sub_unit.ToString()));
@@ -151,7 +151,7 @@ public partial class profile : System.Web.UI.Page
 
     protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
     {
-        utils.populateSubUnits(db, ddlUnit, ddlSubUnit, accessLevel);
+        Utils.PopulateSubUnits(db, ddlUnit, ddlSubUnit, accessLevel);
         ddlUnit.Focus();
     }
 
@@ -162,7 +162,7 @@ public partial class profile : System.Web.UI.Page
         {
             try
             {
-                dbi.users.add(db, userName, email, txtPhone.Text, Int32.Parse(ddlSubUnit.SelectedValue));
+                Users.Add(db, userName, email, txtPhone.Text, Int32.Parse(ddlSubUnit.SelectedValue));
                 lblProfileHeader.Text = "<div class='success'><h2>" + GetLocalResourceObject("Saved").ToString() + "</h2></div>";
             }
             catch (Exception ex) { lblProfileHeader.report(false, GetLocalResourceObject("ErrorSaving").ToString(), ex); }
@@ -171,7 +171,7 @@ public partial class profile : System.Web.UI.Page
         {
             try
             {
-                dbi.users.update(db, userName, email, txtPhone.Text, Int32.Parse(ddlSubUnit.SelectedValue));
+                Users.Update(db, userName, email, txtPhone.Text, Int32.Parse(ddlSubUnit.SelectedValue));
                 lblProfileHeader.Text = "<div class='success'><h2>" + GetLocalResourceObject("Saved").ToString() + "</h2></div>";
             }
             catch (Exception ex) { lblProfileHeader.report(false, GetLocalResourceObject("ErrorSaving").ToString(), ex); }

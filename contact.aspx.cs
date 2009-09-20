@@ -17,13 +17,13 @@ public partial class contact : System.Web.UI.Page
     {
         try
         {
-            string userName = utils.userName();
+            string userName = Utils.UserName();
             dbDataContext db = new dbDataContext();
-            user u = dbi.users.get(db, userName);
+            user u = Users.Get(db, userName);
             string strBody = u.userName + " (" + u.sub_unit1.unit.unit_name + " - " + u.sub_unit1.sub_unit_name + ") " +  GetLocalResourceObject("SentText").ToString() + 
                 ":\n\n" + txtSubject.Text + "\n\n" + txtBody.Text;
-            MailMessage message = new MailMessage(u.email, utils.settings.get("admin_email"), utils.settings.get("title") + " " + Resources.Common.Contact, strBody);
-            SmtpClient smtp = new SmtpClient(utils.settings.get("smtp"));
+            MailMessage message = new MailMessage(u.email, Utils.Settings.Get("admin_email"), Utils.Settings.Get("title") + " " + Resources.Common.Contact, strBody);
+            SmtpClient smtp = new SmtpClient(Utils.Settings.Get("smtp"));
             smtp.Send(message);
             lblReport.report(true, GetLocalResourceObject("MessageSent").ToString(), null);
         }

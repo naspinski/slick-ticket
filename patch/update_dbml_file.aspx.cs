@@ -8,7 +8,7 @@ public partial class patch_update_dbml_file : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        bool done = bool.Parse(setup.patch.get("dbml"));
+        bool done = bool.Parse(Setup.Patch.Get("dbml"));
         btnUpdate.Enabled = !done;
         lblFinished.Visible = done;
         lnkNext.Visible = done;
@@ -18,7 +18,7 @@ public partial class patch_update_dbml_file : System.Web.UI.Page
     {
         try
         {
-            setup.patch.update("dbml", "True");
+            Setup.Patch.Update("dbml", "True");
             lblOutput.Text += ".dbml files updated successfully";
             lblOutput.CssClass = "success";
             lblFinished.Visible = true;

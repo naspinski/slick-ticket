@@ -2,7 +2,6 @@
 //http://slick-ticket.com :: http://naspinski.net
 //Developed by Stan Naspinski - stan@naspinski.net
 
-
 using System;
 using System.Web.UI.WebControls;
 using System.Collections.Generic;
@@ -49,6 +48,11 @@ namespace SlickTicketExtensions
         public static void set(this DropDownList ddl, string findByVal)
         {
             ddl.SelectedIndex = ddl.Items.IndexOf(ddl.Items.FindByValue(findByVal));
+        }
+
+        public static int SelectedValueToInt(this DropDownList ddl)
+        {
+            return Convert.ToInt32(ddl.SelectedValue);
         }
     }
 

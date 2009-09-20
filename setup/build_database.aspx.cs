@@ -14,7 +14,7 @@ public partial class setup_build_database : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        bool done = bool.Parse(setup.settings.get("db_creation"));
+        bool done = bool.Parse(Setup.Settings.Get("db_creation"));
         btnRunSQL.Enabled = !done;
         lblDBCreation.Visible = done;
         lnkNext.Visible = done;
@@ -69,12 +69,12 @@ public partial class setup_build_database : System.Web.UI.Page
             }
 
             //fills styles
-            string nothing = utils.styles.import(stream);
+            string nothing = Styles.Import(stream);
 
             //fills faq
-            utils.faqs.import(FAQstream);
+            Faqs.Import(FAQstream);
 
-            setup.settings.update("db_creation", "True");
+            Setup.Settings.Update("db_creation", "True");
             lblOutput.Text += "Tables built successfully";
             lblOutput.CssClass = "success";
             lblDBCreation.Visible = true;

@@ -29,9 +29,9 @@ public partial class my_issues : System.Web.UI.Page
         this.Title = Resources.Common.MyIssues;
         GridView[] gvs = new GridView[] { gvMy, gvGroup };
         db = new dbDataContext();
-        userName = utils.userName();
-        userIsRegistered = dbi.users.exists(db, userName);
-        user me = dbi.users.get(db, userName);
+        userName = Utils.UserName();
+        userIsRegistered = Users.Exists(db, userName);
+        user me = Users.Get(db, userName);
         lblMyGroup.Text = me.sub_unit1.unit.unit_name + " - " + me.sub_unit1.sub_unit_name;
         txtSubmitter.Text = me.id.ToString();
         txtGroup.Text = me.sub_unit.ToString();
@@ -41,12 +41,12 @@ public partial class my_issues : System.Web.UI.Page
         urgency.Add(3, "#ff7700");
         urgency.Add(4, "#ff2f00");
 
-        myTickets = dbi.tickets.myTickets(db, me.id);
-        groupTickets = dbi.tickets.myGroupsTickets(db, me);
+        myTickets = Tickets.MyTickets(db, me.id);
+        groupTickets = Tickets.MyGroupsTickets(db, me);
 
         if (!IsPostBack)
         {
-            System.Drawing.Color alt_color = System.Drawing.ColorTranslator.FromHtml(dbi.themes.current(db).alt_rows);
+            System.Drawing.Color alt_color = System.Drawing.ColorTranslator.FromHtml(Themes.Current(db).alt_rows);
             foreach (GridView gv in gvs)
             {
                 gv.HeaderStyle.BackColor = alt_color;

@@ -23,14 +23,14 @@ public partial class search : System.Web.UI.Page
         urgency.Add(4, "#ff2f00");
         if (!IsPostBack)
         {
-            var units = dbi.groups.list(db, 10);
+            var units = Groups.List(db, 10);
             foreach (unit u in units.OrderBy(p => p.unit_name))
                 ddlUnit.Items.Add(new ListItem(u.unit_name, u.id.ToString()));
             ddlUnit.Items.Insert(0, new ListItem(Resources.Common.Any, "0"));
-            utils.populateSubUnits(db, ddlUnit, ddlSubUnit, 10);
+            Utils.PopulateSubUnits(db, ddlUnit, ddlSubUnit, 10);
             ddlSubUnit.Items.Insert(0, new ListItem(Resources.Common.Any, "0"));
 
-            System.Drawing.Color alt_color = System.Drawing.ColorTranslator.FromHtml(dbi.themes.current(db).alt_rows);
+            System.Drawing.Color alt_color = System.Drawing.ColorTranslator.FromHtml(Themes.Current(db).alt_rows);
             gvResults.HeaderStyle.BackColor = alt_color;
             gvResults.AlternatingRowStyle.BackColor = alt_color;
 
@@ -74,7 +74,7 @@ public partial class search : System.Web.UI.Page
 
     protected void ddlUnit_SelectedIndexChanged(object sender, EventArgs e)
     {
-        utils.populateSubUnits(db, ddlUnit, ddlSubUnit, 10);
+        Utils.PopulateSubUnits(db, ddlUnit, ddlSubUnit, 10);
         ddlSubUnit.Items.Insert(0, new ListItem("Any", "0"));
         ddlUnit.Focus();
     }
@@ -100,7 +100,7 @@ public partial class search : System.Web.UI.Page
         if(String.IsNullOrEmpty(txtUser.Text)) usr = -1;
         else
         {
-            try { usr = dbi.users.get(db, txtUser.Text).id; }
+            try { usr = Users.Get(db, txtUser.Text).id; }
             catch { usr = 0; }
         }
 
@@ -110,7 +110,7 @@ public partial class search : System.Web.UI.Page
         su = Int32.Parse(ddlSubUnit.SelectedValue);
 
         gvResults.EmptyDataText = "<h5>" + GetLocalResourceObject("NoResults") + "</h5>";
-        var results = dbi.tickets.search(db, keywords, usr, dtFrom, dtTo, prty, stat, onlyOpen, u, su);
+        var results = Tickets.search(db, keywords, usr, dtFrom, dtTo, prty, stat, onlyOpen, u, su);
         gvResults.DataSource = results;
         Session["searchResults"] = results;
         gvResults.DataBind();

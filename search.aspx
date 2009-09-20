@@ -101,7 +101,7 @@ http://naspinski.net
                             <asp:TemplateField SortExpression="title" meta:resourcekey="TemplateFieldResource2">
                                 <ItemTemplate>
                                     <a class="tooltip large" href="ticket.aspx?ticketID=<%# Eval("id") %>">
-                                        <em><%# utils.trimForSideBar(Eval("title").ToString(), 50) %></em>
+                                        <em><%# Utils.TrimForSideBar(Eval("title").ToString(), 50) %></em>
                                         <span class='border_color'><q class='inner_color base_text'>
                                             <div><b><%= Resources.Common.LastAction %> </b><%# Convert.ToDateTime(Eval("last_action")).ToString()%></div>
                                             <div><b><%= Resources.Common.TicketNumber %> </b><%# Eval("id") %></div>

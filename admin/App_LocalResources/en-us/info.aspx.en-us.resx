@@ -155,7 +155,7 @@
 &lt;span class="bold"&gt;Add Group&lt;/span&gt; - This button allows you to add a new AD group to the system. This group must already be part of Active Directory. 
 All users that are members of a specified group will be granted that corresponding access level with the highest level taking priority.
 &lt;br /&gt;&lt;br /&gt;
-&lt;span class="bold"&gt;Update AD&lt;/span&gt; - Due to the large size of many AD forests (this forest has &lt;%= utils.settings.get("ad_groups") %&gt;) the groups are cached in a local xml file instead of querying AD every log on. 
+&lt;span class="bold"&gt;Update AD&lt;/span&gt; - Due to the large size of many AD forests (this forest has &lt;%= Utils.Settings.Get("ad_groups") %&gt;) the groups are cached in a local xml file instead of querying AD every log on. 
 This greatly increases the performance of the system, but will not recognize new/deleted groups in AD until this button is pushed and the cache is refreshed.</value>
   </data>
   <data name="litText3Resource1.Text" xml:space="preserve">

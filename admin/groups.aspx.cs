@@ -18,12 +18,12 @@ public partial class admin_units : System.Web.UI.Page
         db = new dbDataContext();
         if (!IsPostBack)
         {
-            System.Drawing.Color alt_color = System.Drawing.ColorTranslator.FromHtml(dbi.themes.current(db).alt_rows);
+            System.Drawing.Color alt_color = System.Drawing.ColorTranslator.FromHtml(Themes.Current(db).alt_rows);
             gvSubUnits.HeaderStyle.BackColor = alt_color;
             gvSubUnits.AlternatingRowStyle.BackColor = alt_color;
             gvUnits.HeaderStyle.BackColor = alt_color;
             gvUnits.AlternatingRowStyle.BackColor = alt_color;
-            foreach (security_level sl in dbi.accessLevels.list(db, 0))
+            foreach (security_level sl in Dbi.AccessLevels.List(db, 0))
                 ddlSecurityLevel.Items.Add(new ListItem("[" + sl.id.ToString() + "] " + sl.security_level_name, sl.id.ToString()));
         }
     }
@@ -74,7 +74,7 @@ public partial class admin_units : System.Web.UI.Page
     {
         try
         {
-            dbi.groups.add(db, txtNewUnit.Text);
+            Groups.Add(db, txtNewUnit.Text);
             lblUnitReport.report(true, "group Added", null);
 
             gvUnits.DataBind();
@@ -93,7 +93,7 @@ public partial class admin_units : System.Web.UI.Page
     {
         try
         {
-            dbi.groups.subGroups.add(db, txtNewSubUnit.Text, Int32.Parse(ddlNewSubUnit.SelectedValue), Int32.Parse(ddlSecurityLevel.SelectedValue), txtMailto.Text);
+            Groups.SubGroups.Add(db, txtNewSubUnit.Text, Int32.Parse(ddlNewSubUnit.SelectedValue), Int32.Parse(ddlSecurityLevel.SelectedValue), txtMailto.Text);
             lblSubUnitReport.report(true, "Sub-group added", null);
             gvSubUnits.DataBind();
         }

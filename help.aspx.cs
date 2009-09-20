@@ -17,10 +17,10 @@ public partial class info : System.Web.UI.Page
         this.Title = Resources.Common.Help;
         db = new dbDataContext();
 
-        string userName = utils.userName();
+        string userName = Utils.UserName();
         try
         {
-            user thisUser = dbi.users.get(db, userName);
+            user thisUser = Users.Get(db, userName);
             if (thisUser.is_admin) isAdmin = true;
         }
         catch
@@ -39,7 +39,7 @@ public partial class info : System.Web.UI.Page
         Button btn = (Button)sender;
         try
         {
-            dbi.faqs.delete(db, Int32.Parse(btn.CommandArgument));
+            Faqs.Delete(db, Int32.Parse(btn.CommandArgument));
             lblReport.report(true, GetLocalResourceObject("Deleted").ToString() , null);
             rptIndex.DataBind();
             rpt.DataBind();
@@ -55,12 +55,12 @@ public partial class info : System.Web.UI.Page
         {
             if( cmdArg != 0 )
             {
-                dbi.faqs.edit(db, cmdArg, Server.HtmlEncode(txtQ.Text), txtA.Text);
+                Faqs.Edit(db, cmdArg, Server.HtmlEncode(txtQ.Text), txtA.Text);
                 lblReport.report(true, GetLocalResourceObject("Updated").ToString(), null);
             }
             else
             {
-                dbi.faqs.add(db, Server.HtmlEncode(txtQ.Text), txtA.Text);
+                Faqs.Add(db, Server.HtmlEncode(txtQ.Text), txtA.Text);
                 lblReport.report(true, GetLocalResourceObject("Inserted").ToString(), null);
             }
             rptIndex.DataBind();
@@ -76,7 +76,7 @@ public partial class info : System.Web.UI.Page
     protected void btnEdit_Click(object sender, EventArgs e)
     {
         Button btn = (Button)sender;
-        faq f = dbi.faqs.get(db, Int32.Parse(btn.CommandArgument));
+        faq f = Faqs.Get(db, Int32.Parse(btn.CommandArgument));
         txtQ.Text = f.title;
         txtA.Text = f.body;
         btnSubmit.CommandArgument = btn.CommandArgument.ToString();
