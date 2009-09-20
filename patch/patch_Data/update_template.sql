@@ -8,3 +8,12 @@ ALTER TABLE dbo.comments
 
 ALTER TABLE dbo.comments
   ADD status_id INT NOT NULL REFERENCES statuses(id) DEFAULT 1;
+  
+ALTER TABLE dbo.comments
+  ADD active BIT NOT NULL DEFAULT 1;
+  
+ALTER TABLE dbo.tickets
+  ADD active BIT NOT NULL DEFAULT 1;
+  
+ALTER TABLE dbo.attachments
+  ADD active BIT NOT NULL DEFAULT 1;  

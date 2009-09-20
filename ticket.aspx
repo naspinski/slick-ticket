@@ -117,7 +117,7 @@ http://naspinski.net
                             </td>
                             <td>
                                 <h3>
-                                    <span class="title_header"><%= Resources.Common.Subgroup %></span>
+                                    <span class="title_header"><%= Resources.Common.Priority %></span>
                                 </h3>
                                 <asp:DropDownList ID="ddlPriority" CssClass="half_table" runat="server" />
                             </td>

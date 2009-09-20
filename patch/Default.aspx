@@ -6,7 +6,7 @@
         
     <div class="container">
         <h2>
-            <a href="followup.aspx" style="float:right;">next</a>
+            <a href="update_database.aspx" style="float:right;">next</a>
             Patch Instructions
         </h2>
         This wizard will walk you through the upgrade to the newer, more robust Slick-Ticket.  

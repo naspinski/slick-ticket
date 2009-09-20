@@ -206,7 +206,7 @@ GO
 INSERT INTO [dbo].[statuses] VALUES (10, 'Closed')
 GO
 
-/****** Object:  Table [dbo].[tickets]    Script Date: 10/21/2008 16:00:32 ******/
+/****** Object:  Table [dbo].[tickets]    Script Date: 09/20/2009 10:11:30 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -226,6 +226,7 @@ CREATE TABLE [dbo].[tickets](
 	[ticket_status] [int] NOT NULL,
 	[priority] [int] NOT NULL,
 	[originating_group] [int] NOT NULL,
+	[active] [bit] NOT NULL DEFAULT ((1)),
 PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
@@ -253,7 +254,7 @@ GO
 ALTER TABLE [dbo].[tickets]  WITH CHECK ADD FOREIGN KEY([ticket_status])
 REFERENCES [dbo].[statuses] ([id])
 
-/****** Object:  Table [dbo].[comments]    Script Date: 10/21/2008 16:01:09 ******/
+/****** Object:  Table [dbo].[comments]    Script Date: 09/20/2009 10:12:08 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -264,32 +265,43 @@ CREATE TABLE [dbo].[comments](
 	[ticket_ref] [int] NOT NULL,
 	[submitter] [int] NOT NULL,
 	[submitted] [datetime] NOT NULL,
-	[assigned_to] [int] NOT NULL,
-	[priority_id] [int] NOT NULL,
-	[status_id] [int] NOT NULL,
-PRIMARY KEY CLUSTERED 
+	[assigned_to] [int] NOT NULL CONSTRAINT [DF__comments__assign__76969D2E]  DEFAULT ((1)),
+	[priority_id] [int] NOT NULL CONSTRAINT [DF__comments__priori__787EE5A0]  DEFAULT ((1)),
+	[status_id] [int] NOT NULL CONSTRAINT [DF__comments__status__7A672E12]  DEFAULT ((1)),
+	[active] [bit] NOT NULL CONSTRAINT [DF__comments__active__7C4F7684]  DEFAULT ((1)),
+ CONSTRAINT [PK__comments__68487DD7] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
 )WITH (PAD_INDEX  = OFF, STATISTICS_NORECOMPUTE  = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS  = ON, ALLOW_PAGE_LOCKS  = ON) ON [PRIMARY]
 ) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
 
 GO
-ALTER TABLE [dbo].[comments]  WITH CHECK ADD FOREIGN KEY([submitter])
-REFERENCES [dbo].[users] ([id])
-GO
-ALTER TABLE [dbo].[comments]  WITH CHECK ADD FOREIGN KEY([ticket_ref])
-REFERENCES [dbo].[tickets] ([id])
-GO
-ALTER TABLE [dbo].[comments]  WITH CHECK ADD FOREIGN KEY([assigned_to])
+ALTER TABLE [dbo].[comments]  WITH CHECK ADD  CONSTRAINT [FK__comments__assign__778AC167] FOREIGN KEY([assigned_to])
 REFERENCES [dbo].[sub_units] ([id])
 GO
-ALTER TABLE [dbo].[comments]  WITH CHECK ADD FOREIGN KEY([priority_id])
+ALTER TABLE [dbo].[comments] CHECK CONSTRAINT [FK__comments__assign__778AC167]
+GO
+ALTER TABLE [dbo].[comments]  WITH CHECK ADD  CONSTRAINT [FK__comments__priori__797309D9] FOREIGN KEY([priority_id])
 REFERENCES [dbo].[priority] ([id])
 GO
-ALTER TABLE [dbo].[comments]  WITH CHECK ADD FOREIGN KEY([status_id])
+ALTER TABLE [dbo].[comments] CHECK CONSTRAINT [FK__comments__priori__797309D9]
+GO
+ALTER TABLE [dbo].[comments]  WITH CHECK ADD  CONSTRAINT [FK__comments__status__7B5B524B] FOREIGN KEY([status_id])
 REFERENCES [dbo].[statuses] ([id])
+GO
+ALTER TABLE [dbo].[comments] CHECK CONSTRAINT [FK__comments__status__7B5B524B]
+GO
+ALTER TABLE [dbo].[comments]  WITH CHECK ADD  CONSTRAINT [FK__comments__submit__693CA210] FOREIGN KEY([submitter])
+REFERENCES [dbo].[users] ([id])
+GO
+ALTER TABLE [dbo].[comments] CHECK CONSTRAINT [FK__comments__submit__693CA210]
+GO
+ALTER TABLE [dbo].[comments]  WITH CHECK ADD  CONSTRAINT [FK__comments__ticket__6A30C649] FOREIGN KEY([ticket_ref])
+REFERENCES [dbo].[tickets] ([id])
+GO
+ALTER TABLE [dbo].[comments] CHECK CONSTRAINT [FK__comments__ticket__6A30C649]
 
-/****** Object:  Table [dbo].[attachments]    Script Date: 10/21/2008 16:01:38 ******/
+/****** Object:  Table [dbo].[attachments]    Script Date: 09/20/2009 10:12:20 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -303,6 +315,7 @@ CREATE TABLE [dbo].[attachments](
 	[attachment_name] [varchar](100) NOT NULL,
 	[attachment_size] [varchar](50) NOT NULL,
 	[submitted] [datetime] NOT NULL,
+	[active] [bit] NOT NULL DEFAULT ((1)),
 PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
@@ -312,8 +325,10 @@ PRIMARY KEY CLUSTERED
 GO
 SET ANSI_PADDING OFF
 GO
-ALTER TABLE [dbo].[attachments]  WITH CHECK ADD FOREIGN KEY([comment_ref])
+ALTER TABLE [dbo].[attachments]  WITH CHECK ADD  CONSTRAINT [FK__attachmen__comme__6D0D32F4] FOREIGN KEY([comment_ref])
 REFERENCES [dbo].[comments] ([id])
+GO
+ALTER TABLE [dbo].[attachments] CHECK CONSTRAINT [FK__attachmen__comme__6D0D32F4]
 GO
 ALTER TABLE [dbo].[attachments]  WITH CHECK ADD FOREIGN KEY([ticket_ref])
 REFERENCES [dbo].[tickets] ([id])

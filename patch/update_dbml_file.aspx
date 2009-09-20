@@ -11,7 +11,7 @@
                     <asp:Label ID="lblFinished" CssClass="success" runat="server"> - finished</asp:Label>
                 </h2>
                 This step is very important, and it has to be done manually since you can not write to the <b>App_Code</b> folder from within a program.<br />
-                &nbsp;- Copy the 3 files from the <b>patch/patch_Data/App_Code</b> folder<br />.
+                &nbsp;- Copy the 3 files from the <b>patch/patch_Data/App_Code</b> folder.<br />
                 &nbsp;- Paste them into the <b>App_Code</b> folder in the root of your program; you will have to overwrite the existing files.
                 <br /><br />
                 <div style="font-weight:bold;">

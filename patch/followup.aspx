@@ -13,6 +13,7 @@
         Thank you for your interest in <a href="http://slick-ticket.com">Slick-Ticket</a>!
         <br /><br />
         <div class="error">IMPORTANT</div>    
+        Once you run this upgrade, you will still have to download v2.0! I would grab the <a href="http://slickticket.codeplex.com/SourceControl/ListDownloadableCommits.aspx">newest build</a>.
         Once you download the newest version, be sure to delete the <b>patch</b> folder, it is no longer of any use, you can also delete the <b>setup</b> folder and the <b>App_Code/settings.cs</b> file if you would like.
     </div>
 </asp:Content>

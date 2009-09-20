@@ -20,18 +20,6 @@
       <Association Name="sub_unit_user" Member="sub_unit1" ThisKey="sub_unit" OtherKey="id" Type="sub_unit" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.attachments" Member="attachments">
-    <Type Name="attachment">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ticket_ref" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="comment_ref" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="attachment_name" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
-      <Column Name="attachment_size" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="submitted" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Association Name="ticket_attachment" Member="ticket" ThisKey="ticket_ref" OtherKey="id" Type="ticket" IsForeignKey="true" />
-      <Association Name="comment_attachment" Member="comment" ThisKey="comment_ref" OtherKey="id" Type="comment" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.faq" Member="faqs">
     <Type Name="faq">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -97,30 +85,6 @@
       <Association Name="unit_sub_unit" Member="unit" ThisKey="unit_ref" OtherKey="id" Type="unit" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.tickets" Member="tickets">
-    <Type Name="ticket">
-      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="title" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
-      <Column Name="details" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
-      <Column Name="submitter" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="submitted" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="last_action" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="closed" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="assigned_to_group" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="assigned_to_group_last" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ticket_status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="priority" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="originating_group" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="ticket_attachment" Member="attachments" ThisKey="id" OtherKey="ticket_ref" Type="attachment" />
-      <Association Name="ticket_comment" Member="comments" ThisKey="id" OtherKey="ticket_ref" Type="comment" />
-      <Association Name="sub_unit_ticket" Member="sub_unit" ThisKey="assigned_to_group" OtherKey="id" Type="sub_unit" IsForeignKey="true" />
-      <Association Name="sub_unit_ticket1" Member="sub_unit1" ThisKey="assigned_to_group_last" OtherKey="id" Type="sub_unit" IsForeignKey="true" />
-      <Association Name="sub_unit_ticket2" Member="sub_unit2" ThisKey="originating_group" OtherKey="id" Type="sub_unit" IsForeignKey="true" />
-      <Association Name="priority_ticket" Member="priority1" ThisKey="priority" OtherKey="id" Type="priority" IsForeignKey="true" />
-      <Association Name="user_ticket" Member="user" ThisKey="submitter" OtherKey="id" Type="user" IsForeignKey="true" />
-      <Association Name="statuse_ticket" Member="statuse" ThisKey="ticket_status" OtherKey="id" Type="statuse" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.units" Member="units">
     <Type Name="unit">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -136,6 +100,31 @@
       <Association Name="security_level_user_group" Member="security_level1" ThisKey="security_level" OtherKey="id" Type="security_level" IsForeignKey="true" />
     </Type>
   </Table>
+  <Table Name="dbo.tickets" Member="tickets">
+    <Type Name="ticket">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="title" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="details" Type="System.String" DbType="Text NOT NULL" CanBeNull="false" UpdateCheck="Never" />
+      <Column Name="submitter" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="submitted" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="last_action" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="closed" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="assigned_to_group" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="assigned_to_group_last" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ticket_status" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="priority" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="originating_group" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="ticket_comment" Member="comments" ThisKey="id" OtherKey="ticket_ref" Type="comment" />
+      <Association Name="ticket_attachment" Member="attachments" ThisKey="id" OtherKey="ticket_ref" Type="attachment" />
+      <Association Name="sub_unit_ticket" Member="sub_unit" ThisKey="assigned_to_group" OtherKey="id" Type="sub_unit" IsForeignKey="true" />
+      <Association Name="sub_unit_ticket1" Member="sub_unit1" ThisKey="assigned_to_group_last" OtherKey="id" Type="sub_unit" IsForeignKey="true" />
+      <Association Name="sub_unit_ticket2" Member="sub_unit2" ThisKey="originating_group" OtherKey="id" Type="sub_unit" IsForeignKey="true" />
+      <Association Name="priority_ticket" Member="priority1" ThisKey="priority" OtherKey="id" Type="priority" IsForeignKey="true" />
+      <Association Name="user_ticket" Member="user" ThisKey="submitter" OtherKey="id" Type="user" IsForeignKey="true" />
+      <Association Name="statuse_ticket" Member="statuse" ThisKey="ticket_status" OtherKey="id" Type="statuse" IsForeignKey="true" />
+    </Type>
+  </Table>
   <Table Name="dbo.comments" Member="comments">
     <Type Name="comment">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -146,12 +135,26 @@
       <Column Name="assigned_to" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="priority_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="status_id" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="comment_attachment" Member="attachments" ThisKey="id" OtherKey="comment_ref" Type="attachment" />
       <Association Name="sub_unit_comment" Member="sub_unit" ThisKey="assigned_to" OtherKey="id" Type="sub_unit" IsForeignKey="true" />
       <Association Name="priority_comment" Member="priority" ThisKey="priority_id" OtherKey="id" Type="priority" IsForeignKey="true" />
       <Association Name="statuse_comment" Member="statuse" ThisKey="status_id" OtherKey="id" Type="statuse" IsForeignKey="true" />
       <Association Name="user_comment" Member="user" ThisKey="submitter" OtherKey="id" Type="user" IsForeignKey="true" />
       <Association Name="ticket_comment" Member="ticket" ThisKey="ticket_ref" OtherKey="id" Type="ticket" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.attachments" Member="attachments">
+    <Type Name="attachment">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ticket_ref" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="comment_ref" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="attachment_name" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="attachment_size" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="submitted" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="comment_attachment" Member="comment" ThisKey="comment_ref" OtherKey="id" Type="comment" IsForeignKey="true" />
+      <Association Name="ticket_attachment" Member="ticket" ThisKey="ticket_ref" OtherKey="id" Type="ticket" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
