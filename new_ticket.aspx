@@ -35,14 +35,16 @@ http://naspinski.net
                                 <td style="width:50%;">
                                     <h3>
                                         <span class="title_header"><%= Resources.Common.Group %></span>
-                                        <asp:RequiredFieldValidator runat="server" ID="rfvUnit" ControlToValidate="ddlUnit" InitialValue="0" ForeColor="" CssClass="error" meta:resourcekey="rfvUnitResource1" />
+                                        <asp:RequiredFieldValidator runat="server" ID="rfvUnit" ControlToValidate="ddlUnit" InitialValue="0" display="Dynamic" 
+                                            ForeColor="" CssClass="error" meta:resourcekey="rfvUnitResource1" />
                                     </h3>
                                     <asp:DropDownList ID="ddlUnit" runat="server"  cssclass="half_table" onselectedindexchanged="ddlUnit_SelectedIndexChanged" AutoPostBack="True"  />
                                 </td>
                                 <td style="width:50%;">
                                     <h3>
                                         <span class="title_header"><%= Resources.Common.Subgroup %></span>
-                                        <asp:RequiredFieldValidator runat="server" ID="rfvSubUnit" ControlToValidate="ddlSubUnit" InitialValue="0" ForeColor="" CssClass="error" meta:resourcekey="rfvSubUnitResource1" />
+                                        <asp:RequiredFieldValidator runat="server" ID="rfvSubUnit" ControlToValidate="ddlSubUnit" InitialValue="0" display="Dynamic" 
+                                            ForeColor="" CssClass="error" meta:resourcekey="rfvSubUnitResource1" />
                                     </h3>
                                     <asp:DropDownList ID="ddlSubUnit" runat="server"  cssclass="half_table" />
                                 </td>
@@ -60,7 +62,8 @@ http://naspinski.net
                                     <h3>
                                         <span class="title_header"><asp:literal runat="server" Text="Topic" 
                                             ID="litTopic" meta:resourcekey="litTopicResource1" /></span>
-                                        <asp:RequiredFieldValidator ID="rfvTopic" runat="server" ControlToValidate="txtTopic" meta:resourcekey="rfvTopicResource1" />
+                                        <asp:RequiredFieldValidator ID="rfvTopic" runat="server" ControlToValidate="txtTopic" display="Dynamic" 
+                                            meta:resourcekey="rfvTopicResource1" />
                                     </h3>
                                     <h2>
                                         <asp:TextBox ID="txtTopic" runat="server" cssclass="full_window" />

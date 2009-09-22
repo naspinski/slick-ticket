@@ -144,26 +144,6 @@
   <data name="litNewQuestionResource1.Text" xml:space="preserve">
     <value>Ho una domanda che qui non c'è...</value>
   </data>
-  <data name="litPermissionsSystemExplainedPanel1Resource1.Text" xml:space="preserve">
-    <value>First thing the system does is to log the user in with your Windows credentials, then it immediately pulls all the groups you are a member of in your domain:</value>
-  </data>
-  <data name="litPermissionsSystemExplainedPanel2Resource1.Text" xml:space="preserve">
-    <value>
-                                    Next the system compares your AD memberships with the permission groups that are set by the administrator.              
-                                    Each permission group is related to a single AD group and has an 'Access Level' associated with it.            
-                                    You are then assigned the highest access level available to you.</value>
-  </data>
-  <data name="litPermissionsSystemExplainedPanel3Resource1.Text" xml:space="preserve">
-    <value>Now that the system has your access level, it can decide which groups you are able to join and assign tickets to.</value>
-  </data>
-  <data name="litPermissionsSystemExplainedPanel4Resource1.Text" xml:space="preserve">
-    <value>
-                                    Also, you will notice that you can view and comment any ticket, but only change status, priority, attachments and assignment of tickets if it is at or under your access level. 
-                                    Basically your Active Directory groups decide your access level which then determines what you can do; think of access levels as the highest level that a particular AD group can assign tickets to, that should simplify things.</value>
-  </data>
-  <data name="litPermissionSystemLinkResource1.Text" xml:space="preserve">
-    <value>Sistema di autorizzazione</value>
-  </data>
   <data name="rfvSubjectResource1.ErrorMessage" xml:space="preserve">
     <value>Richiesto</value>
   </data>

@@ -71,7 +71,7 @@ http://naspinski.net
                         <td>
                             <h3>
                                 <span class="title_header"><%= Resources.Common.Group %></span>
-                                <asp:RequiredFieldValidator runat="server" ID="rfvUnit" ControlToValidate="ddlUnit" InitialValue="0" 
+                                <asp:RequiredFieldValidator runat="server" ID="rfvUnit" ControlToValidate="ddlUnit" InitialValue="0" display="Dynamic" 
                                     ForeColor="" CssClass="error"  ValidationGroup="profile" meta:resourcekey="rfvUnitResource1"/>
                             </h3>
                             <asp:DropDownList ID="ddlUnit" runat="server"  CssClass="half_table"  
@@ -80,7 +80,7 @@ http://naspinski.net
                         <td>
                             <h3>
                                 <span class="title_header"><%= Resources.Common.Subgroup %></span>
-                                <asp:RequiredFieldValidator runat="server" ID="rfvSubUnit" ControlToValidate="ddlSubUnit" InitialValue="0" 
+                                <asp:RequiredFieldValidator runat="server" ID="rfvSubUnit" ControlToValidate="ddlSubUnit" InitialValue="0" display="Dynamic" 
                                     ForeColor="" CssClass="error" ValidationGroup="profile" meta:resourcekey="rfvSubUnitResource1" />
                             </h3>
                             <asp:DropDownList ID="ddlSubUnit" runat="server" CssClass="half_table" />

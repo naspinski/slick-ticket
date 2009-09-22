@@ -33,11 +33,6 @@ http://naspinski.net
                 </h2>
                 <ul class="bold">
                     <asp:Repeater ID="rptIndex" runat="server" DataSourceID="lds">
-                        <HeaderTemplate>
-                            <li><a href="#permissions">
-                                <asp:literal ID="litPermissionSystemLink" runat="server" meta:resourcekey="litPermissionSystemLinkResource1" />
-                            </a></li>
-                        </HeaderTemplate>
                         <ItemTemplate>
                             <li>
                                 <asp:Button ID="btnEdit" style="font-size:.7em;padding:1px"  CssClass="button"  runat="server" CommandArgument='<%# Eval("id") %>' 
@@ -47,10 +42,6 @@ http://naspinski.net
                                 <a href="#<%# trimJunk(Eval("title").ToString()) %>"><%# Eval("title").ToString() %></a>
                             </li>
                         </ItemTemplate>
-                        <FooterTemplate>
-                            <li><a href="#another_question"><asp:literal ID="litNewQuestion" runat="server" meta:resourcekey="litNewQuestionResource1" />
-                            </a></li>
-                        </FooterTemplate>
                     </asp:Repeater>
                 </ul>
             </fieldset>
@@ -58,38 +49,6 @@ http://naspinski.net
             <div class="divider"></div>
                        
             <asp:Repeater ID="rpt" runat="server" DataSourceID="lds">
-                <HeaderTemplate>    
-                    <fieldset class="inner_color">
-                        <h2>
-                            <span class="faq"><a id="permissions"></a>
-                                <asp:literal ID="litPermissionsSystemExplainedTitle" runat="server" meta:resourcekey="litPermissionSystemLinkResource1" />
-                            </span>
-                            <span class="smaller right">
-                                <a href="#home"><%= Resources.Common.BackToTop %></a>
-                            </span>
-                            <span class="clear"></span>
-                        </h2>
-                        <br />
-                        <div>
-                            <div><asp:literal ID="litPermissionsSystemExplainedPanel1" runat="server"  meta:resourcekey="litPermissionsSystemExplainedPanel1Resource1" /></div>
-                            <br />
-                            <div style="text-align:center;"><img src="images/permissions_1.png" alt="permissions image 1" /></div>
-                            <br />
-                            <div><asp:literal ID="litPermissionsSystemExplainedPanel2" runat="server" meta:resourcekey="litPermissionsSystemExplainedPanel2Resource1" /></div>
-                            <br />
-                            <div style="text-align:center;"><img src="images/permissions_2.png" alt="permissions image 2" /></div>
-                            <br />
-                            <div><asp:literal ID="litPermissionsSystemExplainedPanel3" runat="server"  meta:resourcekey="litPermissionsSystemExplainedPanel3Resource1" /></div>
-                            <br />
-                            <div style="text-align:center;"><img src="images/permissions_3.png" alt="permissions image 3" /></div>
-                            <br />       
-                            <div><asp:literal ID="litPermissionsSystemExplainedPanel4" runat="server"  meta:resourcekey="litPermissionsSystemExplainedPanel4Resource1" /></div> 
-                            <br />
-                            <a class="bold" href="#home"><%= Resources.Common.BackToTop %></a>
-                        </div>
-                    </fieldset>
-                    <div class="divider"></div>
-                </HeaderTemplate>
                 <ItemTemplate>
                     <fieldset class="inner_color">
                         <h2>
@@ -102,7 +61,8 @@ http://naspinski.net
                                         OnClick="btnDelete_Click" meta:resourcekey="btnDeleteResource1"  /> 
                                    </span>
                                 <% } %>
-                                <a id="<%# trimJunk(Eval("title").ToString()) %>"><%# Eval("title").ToString() %></a>
+                                <a id="<%# trimJunk(Eval("title").ToString()) %>"></a>
+                                <%# Eval("title").ToString() %>
                             </span>
                                     <span class="smaller right">
                                         <a href="#home"><%= Resources.Common.BackToTop %></a>
@@ -117,27 +77,6 @@ http://naspinski.net
                     </fieldset>
                     <div class="divider"></div>
                 </ItemTemplate>
-                <FooterTemplate>    
-                    <fieldset class="inner_color">
-                        <h2>
-                            <span class="faq">
-                                <a id="another_question"></a>
-                                <asp:literal runat="server" ID="litQuestoinNotCoveredTitle" meta:resourcekey="litNewQuestionResource1" />
-                            </span>
-                            <span class="smaller right">
-                                <a href="#home"><%= Resources.Common.BackToTop %></a>
-                            </span>
-                            <span class="clear"></span>
-                        </h2>
-                        <div>
-                                <a href="contact.aspx">
-                                    <asp:literal runat="server" ID="litQuestionNotCovered" Text="Contact your administrator" />
-                                </a> 
-                        </div>
-                        <br />
-                        <a class="bold" href="#home"><%= Resources.Common.BackToTop %></a>
-                    </fieldset>
-                </FooterTemplate>
             </asp:Repeater>   
             <asp:LinqDataSource ID="lds" runat="server" ContextTypeName="dbDataContext" 
                 OrderBy="title" TableName="faqs" />

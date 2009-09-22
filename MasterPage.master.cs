@@ -111,10 +111,11 @@ public partial class MasterPage : System.Web.UI.MasterPage
             }
             if(xe.Attribute("hidden").Value.Equals("false"))
             {
+                string strText = GetGlobalResourceObject("Common", xe.FirstAttribute.Value).ToString();
                 pnl.Controls.Add(new LiteralControl(li));
-                pnl.Controls.Add(new HyperLink() { Text = GetGlobalResourceObject("Common", xe.FirstAttribute.Value).ToString(), NavigateUrl = xe.Value, CssClass = "inner_color" });
+                pnl.Controls.Add(new HyperLink() { Text = strText, NavigateUrl = xe.Value, CssClass = "inner_color" });
                 pnl.Controls.Add(new LiteralControl("</li>"));
-                lblFooter.Controls.Add(new HyperLink() { Text = xe.FirstAttribute.Value, NavigateUrl = xe.Value });
+                lblFooter.Controls.Add(new HyperLink() { Text = strText, NavigateUrl = xe.Value });
                 if (count++ < xes.Count() -1) lblFooter.Controls.Add(new LiteralControl(" | "));
             }
         }
