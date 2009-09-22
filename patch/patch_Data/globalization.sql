@@ -1,23 +1,5 @@
 ﻿USE [SlickTicket]
 
-ALTER TABLE dbo.comments
-  ADD assigned_to INT NOT NULL REFERENCES sub_units(id) DEFAULT _REPLACE_;
-
-ALTER TABLE dbo.comments
-  ADD priority_id INT NOT NULL REFERENCES priority(id) DEFAULT 1;
-
-ALTER TABLE dbo.comments
-  ADD status_id INT NOT NULL REFERENCES statuses(id) DEFAULT 1;
-  
-ALTER TABLE dbo.comments
-  ADD active BIT NOT NULL DEFAULT 1;
-  
-ALTER TABLE dbo.tickets
-  ADD active BIT NOT NULL DEFAULT 1;
-  
-ALTER TABLE dbo.attachments
-  ADD active BIT NOT NULL DEFAULT 1;  
-  
 ALTER TABLE dbo.allowed_email_domains
   ALTER COLUMN domain NVARCHAR(100) NOT NULL;
   

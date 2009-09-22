@@ -10,8 +10,8 @@ SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[security_levels](
 	[id] [int] IDENTITY(1,1) NOT NULL,
-	[security_level_name] [varchar](50) NULL,
-	[security_level_description] [text] NULL,
+	[security_level_name] [nvarchar](50) NULL,
+	[security_level_description] [nvarchar](max) NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
@@ -52,7 +52,7 @@ SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[units](
 	[id] [int] IDENTITY(1,1) NOT NULL,
-	[unit_name] [varchar](max) NOT NULL,
+	[unit_name] [nvarchar](max) NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
@@ -75,9 +75,9 @@ GO
 CREATE TABLE [dbo].[sub_units](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[unit_ref] [int] NOT NULL,
-	[sub_unit_name] [varchar](max) NOT NULL,
+	[sub_unit_name] [nvarchar](max) NOT NULL,
 	[access_level] [int] NOT NULL,
-	[mailto] [varchar](100) NOT NULL,
+	[mailto] [nvarchar](100) NOT NULL,
  CONSTRAINT [PK__sub_units__00551192] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
@@ -109,7 +109,7 @@ SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[priority](
 	[id] [int] IDENTITY(1,1) NOT NULL,
-	[priority_name] [varchar](50) NOT NULL,
+	[priority_name] [nvarchar](50) NOT NULL,
 	[level] [int] NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
@@ -138,9 +138,9 @@ SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[users](
 	[id] [int] IDENTITY(1,1) NOT NULL,
-	[userName] [varchar](max) NOT NULL,
-	[phone] [varchar](20) NOT NULL,
-	[email] [varchar](max) NOT NULL,
+	[userName] [nvarchar](max) NOT NULL,
+	[phone] [nvarchar](20) NOT NULL,
+	[email] [nvarchar](max) NOT NULL,
 	[sub_unit] [int] NOT NULL,
 	[is_admin] [bit] NOT NULL CONSTRAINT [DF__users__is_admin__07F6335A]  DEFAULT ((0)),
  CONSTRAINT [PK__users__060DEAE8] PRIMARY KEY CLUSTERED 
@@ -166,7 +166,7 @@ SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[allowed_email_domains](
 	[id] [int] IDENTITY(1,1) NOT NULL,
-	[domain] [varchar](100) NOT NULL,
+	[domain] [nvarchar](100) NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
@@ -185,7 +185,7 @@ GO
 CREATE TABLE [dbo].[statuses](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[status_order] [int] NOT NULL,
-	[status_name] [varchar](50) NULL,
+	[status_name] [nvarchar](50) NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
@@ -215,8 +215,8 @@ SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[tickets](
 	[id] [int] IDENTITY(1,1) NOT NULL,
-	[title] [varchar](max) NOT NULL,
-	[details] [text] NOT NULL,
+	[title] [nvarchar](max) NOT NULL,
+	[details] [nvarchar](max) NOT NULL,
 	[submitter] [int] NOT NULL,
 	[submitted] [datetime] NOT NULL,
 	[last_action] [datetime] NOT NULL,
@@ -261,7 +261,7 @@ SET QUOTED_IDENTIFIER ON
 GO
 CREATE TABLE [dbo].[comments](
 	[id] [int] IDENTITY(1,1) NOT NULL,
-	[comment] [text] NOT NULL,
+	[comment] [nvarchar](max) NOT NULL,
 	[ticket_ref] [int] NOT NULL,
 	[submitter] [int] NOT NULL,
 	[submitted] [datetime] NOT NULL,
@@ -312,8 +312,8 @@ CREATE TABLE [dbo].[attachments](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[ticket_ref] [int] NOT NULL,
 	[comment_ref] [int] NULL,
-	[attachment_name] [varchar](100) NOT NULL,
-	[attachment_size] [varchar](50) NOT NULL,
+	[attachment_name] [nvarchar](100) NOT NULL,
+	[attachment_size] [nvarchar](50) NOT NULL,
 	[submitted] [datetime] NOT NULL,
 	[active] [bit] NOT NULL DEFAULT ((1)),
 PRIMARY KEY CLUSTERED 
@@ -342,7 +342,7 @@ SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[user_groups](
 	[id] [int] IDENTITY(1,1) NOT NULL,
-	[ad_group] [varchar](100) NOT NULL,
+	[ad_group] [nvarchar](100) NOT NULL,
 	[security_level] [int] NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
@@ -365,16 +365,16 @@ SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[styles](
 	[id] [int] IDENTITY(1,1) NOT NULL,
-	[style_name] [varchar](50) NOT NULL,
-	[text_color] [varchar](10) NOT NULL,
-	[borders] [varchar](10) NOT NULL,
-	[body] [varchar](10) NOT NULL,
-	[links] [varchar](10) NOT NULL,
-	[hover] [varchar](10) NOT NULL,
-	[button_text] [varchar](10) NOT NULL,
-	[header] [varchar](10) NOT NULL,
-	[alt_rows] [varchar](10) NOT NULL,
-	[background] [varchar](10) NOT NULL,
+	[style_name] [nvarchar](50) NOT NULL,
+	[ntext_color] [nvarchar](10) NOT NULL,
+	[borders] [nvarchar](10) NOT NULL,
+	[body] [nvarchar](10) NOT NULL,
+	[links] [nvarchar](10) NOT NULL,
+	[hover] [nvarchar](10) NOT NULL,
+	[button_text] [nvarchar](10) NOT NULL,
+	[header] [nvarchar](10) NOT NULL,
+	[alt_rows] [nvarchar](10) NOT NULL,
+	[background] [nvarchar](10) NOT NULL,
  CONSTRAINT [PK__styles__0DAF0CB0] PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
@@ -397,8 +397,8 @@ SET ANSI_PADDING ON
 GO
 CREATE TABLE [dbo].[faq](
 	[id] [int] IDENTITY(1,1) NOT NULL,
-	[title] [varchar](max) NOT NULL,
-	[body] [text] NOT NULL,
+	[title] [nvarchar](max) NOT NULL,
+	[body] [nvarchar](max) NOT NULL,
 PRIMARY KEY CLUSTERED 
 (
 	[id] ASC
