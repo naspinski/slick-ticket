@@ -117,59 +117,63 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnSubmitResource1.Text" xml:space="preserve">
-    <value>Inoltra</value>
+  <data name="btnAddGroupResource1.Text" xml:space="preserve">
+    <value>Add Group</value>
   </data>
-  <data name="litAssignToResource1.Text" xml:space="preserve">
-    <value>Assegnato a</value>
+  <data name="btnCancelResource1.Text" xml:space="preserve">
+    <value>Cancel</value>
   </data>
-  <data name="litDetailsResource1.Text" xml:space="preserve">
-    <value>Dettagli</value>
+  <data name="btnNewSubmitResource1.Text" xml:space="preserve">
+    <value>Save Group</value>
   </data>
-  <data name="litItWillBeAccessResource1.Text" xml:space="preserve">
-    <value>sarà accessibile attraverso</value>
+  <data name="btnResetADxmlResource1.Text" xml:space="preserve">
+    <value>Refresh AD</value>
   </data>
-  <data name="litMoreAttachmentsResource1.Text" xml:space="preserve">
-    <value>È possibile aggiungere altri allegati, dopo che il Ticket è stato inserito</value>
+  <data name="gvADGroupsResource1.EmptyDataText" xml:space="preserve">
+    <value>No one has any access!</value>
   </data>
-  <data name="litTicketSubmittedResource1.Text" xml:space="preserve">
-    <value>Il ticket è stato inserito con successo;</value>
+  <data name="lbUpdateResource1.Text" xml:space="preserve">
+    <value>Update</value>
   </data>
-  <data name="litTopicResource1.Text" xml:space="preserve">
-    <value>Topic</value>
+  <data name="LinkButton1Resource1.Text" xml:space="preserve">
+    <value>Edit</value>
   </data>
-  <data name="litYourTicketNumberIsResource1.Text" xml:space="preserve">
-    <value>Il numero Ticket è</value>
+  <data name="LinkButton2Resource1.Text" xml:space="preserve">
+    <value>Remove</value>
   </data>
-  <data name="rfvSubUnitResource1.ErrorMessage" xml:space="preserve">
-    <value>è necessario selezionare un Sub-Gruppo</value>
+  <data name="litAccessLevelResource1.Text" xml:space="preserve">
+    <value>Access Level</value>
   </data>
-  <data name="rfvTopicResource1.ErrorMessage" xml:space="preserve">
-    <value>Campi Obbligatori</value>
+  <data name="litADGroupResource1.Text" xml:space="preserve">
+    <value>AD Group</value>
   </data>
-  <data name="rfvUnitResource1.ErrorMessage" xml:space="preserve">
-    <value>è necessario selezionare un Gruppo</value>
+  <data name="litDescriptionResource1.Text" xml:space="preserve">
+    <value>Here you can set what access levels your active directory groups will have for write permissions; highest level of access takes precedence.</value>
   </data>
-  <data name="ANew" xml:space="preserve">
-    <value>A new</value>
+  <data name="rfvDisplayResource1.ErrorMessage" xml:space="preserve">
+    <value>Group Required</value>
   </data>
-  <data name="ContactAdmin" xml:space="preserve">
-    <value>Si prega di contattare l'amministratore se ritieni che questo sia un errore</value>
+  <data name="rfvEditDisplayResource1.ErrorMessage" xml:space="preserve">
+    <value>AD Group Required</value>
   </data>
-  <data name="DontHaveAccess" xml:space="preserve">
-    <value>Non hai il livello richiesto l'accesso a presentare un nuovo ticket</value>
+  <data name="TemplateFieldResource2.HeaderText" xml:space="preserve">
+    <value>AD Group &lt;a href='javascript:void();' class='tooltip limited'&gt;&lt;img src='../images/info.png' alt='explanation' /&gt;&lt;span class='border_color'&gt;&lt;q class='inner_color base_text'&gt;The Active Directory Group that will be associated with an access level in this system.&lt;/q&gt;&lt;/span&gt;&lt;/a&gt;</value>
+    <comment>be careful to not edit the markup in this</comment>
   </data>
-  <data name="HasBeenNotified" xml:space="preserve">
-    <value>la tua richiesta è stata notificata. </value>
-    <comment>è necessario selezione il Sub-Gruppo</comment>
+  <data name="TemplateFieldResource3.HeaderText" xml:space="preserve">
+    <value>Access Level &lt;a href='javascript:void();' class='tooltip limited'&gt;&lt;img src='../images/info.png' alt='explanation' /&gt;&lt;span class='border_color'&gt;&lt;q class='inner_color base_text'&gt;The access level users in this AD Group will have.&lt;/q&gt;&lt;/span&gt;&lt;/a&gt;</value>
+    <comment>be careful to not edit the markup in this</comment>
   </data>
-  <data name="litTicketSubmittedTitleResource1.Text" xml:space="preserve">
-    <value>Ticket innoltrato</value>
+  <data name="ADRefreshError" xml:space="preserve">
+    <value>Error refreshing the AD group xml file; this often has to be done from the web server itself and by an administrator with domain rights</value>
   </data>
-  <data name="OriginallyAssignedTo" xml:space="preserve">
-    <value>Originario Assegnato a</value>
+  <data name="btnResetADxmlResource1.OnClientClick" xml:space="preserve">
+    <value>return confirm('Depending on your network settings, this often is required to be run from the web server and with an elevated account as it needs access to Active Directory; proceed?')</value>
   </data>
-  <data name="TicketWasSubmittedBy" xml:space="preserve">
-    <value>priority ticket was submitted by</value>
+  <data name="LinkButton2Resource1.OnClientClick" xml:space="preserve">
+    <value>return confirm('Are you sure you want to remove this group?');</value>
+  </data>
+  <data name="litADAssociatedResource1.Text" xml:space="preserve">
+    <value>The Active Directory Group that will be associated with an access level in this system.</value>
   </data>
 </root>

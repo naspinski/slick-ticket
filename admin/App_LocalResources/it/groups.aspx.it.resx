@@ -117,196 +117,101 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AdditionalAttachment" xml:space="preserve">
-    <value>Altri Allegati</value>
-    <comment>wording to ask for another attachment</comment>
+  <data name="btnAddSubUnitResource1.Text" xml:space="preserve">
+    <value>Aggiungi Sub-Gruppo</value>
   </data>
-  <data name="Admin" xml:space="preserve">
-    <value>Amministrazione</value>
-    <comment>main menu</comment>
+  <data name="btnAddUnitResource1.Text" xml:space="preserve">
+    <value>Aggiungi Gruppo</value>
   </data>
-  <data name="Any" xml:space="preserve">
-    <value>Any</value>
-    <comment>Any</comment>
+  <data name="btnNewSubUnitSubmitResource1.Text" xml:space="preserve">
+    <value>Salva Sub-Gruppo</value>
   </data>
-  <data name="AssignedTo" xml:space="preserve">
-    <value>Assegnato a</value>
-    <comment>for use in table displays</comment>
+  <data name="btnNewUnitSubmitResource1.Text" xml:space="preserve">
+    <value>Salva Gruppo</value>
   </data>
-  <data name="Attachments" xml:space="preserve">
-    <value>Allegati</value>
-    <comment>word used to describe attachments</comment>
+  <data name="gvSubUnitsResource1.EmptyDataText" xml:space="preserve">
+    <value>No Sub-Gruppi, gli utenti non possono completare i loro profili o utilizzare il sistema!</value>
   </data>
-  <data name="BackToTop" xml:space="preserve">
-    <value>Torna indietro</value>
-    <comment>return to top of page</comment>
+  <data name="gvUnitsResource1.EmptyDataText" xml:space="preserve">
+    <value>No units set; gli utenti non possono completare i loro profili o utilizzare il sistema!</value>
   </data>
-  <data name="Bytes" xml:space="preserve">
-    <value>bytes</value>
-    <comment>bytes</comment>
+  <data name="litDescriptionResource1.Text" xml:space="preserve">
+    <value>Qui è possibile impostare i Gruppi e Sub-Gruppi che verranno impostati agli utenti nei loro profili.</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Cancella</value>
-    <comment>Cancel</comment>
+  <data name="rfvMailtoResource1.ErrorMessage" xml:space="preserve">
+    <value>Mail a Indirizzo e-mail richiesto</value>
   </data>
-  <data name="Closed" xml:space="preserve">
-    <value>Chiudi</value>
-    <comment>make sure this lines up with row 5 in the status table</comment>
+  <data name="rfvSubSunitEditResource1.ErrorMessage" xml:space="preserve">
+    <value>Sub-Gruppo Richiesto</value>
   </data>
-  <data name="Contact" xml:space="preserve">
-    <value>Contatto</value>
-    <comment>main menu</comment>
+  <data name="rfvUnitResource1.ErrorMessage" xml:space="preserve">
+    <value>Gruppo Richiesto</value>
   </data>
-  <data name="Dashboard" xml:space="preserve">
-    <value>Dashboard</value>
-    <comment>main menu</comment>
-  </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Cancella</value>
-    <comment>Delete</comment>
-  </data>
-  <data name="Deleted" xml:space="preserve">
-    <value>Cancellato</value>
-    <comment>Deleted</comment>
-  </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Edita</value>
-    <comment>Edit</comment>
-  </data>
-  <data name="EmailError" xml:space="preserve">
-    <value>Errore invio email</value>
-  </data>
-  <data name="Error" xml:space="preserve">
-    <value>Errore</value>
-    <comment>Error</comment>
-  </data>
-  <data name="Group" xml:space="preserve">
+  <data name="TemplateFieldResource2.HeaderText" xml:space="preserve">
     <value>Gruppo</value>
-    <comment>word used for each 'group'</comment>
   </data>
-  <data name="Groups" xml:space="preserve">
-    <value>Gruppi</value>
-    <comment>admin menu</comment>
-  </data>
-  <data name="Help" xml:space="preserve">
-    <value>Help/FAQ</value>
-    <comment>main menu</comment>
-  </data>
-  <data name="Information" xml:space="preserve">
-    <value>Informazioni</value>
-    <comment>admin menu</comment>
-  </data>
-  <data name="InvalidEmail" xml:space="preserve">
-    <value>Indirizzo Email non valido</value>
-    <comment>Invalid Email Error</comment>
-  </data>
-  <data name="LastAction" xml:space="preserve">
-    <value>Ultima Azione</value>
-    <comment>for use in table displays</comment>
-  </data>
-  <data name="MyIssues" xml:space="preserve">
-    <value>My Issues</value>
-    <comment>main menu</comment>
-  </data>
-  <data name="NewTicket" xml:space="preserve">
-    <value>Nuovo Ticket</value>
-    <comment>main menu</comment>
-  </data>
-  <data name="NoAccess" xml:space="preserve">
-    <value>No Accesso</value>
-    <comment>No Access</comment>
-  </data>
-  <data name="NoGroups" xml:space="preserve">
-    <value>Nessun Gruppo a disposizione</value>
-  </data>
-  <data name="NoGroupsExplanation" xml:space="preserve">
-    <value>Non vi sono gruppi con un basso livello di accesso abbastanza</value>
-  </data>
-  <data name="OriginatingGroup" xml:space="preserve">
-    <value>Originari del Gruppo</value>
-    <comment>for use in table displays</comment>
-  </data>
-  <data name="Permissions" xml:space="preserve">
-    <value>Permessi</value>
-    <comment>admin menu</comment>
-  </data>
-  <data name="Priority" xml:space="preserve">
-    <value>Prioprità</value>
-    <comment>word use for 'priority'</comment>
-  </data>
-  <data name="Profile" xml:space="preserve">
-    <value>Profilo</value>
-    <comment>main menu</comment>
-  </data>
-  <data name="Required" xml:space="preserve">
-    <value>Richiesto</value>
-    <comment>Required</comment>
-  </data>
-  <data name="Resolved" xml:space="preserve">
-    <value>Risolto</value>
-    <comment>make sure this lines up with row 4 in the status table</comment>
-  </data>
-  <data name="Saved" xml:space="preserve">
-    <value>Salvato</value>
-    <comment>Saved</comment>
-  </data>
-  <data name="Search" xml:space="preserve">
-    <value>Cerca</value>
-    <comment>main menu</comment>
-  </data>
-  <data name="Settings" xml:space="preserve">
-    <value>Settings</value>
-    <comment>admin menu</comment>
-  </data>
-  <data name="Statistics" xml:space="preserve">
-    <value>Statistiche</value>
-    <comment>admin menu</comment>
-  </data>
-  <data name="Status" xml:space="preserve">
-    <value>Stato</value>
-    <comment>word used for 'status'</comment>
-  </data>
-  <data name="Subgroup" xml:space="preserve">
+  <data name="TemplateFieldResource4.HeaderText" xml:space="preserve">
     <value>Sub-Gruppo</value>
-    <comment>word used for 'sub-groups'</comment>
   </data>
-  <data name="Subgroups" xml:space="preserve">
-    <value>Sub-Gruppi</value>
-    <comment>plural for Subgroup</comment>
+  <data name="TemplateFieldResource5.HeaderText" xml:space="preserve">
+    <value>Mail a &lt;a href='javascript:void();' class='tooltip limited'&gt;&lt;img src='../images/info.png' alt='explanation' /&gt;&lt;span class='border_color'&gt;&lt;q class='inner_color base_text'&gt;Questo Email è la notifica di quando un Ticket è stato assegnato a questo Gruppo&lt;/q&gt;&lt;/span&gt;&lt;/a&gt;</value>
+    <comment>be careful editing this one to only edit the parts inside the html</comment>
   </data>
-  <data name="Submitter" xml:space="preserve">
-    <value>Inserisci</value>
-    <comment>for use in table displays</comment>
+  <data name="TemplateFieldResource6.HeaderText" xml:space="preserve">
+    <value>Req Access &lt;a href='javascript:void();' class='tooltip limited'&gt;&lt;img src='../images/info.png' alt='explanation' /&gt;&lt;span class='border_color'&gt;&lt;q class='inner_color base_text'&gt;Questo è il livello di Accesso richiesto che un utente deve avere, al fine di modificare un Ticket assegnato a questo gruppo.&lt;/q&gt;&lt;/span&gt;&lt;/a&gt;</value>
+    <comment>be careful editing this one to only edit the parts inside the html</comment>
   </data>
-  <data name="Ticket" xml:space="preserve">
-    <value>Ticket</value>
+  <data name="LinkButton2Resource2.OnClientClick" xml:space="preserve">
+    <value>return confirm('Sei sicuro di cancellare questo Gruppo?');</value>
+    <comment>return confirm('[TEXT HERE]');</comment>
   </data>
-  <data name="TicketNumber" xml:space="preserve">
-    <value>Numero Ticket</value>
-    <comment>for use in table displays</comment>
+  <data name="LinkButton2Resource4.OnClientClick" xml:space="preserve">
+    <value>return confirm('Sei sicuro di cancellare questo Sub-Gruppo?');</value>
+    <comment>return confirm('[TEXT HERE]');</comment>
   </data>
-  <data name="Translator" xml:space="preserve">
-    <value>Panatronic from the Slick-Ticket Discussion boards</value>
-    <comment>Who Translated this language</comment>
+  <data name="btnCancelSubUnitResource1.Text" xml:space="preserve">
+    <value>Cancella</value>
   </data>
-  <data name="Undefined" xml:space="preserve">
-    <value>Indefinito</value>
-    <comment>Undefined</comment>
+  <data name="ErrorDeleting" xml:space="preserve">
+    <value>Errore durante l'eliminazione</value>
   </data>
-  <data name="Update" xml:space="preserve">
+  <data name="GroupDeleted" xml:space="preserve">
+    <value>Gruppo Cancellato</value>
+  </data>
+  <data name="HasSubUnits" xml:space="preserve">
+    <value>Non è possibile eliminare un gruppo che ha ancora Sub-Gruppi</value>
+  </data>
+  <data name="LinkButton1Resource1.Text" xml:space="preserve">
     <value>Aggiorna</value>
-    <comment>Update</comment>
   </data>
-  <data name="Updated" xml:space="preserve">
-    <value>Aggiornato</value>
-    <comment>Updated</comment>
+  <data name="LinkButton1Resource2.Text" xml:space="preserve">
+    <value>Edita</value>
   </data>
-  <data name="Users" xml:space="preserve">
-    <value>Utenti</value>
-    <comment>admin menu</comment>
+  <data name="LinkButton2Resource2.Text" xml:space="preserve">
+    <value>Cancella</value>
   </data>
-  <data name="ViewTicket" xml:space="preserve">
-    <value>Visualizza Ticket</value>
-    <comment>main menu</comment>
+  <data name="LinkButton2Resource4.Text" xml:space="preserve">
+    <value>Cancella</value>
+  </data>
+  <data name="litMailToResource1.Text" xml:space="preserve">
+    <value>Mail A</value>
+  </data>
+  <data name="litReqAccessLevelResource1.Text" xml:space="preserve">
+    <value>Required Access Level</value>
+  </data>
+  <data name="regEditMailToResource1.ErrorMessage" xml:space="preserve">
+    <value>Indirizzo Email non Valido</value>
+  </data>
+  <data name="regEditMailToResource2.ErrorMessage" xml:space="preserve">
+    <value>Indirizzo Email non Valido</value>
+  </data>
+  <data name="regEditMailToResource3.ErrorMessage" xml:space="preserve">
+    <value>Indirizzo Email non Valido</value>
+  </data>
+  <data name="rfvResource1.ErrorMessage" xml:space="preserve">
+    <value>Richiesto</value>
+  </data>
+  <data name="UsersAssigned" xml:space="preserve">
+    <value>Un gruppo non può essere eliminato se ha i Ticket assegnati agli utenti o ad esso uniti</value>
   </data>
 </root>

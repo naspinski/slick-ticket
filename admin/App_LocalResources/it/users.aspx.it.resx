@@ -117,59 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnSubmitResource1.Text" xml:space="preserve">
-    <value>Inoltra</value>
+  <data name="BoundFieldResource1.HeaderText" xml:space="preserve">
+    <value>Telefono</value>
   </data>
-  <data name="litAssignToResource1.Text" xml:space="preserve">
-    <value>Assegnato a</value>
+  <data name="btnSearchResource1.Text" xml:space="preserve">
+    <value>Cerca</value>
   </data>
-  <data name="litDetailsResource1.Text" xml:space="preserve">
-    <value>Dettagli</value>
+  <data name="gvUsersResource1.EmptyDataText" xml:space="preserve">
+    <value>Non sono stati trovati Utenti nella ricerca</value>
   </data>
-  <data name="litItWillBeAccessResource1.Text" xml:space="preserve">
-    <value>sarà accessibile attraverso</value>
+  <data name="LinkButton1Resource1.Text" xml:space="preserve">
+    <value>Cancella</value>
   </data>
-  <data name="litMoreAttachmentsResource1.Text" xml:space="preserve">
-    <value>È possibile aggiungere altri allegati, dopo che il Ticket è stato inserito</value>
+  <data name="litDescriptionResource1.Text" xml:space="preserve">
+    <value>Qui è possibile visualizzare e rimuovere gli utenti dal sistema così come impostare i loro privilegi di amministrazione; scorre il mouse sul UserName per maggiori informazioni su un Utente.</value>
   </data>
-  <data name="litTicketSubmittedResource1.Text" xml:space="preserve">
-    <value>Il ticket è stato inserito con successo;</value>
+  <data name="TemplateFieldResource2.HeaderText" xml:space="preserve">
+    <value>UserName</value>
   </data>
-  <data name="litTopicResource1.Text" xml:space="preserve">
-    <value>Topic</value>
+  <data name="TemplateFieldResource3.HeaderText" xml:space="preserve">
+    <value>Email</value>
   </data>
-  <data name="litYourTicketNumberIsResource1.Text" xml:space="preserve">
-    <value>Il numero Ticket è</value>
+  <data name="TemplateFieldResource4.HeaderText" xml:space="preserve">
+    <value>Admin</value>
   </data>
-  <data name="rfvSubUnitResource1.ErrorMessage" xml:space="preserve">
-    <value>è necessario selezionare un Sub-Gruppo</value>
-  </data>
-  <data name="rfvTopicResource1.ErrorMessage" xml:space="preserve">
-    <value>Campi Obbligatori</value>
-  </data>
-  <data name="rfvUnitResource1.ErrorMessage" xml:space="preserve">
-    <value>è necessario selezionare un Gruppo</value>
-  </data>
-  <data name="ANew" xml:space="preserve">
-    <value>A new</value>
-  </data>
-  <data name="ContactAdmin" xml:space="preserve">
-    <value>Si prega di contattare l'amministratore se ritieni che questo sia un errore</value>
-  </data>
-  <data name="DontHaveAccess" xml:space="preserve">
-    <value>Non hai il livello richiesto l'accesso a presentare un nuovo ticket</value>
-  </data>
-  <data name="HasBeenNotified" xml:space="preserve">
-    <value>la tua richiesta è stata notificata. </value>
-    <comment>è necessario selezione il Sub-Gruppo</comment>
-  </data>
-  <data name="litTicketSubmittedTitleResource1.Text" xml:space="preserve">
-    <value>Ticket innoltrato</value>
-  </data>
-  <data name="OriginallyAssignedTo" xml:space="preserve">
-    <value>Originario Assegnato a</value>
-  </data>
-  <data name="TicketWasSubmittedBy" xml:space="preserve">
-    <value>priority ticket was submitted by</value>
+  <data name="LinkButton1Resource1.OnClientClick" xml:space="preserve">
+    <value>return confirm('Sei sicuro di cancellare l'utente?');</value>
   </data>
 </root>

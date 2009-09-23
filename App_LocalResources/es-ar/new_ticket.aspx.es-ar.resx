@@ -118,58 +118,57 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="btnSubmitResource1.Text" xml:space="preserve">
-    <value>Inoltra</value>
+    <value>Solicitar</value>
   </data>
   <data name="litAssignToResource1.Text" xml:space="preserve">
-    <value>Assegnato a</value>
+    <value>Asignado a</value>
   </data>
   <data name="litDetailsResource1.Text" xml:space="preserve">
-    <value>Dettagli</value>
+    <value>Detalles</value>
   </data>
   <data name="litItWillBeAccessResource1.Text" xml:space="preserve">
-    <value>sarà accessibile attraverso</value>
+    <value>También será accedido a través de</value>
   </data>
   <data name="litMoreAttachmentsResource1.Text" xml:space="preserve">
-    <value>È possibile aggiungere altri allegati, dopo che il Ticket è stato inserito</value>
+    <value>Puede agregar adjuntos adicionales después de que el ticket es solicitado</value>
   </data>
   <data name="litTicketSubmittedResource1.Text" xml:space="preserve">
-    <value>Il ticket è stato inserito con successo;</value>
+    <value>Su ticket ha sido solicitado sactifactoriamente; </value>
   </data>
   <data name="litTopicResource1.Text" xml:space="preserve">
-    <value>Topic</value>
+    <value>Tema</value>
   </data>
   <data name="litYourTicketNumberIsResource1.Text" xml:space="preserve">
-    <value>Il numero Ticket è</value>
+    <value>El número de su ticket es</value>
   </data>
   <data name="rfvSubUnitResource1.ErrorMessage" xml:space="preserve">
-    <value>è necessario selezionare un Sub-Gruppo</value>
+    <value>Debe seleccionar un Sub-Grupo</value>
   </data>
   <data name="rfvTopicResource1.ErrorMessage" xml:space="preserve">
-    <value>Campi Obbligatori</value>
+    <value>Tema Requerido</value>
   </data>
   <data name="rfvUnitResource1.ErrorMessage" xml:space="preserve">
-    <value>è necessario selezionare un Gruppo</value>
+    <value>Debe seleccionar un Grupo</value>
   </data>
   <data name="ANew" xml:space="preserve">
-    <value>A new</value>
+    <value>Un nuevo</value>
   </data>
   <data name="ContactAdmin" xml:space="preserve">
-    <value>Si prega di contattare l'amministratore se ritieni che questo sia un errore</value>
+    <value>Por favor contacte al administrador si cree que esto es un error.</value>
   </data>
   <data name="DontHaveAccess" xml:space="preserve">
-    <value>Non hai il livello richiesto l'accesso a presentare un nuovo ticket</value>
+    <value>Usted no tiene suficiente nivel de acceso para solicitar un ticket nuevo.</value>
   </data>
   <data name="HasBeenNotified" xml:space="preserve">
-    <value>la tua richiesta è stata notificata. </value>
-    <comment>è necessario selezione il Sub-Gruppo</comment>
+    <value>ha sido notificado de su solicitud</value>
   </data>
   <data name="litTicketSubmittedTitleResource1.Text" xml:space="preserve">
-    <value>Ticket innoltrato</value>
+    <value>Ticket Solicitado</value>
   </data>
   <data name="OriginallyAssignedTo" xml:space="preserve">
-    <value>Originario Assegnato a</value>
+    <value>Asignado originalmente a</value>
   </data>
   <data name="TicketWasSubmittedBy" xml:space="preserve">
-    <value>priority ticket was submitted by</value>
+    <value>la prioridad del ticket fue solicitada por</value>
   </data>
 </root>

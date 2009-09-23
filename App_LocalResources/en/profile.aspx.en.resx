@@ -117,196 +117,64 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AdditionalAttachment" xml:space="preserve">
-    <value>Altri Allegati</value>
-    <comment>wording to ask for another attachment</comment>
+  <data name="btnCancelResource1.Text" xml:space="preserve">
+    <value>Close</value>
   </data>
-  <data name="Admin" xml:space="preserve">
-    <value>Amministrazione</value>
-    <comment>main menu</comment>
+  <data name="btnSubmitResource1.Text" xml:space="preserve">
+    <value>Save Changes</value>
   </data>
-  <data name="Any" xml:space="preserve">
-    <value>Any</value>
-    <comment>Any</comment>
+  <data name="lbGroupsResource1.Text" xml:space="preserve">
+    <value>What AD groups do I belong to?</value>
   </data>
-  <data name="AssignedTo" xml:space="preserve">
-    <value>Assegnato a</value>
-    <comment>for use in table displays</comment>
+  <data name="litADGroupsResource1.Text" xml:space="preserve">
+    <value>Active Directory Groups</value>
   </data>
-  <data name="Attachments" xml:space="preserve">
-    <value>Allegati</value>
-    <comment>word used to describe attachments</comment>
+  <data name="litDomainResource1.Text" xml:space="preserve">
+    <value>Domain</value>
   </data>
-  <data name="BackToTop" xml:space="preserve">
-    <value>Torna indietro</value>
-    <comment>return to top of page</comment>
+  <data name="litEmailPrefixResource1.Text" xml:space="preserve">
+    <value>Email Prefix</value>
   </data>
-  <data name="Bytes" xml:space="preserve">
-    <value>bytes</value>
-    <comment>bytes</comment>
+  <data name="litPhoneResource1.Text" xml:space="preserve">
+    <value>Phone</value>
   </data>
-  <data name="Cancel" xml:space="preserve">
-    <value>Cancella</value>
-    <comment>Cancel</comment>
+  <data name="litUserNameResource1.Text" xml:space="preserve">
+    <value>User Name</value>
   </data>
-  <data name="Closed" xml:space="preserve">
-    <value>Chiudi</value>
-    <comment>make sure this lines up with row 5 in the status table</comment>
+  <data name="regDomainResource1.ErrorMessage" xml:space="preserve">
+    <value>Invalid Domain</value>
   </data>
-  <data name="Contact" xml:space="preserve">
-    <value>Contatto</value>
-    <comment>main menu</comment>
+  <data name="regPhoneResource1.ErrorMessage" xml:space="preserve">
+    <value>Invalid Phone Number    </value>
   </data>
-  <data name="Dashboard" xml:space="preserve">
-    <value>Dashboard</value>
-    <comment>main menu</comment>
+  <data name="rfvDomainResource1.ErrorMessage" xml:space="preserve">
+    <value>Domain Required</value>
   </data>
-  <data name="Delete" xml:space="preserve">
-    <value>Cancella</value>
-    <comment>Delete</comment>
+  <data name="rfvEmailResource1.ErrorMessage" xml:space="preserve">
+    <value>Email Required</value>
   </data>
-  <data name="Deleted" xml:space="preserve">
-    <value>Cancellato</value>
-    <comment>Deleted</comment>
+  <data name="rfvPhoneResource1.ErrorMessage" xml:space="preserve">
+    <value>Phone Number Required</value>
   </data>
-  <data name="Edit" xml:space="preserve">
-    <value>Edita</value>
-    <comment>Edit</comment>
+  <data name="rfvSubUnitResource1.ErrorMessage" xml:space="preserve">
+    <value>Must Select Sub-Group</value>
   </data>
-  <data name="EmailError" xml:space="preserve">
-    <value>Errore invio email</value>
+  <data name="rfvUnitResource1.ErrorMessage" xml:space="preserve">
+    <value>Must Select Group</value>
   </data>
-  <data name="Error" xml:space="preserve">
-    <value>Errore</value>
-    <comment>Error</comment>
+  <data name="ErrorSaving" xml:space="preserve">
+    <value>Error saving profile</value>
   </data>
-  <data name="Group" xml:space="preserve">
-    <value>Gruppo</value>
-    <comment>word used for each 'group'</comment>
+  <data name="NotInGroup" xml:space="preserve">
+    <value>Not part of any groups</value>
   </data>
-  <data name="Groups" xml:space="preserve">
-    <value>Gruppi</value>
-    <comment>admin menu</comment>
+  <data name="ProfileRequired" xml:space="preserve">
+    <value>It is required that you fill in your Profile</value>
   </data>
-  <data name="Help" xml:space="preserve">
-    <value>Help/FAQ</value>
-    <comment>main menu</comment>
-  </data>
-  <data name="Information" xml:space="preserve">
-    <value>Informazioni</value>
-    <comment>admin menu</comment>
-  </data>
-  <data name="InvalidEmail" xml:space="preserve">
-    <value>Indirizzo Email non valido</value>
-    <comment>Invalid Email Error</comment>
-  </data>
-  <data name="LastAction" xml:space="preserve">
-    <value>Ultima Azione</value>
-    <comment>for use in table displays</comment>
-  </data>
-  <data name="MyIssues" xml:space="preserve">
-    <value>My Issues</value>
-    <comment>main menu</comment>
-  </data>
-  <data name="NewTicket" xml:space="preserve">
-    <value>Nuovo Ticket</value>
-    <comment>main menu</comment>
-  </data>
-  <data name="NoAccess" xml:space="preserve">
-    <value>No Accesso</value>
-    <comment>No Access</comment>
-  </data>
-  <data name="NoGroups" xml:space="preserve">
-    <value>Nessun Gruppo a disposizione</value>
-  </data>
-  <data name="NoGroupsExplanation" xml:space="preserve">
-    <value>Non vi sono gruppi con un basso livello di accesso abbastanza</value>
-  </data>
-  <data name="OriginatingGroup" xml:space="preserve">
-    <value>Originari del Gruppo</value>
-    <comment>for use in table displays</comment>
-  </data>
-  <data name="Permissions" xml:space="preserve">
-    <value>Permessi</value>
-    <comment>admin menu</comment>
-  </data>
-  <data name="Priority" xml:space="preserve">
-    <value>Prioprità</value>
-    <comment>word use for 'priority'</comment>
-  </data>
-  <data name="Profile" xml:space="preserve">
-    <value>Profilo</value>
-    <comment>main menu</comment>
-  </data>
-  <data name="Required" xml:space="preserve">
-    <value>Richiesto</value>
-    <comment>Required</comment>
-  </data>
-  <data name="Resolved" xml:space="preserve">
-    <value>Risolto</value>
-    <comment>make sure this lines up with row 4 in the status table</comment>
+  <data name="Reload" xml:space="preserve">
+    <value>If you already have filled in your profile, please reload</value>
   </data>
   <data name="Saved" xml:space="preserve">
-    <value>Salvato</value>
-    <comment>Saved</comment>
-  </data>
-  <data name="Search" xml:space="preserve">
-    <value>Cerca</value>
-    <comment>main menu</comment>
-  </data>
-  <data name="Settings" xml:space="preserve">
-    <value>Settings</value>
-    <comment>admin menu</comment>
-  </data>
-  <data name="Statistics" xml:space="preserve">
-    <value>Statistiche</value>
-    <comment>admin menu</comment>
-  </data>
-  <data name="Status" xml:space="preserve">
-    <value>Stato</value>
-    <comment>word used for 'status'</comment>
-  </data>
-  <data name="Subgroup" xml:space="preserve">
-    <value>Sub-Gruppo</value>
-    <comment>word used for 'sub-groups'</comment>
-  </data>
-  <data name="Subgroups" xml:space="preserve">
-    <value>Sub-Gruppi</value>
-    <comment>plural for Subgroup</comment>
-  </data>
-  <data name="Submitter" xml:space="preserve">
-    <value>Inserisci</value>
-    <comment>for use in table displays</comment>
-  </data>
-  <data name="Ticket" xml:space="preserve">
-    <value>Ticket</value>
-  </data>
-  <data name="TicketNumber" xml:space="preserve">
-    <value>Numero Ticket</value>
-    <comment>for use in table displays</comment>
-  </data>
-  <data name="Translator" xml:space="preserve">
-    <value>Panatronic from the Slick-Ticket Discussion boards</value>
-    <comment>Who Translated this language</comment>
-  </data>
-  <data name="Undefined" xml:space="preserve">
-    <value>Indefinito</value>
-    <comment>Undefined</comment>
-  </data>
-  <data name="Update" xml:space="preserve">
-    <value>Aggiorna</value>
-    <comment>Update</comment>
-  </data>
-  <data name="Updated" xml:space="preserve">
-    <value>Aggiornato</value>
-    <comment>Updated</comment>
-  </data>
-  <data name="Users" xml:space="preserve">
-    <value>Utenti</value>
-    <comment>admin menu</comment>
-  </data>
-  <data name="ViewTicket" xml:space="preserve">
-    <value>Visualizza Ticket</value>
-    <comment>main menu</comment>
+    <value>Your profile has been saved</value>
   </data>
 </root>

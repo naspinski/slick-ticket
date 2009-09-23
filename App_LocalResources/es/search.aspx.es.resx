@@ -117,59 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnSubmitResource1.Text" xml:space="preserve">
-    <value>Inoltra</value>
+  <data name="BoundFieldResource1.HeaderText" xml:space="preserve">
+    <value>Solicitado</value>
   </data>
-  <data name="litAssignToResource1.Text" xml:space="preserve">
-    <value>Assegnato a</value>
+  <data name="btnSearchResource1.Text" xml:space="preserve">
+    <value>Buscar</value>
   </data>
-  <data name="litDetailsResource1.Text" xml:space="preserve">
-    <value>Dettagli</value>
+  <data name="chkOpenOnlyResource1.Text" xml:space="preserve">
+    <value>Buscar solo tickets abiertos</value>
   </data>
-  <data name="litItWillBeAccessResource1.Text" xml:space="preserve">
-    <value>sarà accessibile attraverso</value>
+  <data name="gvResultsResource1.EmptyDataText" xml:space="preserve">
+    <value>Su grupo no tiene ningún ticket abierto o asignado en el que usted esté involucrado.</value>
   </data>
-  <data name="litMoreAttachmentsResource1.Text" xml:space="preserve">
-    <value>È possibile aggiungere altri allegati, dopo che il Ticket è stato inserito</value>
+  <data name="ListItemResource1.Text" xml:space="preserve">
+    <value>Cualquiera</value>
   </data>
-  <data name="litTicketSubmittedResource1.Text" xml:space="preserve">
-    <value>Il ticket è stato inserito con successo;</value>
+  <data name="litFromResource1.Text" xml:space="preserve">
+    <value>Desde</value>
   </data>
-  <data name="litTopicResource1.Text" xml:space="preserve">
-    <value>Topic</value>
+  <data name="litTitleResource1.Text" xml:space="preserve">
+    <value>Título</value>
   </data>
-  <data name="litYourTicketNumberIsResource1.Text" xml:space="preserve">
-    <value>Il numero Ticket è</value>
+  <data name="litToResource1.Text" xml:space="preserve">
+    <value>Para</value>
   </data>
-  <data name="rfvSubUnitResource1.ErrorMessage" xml:space="preserve">
-    <value>è necessario selezionare un Sub-Gruppo</value>
+  <data name="litUserResource1.Text" xml:space="preserve">
+    <value>Usuario</value>
   </data>
-  <data name="rfvTopicResource1.ErrorMessage" xml:space="preserve">
-    <value>Campi Obbligatori</value>
+  <data name="TemplateFieldResource1.HeaderText" xml:space="preserve">
+    <value>Prioridad</value>
   </data>
-  <data name="rfvUnitResource1.ErrorMessage" xml:space="preserve">
-    <value>è necessario selezionare un Gruppo</value>
+  <data name="TemplateFieldResource2.HeaderText" xml:space="preserve">
+    <value>Ticket</value>
   </data>
-  <data name="ANew" xml:space="preserve">
-    <value>A new</value>
+  <data name="TemplateFieldResource3.HeaderText" xml:space="preserve">
+    <value>Estado</value>
   </data>
-  <data name="ContactAdmin" xml:space="preserve">
-    <value>Si prega di contattare l'amministratore se ritieni che questo sia un errore</value>
-  </data>
-  <data name="DontHaveAccess" xml:space="preserve">
-    <value>Non hai il livello richiesto l'accesso a presentare un nuovo ticket</value>
-  </data>
-  <data name="HasBeenNotified" xml:space="preserve">
-    <value>la tua richiesta è stata notificata. </value>
-    <comment>è necessario selezione il Sub-Gruppo</comment>
-  </data>
-  <data name="litTicketSubmittedTitleResource1.Text" xml:space="preserve">
-    <value>Ticket innoltrato</value>
-  </data>
-  <data name="OriginallyAssignedTo" xml:space="preserve">
-    <value>Originario Assegnato a</value>
-  </data>
-  <data name="TicketWasSubmittedBy" xml:space="preserve">
-    <value>priority ticket was submitted by</value>
+  <data name="NoResults" xml:space="preserve">
+    <value>No hay resultados para su búsqueda</value>
   </data>
 </root>

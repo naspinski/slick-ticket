@@ -117,59 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnSubmitResource1.Text" xml:space="preserve">
-    <value>Inoltra</value>
+  <data name="btnSendResource1.Text" xml:space="preserve">
+    <value>Enviar</value>
   </data>
-  <data name="litAssignToResource1.Text" xml:space="preserve">
-    <value>Assegnato a</value>
+  <data name="lblDetailsResource1.Text" xml:space="preserve">
+    <value>Detalles</value>
   </data>
-  <data name="litDetailsResource1.Text" xml:space="preserve">
-    <value>Dettagli</value>
+  <data name="lblQuestionResource1.Text" xml:space="preserve">
+    <value>Preguntas/Comentarios</value>
   </data>
-  <data name="litItWillBeAccessResource1.Text" xml:space="preserve">
-    <value>sarà accessibile attraverso</value>
+  <data name="rfvBodyResource1.ErrorMessage" xml:space="preserve">
+    <value>Requerido</value>
   </data>
-  <data name="litMoreAttachmentsResource1.Text" xml:space="preserve">
-    <value>È possibile aggiungere altri allegati, dopo che il Ticket è stato inserito</value>
+  <data name="rfvSubjectResource1.ErrorMessage" xml:space="preserve">
+    <value>Requerido</value>
   </data>
-  <data name="litTicketSubmittedResource1.Text" xml:space="preserve">
-    <value>Il ticket è stato inserito con successo;</value>
+  <data name="MessageSent" xml:space="preserve">
+    <value>Mensaje enviado</value>
   </data>
-  <data name="litTopicResource1.Text" xml:space="preserve">
-    <value>Topic</value>
-  </data>
-  <data name="litYourTicketNumberIsResource1.Text" xml:space="preserve">
-    <value>Il numero Ticket è</value>
-  </data>
-  <data name="rfvSubUnitResource1.ErrorMessage" xml:space="preserve">
-    <value>è necessario selezionare un Sub-Gruppo</value>
-  </data>
-  <data name="rfvTopicResource1.ErrorMessage" xml:space="preserve">
-    <value>Campi Obbligatori</value>
-  </data>
-  <data name="rfvUnitResource1.ErrorMessage" xml:space="preserve">
-    <value>è necessario selezionare un Gruppo</value>
-  </data>
-  <data name="ANew" xml:space="preserve">
-    <value>A new</value>
-  </data>
-  <data name="ContactAdmin" xml:space="preserve">
-    <value>Si prega di contattare l'amministratore se ritieni che questo sia un errore</value>
-  </data>
-  <data name="DontHaveAccess" xml:space="preserve">
-    <value>Non hai il livello richiesto l'accesso a presentare un nuovo ticket</value>
-  </data>
-  <data name="HasBeenNotified" xml:space="preserve">
-    <value>la tua richiesta è stata notificata. </value>
-    <comment>è necessario selezione il Sub-Gruppo</comment>
-  </data>
-  <data name="litTicketSubmittedTitleResource1.Text" xml:space="preserve">
-    <value>Ticket innoltrato</value>
-  </data>
-  <data name="OriginallyAssignedTo" xml:space="preserve">
-    <value>Originario Assegnato a</value>
-  </data>
-  <data name="TicketWasSubmittedBy" xml:space="preserve">
-    <value>priority ticket was submitted by</value>
+  <data name="SentText" xml:space="preserve">
+    <value>Has enviado la Pregunta/Comentario</value>
   </data>
 </root>

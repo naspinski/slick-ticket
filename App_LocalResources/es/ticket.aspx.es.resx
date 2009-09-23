@@ -117,59 +117,71 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="btnSubmitResource1.Text" xml:space="preserve">
-    <value>Inoltra</value>
+  <data name="btnCloseResource1.Text" xml:space="preserve">
+    <value>Cerrar Ticket</value>
   </data>
-  <data name="litAssignToResource1.Text" xml:space="preserve">
-    <value>Assegnato a</value>
+  <data name="btnGoToTicketResource1.Text" xml:space="preserve">
+    <value>Ir</value>
   </data>
-  <data name="litDetailsResource1.Text" xml:space="preserve">
-    <value>Dettagli</value>
+  <data name="btnOpenResource1.Text" xml:space="preserve">
+    <value>Re-abrir Ticket</value>
   </data>
-  <data name="litItWillBeAccessResource1.Text" xml:space="preserve">
-    <value>sarà accessibile attraverso</value>
+  <data name="btnUpdateResource1.Text" xml:space="preserve">
+    <value>Actualizar</value>
   </data>
-  <data name="litMoreAttachmentsResource1.Text" xml:space="preserve">
-    <value>È possibile aggiungere altri allegati, dopo che il Ticket è stato inserito</value>
+  <data name="lit5AttachmentsResource1.Text" xml:space="preserve">
+    <value>Solo puede agregar 5 adjuntos por comentario</value>
   </data>
-  <data name="litTicketSubmittedResource1.Text" xml:space="preserve">
-    <value>Il ticket è stato inserito con successo;</value>
+  <data name="litEnterTicketNumberResource1.Text" xml:space="preserve">
+    <value>Por favor ingrese el número de ticket</value>
   </data>
-  <data name="litTopicResource1.Text" xml:space="preserve">
-    <value>Topic</value>
-  </data>
-  <data name="litYourTicketNumberIsResource1.Text" xml:space="preserve">
-    <value>Il numero Ticket è</value>
+  <data name="regGotoTicketResource1.ErrorMessage" xml:space="preserve">
+    <value>Número de ticket inválido</value>
   </data>
   <data name="rfvSubUnitResource1.ErrorMessage" xml:space="preserve">
-    <value>è necessario selezionare un Sub-Gruppo</value>
-  </data>
-  <data name="rfvTopicResource1.ErrorMessage" xml:space="preserve">
-    <value>Campi Obbligatori</value>
+    <value>Debe seleccionar un Sub-Grupo</value>
   </data>
   <data name="rfvUnitResource1.ErrorMessage" xml:space="preserve">
-    <value>è necessario selezionare un Gruppo</value>
+    <value>Debe seleccionar un Grupo</value>
   </data>
-  <data name="ANew" xml:space="preserve">
-    <value>A new</value>
+  <data name="BeenClosed" xml:space="preserve">
+    <value>ha sido cerrado</value>
   </data>
-  <data name="ContactAdmin" xml:space="preserve">
-    <value>Si prega di contattare l'amministratore se ritieni che questo sia un errore</value>
+  <data name="BeenUpdated" xml:space="preserve">
+    <value>ha sido actualizado</value>
   </data>
-  <data name="DontHaveAccess" xml:space="preserve">
-    <value>Non hai il livello richiesto l'accesso a presentare un nuovo ticket</value>
+  <data name="btnCloseResource1.OnClientClick" xml:space="preserve">
+    <value>return confirm('Cerrar Ticekt?');</value>
+    <comment>return confirm('TEXT HERE]');</comment>
   </data>
-  <data name="HasBeenNotified" xml:space="preserve">
-    <value>la tua richiesta è stata notificata. </value>
-    <comment>è necessario selezione il Sub-Gruppo</comment>
+  <data name="CommentAttachClose" xml:space="preserve">
+    <value>Su nivel de acceso es demasiado bajo como para hacer algo más que comentar, adjuntar o cerrar este ticket.</value>
   </data>
-  <data name="litTicketSubmittedTitleResource1.Text" xml:space="preserve">
-    <value>Ticket innoltrato</value>
+  <data name="Comments" xml:space="preserve">
+    <value>Comentarios</value>
   </data>
-  <data name="OriginallyAssignedTo" xml:space="preserve">
-    <value>Originario Assegnato a</value>
+  <data name="ErrorSaving" xml:space="preserve">
+    <value>guardando adjunto</value>
   </data>
-  <data name="TicketWasSubmittedBy" xml:space="preserve">
-    <value>priority ticket was submitted by</value>
+  <data name="HasClosed" xml:space="preserve">
+    <value>ha sido cerrado el ticket número</value>
+  </data>
+  <data name="HasUpdated" xml:space="preserve">
+    <value>ha sido actualizado</value>
+  </data>
+  <data name="litCommentResource1.Text" xml:space="preserve">
+    <value>Comentar</value>
+  </data>
+  <data name="NoTicket" xml:space="preserve">
+    <value>Sin número de ticket</value>
+  </data>
+  <data name="ReOpen" xml:space="preserve">
+    <value>Si esto es un error, por favor re-abra el ticket.</value>
+  </data>
+  <data name="ViewIt" xml:space="preserve">
+    <value>Ver el ticket</value>
+  </data>
+  <data name="ViewOnly" xml:space="preserve">
+    <value>Su nivel de acceso es demasiado bajo como para hacer algo más que ver tickets</value>
   </data>
 </root>

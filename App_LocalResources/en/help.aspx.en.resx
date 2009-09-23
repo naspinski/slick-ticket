@@ -117,59 +117,44 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="btnCancelResource1.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="btnDeleteResource1.Text" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="btnEditResource1.Text" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="btnNewResource1.Text" xml:space="preserve">
+    <value>New Question/Answer</value>
+  </data>
   <data name="btnSubmitResource1.Text" xml:space="preserve">
-    <value>Inoltra</value>
+    <value>Save</value>
   </data>
-  <data name="litAssignToResource1.Text" xml:space="preserve">
-    <value>Assegnato a</value>
+  <data name="lblAnswerResource1.Text" xml:space="preserve">
+    <value>Answer</value>
   </data>
-  <data name="litDetailsResource1.Text" xml:space="preserve">
-    <value>Dettagli</value>
+  <data name="lblQuestionResource1.Text" xml:space="preserve">
+    <value>Question</value>
   </data>
-  <data name="litItWillBeAccessResource1.Text" xml:space="preserve">
-    <value>sarà accessibile attraverso</value>
+  <data name="litIndexTitleResource1.Text" xml:space="preserve">
+    <value>Help/FAQ Index</value>
   </data>
-  <data name="litMoreAttachmentsResource1.Text" xml:space="preserve">
-    <value>È possibile aggiungere altri allegati, dopo che il Ticket è stato inserito</value>
+  <data name="rfvSubjectResource1.ErrorMessage" xml:space="preserve">
+    <value>Required</value>
   </data>
-  <data name="litTicketSubmittedResource1.Text" xml:space="preserve">
-    <value>Il ticket è stato inserito con successo;</value>
+  <data name="btnDeleteResource1.OnClientClick" xml:space="preserve">
+    <value>return confirm('Are you sure?');</value>
+    <comment>return confirm('TEXT HERE]');</comment>
   </data>
-  <data name="litTopicResource1.Text" xml:space="preserve">
-    <value>Topic</value>
+  <data name="Deleted" xml:space="preserve">
+    <value>Question/Answer deleted</value>
   </data>
-  <data name="litYourTicketNumberIsResource1.Text" xml:space="preserve">
-    <value>Il numero Ticket è</value>
+  <data name="Inserted" xml:space="preserve">
+    <value>Question/Answer inserted</value>
   </data>
-  <data name="rfvSubUnitResource1.ErrorMessage" xml:space="preserve">
-    <value>è necessario selezionare un Sub-Gruppo</value>
-  </data>
-  <data name="rfvTopicResource1.ErrorMessage" xml:space="preserve">
-    <value>Campi Obbligatori</value>
-  </data>
-  <data name="rfvUnitResource1.ErrorMessage" xml:space="preserve">
-    <value>è necessario selezionare un Gruppo</value>
-  </data>
-  <data name="ANew" xml:space="preserve">
-    <value>A new</value>
-  </data>
-  <data name="ContactAdmin" xml:space="preserve">
-    <value>Si prega di contattare l'amministratore se ritieni che questo sia un errore</value>
-  </data>
-  <data name="DontHaveAccess" xml:space="preserve">
-    <value>Non hai il livello richiesto l'accesso a presentare un nuovo ticket</value>
-  </data>
-  <data name="HasBeenNotified" xml:space="preserve">
-    <value>la tua richiesta è stata notificata. </value>
-    <comment>è necessario selezione il Sub-Gruppo</comment>
-  </data>
-  <data name="litTicketSubmittedTitleResource1.Text" xml:space="preserve">
-    <value>Ticket innoltrato</value>
-  </data>
-  <data name="OriginallyAssignedTo" xml:space="preserve">
-    <value>Originario Assegnato a</value>
-  </data>
-  <data name="TicketWasSubmittedBy" xml:space="preserve">
-    <value>priority ticket was submitted by</value>
+  <data name="Updated" xml:space="preserve">
+    <value>Question/Answer updated</value>
   </data>
 </root>
