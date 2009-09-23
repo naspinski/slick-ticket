@@ -366,7 +366,7 @@ GO
 CREATE TABLE [dbo].[styles](
 	[id] [int] IDENTITY(1,1) NOT NULL,
 	[style_name] [nvarchar](50) NOT NULL,
-	[ntext_color] [nvarchar](10) NOT NULL,
+	[text_color] [nvarchar](10) NOT NULL,
 	[borders] [nvarchar](10) NOT NULL,
 	[body] [nvarchar](10) NOT NULL,
 	[links] [nvarchar](10) NOT NULL,

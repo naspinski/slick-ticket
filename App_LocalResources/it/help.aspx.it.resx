@@ -141,9 +141,6 @@
   <data name="litIndexTitleResource1.Text" xml:space="preserve">
     <value>Help/FAQ Index</value>
   </data>
-  <data name="litNewQuestionResource1.Text" xml:space="preserve">
-    <value>Ho una domanda che qui non c'è...</value>
-  </data>
   <data name="rfvSubjectResource1.ErrorMessage" xml:space="preserve">
     <value>Richiesto</value>
   </data>
