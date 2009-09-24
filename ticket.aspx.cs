@@ -102,6 +102,7 @@ public partial class _ticket : System.Web.UI.Page
         catch (Exception ex)
         {
             lblTopReport.report(false, Resources.Common.Error + " - " + GetLocalResourceObject("NoTicket").ToString() + Request.QueryString["ticketID"].ToString(), ex);
+            pnlDisplay.Visible = false;
         }
     }
 
