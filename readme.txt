@@ -13,8 +13,9 @@ Thanks for checking out SlickTicket!
 === SUPPORT ===
 =============
 http://slick-ticket.com
-http://naspinski.net
+http://wiki.slick-ticket.com
 http://www.codeplex.com/slickticket
+http://naspinski.net
 
 ================
 == SPECIAL THANKS ==
