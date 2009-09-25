@@ -138,7 +138,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
                     imgCurrentPage.ImageUrl = xe.Attribute("image").Value;
                     lblCurrentPage.Text = "<span class='smaller'>" + Resources.Common.Admin + "</span><br />" + xe.FirstAttribute.Value;
                 }
-                pnl.Controls.Add(new HyperLink() { Text = xe.FirstAttribute.Value, NavigateUrl = xe.Value });
+                pnl.Controls.Add(new HyperLink() { Text = GetGlobalResourceObject("Common", xe.FirstAttribute.Value).ToString(), NavigateUrl = xe.Value });
             }
 
             pnl.Controls.Add(new LiteralControl("</span></span>"));

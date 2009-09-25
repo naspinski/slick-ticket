@@ -36,11 +36,11 @@ http://naspinski.net
                         </tr>
                         <tr>
                             <td>
-                                <h3><span class="title_header"></span>&nbsp;</h3>
+                                <h3><span class="title_header"><%= Resources.Common.Group %></span>&nbsp;</h3>
                                 <asp:DropDownList ID="ddlUnit" runat="server"  CssClass="half_table" onselectedindexchanged="ddlUnit_SelectedIndexChanged" AutoPostBack="True"  />
                             </td>
                             <td>
-                                <h3><span class="title_header"></span>&nbsp;</h3>
+                                <h3><span class="title_header"><%= Resources.Common.Subgroup %></span>&nbsp;</h3>
                                 <asp:DropDownList ID="ddlSubUnit" runat="server" CssClass="half_table" />
                             </td>
                         </tr>
@@ -58,14 +58,14 @@ http://naspinski.net
                         </tr>
                         <tr>
                             <td>
-                                <h3><span class="title_header"><%= Resources.Common.Group %></span>&nbsp;</h3>
+                                <h3><span class="title_header"><%= Resources.Common.Priority %></span>&nbsp;</h3>
                                 <asp:DropDownList ID="ddlPriority" runat="server"  CssClass="half_table" 
                                     DataSourceID="ldsPriority" DataTextField="priority_name" DataValueField="id"  AppendDataBoundItems="True" >
                                     <asp:ListItem Value="0" meta:resourcekey="ListItemResource1">Any</asp:ListItem>
                                 </asp:DropDownList>
                             </td>
                             <td>
-                                <h3><span class="title_header"><%= Resources.Common.Subgroup %></span>&nbsp;</h3>
+                                <h3><span class="title_header"><%= Resources.Common.Status %></span>&nbsp;</h3>
                                 <asp:DropDownList ID="ddlStatus" runat="server" CssClass="half_table" 
                                     DataSourceID="ldsStatus" DataTextField="status_name" DataValueField="id" AppendDataBoundItems="True" >
                                     <asp:ListItem Value="0" meta:resourcekey="ListItemResource1">Any</asp:ListItem>
