@@ -136,7 +136,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
                 if (xmlPage.Equals(page.ToLower()))
                 {
                     imgCurrentPage.ImageUrl = xe.Attribute("image").Value;
-                    lblCurrentPage.Text = "<span class='smaller'>" + Resources.Common.Admin + "</span><br />" + xe.FirstAttribute.Value;
+                    lblCurrentPage.Text = "<span class='smaller'>" + Resources.Common.Admin + "</span><br />" + GetGlobalResourceObject("Common", xe.FirstAttribute.Value).ToString();
                 }
                 pnl.Controls.Add(new HyperLink() { Text = GetGlobalResourceObject("Common", xe.FirstAttribute.Value).ToString(), NavigateUrl = xe.Value });
             }

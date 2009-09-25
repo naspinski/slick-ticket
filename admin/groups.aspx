@@ -10,7 +10,7 @@ http://naspinski.net
     
     
     <h4 class="header">
-        <span class="title_header">Groups</span>
+        <span class="title_header"><%= Resources.Common.Groups %></span>
         <span class="clear"></span>
         <span class="smaller"><asp:Label ID="lblReport" runat="server" /></span>
     </h4>
@@ -22,7 +22,7 @@ http://naspinski.net
         <ContentTemplate>
             <fieldset class="inner_color">
                 <h4>
-                    <span class="title_header">Groups</span>
+                    <span class="title_header"><%= Resources.Common.Groups %></span>
                     <span class="smaller"><asp:Button ID="btnAddUnit" CssClass="smaller button" runat="server" meta:resourcekey="btnAddUnitResource1" /></span>
                     <span class="clear" >
                     <span class="smaller"><asp:Label ID="lblUnitReport" runat="server" /></span>
@@ -81,7 +81,7 @@ http://naspinski.net
                         <fieldset class="inner_color">
                             <div>
                                 <h3>
-                                    <span class="title_header">Group</span>
+                                    <span class="title_header"><%= Resources.Common.Group %></span>
                                     <asp:RequiredFieldValidator ID="rfvDisplay" runat="server" ControlToValidate="txtNewUnit" CssClass="error" 
                                         ValidationGroup="newUnit" meta:resourcekey="rfvResource1" />
                                 </h3>
@@ -106,7 +106,7 @@ http://naspinski.net
         
             
                 <h4>
-                    <span class="title_header">Sub-Groups</span>
+                    <span class="title_header"><%= Resources.Common.Subgroups %></span>
                     <span class="smaller">
                         <asp:DropDownList ID="ddlUnitSelected" runat="server" CssClass="smaller" 
                         DataSourceID="ldsUnits" DataTextField="unit_name" DataValueField="id" 
@@ -114,12 +114,10 @@ http://naspinski.net
                         onselectedindexchanged="ddlUnitSelected_SelectedIndexChanged" 
                         meta:resourcekey="ddlUnitSelectedResource1" />
                         &nbsp;
-                        <asp:Button ID="btnAddSubUnit" CssClass="smaller button" runat="server" 
-                        Text="Add Sub-Group" meta:resourcekey="btnAddSubUnitResource1" />
+                        <asp:Button ID="btnAddSubUnit" CssClass="smaller button" runat="server" meta:resourcekey="btnAddSubUnitResource1" />
                     </span>
                     <span class="clear" ></span>
-                    <span class="smaller"><asp:Label ID="lblSubUnitReport" runat="server" 
-                        meta:resourcekey="lblSubUnitReportResource1" /></span>
+                    <span class="smaller"><asp:Label ID="lblSubUnitReport" runat="server" meta:resourcekey="lblSubUnitReportResource1" /></span>
                 </h4>
                 <asp:ValidationSummary ID="valSubUnitEdit" runat="server" 
                     CssClass="error_area border_color" ValidationGroup="subUnitEdit" 
