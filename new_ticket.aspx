@@ -4,7 +4,7 @@ http://slick-ticket.com
 Developed by Stan Naspinski - stan@naspinski.net
 http://naspinski.net
 --%>
-<%@ Page Title="New Ticket " Language="C#" MasterPageFile="~/MasterPage.master" ValidateRequest="false" AutoEventWireup="true" CodeFile="new_ticket.aspx.cs" Inherits="new_ticket" culture="auto" meta:resourcekey="PageResource1"%>
+<%@ Page Title="New Ticket " Language="C#" MasterPageFile="~/MasterPage.master" ValidateRequest="false" AutoEventWireup="true" CodeFile="new_ticket.aspx.cs" Inherits="new_ticket" culture="auto" meta:resourcekey="PageResource1" uiculture="auto" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 
@@ -80,8 +80,9 @@ http://naspinski.net
                 <asp:TextBox ID="txtDetails" runat="server" TextMode="MultiLine" Height="100px" Width="100%" />
             </div>
             
+            <br />
             <h3>
-                <span class="title_header"></span>
+                <span class="title_header"><%= Resources.Common.Attachments %></span>
                 <span class="clear"></span>
             </h3>
             <div>
