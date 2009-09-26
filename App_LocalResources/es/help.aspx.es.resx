@@ -139,7 +139,30 @@
     <value>Consulta</value>
   </data>
   <data name="litIndexTitleResource1.Text" xml:space="preserve">
-    <value>Indice de Ayuda/FAQ</value>
+    <value>Indice de Ayuda/Preguntas frecuentes</value>
+  </data>
+  <data name="litNewQuestionResource1.Text" xml:space="preserve">
+    <value>Tengo una pregunta que no es cubierta aquí…</value>
+  </data>
+  <data name="litPermissionsSystemExplainedPanel1Resource1.Text" xml:space="preserve">
+    <value>Lo primero que hace el sistema es loguear al usuario con sus credenciales de dominio, luego trae inmediatamente todos los grupos de los cuales eres miembro:</value>
+  </data>
+  <data name="litPermissionsSystemExplainedPanel2Resource1.Text" xml:space="preserve">
+    <value>
+                                    A continuación el sistema compara su membresía de AD con los permisos de los grupos que fueron configurados por el administrador.              
+                                    Cada permiso del grupo está relacionado a un solo grupo de AD y tiene un nivel de acceso asociado a él.            
+                                    Entonces será asignado con el nivel de acceso disponible para Usted.</value>
+  </data>
+  <data name="litPermissionsSystemExplainedPanel3Resource1.Text" xml:space="preserve">
+    <value>Ahora que el sistema tiene su nivel de acceso, puede decidir a cuál grupo es capaz de unirse y asignar tickets.</value>
+  </data>
+  <data name="litPermissionsSystemExplainedPanel4Resource1.Text" xml:space="preserve">
+    <value>
+                                    También se dará cuenta de que puede ver y comentar cualquier tickets pero solo podrá modificarles el estado, la prioridad, los adjuntos y su asignación si están bajo su nivel de acceso. 
+                                    Básicamente sus grupos de AD deciden su nivel de acceso que luego determina qué es lo que puede hacer: piense en los niveles de acceso como el nivel más alto al que un grupo particular de AD puede asignar tickets, eso debería simplificar las cosas.</value>
+  </data>
+  <data name="litPermissionSystemLinkResource1.Text" xml:space="preserve">
+    <value>Permisos del sistema explicados</value>
   </data>
   <data name="rfvSubjectResource1.ErrorMessage" xml:space="preserve">
     <value>Requerido</value>

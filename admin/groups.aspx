@@ -4,7 +4,7 @@ http://slick-ticket.com
 Developed by Stan Naspinski - stan@naspinski.net
 http://naspinski.net
 --%>
-<%@ Page Title="Administration - Groups" Language="C#" MasterPageFile="~/admin/admin.master" AutoEventWireup="true" CodeFile="groups.aspx.cs" Inherits="admin_units" culture="auto" meta:resourcekey="PageResource1" uiculture="auto" %>
+<%@ Page Title="Administration - Groups" Language="C#" MasterPageFile="~/admin/admin.master" AutoEventWireup="true" CodeFile="groups.aspx.cs" Inherits="admin_units" culture="auto" meta:resourcekey="PageResource1" %>
 
 <asp:Content ID="Content2" ContentPlaceHolderID="adminBody" Runat="Server">
     

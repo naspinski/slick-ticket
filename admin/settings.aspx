@@ -4,7 +4,7 @@ http://slick-ticket.com
 Developed by Stan Naspinski - stan@naspinski.net
 http://naspinski.net
 --%>
-<%@ Page Title="Administration - Settings" Language="C#" MasterPageFile="~/admin/admin.master" MaintainScrollPositionOnPostback="true" AutoEventWireup="true" CodeFile="settings.aspx.cs" meta:resourcekey="PageResource1" uiculture="auto" Inherits="admin_settings" %>
+<%@ Page Title="Administration - Settings" Language="C#" MasterPageFile="~/admin/admin.master" MaintainScrollPositionOnPostback="true" AutoEventWireup="true" CodeFile="settings.aspx.cs" meta:resourcekey="PageResource1"Inherits="admin_settings" %>
 
 <asp:Content ID="Content3" ContentPlaceHolderID="adminHead" Runat="Server">
 

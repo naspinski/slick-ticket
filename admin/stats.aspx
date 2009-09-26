@@ -4,7 +4,7 @@ http://slick-ticket.com
 Developed by Stan Naspinski - stan@naspinski.net
 http://naspinski.net
 --%>
-<%@ Page Title="Administration - Stats" Language="C#" EnableEventValidation="false" MasterPageFile="~/admin/admin.master" AutoEventWireup="true" CodeFile="stats.aspx.cs" Inherits="admin_stats" meta:resourcekey="PageResource1" uiculture="auto" %>
+<%@ Page Title="Administration - Stats" Language="C#" EnableEventValidation="false" MasterPageFile="~/admin/admin.master" AutoEventWireup="true" CodeFile="stats.aspx.cs" Inherits="admin_stats" meta:resourcekey="PageResource1"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="adminHead" Runat="Server">
     <link rel="Stylesheet" type="text/css" href="../css/stats.css" />

@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AdditionalAttachment" xml:space="preserve">
-    <value>Adjunto adicional</value>
+    <value>Agregar más de un adjunto</value>
     <comment>wording to ask for another attachment</comment>
   </data>
   <data name="Admin" xml:space="preserve">
@@ -189,7 +189,7 @@
     <comment>admin menu</comment>
   </data>
   <data name="Help" xml:space="preserve">
-    <value>Ayuda/FAQ</value>
+    <value>Ayuda/Preguntas frecuentes</value>
     <comment>main menu</comment>
   </data>
   <data name="Information" xml:space="preserve">
@@ -223,7 +223,7 @@
     <value>No hay grupos con un nivel de acceso suficientemente bajo al que Usted se pueda unir, por favor</value>
   </data>
   <data name="OriginatingGroup" xml:space="preserve">
-    <value>Originando GRupos</value>
+    <value>Originando Grupos</value>
     <comment>for use in table displays</comment>
   </data>
   <data name="Permissions" xml:space="preserve">
@@ -265,10 +265,6 @@
   <data name="Status" xml:space="preserve">
     <value>Estado</value>
     <comment>word used for 'status'</comment>
-  </data>
-  <data name="String1" xml:space="preserve">
-    <value>Victor Martinez (VMartinez@ribeiro.com.ar)</value>
-    <comment>Who Translated this language</comment>
   </data>
   <data name="Subgroup" xml:space="preserve">
     <value>Sub-Grupo</value>

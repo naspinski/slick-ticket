@@ -35,7 +35,7 @@ a.big_button { display:block; height:50px; width:100%;font-size:1.1em; padding:2
     
 ul.list_menu {display:block; margin:0 0 0 12px; font-weight:bold; }
 ul.list_menu li{ float:left; display:inline;  }
-ul.list_menu li a{ display:block; padding: 5px 25px;}
+ul.list_menu li a{ display:block; padding: 5px 15px;}
 ul.list_menu li a:hover{ text-decoration:none;} 
 
 .small_container, .large_container { padding: 2px; margin-top:10px;}
@@ -110,7 +110,7 @@ a.tooltip{position:relative; z-index:0;}
    
 #nav { float:left; width:100%; padding:0 0 0 10px; }
 #nav ul { margin:0; padding:0 0 0 0; list-style:none; }
-#nav li { float:left; display:inline; margin:0 0 0 10px; position:relative; }
+#nav li { float:left; display:inline; margin:0 0 0 5px; position:relative; }
 #nav a { float:left; display:block; position:relative; left:-10px; margin-right:-10px; padding:5px 16px; text-decoration:none; font-weight:bold; }
 #nav > ul a { width:auto; }
 #nav > ul span {display:none; font-weight:normal; position:absolute; top:13px; text-decoration:none; }

@@ -1,4 +1,4 @@
-<%@ Page Title="Help/FAQ" Language="C#" MasterPageFile="~/MasterPage.master" ValidateRequest="false" AutoEventWireup="true" CodeFile="help.aspx.cs" Inherits="info" culture="auto" meta:resourcekey="PageResource1" uiculture="auto" %>
+<%@ Page Title="Help/FAQ" Language="C#" MasterPageFile="~/MasterPage.master" ValidateRequest="false" AutoEventWireup="true" CodeFile="help.aspx.cs" Inherits="info" culture="auto" meta:resourcekey="PageResource1"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 <script language="JavaScript" type="text/javascript" src="js/wysiwyg/scripts/wysiwyg.js" ></script>

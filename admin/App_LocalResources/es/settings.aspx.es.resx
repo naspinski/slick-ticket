@@ -241,7 +241,7 @@
     <value>Cambia la apariencia del sistema entero.</value>
   </data>
   <data name="litAtlRowsDescResource1.Text" xml:space="preserve">
-    <value>El color de todas las otras flechas en las tablas; alternados con el color 'Cuerpo'r</value>
+    <value>El color de las demás filas en las tablas; alternados con el color 'Cuerpo'</value>
   </data>
   <data name="litBackgroundDescsResource1.Text" xml:space="preserve">
     <value>Fondo y ficha seleccionada</value>
@@ -271,7 +271,7 @@
     <value>Varias configuraciones para el comportamiento del sistema y apariencia; click en las configuraciones para expandir o contraer</value>
   </data>
   <data name="Literal1Resource1.Text" xml:space="preserve">
-    <value>litExportar</value>
+    <value>Exportar</value>
   </data>
   <data name="litHeadersDescsResource1.Text" xml:space="preserve">
     <value>Encabezado Central (debería contrastar con el color de 'Bordes')</value>
