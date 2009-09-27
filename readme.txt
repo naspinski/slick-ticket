@@ -1,7 +1,7 @@
 Thanks for checking out SlickTicket!
 
 ===========
-=== SETUP ===
+== SETUP ==
 ===========
 * Requirements can be found at: http://www.codeplex.com/slickticket
 
@@ -10,16 +10,16 @@ Thanks for checking out SlickTicket!
 3. Follow the directions (read carefully!)
 
 =============
-=== SUPPORT ===
+== SUPPORT ==
 =============
 http://slick-ticket.com
 http://wiki.slick-ticket.com
 http://www.codeplex.com/slickticket
 http://naspinski.net
 
-================
+====================
 == SPECIAL THANKS ==
-================
+====================
 
 Contributors:
 Dan Horrigan (dhorrigan)
