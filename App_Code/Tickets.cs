@@ -100,16 +100,16 @@ public static class Tickets
     {
         return from p in GetTickets(db, active)
                where
-                   p.title.Contains(keywords[0]) &&
-                   p.title.Contains(keywords[1]) &&
-                   p.title.Contains(keywords[2]) &&
-                   p.title.Contains(keywords[3]) &&
-                   p.title.Contains(keywords[4]) &&
-                   p.title.Contains(keywords[5]) &&
-                   p.title.Contains(keywords[6]) &&
-                   p.title.Contains(keywords[7]) &&
-                   p.title.Contains(keywords[8]) &&
-                   p.title.Contains(keywords[9]) &&
+                   p.title.ToLower().Contains(keywords[0].ToLower()) &&
+                   p.title.ToLower().Contains(keywords[1].ToLower()) &&
+                   p.title.ToLower().Contains(keywords[2].ToLower()) &&
+                   p.title.ToLower().Contains(keywords[3].ToLower()) &&
+                   p.title.ToLower().Contains(keywords[4].ToLower()) &&
+                   p.title.ToLower().Contains(keywords[5].ToLower()) &&
+                   p.title.ToLower().Contains(keywords[6].ToLower()) &&
+                   p.title.ToLower().Contains(keywords[7].ToLower()) &&
+                   p.title.ToLower().Contains(keywords[8].ToLower()) &&
+                   p.title.ToLower().Contains(keywords[9].ToLower()) &&
 
                    p.submitter == (usr < 0 ? p.submitter : usr) &&
                    p.submitted >= dtFrom &&
