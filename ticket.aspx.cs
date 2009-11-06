@@ -10,6 +10,7 @@ using System.Text;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SlickTicketExtensions;
+using System.IO;
 
 public partial class _ticket : System.Web.UI.Page
 {
@@ -18,6 +19,7 @@ public partial class _ticket : System.Web.UI.Page
     int accessLevel;
     string userName;
     string n;
+    bool new_or_closing_ticket = false;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -108,12 +110,6 @@ public partial class _ticket : System.Web.UI.Page
         }
     }
 
-    protected string getExtension(string full)
-    {
-        string[] split = full.Split(new char[] { '.' });
-        return split[split.Length - 1];
-    }
-
     protected void buildComments(comment c)
     {
         lblComments.Controls.Add(new LiteralControl("<br /><h3 class='smaller'><span class='title_header'>"));
@@ -142,7 +138,7 @@ public partial class _ticket : System.Web.UI.Page
             {
                 CommandArgument = a.attachment_name,
                 Text = a.attachment_name + " " + a.attachment_size + " " + Resources.Common.Bytes + ")",
-                CssClass = getExtension(a.attachment_name)
+                CssClass = Path.GetExtension(a.attachment_name)
             };
             lb.Click += new EventHandler(btnAttachment_Click);
             lblComments.Controls.Add(lb);
@@ -156,6 +152,7 @@ public partial class _ticket : System.Web.UI.Page
         ddlStatus.set("5");
         ddlStatus.Items.Clear();
         ddlStatus.Items.Add(new ListItem(Resources.Common.Closed, "5"));
+        new_or_closing_ticket = true;
         btnUpdate_Click(null, null);
     }
 
@@ -164,6 +161,7 @@ public partial class _ticket : System.Web.UI.Page
         ddlStatus.set("5");
         ddlStatus.Items.Clear();
         ddlStatus.Items.Add(new ListItem(Resources.Common.Resolved, "4"));
+        new_or_closing_ticket = true;
         btnUpdate_Click(null, null);
     }
 
@@ -180,6 +178,7 @@ public partial class _ticket : System.Web.UI.Page
             dbDataContext db2 = new dbDataContext(); // have to get new dbdatacontext in order to chage the foreign key since it was already open
 
             ticket _t = Tickets.Update(db2, t_id, Int32.Parse(ddlStatus.SelectedValue), Int32.Parse(ddlPriority.SelectedValue), Int32.Parse(ddlSubUnit.SelectedValue));
+            new_or_closing_ticket = t.statuse.id != 5 && t.statuse.id == 5;
             string fromGroup = me.sub_unit1.unit.unit_name + " - " + me.sub_unit1.sub_unit_name;
             string toGroup = _t.sub_unit.unit.unit_name + " - " + _t.sub_unit.sub_unit_name;
             string groupEmail = _t.assigned_to_group == _t.assigned_to_group_last ? "0" : t.sub_unit.mailto;
@@ -188,7 +187,7 @@ public partial class _ticket : System.Web.UI.Page
             catch { error += " - " + GetLocalResourceObject("ErrorSaving").ToString(); }
             if ((bool.Parse(Utils.Settings.Get("email_notification"))))
             {
-                if (_t.statuse.id == 1 || _t.statuse.id == 5 || bool.Parse(Utils.Settings.Get("email_notification_only_open_close")) == false)
+                if (new_or_closing_ticket || bool.Parse(Utils.Settings.Get("email_notification_only_open_close")) == false)
                 {
                     try { buildAndSendEmail(fromGroup, toGroup, _t.user.userName, _t.title, _t.statuse, _t.priority1.priority_name, _t.id, t.user.email, _t.sub_unit.mailto); }
                     catch { error += " - " + Resources.Common.EmailError; }

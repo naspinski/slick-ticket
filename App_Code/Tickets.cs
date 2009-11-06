@@ -14,19 +14,21 @@ using System.Web.UI.WebControls;
 /// </summary>
 public static class Tickets
 {
+    public static DateTime NullDate { get { return DateTime.Parse("1/1/2001"); } }
+
     public static IEnumerable<ticket> ICommentedIn(dbDataContext db, int userID)
     {
-        return (from c in db.comments where c.active && c.submitter == userID && c.ticket.closed == DateTime.Parse("1/1/2001") select c.ticket).Distinct();
+        return (from c in db.comments where c.active && c.submitter == userID && c.statuse.id != 5 select c.ticket).Distinct();
     }
 
     public static IEnumerable<ticket> MyTickets(dbDataContext db, int userID)
     {
-        return (from p in db.tickets where p.submitter == userID && p.closed == DateTime.Parse("1/1/2001") select p).Union(ICommentedIn(db, userID)).OrderByDescending(p => p.priority1.level).OrderBy(p => p.submitted);
+        return (from p in db.tickets where p.submitter == userID && p.statuse.id != 5 select p).Union(ICommentedIn(db, userID)).OrderByDescending(p => p.priority1.level).OrderBy(p => p.submitted);
     }
 
     public static IEnumerable<ticket> MyGroupsTickets(dbDataContext db, user usr)
     {
-        IEnumerable<ticket> groupTix = from p in db.tickets where p.submitter != usr.id && (p.assigned_to_group == usr.sub_unit || p.originating_group == usr.sub_unit) && p.closed == DateTime.Parse("1/1/2001") select p;
+        IEnumerable<ticket> groupTix = from p in db.tickets where p.submitter != usr.id && (p.assigned_to_group == usr.sub_unit || p.originating_group == usr.sub_unit) && p.closed == NullDate select p;
         IEnumerable<ticket> ITix = ICommentedIn(db, usr.id);
         if (groupTix != null && ITix != null)
             return groupTix.Except(ITix).OrderByDescending(p => p.priority1.level).OrderBy(p => p.submitted);
@@ -39,7 +41,7 @@ public static class Tickets
         ticket newTicket = new ticket();
         newTicket.title = title;
         newTicket.details = details;
-        newTicket.closed = DateTime.Parse("1/1/2001");
+        newTicket.closed = NullDate;
         newTicket.submitter = submitter;
         newTicket.submitted = DateTime.Now;
         newTicket.last_action = DateTime.Now;
@@ -67,6 +69,7 @@ public static class Tickets
         t.assigned_to_group_last = t.assigned_to_group;
         t.assigned_to_group = assigned_to_group;
         if (status == 5) t.closed = DateTime.Now;
+        else t.closed = NullDate;
         t.last_action = DateTime.Now;
         db.SubmitChanges();
         return t;
@@ -87,7 +90,7 @@ public static class Tickets
         return from p in GetTickets(db, active)
                where 
                (open == null ? true :
-                    ((bool)open ? p.closed == DateTime.Parse("1/1/2001") : p.closed != DateTime.Parse("1/1/2001")))
+                    ((bool)open ? p.closed == NullDate : p.closed != NullDate))
                select p;
     }
 
