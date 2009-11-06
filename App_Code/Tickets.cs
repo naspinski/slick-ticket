@@ -18,7 +18,7 @@ public static class Tickets
 
     public static IEnumerable<ticket> ICommentedIn(dbDataContext db, int userID)
     {
-        return (from c in db.comments where c.active && c.submitter == userID && c.statuse.id != 5 select c.ticket).Distinct();
+        return (from c in db.comments where c.active && c.submitter == userID && c.ticket.statuse.id != 5 select c.ticket).Distinct();
     }
 
     public static IEnumerable<ticket> MyTickets(dbDataContext db, int userID)
