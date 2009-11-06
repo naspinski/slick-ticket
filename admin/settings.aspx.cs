@@ -23,6 +23,8 @@ public partial class admin_settings : System.Web.UI.Page
         {
             chkRestrictDomains.Checked = Utils.Settings.EmailIsRestricted();
             chkEmail.Checked = bool.Parse(Utils.Settings.Get("email_notification"));
+            h3_SendOnlyOpenClose.Visible = bool.Parse(Utils.Settings.Get("email_notification"));
+            chkSendOnlyOpenClose.Checked = bool.Parse(Utils.Settings.Get("email_notification_only_open_close"));
             txtAttachment.Text = Utils.Settings.Get("attachments");
             txtTitle.Text = Utils.Settings.Get("title");
             txtImage.Text = Utils.Settings.Get("image");
@@ -74,6 +76,13 @@ public partial class admin_settings : System.Web.UI.Page
     {
         clear();
         Utils.Settings.Update("email_notification", (!(bool.Parse(Utils.Settings.Get("email_notification")))).ToString());
+        h3_SendOnlyOpenClose.Visible = chkEmail.Checked;
+    }
+
+    protected void chkSendOnlyOpenClose_CheckedChanged(object sender, EventArgs e)
+    {
+        clear();
+        Utils.Settings.Update("email_notification_only_open_close", (!(bool.Parse(Utils.Settings.Get("email_notification_only_open_close")))).ToString());
     }
     
     protected void btnAddDomain_Click(object sender, EventArgs e)

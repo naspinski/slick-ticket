@@ -26,6 +26,7 @@ http://naspinski.net
     <asp:Panel ID="pnlNoQuery" runat="server" DefaultButton="btnGoToTicket" >
         <fieldset class="inner_color">
             <h2>
+                <%= Utils.Settings.BaseUrl%>
                 <span  style="float:right;">
                     <asp:TextBox ID="txtGoToTicket" runat="server" style="text-align:right;" /> 
                     <asp:Button ID="btnGoToTicket" CssClass="button smaller" runat="server" onclick="btnGoToTicket_Click" ValidationGroup="GoToTicket" 

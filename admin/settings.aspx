@@ -182,14 +182,19 @@ http://naspinski.net
                         <asp:Label ID="lblEmail" runat="server" meta:resourcekey="lblEmailResource1" />
                     </h4>
                     <asp:Panel id="stdEmail" runat="server" class="collapse clear" >
-                        <h3>
+                        <h3 class="clear">
                             <span class="title_header">
                                 <asp:CheckBox ID="chkEmail" runat="server" AutoPostBack="True" oncheckedchanged="chkEmail_CheckedChanged" 
                                     meta:resourcekey="chkEmailResource1" />&nbsp;
                             </span>
-                            <br /><br />
                         </h3>
-                        <h3>
+                        <h3 runat="server" id="h3_SendOnlyOpenClose" class="smaller sub clear">
+                            <span class="title_header">
+                                <asp:CheckBox ID="chkSendOnlyOpenClose" runat="server" AutoPostBack="True" oncheckedchanged="chkSendOnlyOpenClose_CheckedChanged" 
+                                    meta:resourcekey="chkEmailResource2" />&nbsp;
+                            </span>
+                        </h3>
+                        <h3 class="clear">
                             <span class="title_header">
                                 <asp:CheckBox ID="chkRestrictDomains" runat="server" AutoPostBack="True" 
                                     oncheckedchanged="chkRestrictDomains_CheckedChanged" meta:resourcekey="chkRestrictDomainsResource1" />&nbsp;

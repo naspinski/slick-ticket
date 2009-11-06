@@ -429,4 +429,7 @@
   <data name="litBordersDescResource1.Text" xml:space="preserve">
     <value>Borders and header color</value>
   </data>
+  <data name="chkEmailResource2.Text" xml:space="preserve">
+    <value>Only Email on Ticket Open/Close</value>
+  </data>
 </root>

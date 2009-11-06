@@ -17,9 +17,11 @@ public partial class _ticket : System.Web.UI.Page
     protected ticket t;
     int accessLevel;
     string userName;
+    string n;
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        n = Environment.NewLine;
         this.Title = Resources.Common.ViewTicket;
         userName = Utils.UserName();
         db = new dbDataContext();
@@ -124,7 +126,7 @@ public partial class _ticket : System.Web.UI.Page
 
         string strComment = "<div class='comment_header'><span style='float:left'><span class='bold'>" + Resources.Common.AssignedTo + ": </span>" + c.sub_unit.unit.unit_name + " - " + 
             c.sub_unit.sub_unit_name + "</span>" + "<span style='float:right'><span class='bold'>" + Resources.Common.Status + ": </span>" + c.statuse.status_name + " <span class='bold'>" + 
-            Resources.Common.Priority + ": </span>" + c.priority.priority_name + "</span><span  class='clear'></span></div>\n<div>" + c.comment1 + "</div>";
+            Resources.Common.Priority + ": </span>" + c.priority.priority_name + "</span><span  class='clear'></span></div>" + n + "<div>" + c.comment1 + "</div>";
         
         lblComments.Controls.Add(new LiteralControl(strComment));
         bool first_attachment = true;
@@ -135,7 +137,7 @@ public partial class _ticket : System.Web.UI.Page
                 lblComments.Controls.Add(new LiteralControl("<br />"));
                 first_attachment = false;
             }
-            lblComments.Controls.Add(new LiteralControl("\n<div class='iconize'>"));
+            lblComments.Controls.Add(new LiteralControl(n + "<div class='iconize'>"));
             LinkButton lb = new LinkButton()
             {
                 CommandArgument = a.attachment_name,
@@ -186,31 +188,34 @@ public partial class _ticket : System.Web.UI.Page
             catch { error += " - " + GetLocalResourceObject("ErrorSaving").ToString(); }
             if ((bool.Parse(Utils.Settings.Get("email_notification"))))
             {
-                try { buildAndSendEmail(fromGroup, toGroup, _t.user.userName, _t.title, _t.statuse.status_name, _t.priority1.priority_name, _t.id, t.user.email, _t.sub_unit.mailto); }
-                catch { error += " - " + Resources.Common.EmailError; }
+                if (_t.statuse.id == 1 || _t.statuse.id == 5 || bool.Parse(Utils.Settings.Get("email_notification_only_open_close")) == false)
+                {
+                    try { buildAndSendEmail(fromGroup, toGroup, _t.user.userName, _t.title, _t.statuse, _t.priority1.priority_name, _t.id, t.user.email, _t.sub_unit.mailto); }
+                    catch { error += " - " + Resources.Common.EmailError; }
+                }
             }
             Response.Redirect(Request.Url.ToString());
         }
         catch (Exception ex) { lblReport.report(false, error, ex); }
     }
 
-    protected void buildAndSendEmail(string fromGroup, string toGroup, string submitterName, string title, string status, string _priority, int id, string originalEmail, string groupEmail)
+    protected void buildAndSendEmail(string fromGroup, string toGroup, string submitterName, string title, statuse status, string _priority, int id, string originalEmail, string groupEmail)
     {
         bool sendToGroup = !toGroup.Equals("0");
         string body, subject;
-        string rootUrl = Page.Request.ServerVariables["HTTP_HOST"].ToString();
-        if (status.Equals("closed", StringComparison.CurrentCultureIgnoreCase))
+        string rootUrl = Utils.Settings.BaseUrl;
+        if (status.id == 5)
         {
             sendToGroup = false;
             subject = ddlPriority.SelectedItem.Text + " " + Resources.Common.Priority.ToLower() + " " + Resources.Common.TicketNumber.ToLower() + " " + id + " " + GetLocalResourceObject("BeenClosed").ToString();
-            body = submitterName + " (" + fromGroup + ") " + GetLocalResourceObject("HasClosed").ToString() +" " + id + ": " + title + ".   " + GetLocalResourceObject("ReOpen").ToString() + "\n\n" + rootUrl + "/ticket.aspx?ticketID=" + id;
+            body = submitterName + " (" + fromGroup + ") " + GetLocalResourceObject("HasClosed").ToString() +" " + id + ": " + title + ".   " + GetLocalResourceObject("ReOpen").ToString() + n + n + rootUrl + "/ticket.aspx?ticketID=" + id;
         }
         else
         {
             subject = Resources.Common.TicketNumber + " " + id + " " + GetLocalResourceObject("BeenUpdated") + " - " + Resources.Common.AssignedTo.ToLower()+ " " + toGroup;
-            body = submitterName + " (" + fromGroup + ") " + GetLocalResourceObject("HasUpdated").ToString() + " " + Resources.Common.TicketNumber.ToLower() + " " + id + ":\n" + title + "\n\n";
-            body += "Priority: " + _priority + "\n" + Resources.Common.Status + ": " + status;
-            body += "\n\n" + GetLocalResourceObject("ViewIt").ToString() + ":\nhttp://" + rootUrl + "/ticket.aspx?ticketID=" + id;
+            body = submitterName + " (" + fromGroup + ") " + GetLocalResourceObject("HasUpdated").ToString() + " " + Resources.Common.TicketNumber.ToLower() + " " + id + ":" + n + title + n + n;
+            body += "Priority: " + _priority + n + Resources.Common.Status + ": " + status;
+            body += n + n + GetLocalResourceObject("ViewIt").ToString() + ":" + n + rootUrl + "/ticket.aspx?ticketID=" + id;
         }
         Utils.SendEmail(originalEmail, subject, body);
         if (sendToGroup) Utils.SendEmail(groupEmail, subject, body);
