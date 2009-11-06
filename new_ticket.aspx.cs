@@ -14,6 +14,7 @@ public partial class new_ticket : System.Web.UI.Page
     dbDataContext db;
     string userName;
     int accessLevel;
+    string n = Environment.NewLine;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -54,8 +55,8 @@ public partial class new_ticket : System.Web.UI.Page
 
             FileUpload[] fuControls = new FileUpload[] { FileUpload1, FileUpload2, FileUpload3, FileUpload4, FileUpload5 };
             Tickets.Attachments.SaveMultiple(db, fuControls, newTicket.id, 0);
-            string body = GetLocalResourceObject("ANew").ToString() +ddlPriority.SelectedItem.Text+" "+ GetLocalResourceObject("TicketWasSubmittedBy").ToString()+" " + u.userName + " (" + u.sub_unit1.unit.unit_name + " - " + u.sub_unit1.sub_unit_name + ") \n\n";
-            body += newTicket.title + " [" + Resources.Common.TicketNumber + " #" + newTicket.id + "]\n\n" + Request.Url.OriginalString.Replace("new_ticket.aspx", string.Empty) + "ticket.aspx?ticketid=" + newTicket.id;
+            string body = GetLocalResourceObject("ANew").ToString() + " " + ddlPriority.SelectedItem.Text+" "+ GetLocalResourceObject("TicketWasSubmittedBy").ToString()+" " + u.userName + " (" + u.sub_unit1.unit.unit_name + " - " + u.sub_unit1.sub_unit_name + ")" + n + n;
+            body += newTicket.title + " [" + Resources.Common.TicketNumber + " #" + newTicket.id + "]" + n + n + Request.Url.OriginalString.Replace("new_ticket.aspx", string.Empty) + "ticket.aspx?ticketid=" + newTicket.id;
            
             pnlOutput.Visible = true;
             if ((bool.Parse(Utils.Settings.Get("email_notification"))))
