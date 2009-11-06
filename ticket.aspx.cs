@@ -19,7 +19,6 @@ public partial class _ticket : System.Web.UI.Page
     int accessLevel;
     string userName;
     string n;
-    bool new_or_closing_ticket = false;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -152,7 +151,6 @@ public partial class _ticket : System.Web.UI.Page
         ddlStatus.set("5");
         ddlStatus.Items.Clear();
         ddlStatus.Items.Add(new ListItem(Resources.Common.Closed, "5"));
-        new_or_closing_ticket = true;
         btnUpdate_Click(null, null);
     }
 
@@ -161,7 +159,6 @@ public partial class _ticket : System.Web.UI.Page
         ddlStatus.set("5");
         ddlStatus.Items.Clear();
         ddlStatus.Items.Add(new ListItem(Resources.Common.Resolved, "4"));
-        new_or_closing_ticket = true;
         btnUpdate_Click(null, null);
     }
 
@@ -178,19 +175,19 @@ public partial class _ticket : System.Web.UI.Page
             dbDataContext db2 = new dbDataContext(); // have to get new dbdatacontext in order to chage the foreign key since it was already open
 
             ticket _t = Tickets.Update(db2, t_id, Int32.Parse(ddlStatus.SelectedValue), Int32.Parse(ddlPriority.SelectedValue), Int32.Parse(ddlSubUnit.SelectedValue));
-            new_or_closing_ticket = t.statuse.id != 5 && t.statuse.id == 5;
+            bool new_or_closing_ticket = (t.statuse.id != 5 && _t.statuse.id == 5) || (t.statuse.id == 5 && _t.statuse.id == 4);
             string fromGroup = me.sub_unit1.unit.unit_name + " - " + me.sub_unit1.sub_unit_name;
             string toGroup = _t.sub_unit.unit.unit_name + " - " + _t.sub_unit.sub_unit_name;
             string groupEmail = _t.assigned_to_group == _t.assigned_to_group_last ? "0" : t.sub_unit.mailto;
 
             try { Tickets.Attachments.SaveMultiple(db2, fuControls, t_id, commentID); }
-            catch { error += " - " + GetLocalResourceObject("ErrorSaving").ToString(); }
+            catch (Exception ex) { lblReport.report(false, error += " - " + GetLocalResourceObject("ErrorSaving").ToString(), ex); }
             if ((bool.Parse(Utils.Settings.Get("email_notification"))))
             {
                 if (new_or_closing_ticket || bool.Parse(Utils.Settings.Get("email_notification_only_open_close")) == false)
                 {
                     try { buildAndSendEmail(fromGroup, toGroup, _t.user.userName, _t.title, _t.statuse, _t.priority1.priority_name, _t.id, t.user.email, _t.sub_unit.mailto); }
-                    catch { error += " - " + Resources.Common.EmailError; }
+                    catch (Exception ex) { lblReport.report(false, error += " - " + Resources.Common.EmailError, ex); }
                 }
             }
             Response.Redirect(Request.Url.ToString());
