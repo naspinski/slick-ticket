@@ -240,4 +240,8 @@ public partial class _ticket : System.Web.UI.Page
         Response.End();
     }
 
+    protected string getExtension(string s)
+    {
+        return Path.GetExtension(s);
+    }
 }
