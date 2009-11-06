@@ -128,7 +128,7 @@ http://naspinski.net
                 <asp:literal runat="server" ID="litYourTicketNumberIs" meta:resourcekey="litYourTicketNumberIsResource1" />
                 <asp:Label ID="lblTicketNumber" CssClass="bold" runat="server" />; 
                 <asp:literal runat="server" ID="litItWillBeAccess" meta:resourcekey="litItWillBeAccessResource1" />
-                <a class="bold" href="my_issues.aspx"></a>.
+                <a class="bold" href="my_issues.aspx"><%= Resources.Common.MyIssues %></a>.
         </asp:Panel>
         <asp:Panel ID="pnlError" runat="server" Visible="False" >
             <h2 class="header">
