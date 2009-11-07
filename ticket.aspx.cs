@@ -210,11 +210,11 @@ public partial class _ticket : System.Web.UI.Page
         {
             subject = Resources.Common.TicketNumber + " " + id + " " + GetLocalResourceObject("BeenUpdated") + " - " + Resources.Common.AssignedTo.ToLower()+ " " + toGroup;
             body = submitterName + " (" + fromGroup + ") " + GetLocalResourceObject("HasUpdated").ToString() + " " + Resources.Common.TicketNumber.ToLower() + " " + id + ":" + n + title + n + n;
-            body += "Priority: " + _priority + n + Resources.Common.Status + ": " + status;
+            body += Resources.Common.Priority + ": " + _priority + n + Resources.Common.Status + ": " + status.status_name;
             body += n + n + GetLocalResourceObject("ViewIt").ToString() + ":" + n + rootUrl + "/ticket.aspx?ticketID=" + id;
         }
         Utils.SendEmail(originalEmail, subject, body);
-        if (sendToGroup) Utils.SendEmail(groupEmail, subject, body);
+        if (sendToGroup && groupEmail != originalEmail) Utils.SendEmail(groupEmail, subject, body);
     }
 
     protected void btnGoToTicket_Click(object sender, EventArgs e)
