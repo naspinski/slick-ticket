@@ -199,19 +199,18 @@ public partial class _ticket : System.Web.UI.Page
     {
         bool sendToGroup = !toGroup.Equals("0");
         string body, subject;
-        string rootUrl = Utils.Settings.BaseUrl;
         if (status.id == 5)
         {
             sendToGroup = false;
             subject = ddlPriority.SelectedItem.Text + " " + Resources.Common.Priority.ToLower() + " " + Resources.Common.TicketNumber.ToLower() + " " + id + " " + GetLocalResourceObject("BeenClosed").ToString();
-            body = submitterName + " (" + fromGroup + ") " + GetLocalResourceObject("HasClosed").ToString() +" " + id + ": " + title + ".   " + GetLocalResourceObject("ReOpen").ToString() + n + n + rootUrl + "/ticket.aspx?ticketID=" + id;
+            body = submitterName + " (" + fromGroup + ") " + GetLocalResourceObject("HasClosed").ToString() +" " + id + ": " + title + ".   " + GetLocalResourceObject("ReOpen").ToString() + n + n + Utils.CurrentUrlDirectory + "ticket.aspx?ticketID=" + id;
         }
         else
         {
             subject = Resources.Common.TicketNumber + " " + id + " " + GetLocalResourceObject("BeenUpdated") + " - " + Resources.Common.AssignedTo.ToLower()+ " " + toGroup;
             body = submitterName + " (" + fromGroup + ") " + GetLocalResourceObject("HasUpdated").ToString() + " " + Resources.Common.TicketNumber.ToLower() + " " + id + ":" + n + title + n + n;
             body += Resources.Common.Priority + ": " + _priority + n + Resources.Common.Status + ": " + status.status_name;
-            body += n + n + GetLocalResourceObject("ViewIt").ToString() + ":" + n + rootUrl + "/ticket.aspx?ticketID=" + id;
+            body += n + n + GetLocalResourceObject("ViewIt").ToString() + ":" + n + Utils.CurrentUrlDirectory + "ticket.aspx?ticketID=" + id;
         }
         Utils.SendEmail(originalEmail, subject, body);
         if (sendToGroup && groupEmail != originalEmail) Utils.SendEmail(groupEmail, subject, body);

@@ -17,6 +17,16 @@ using System.Xml.Linq;
 /// </summary>
 public class Utils
 {
+    public static string CurrentUrlDirectory
+    {
+        get
+        {
+            string url = HttpContext.Current.Request.Url.ToString();
+            int LastIndexOfSlash = url.LastIndexOf("/");
+            return (LastIndexOfSlash > 0 ? url.Substring(0, LastIndexOfSlash) : url) + "/";
+        }
+    }
+
     public static List<string> UserGroups()
     {
         List<string> groups = new List<string>();
@@ -123,16 +133,6 @@ public class Utils
 
     public class Settings
     {
-        public static string BaseUrl
-        {
-            get
-            {
-                string url = "http://" + HttpContext.Current.Request.ServerVariables["HTTP_HOST"].ToString() + HttpContext.Current.Request.ServerVariables["URL"].ToString();
-                int LastIndexOfSlash = url.LastIndexOf("/");
-                return LastIndexOfSlash > 0 ? url.Substring(0, LastIndexOfSlash) : url;
-            }
-        }
-
         public static string Get(string setting)
         {
             XElement x = XElement.Load(HttpContext.Current.Server.MapPath("~") + "\\App_Data\\settings.xml");
