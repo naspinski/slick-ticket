@@ -1,0 +1,2 @@
+﻿TODO:
+Move logic to this library so it will be easier to interact with using extensions/add-ons
