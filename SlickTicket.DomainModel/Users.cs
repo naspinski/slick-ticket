@@ -8,13 +8,42 @@ namespace SlickTicket.DomainModel
 {
     public class Users
     {
+        public static string OutsideUser { get { return "outside.user"; } }
+
         public static user GetFromEmail(string email)
         { return GetFromEmail(new dbDataContext(), email); }
         public static user GetFromEmail(dbDataContext db, string email)
         {
             user u = db.users.FirstOrDefault(x => x.email.ToLower().Trim() == email.ToLower().Trim());
-            if (u != null) return u; //user is alreayd in the system
-            return u;
+            if (u != null) return u; //user is already in the system
+
+            //otherwise, make a new user
+            try
+            {  //this will make a new user depending on their AD information *if* they exist in AD
+                ActiveDirectoryInfo adInfo = ActiveDirectoryInfo.Get(email);
+                u = new user() { userName = adInfo.UserName, is_admin = false, phone = adInfo.Phone, sub_unit = adInfo.SubUnit, email = email };
+                db.users.InsertOnSubmit(u);
+                db.SubmitChanges();
+                return u;
+            }
+            catch //if they are an outside user (no it AD) it will push them to a default dummy account
+            {
+                u = GetFromUserName(db, Users.OutsideUser);
+                if (u == null) // if this is the first time the dummy has been used, it makes the dummy user
+                {
+                    u = new user() { userName = Users.OutsideUser, email = Users.OutsideUser + "@unknown.com", sub_unit = Units.Default, phone = "555-5555" };
+                    db.users.InsertOnSubmit(u);
+                    db.SubmitChanges();
+                }
+                return u;
+            }
+        }
+
+        public static user GetFromUserName(string userName)
+        { return GetFromUserName(new dbDataContext(), userName); }
+        public static user GetFromUserName(dbDataContext db, string userName)
+        {
+            return db.users.FirstOrDefault(x => x.userName.ToLower().Trim() == userName.ToLower().Trim());
         }
 
         public class ActiveDirectoryInfo
@@ -27,6 +56,7 @@ namespace SlickTicket.DomainModel
 
             /// <summary>
             /// Gets a ActiveDirectoryInfo object by searching with either Windows Username or Email Address
+            /// IMPORTANT: this can only do lookups successfully if it is run with an acocunt that is able to do AD lookups
             /// </summary>
             /// <param name="searchString">Windows Username or Email Address</param>
             /// <returns>ActiveDirectoryInfo of user</returns>
@@ -48,8 +78,9 @@ namespace SlickTicket.DomainModel
                 }
                 catch (Exception ex)
                 {
+                    ex.Data.Add("searchString", searchString);
                     Errors.New(new dbDataContext(), "Users.ActiveDirectoryInformation.GetFromEmail", ex);
-                    throw;
+                    throw ex;
                 }
             }
             private static string AdsPath()

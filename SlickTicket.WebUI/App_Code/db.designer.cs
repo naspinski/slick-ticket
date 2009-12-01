@@ -68,6 +68,9 @@ public partial class dbDataContext : System.Data.Linq.DataContext
   partial void Insertattachment(attachment instance);
   partial void Updateattachment(attachment instance);
   partial void Deleteattachment(attachment instance);
+  partial void Inserterror(error instance);
+  partial void Updateerror(error instance);
+  partial void Deleteerror(error instance);
   #endregion
 	
 	public dbDataContext() : 
@@ -3561,8 +3564,10 @@ public partial class attachment : INotifyPropertyChanging, INotifyPropertyChange
 }
 
 [Table(Name="dbo.errors")]
-public partial class error
+public partial class error : INotifyPropertyChanging, INotifyPropertyChanged
 {
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 	
 	private int _id;
 	
@@ -3572,11 +3577,26 @@ public partial class error
 	
 	private System.DateTime _occured;
 	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OntitleChanging(string value);
+    partial void OntitleChanged();
+    partial void OndetailsChanging(string value);
+    partial void OndetailsChanged();
+    partial void OnoccuredChanging(System.DateTime value);
+    partial void OnoccuredChanged();
+    #endregion
+	
 	public error()
 	{
+		OnCreated();
 	}
 	
-	[Column(Storage="_id", AutoSync=AutoSync.Always, DbType="Int NOT NULL IDENTITY", IsDbGenerated=true)]
+	[Column(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
 	public int id
 	{
 		get
@@ -3587,7 +3607,11 @@ public partial class error
 		{
 			if ((this._id != value))
 			{
+				this.OnidChanging(value);
+				this.SendPropertyChanging();
 				this._id = value;
+				this.SendPropertyChanged("id");
+				this.OnidChanged();
 			}
 		}
 	}
@@ -3603,7 +3627,11 @@ public partial class error
 		{
 			if ((this._title != value))
 			{
+				this.OntitleChanging(value);
+				this.SendPropertyChanging();
 				this._title = value;
+				this.SendPropertyChanged("title");
+				this.OntitleChanged();
 			}
 		}
 	}
@@ -3619,7 +3647,11 @@ public partial class error
 		{
 			if ((this._details != value))
 			{
+				this.OndetailsChanging(value);
+				this.SendPropertyChanging();
 				this._details = value;
+				this.SendPropertyChanged("details");
+				this.OndetailsChanged();
 			}
 		}
 	}
@@ -3635,8 +3667,32 @@ public partial class error
 		{
 			if ((this._occured != value))
 			{
+				this.OnoccuredChanging(value);
+				this.SendPropertyChanging();
 				this._occured = value;
+				this.SendPropertyChanged("occured");
+				this.OnoccuredChanged();
 			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 		}
 	}
 }
