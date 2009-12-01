@@ -1,0 +1,9 @@
+C:\Documents and Settings\stan.naspinski\Desktop\Slick-Ticket\SlickTicket.Tests\bin\Debug\SlickTicket.Tests.dll
+C:\Documents and Settings\stan.naspinski\Desktop\Slick-Ticket\SlickTicket.Tests\bin\Debug\SlickTicket.Tests.pdb
+C:\Documents and Settings\stan.naspinski\Desktop\Slick-Ticket\SlickTicket.Tests\bin\Debug\nunit.framework.dll
+C:\Documents and Settings\stan.naspinski\Desktop\Slick-Ticket\SlickTicket.Tests\bin\Debug\SlickTicket.DomainModel.dll
+C:\Documents and Settings\stan.naspinski\Desktop\Slick-Ticket\SlickTicket.Tests\bin\Debug\SlickTicket.DomainModel.pdb
+C:\Documents and Settings\stan.naspinski\Desktop\Slick-Ticket\SlickTicket.Tests\bin\Debug\nunit.framework.xml
+C:\Documents and Settings\stan.naspinski\Desktop\Slick-Ticket\SlickTicket.Tests\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\stan.naspinski\Desktop\Slick-Ticket\SlickTicket.Tests\obj\Debug\SlickTicket.Tests.dll
+C:\Documents and Settings\stan.naspinski\Desktop\Slick-Ticket\SlickTicket.Tests\obj\Debug\SlickTicket.Tests.pdb
