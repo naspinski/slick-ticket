@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 9.25" name="db">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 9.375" name="db">
   <DataContextMoniker Name="/dbDataContext" />
   <nestedChildShapes>
     <classShape Id="860e234a-d34e-4364-844a-ca160502eff7" absoluteBounds="5.75, 6.125, 2, 1.0961531575520844">
@@ -110,7 +110,7 @@
         <classShapeMoniker Id="e2983d6a-3db7-4b31-b857-cb2bd7aa56cd" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(2.75 : 3.87939636230469); (3.375 : 3.87939636230469)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+    <associationConnector edgePoints="[(2.75 : 3.87939636230469); (3.04166666666667 : 3.87939636230469 : JumpStart); (3.20833333333333 : 3.87939636230469 : JumpEnd); (3.375 : 3.87939636230469)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/dbDataContext/sub_unit/sub_unit_ticket2" />
       <nodes>
         <classShapeMoniker Id="2dc3a1b7-ec3f-46e7-b9d4-c0e4272a4c5a" />
@@ -199,10 +199,10 @@
         <classShapeMoniker Id="a4f5454a-ce51-447f-91d8-31a5ed849e23" />
       </nodes>
     </associationConnector>
-    <classShape Id="1ba2bf76-52d2-4b93-8252-b209f252c468" absoluteBounds="5.75, 7.625, 2, 1.4248478190104168">
+    <classShape Id="7a05191f-68eb-4426-b7f8-352209c67808" absoluteBounds="5.875, 7.75, 2, 1.4248478190104168">
       <DataClassMoniker Name="/dbDataContext/error" />
       <nestedChildShapes>
-        <elementListCompartment Id="dd2661b2-cdea-4b7d-bbd5-f5e95a90a60f" absoluteBounds="5.765, 8.085, 1.9700000000000002, 0.86484781901041674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="e79b9524-870e-4803-b088-d67ca8064566" absoluteBounds="5.89, 8.21, 1.9700000000000002, 0.86484781901041674" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
   </nestedChildShapes>
