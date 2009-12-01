@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("DomainModel")]
+[assembly: AssemblyTitle("SlickTicket.DomainModel")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("MNF-I")]
-[assembly: AssemblyProduct("DomainModel")]
+[assembly: AssemblyProduct("SlickTicket.DomainModel")]
 [assembly: AssemblyCopyright("Copyright © MNF-I 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("c627ad50-8d90-4bf7-84e4-4cb8956d6805")]
+[assembly: Guid("d7c15ae6-ec08-405f-baca-4c2ca14e7e60")]
 
 // Version information for an assembly consists of the following four values:
 //
