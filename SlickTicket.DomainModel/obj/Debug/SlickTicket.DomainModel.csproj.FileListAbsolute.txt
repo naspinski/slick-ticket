@@ -4,3 +4,9 @@ C:\Documents and Settings\stan.naspinski\Desktop\Slick-Ticket\SlickTicket.Domain
 C:\Documents and Settings\stan.naspinski\Desktop\Slick-Ticket\SlickTicket.DomainModel\obj\Debug\SlickTicket.DomainModel.dll
 C:\Documents and Settings\stan.naspinski\Desktop\Slick-Ticket\SlickTicket.DomainModel\obj\Debug\SlickTicket.DomainModel.pdb
 C:\Documents and Settings\stan.naspinski\Desktop\Slick-Ticket\SlickTicket.DomainModel\bin\Debug\SlickTicket.DomainModel.dll.config
+C:\Documents and Settings\stan.naspinski\Desktop\ST Download\SlickTicket.DomainModel\obj\Debug\ResolveAssemblyReference.cache
+C:\Documents and Settings\stan.naspinski\Desktop\ST Download\SlickTicket.DomainModel\obj\Debug\SlickTicket.DomainModel.dll
+C:\Documents and Settings\stan.naspinski\Desktop\ST Download\SlickTicket.DomainModel\obj\Debug\SlickTicket.DomainModel.pdb
+C:\Documents and Settings\stan.naspinski\Desktop\ST Download\SlickTicket.DomainModel\bin\Debug\SlickTicket.DomainModel.dll.config
+C:\Documents and Settings\stan.naspinski\Desktop\ST Download\SlickTicket.DomainModel\bin\Debug\SlickTicket.DomainModel.dll
+C:\Documents and Settings\stan.naspinski\Desktop\ST Download\SlickTicket.DomainModel\bin\Debug\SlickTicket.DomainModel.pdb
