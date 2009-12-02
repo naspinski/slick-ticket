@@ -51,11 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Attachments.cs" />
-    <Compile Include="db.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>db.dbml</DependentUpon>
-    </Compile>
+    <Compile Include="Comments.cs" />
     <Compile Include="Errors.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -64,28 +60,33 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="st.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>st.dbml</DependentUpon>
+    </Compile>
     <Compile Include="Tickets.cs" />
     <Compile Include="Units.cs" />
     <Compile Include="Users.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="db.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>db.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="db.dbml.layout">
-      <DependentUpon>db.dbml</DependentUpon>
-    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="st.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>st.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="st.dbml.layout">
+      <DependentUpon>st.dbml</DependentUpon>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

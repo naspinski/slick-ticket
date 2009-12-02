@@ -5,9 +5,9 @@ using System.Text;
 
 namespace SlickTicket.DomainModel
 {
-    public class Units
+    public class Unit
     {
         public static int Default //defaults to the lowest permission subgroup
-        { get { return new dbDataContext().sub_units.OrderBy(x => x.access_level).First().id; } }
+        { get { return new stDataContext().sub_units.OrderBy(x => x.access_level).First().id; } }
     }
 }

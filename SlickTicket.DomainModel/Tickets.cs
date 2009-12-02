@@ -13,12 +13,14 @@ namespace SlickTicket.DomainModel
 
         public class Email
         {
-            public static bool New(dbDataContext db, string email, string saveDestination, string title, string details, IEnumerable<FileStream> attachments)
+            public static bool New(string email, string title, string details, IEnumerable<FileStream> attachments, string saveDestination)
+            { return New(new stDataContext(), email, title, details, attachments, saveDestination); }
+            public static bool New(stDataContext db, string email, string title, string details, IEnumerable<FileStream> attachments, string saveDestination)
             {
                 try
                 {
-                    user u = Users.GetFromEmail(email);
-                    Ticket.New(db, saveDestination, title, details, 1, attachments, Units.Default, u);
+                    user u = User.GetFromEmail(email);
+                    Ticket.New(db, title, details, 1, Unit.Default, u, attachments, saveDestination);
                     return true;
                 }
                 catch (Exception ex)
@@ -27,12 +29,13 @@ namespace SlickTicket.DomainModel
                     ex.Data.Add("saveDestination", saveDestination);
                     ex.Data.Add("title", title);
                     ex.Data.Add("details", details);
-                    Errors.New("Tickets.Email.New", ex);
+                    ex.Data.Add("attachment count", attachments.Count());
+                    Errors.New("Ticket.Email.New", ex);
                     return false;
                 }
             }
         }
-        public static void New(dbDataContext db, string saveDestination, string title, string details, int priority, IEnumerable<FileStream> attachments, int assigned_to, user u)
+        public static void New(stDataContext db, string title, string details, int priority, int assigned_to, user u, IEnumerable<FileStream> attachments, string saveDestination)
         {
             ticket t = new ticket()
             {
@@ -52,5 +55,9 @@ namespace SlickTicket.DomainModel
             db.SubmitChanges();
             Attachments.Add(db, saveDestination, attachments, t.id, null);
         }
+        public static ticket Get(int id)
+        { return Get(new stDataContext(), id); }
+        public static ticket Get(stDataContext db, int id)
+        { return db.tickets.FirstOrDefault(x => x.id == id); }
     }
 }

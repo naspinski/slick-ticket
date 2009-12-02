@@ -18,9 +18,7 @@ public partial class my_issues : System.Web.UI.Page
 {
     dbDataContext db;
     string userName;
-    int securityLevel;
     bool userIsRegistered;
-    int accessLevel;
     IEnumerable<ticket> myTickets, groupTickets;
     public Dictionary<int, string> urgency = new Dictionary<int, string>();
 

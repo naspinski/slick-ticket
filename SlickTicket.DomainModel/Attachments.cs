@@ -9,8 +9,8 @@ namespace SlickTicket.DomainModel
     public class Attachments
     {
         public static void Add(string attachmentFolder, IEnumerable<FileStream> attachments, int ticket_id, int? comment_id)
-        { Add(new dbDataContext(), attachmentFolder, attachments, ticket_id, comment_id); }
-        public static void Add(dbDataContext db, string attachmentFolder, IEnumerable<FileStream> attachments, int ticket_id, int? comment_id)
+        { Add(new stDataContext(), attachmentFolder, attachments, ticket_id, comment_id); }
+        public static void Add(stDataContext db, string attachmentFolder, IEnumerable<FileStream> attachments, int ticket_id, int? comment_id)
         {
             if (attachments != null && attachments.Count() > 0)
             {
