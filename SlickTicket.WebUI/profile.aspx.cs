@@ -16,7 +16,6 @@ public partial class profile : System.Web.UI.Page
 {
     dbDataContext db;
     string userName, prefix, domain;
-    int securityLevel;
     bool userIsRegistered;
     int accessLevel;
     static string[] allowUserToEdit = { "telephoneNumber" };

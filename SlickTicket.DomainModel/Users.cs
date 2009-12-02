@@ -6,13 +6,13 @@ using System.DirectoryServices;
 
 namespace SlickTicket.DomainModel
 {
-    public class Users
+    public class User
     {
         public static string OutsideUser { get { return "outside.user"; } }
 
         public static user GetFromEmail(string email)
-        { return GetFromEmail(new dbDataContext(), email); }
-        public static user GetFromEmail(dbDataContext db, string email)
+        { return GetFromEmail(new stDataContext(), email); }
+        public static user GetFromEmail(stDataContext db, string email)
         {
             user u = db.users.FirstOrDefault(x => x.email.ToLower().Trim() == email.ToLower().Trim());
             if (u != null) return u; //user is already in the system
@@ -28,10 +28,10 @@ namespace SlickTicket.DomainModel
             }
             catch //if they are an outside user (no it AD) it will push them to a default dummy account
             {
-                u = GetFromUserName(db, Users.OutsideUser);
+                u = GetFromUserName(db, User.OutsideUser);
                 if (u == null) // if this is the first time the dummy has been used, it makes the dummy user
                 {
-                    u = new user() { userName = Users.OutsideUser, email = Users.OutsideUser + "@unknown.com", sub_unit = Units.Default, phone = "555-5555" };
+                    u = new user() { userName = User.OutsideUser, email = User.OutsideUser + "@unknown.com", sub_unit = Unit.Default, phone = "555-5555" };
                     db.users.InsertOnSubmit(u);
                     db.SubmitChanges();
                 }
@@ -40,8 +40,8 @@ namespace SlickTicket.DomainModel
         }
 
         public static user GetFromUserName(string userName)
-        { return GetFromUserName(new dbDataContext(), userName); }
-        public static user GetFromUserName(dbDataContext db, string userName)
+        { return GetFromUserName(new stDataContext(), userName); }
+        public static user GetFromUserName(stDataContext db, string userName)
         {
             return db.users.FirstOrDefault(x => x.userName.ToLower().Trim() == userName.ToLower().Trim());
         }
@@ -72,14 +72,14 @@ namespace SlickTicket.DomainModel
                     AdInfo.Email = searchString;
                     AdInfo.Phone = sr.Properties["telephonenumber"] == null ? "555-5555" : sr.Properties["telephonenumber"][0].ToString();
                     AdInfo.UserName = sr.Properties["samaccountname"][0].ToString();
-                    AdInfo.SubUnit = Units.Default;
+                    AdInfo.SubUnit = Unit.Default;
 
                     return AdInfo;
                 }
                 catch (Exception ex)
                 {
                     ex.Data.Add("searchString", searchString);
-                    Errors.New(new dbDataContext(), "Users.ActiveDirectoryInformation.GetFromEmail", ex);
+                    Errors.New(new stDataContext(), "User.ActiveDirectoryInformation.GetFromEmail", ex);
                     throw ex;
                 }
             }

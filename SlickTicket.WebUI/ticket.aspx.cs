@@ -136,7 +136,7 @@ public partial class _ticket : System.Web.UI.Page
             LinkButton lb = new LinkButton()
             {
                 CommandArgument = a.attachment_name,
-                Text = a.attachment_name + " " + a.attachment_size + " " + Resources.Common.Bytes + ")",
+                Text = a.attachment_name + " (" + a.attachment_size + " " + Resources.Common.Bytes + ")",
                 CssClass = Path.GetExtension(a.attachment_name)
             };
             lb.Click += new EventHandler(btnAttachment_Click);
