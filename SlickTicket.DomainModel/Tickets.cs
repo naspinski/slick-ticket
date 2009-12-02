@@ -13,20 +13,20 @@ namespace SlickTicket.DomainModel
 
         public class Email
         {
-            public static bool New(string email, string title, string details, IEnumerable<FileStream> attachments, string saveDestination)
-            { return New(new stDataContext(), email, title, details, attachments, saveDestination); }
-            public static bool New(stDataContext db, string email, string title, string details, IEnumerable<FileStream> attachments, string saveDestination)
+            public static bool New(string email, string title, string details, IEnumerable<FileStream> attachments, string attachmentDirectory)
+            { return New(new stDataContext(), email, title, details, attachments, attachmentDirectory); }
+            public static bool New(stDataContext db, string email, string title, string details, IEnumerable<FileStream> attachments, string attachmentDirectory)
             {
                 try
                 {
                     user u = User.GetFromEmail(email);
-                    Ticket.New(db, title, details, 1, Unit.Default, u, attachments, saveDestination);
+                    Ticket.New(db, title, details, 1, Unit.Default, u, attachments, attachmentDirectory);
                     return true;
                 }
                 catch (Exception ex)
                 {
                     ex.Data.Add("email", email);
-                    ex.Data.Add("saveDestination", saveDestination);
+                    ex.Data.Add("attachmentDirectory", attachmentDirectory);
                     ex.Data.Add("title", title);
                     ex.Data.Add("details", details);
                     ex.Data.Add("attachment count", attachments.Count());
@@ -35,7 +35,7 @@ namespace SlickTicket.DomainModel
                 }
             }
         }
-        public static void New(stDataContext db, string title, string details, int priority, int assigned_to, user u, IEnumerable<FileStream> attachments, string saveDestination)
+        public static void New(stDataContext db, string title, string details, int priority, int assigned_to, user u, IEnumerable<FileStream> attachments, string attachmentDirectory)
         {
             ticket t = new ticket()
             {
@@ -53,7 +53,7 @@ namespace SlickTicket.DomainModel
             };
             db.tickets.InsertOnSubmit(t);
             db.SubmitChanges();
-            Attachment.Add(db, saveDestination, attachments, t.id, null);
+            Attachment.Add(db, attachmentDirectory, attachments, t.id, null);
         }
 
         public static ticket Get(int id)
