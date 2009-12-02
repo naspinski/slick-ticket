@@ -6,7 +6,7 @@ using System.IO;
 
 namespace SlickTicket.DomainModel
 {
-    public class Attachments
+    public class Attachment
     {
         public static void Add(string attachmentFolder, IEnumerable<FileStream> attachments, int ticket_id, int? comment_id)
         { Add(new stDataContext(), attachmentFolder, attachments, ticket_id, comment_id); }

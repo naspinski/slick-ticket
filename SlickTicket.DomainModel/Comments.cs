@@ -19,7 +19,7 @@ namespace SlickTicket.DomainModel
                 {
                     user u = User.GetFromEmail(email);
                     ticket t = Ticket.Get(db, ticket_id);
-                    comment c = t.comments.Last();
+                    comment c = t.comments.Count > 0 ? t.comments.Last() : new comment() { status_id = t.ticket_status, priority_id = t.priority, assigned_to = t.assigned_to_group };
                     New(db, t, u, details, c.assigned_to, c.priority_id, (c.status_id == 1 ? 3 : c.status_id), attachments, attachmentFolder);
                     return true;
                 }
@@ -56,8 +56,11 @@ namespace SlickTicket.DomainModel
             }
         }
 
+        public static void New(int ticket_id, int user_id, string details, int assigned_to, int priority, int status, IEnumerable<FileStream> attachments, string attachmentFolder)
+        { New(new stDataContext(), ticket_id, user_id, details, assigned_to, priority, status, attachments, attachmentFolder); }
         public static void New(stDataContext db, int ticket_id, int user_id, string details, int assigned_to, int priority, int status, IEnumerable<FileStream> attachments, string attachmentFolder)
         {
+            Ticket.Update(db, ticket_id, status, priority, assigned_to);
             comment c = new comment()
             {
                 active = true,
@@ -71,7 +74,7 @@ namespace SlickTicket.DomainModel
             };
             db.comments.InsertOnSubmit(c);
             db.SubmitChanges();
-            Attachments.Add(db, attachmentFolder, attachments, ticket_id, c.id);
+            Attachment.Add(db, attachmentFolder, attachments, ticket_id, c.id);
         }
     }
 }
