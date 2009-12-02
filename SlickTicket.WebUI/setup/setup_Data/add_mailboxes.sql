@@ -1,0 +1,11 @@
+﻿USE [SlickTicket]
+
+CREATE TABLE [dbo].[mailboxes](
+	Id INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+	Host NVARCHAR(255) NOT NULL,
+	EmailAddress NVARCHAR(255) NOT NULL,
+	UserName NVARCHAR(255) NOT NULL,
+	Password NVARCHAR(255) NOT NULL,
+	Port INT NOT NULL
+	SubUnitId INT NOT NULL REFERENCES sub_unit(id)
+);
