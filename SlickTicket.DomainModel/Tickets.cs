@@ -53,11 +53,27 @@ namespace SlickTicket.DomainModel
             };
             db.tickets.InsertOnSubmit(t);
             db.SubmitChanges();
-            Attachments.Add(db, saveDestination, attachments, t.id, null);
+            Attachment.Add(db, saveDestination, attachments, t.id, null);
         }
+
         public static ticket Get(int id)
         { return Get(new stDataContext(), id); }
         public static ticket Get(stDataContext db, int id)
         { return db.tickets.FirstOrDefault(x => x.id == id); }
+
+        public static void Update(int ticket_id, int status, int priority_id, int assigned_to)
+        { Update(new stDataContext(), ticket_id, status, priority_id, assigned_to); }
+        public static void Update(stDataContext db, int ticket_id, int status, int priority_id, int assigned_to)
+        {
+            ticket t = Get(db, ticket_id);
+            t.ticket_status = status;
+            t.priority = priority_id;
+            t.assigned_to_group_last = t.assigned_to_group;
+            t.assigned_to_group = assigned_to;
+            if (status == 5) t.closed = DateTime.Now;
+            else t.closed = NullDate;
+            t.last_action = DateTime.Now;
+            db.SubmitChanges();
+        }
     }
 }
