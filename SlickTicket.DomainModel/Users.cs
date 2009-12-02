@@ -56,7 +56,7 @@ namespace SlickTicket.DomainModel
 
             /// <summary>
             /// Gets a ActiveDirectoryInfo object by searching with either Windows Username or Email Address
-            /// IMPORTANT: this can only do lookups successfully if it is run with an acocunt that is able to do AD lookups
+            /// IMPORTANT: this can only do lookups successfully if it is run with an account that is able to do AD lookups
             /// </summary>
             /// <param name="searchString">Windows Username or Email Address</param>
             /// <returns>ActiveDirectoryInfo of user</returns>
