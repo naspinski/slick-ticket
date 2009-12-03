@@ -11,21 +11,30 @@ namespace SlickTicket.DomainModel
     {
         public class Email
         {
-            public static bool New(string email, int ticket_id, string details, IEnumerable<FileStream> attachments, string attachmentFolder)
-            { return New(new stDataContext(), email, ticket_id, details, attachments, attachmentFolder); }
-            public static bool New(stDataContext db, string email, int ticket_id, string details, IEnumerable<FileStream> attachments, string attachmentFolder)
+            // without a reassignment
+            public static bool New(string senders_email, int ticket_id, string details, IEnumerable<FileStream> attachments, string attachmentFolder)
+            { return New(new stDataContext(), senders_email, null, ticket_id, details, attachments, attachmentFolder); }
+            public static bool New(stDataContext db, string senders_email, int ticket_id, string details, IEnumerable<FileStream> attachments, string attachmentFolder)
+            { return New(db, senders_email, null, ticket_id, details, attachments, attachmentFolder); }
+
+            public static bool New(string senders_email, string mailbox_email, int ticket_id, string details, IEnumerable<FileStream> attachments, string attachmentFolder)
+            { return New(new stDataContext(), senders_email, mailbox_email, ticket_id, details, attachments, attachmentFolder); }
+            public static bool New(stDataContext db, string senders_email, string mailbox_email, int ticket_id, string details, IEnumerable<FileStream> attachments, string attachmentFolder)
             {
                 try
                 {
-                    user u = User.GetFromEmail(email);
+                    int assign_to = Mailbox.GetSubUnitId(db, mailbox_email);
+                    user u = User.GetFromEmail(senders_email);
                     ticket t = Ticket.Get(db, ticket_id);
                     comment c = t.comments.Count > 0 ? t.comments.Last() : new comment() { status_id = t.ticket_status, priority_id = t.priority, assigned_to = t.assigned_to_group };
-                    New(db, t, u, details, c.assigned_to, c.priority_id, (c.status_id == 1 ? 3 : c.status_id), attachments, attachmentFolder);
+                    assign_to = assign_to != Unit.Default ? assign_to : c.assigned_to;
+                    New(db, t, u, details, assign_to, c.priority_id, (c.status_id == 1 ? 3 : c.status_id), attachments, attachmentFolder);
                     return true;
                 }
                 catch (Exception ex)
                 {
-                    ex.Data.Add("email", email);
+                    ex.Data.Add("senders_email", senders_email);
+                    ex.Data.Add("mailbox_email", mailbox_email);
                     ex.Data.Add("ticket_id", ticket_id);
                     ex.Data.Add("details", details);
                     ex.Data.Add("attachment count", attachments.Count());

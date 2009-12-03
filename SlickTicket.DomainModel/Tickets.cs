@@ -13,20 +13,26 @@ namespace SlickTicket.DomainModel
 
         public class Email
         {
-            public static bool New(string senders_email, string title, string details, IEnumerable<FileStream> attachments, string attachmentDirectory)
-            { return New(new stDataContext(), senders_email, title, details, attachments, attachmentDirectory); }
-            public static bool New(stDataContext db, string senders_email, string title, string details, IEnumerable<FileStream> attachments, string attachmentDirectory)
+            //no mailbox_email
+            public static bool New(string senders_email, string title, string details, IEnumerable<FileStream> attachments, string attachmentFolder)
+            { return New(new stDataContext(), senders_email, title, details, attachments, attachmentFolder); }
+            public static bool New(stDataContext db, string senders_email, string title, string details, IEnumerable<FileStream> attachments, string attachmentFolder)
+            { return New(db, senders_email, null, title, details, attachments, attachmentFolder); }
+
+            public static bool New(string senders_email, string mailbox_email, string title, string details, IEnumerable<FileStream> attachments, string attachmentFolder)
+            { return New(new stDataContext(), senders_email, mailbox_email, title, details, attachments, attachmentFolder); }
+            public static bool New(stDataContext db, string senders_email, string mailbox_email, string title, string details, IEnumerable<FileStream> attachments, string attachmentFolder)
             {
                 try
                 {
-                    user u = User.GetFromEmail(senders_email);
-                    Ticket.New(db, title, details, 1, Unit.Default, u, attachments, attachmentDirectory);
+                    Ticket.New(db, title, details, 1, Mailbox.GetSubUnitId(mailbox_email), User.GetFromEmail(senders_email), attachments, attachmentFolder);
                     return true;
                 }
                 catch (Exception ex)
                 {
-                    ex.Data.Add("email", senders_email);
-                    ex.Data.Add("attachmentDirectory", attachmentDirectory);
+                    ex.Data.Add("senders_email", senders_email);
+                    ex.Data.Add("mailbox_email", mailbox_email);
+                    ex.Data.Add("attachmentFolder", attachmentFolder);
                     ex.Data.Add("title", title);
                     ex.Data.Add("details", details);
                     ex.Data.Add("attachment count", attachments.Count());
@@ -35,7 +41,7 @@ namespace SlickTicket.DomainModel
                 }
             }
         }
-        public static void New(stDataContext db, string title, string details, int priority, int assigned_to, user u, IEnumerable<FileStream> attachments, string attachmentDirectory)
+        public static void New(stDataContext db, string title, string details, int priority, int assigned_to, user u, IEnumerable<FileStream> attachments, string attachmentFolder)
         {
             ticket t = new ticket()
             {
@@ -53,7 +59,7 @@ namespace SlickTicket.DomainModel
             };
             db.tickets.InsertOnSubmit(t);
             db.SubmitChanges();
-            Attachment.Add(db, attachmentDirectory, attachments, t.id, null);
+            Attachment.Add(db, attachmentFolder, attachments, t.id, null);
         }
 
         public static ticket Get(int id)

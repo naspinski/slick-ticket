@@ -90,7 +90,7 @@ CREATE TABLE [dbo].[errors](
 	[occured] [datetime] NOT NULL
 ) ON [PRIMARY]
 
-/****** Object:  Table [dbo].[Mailboxes]    Script Date: 12/03/2009 12:45:13 ******/
+/****** Object:  Table [dbo].[Mailboxes]    Script Date: 12/03/2009 13:36:32 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -106,6 +106,10 @@ CREATE TABLE [dbo].[Mailboxes](
 PRIMARY KEY CLUSTERED 
 (
 	[Id] ASC
+)WITH (PAD_INDEX  = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY],
+UNIQUE NONCLUSTERED 
+(
+	[EmailAddress] ASC
 )WITH (PAD_INDEX  = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 
