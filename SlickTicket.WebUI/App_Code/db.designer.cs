@@ -68,12 +68,12 @@ public partial class dbDataContext : System.Data.Linq.DataContext
   partial void Inserterror(error instance);
   partial void Updateerror(error instance);
   partial void Deleteerror(error instance);
-  partial void InsertMailbox(Mailbox instance);
-  partial void UpdateMailbox(Mailbox instance);
-  partial void DeleteMailbox(Mailbox instance);
   partial void Insertsub_unit(sub_unit instance);
   partial void Updatesub_unit(sub_unit instance);
   partial void Deletesub_unit(sub_unit instance);
+  partial void InsertMailbox(Mailbox instance);
+  partial void UpdateMailbox(Mailbox instance);
+  partial void DeleteMailbox(Mailbox instance);
   #endregion
 	
 	public dbDataContext() : 
@@ -210,19 +210,19 @@ public partial class dbDataContext : System.Data.Linq.DataContext
 		}
 	}
 	
-	public System.Data.Linq.Table<Mailbox> Mailboxes
-	{
-		get
-		{
-			return this.GetTable<Mailbox>();
-		}
-	}
-	
 	public System.Data.Linq.Table<sub_unit> sub_units
 	{
 		get
 		{
 			return this.GetTable<sub_unit>();
+		}
+	}
+	
+	public System.Data.Linq.Table<Mailbox> Mailboxes
+	{
+		get
+		{
+			return this.GetTable<Mailbox>();
 		}
 	}
 }
@@ -3328,253 +3328,6 @@ public partial class error : INotifyPropertyChanging, INotifyPropertyChanged
 	}
 }
 
-[Table(Name="dbo.Mailboxes")]
-public partial class Mailbox : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _Id;
-	
-	private int _SubUnitID;
-	
-	private string _Host;
-	
-	private string _EmailAddress;
-	
-	private string _UserName;
-	
-	private string _Password;
-	
-	private int _Port;
-	
-	private EntityRef<sub_unit> _sub_unit;
-	
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnIdChanging(int value);
-    partial void OnIdChanged();
-    partial void OnSubUnitIDChanging(int value);
-    partial void OnSubUnitIDChanged();
-    partial void OnHostChanging(string value);
-    partial void OnHostChanged();
-    partial void OnEmailAddressChanging(string value);
-    partial void OnEmailAddressChanged();
-    partial void OnUserNameChanging(string value);
-    partial void OnUserNameChanged();
-    partial void OnPasswordChanging(string value);
-    partial void OnPasswordChanged();
-    partial void OnPortChanging(int value);
-    partial void OnPortChanged();
-    #endregion
-	
-	public Mailbox()
-	{
-		this._sub_unit = default(EntityRef<sub_unit>);
-		OnCreated();
-	}
-	
-	[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int Id
-	{
-		get
-		{
-			return this._Id;
-		}
-		set
-		{
-			if ((this._Id != value))
-			{
-				this.OnIdChanging(value);
-				this.SendPropertyChanging();
-				this._Id = value;
-				this.SendPropertyChanged("Id");
-				this.OnIdChanged();
-			}
-		}
-	}
-	
-	[Column(Storage="_SubUnitID", DbType="Int NOT NULL")]
-	public int SubUnitID
-	{
-		get
-		{
-			return this._SubUnitID;
-		}
-		set
-		{
-			if ((this._SubUnitID != value))
-			{
-				if (this._sub_unit.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.OnSubUnitIDChanging(value);
-				this.SendPropertyChanging();
-				this._SubUnitID = value;
-				this.SendPropertyChanged("SubUnitID");
-				this.OnSubUnitIDChanged();
-			}
-		}
-	}
-	
-	[Column(Storage="_Host", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-	public string Host
-	{
-		get
-		{
-			return this._Host;
-		}
-		set
-		{
-			if ((this._Host != value))
-			{
-				this.OnHostChanging(value);
-				this.SendPropertyChanging();
-				this._Host = value;
-				this.SendPropertyChanged("Host");
-				this.OnHostChanged();
-			}
-		}
-	}
-	
-	[Column(Storage="_EmailAddress", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-	public string EmailAddress
-	{
-		get
-		{
-			return this._EmailAddress;
-		}
-		set
-		{
-			if ((this._EmailAddress != value))
-			{
-				this.OnEmailAddressChanging(value);
-				this.SendPropertyChanging();
-				this._EmailAddress = value;
-				this.SendPropertyChanged("EmailAddress");
-				this.OnEmailAddressChanged();
-			}
-		}
-	}
-	
-	[Column(Storage="_UserName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-	public string UserName
-	{
-		get
-		{
-			return this._UserName;
-		}
-		set
-		{
-			if ((this._UserName != value))
-			{
-				this.OnUserNameChanging(value);
-				this.SendPropertyChanging();
-				this._UserName = value;
-				this.SendPropertyChanged("UserName");
-				this.OnUserNameChanged();
-			}
-		}
-	}
-	
-	[Column(Storage="_Password", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-	public string Password
-	{
-		get
-		{
-			return this._Password;
-		}
-		set
-		{
-			if ((this._Password != value))
-			{
-				this.OnPasswordChanging(value);
-				this.SendPropertyChanging();
-				this._Password = value;
-				this.SendPropertyChanged("Password");
-				this.OnPasswordChanged();
-			}
-		}
-	}
-	
-	[Column(Storage="_Port", DbType="Int NOT NULL")]
-	public int Port
-	{
-		get
-		{
-			return this._Port;
-		}
-		set
-		{
-			if ((this._Port != value))
-			{
-				this.OnPortChanging(value);
-				this.SendPropertyChanging();
-				this._Port = value;
-				this.SendPropertyChanged("Port");
-				this.OnPortChanged();
-			}
-		}
-	}
-	
-	[Association(Name="sub_unit_Mailbox", Storage="_sub_unit", ThisKey="SubUnitID", OtherKey="id", IsForeignKey=true)]
-	public sub_unit sub_unit
-	{
-		get
-		{
-			return this._sub_unit.Entity;
-		}
-		set
-		{
-			sub_unit previousValue = this._sub_unit.Entity;
-			if (((previousValue != value) 
-						|| (this._sub_unit.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._sub_unit.Entity = null;
-					previousValue.Mailboxes.Remove(this);
-				}
-				this._sub_unit.Entity = value;
-				if ((value != null))
-				{
-					value.Mailboxes.Add(this);
-					this._SubUnitID = value.id;
-				}
-				else
-				{
-					this._SubUnitID = default(int);
-				}
-				this.SendPropertyChanged("sub_unit");
-			}
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-}
-
 [Table(Name="dbo.sub_units")]
 public partial class sub_unit : INotifyPropertyChanging, INotifyPropertyChanged
 {
@@ -3980,6 +3733,253 @@ public partial class sub_unit : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		this.SendPropertyChanging();
 		entity.sub_unit = null;
+	}
+}
+
+[Table(Name="dbo.Mailboxes")]
+public partial class Mailbox : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _Id;
+	
+	private int _SubUnitID;
+	
+	private string _Host;
+	
+	private string _EmailAddress;
+	
+	private string _UserName;
+	
+	private string _Password;
+	
+	private int _Port;
+	
+	private EntityRef<sub_unit> _sub_unit;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnSubUnitIDChanging(int value);
+    partial void OnSubUnitIDChanged();
+    partial void OnHostChanging(string value);
+    partial void OnHostChanged();
+    partial void OnEmailAddressChanging(string value);
+    partial void OnEmailAddressChanged();
+    partial void OnUserNameChanging(string value);
+    partial void OnUserNameChanged();
+    partial void OnPasswordChanging(string value);
+    partial void OnPasswordChanged();
+    partial void OnPortChanging(int value);
+    partial void OnPortChanged();
+    #endregion
+	
+	public Mailbox()
+	{
+		this._sub_unit = default(EntityRef<sub_unit>);
+		OnCreated();
+	}
+	
+	[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int Id
+	{
+		get
+		{
+			return this._Id;
+		}
+		set
+		{
+			if ((this._Id != value))
+			{
+				this.OnIdChanging(value);
+				this.SendPropertyChanging();
+				this._Id = value;
+				this.SendPropertyChanged("Id");
+				this.OnIdChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_SubUnitID", DbType="Int NOT NULL")]
+	public int SubUnitID
+	{
+		get
+		{
+			return this._SubUnitID;
+		}
+		set
+		{
+			if ((this._SubUnitID != value))
+			{
+				if (this._sub_unit.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnSubUnitIDChanging(value);
+				this.SendPropertyChanging();
+				this._SubUnitID = value;
+				this.SendPropertyChanged("SubUnitID");
+				this.OnSubUnitIDChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_Host", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+	public string Host
+	{
+		get
+		{
+			return this._Host;
+		}
+		set
+		{
+			if ((this._Host != value))
+			{
+				this.OnHostChanging(value);
+				this.SendPropertyChanging();
+				this._Host = value;
+				this.SendPropertyChanged("Host");
+				this.OnHostChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_EmailAddress", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+	public string EmailAddress
+	{
+		get
+		{
+			return this._EmailAddress;
+		}
+		set
+		{
+			if ((this._EmailAddress != value))
+			{
+				this.OnEmailAddressChanging(value);
+				this.SendPropertyChanging();
+				this._EmailAddress = value;
+				this.SendPropertyChanged("EmailAddress");
+				this.OnEmailAddressChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_UserName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+	public string UserName
+	{
+		get
+		{
+			return this._UserName;
+		}
+		set
+		{
+			if ((this._UserName != value))
+			{
+				this.OnUserNameChanging(value);
+				this.SendPropertyChanging();
+				this._UserName = value;
+				this.SendPropertyChanged("UserName");
+				this.OnUserNameChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_Password", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+	public string Password
+	{
+		get
+		{
+			return this._Password;
+		}
+		set
+		{
+			if ((this._Password != value))
+			{
+				this.OnPasswordChanging(value);
+				this.SendPropertyChanging();
+				this._Password = value;
+				this.SendPropertyChanged("Password");
+				this.OnPasswordChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_Port", DbType="Int NOT NULL")]
+	public int Port
+	{
+		get
+		{
+			return this._Port;
+		}
+		set
+		{
+			if ((this._Port != value))
+			{
+				this.OnPortChanging(value);
+				this.SendPropertyChanging();
+				this._Port = value;
+				this.SendPropertyChanged("Port");
+				this.OnPortChanged();
+			}
+		}
+	}
+	
+	[Association(Name="sub_unit_Mailbox", Storage="_sub_unit", ThisKey="SubUnitID", OtherKey="id", IsForeignKey=true)]
+	public sub_unit sub_unit
+	{
+		get
+		{
+			return this._sub_unit.Entity;
+		}
+		set
+		{
+			sub_unit previousValue = this._sub_unit.Entity;
+			if (((previousValue != value) 
+						|| (this._sub_unit.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._sub_unit.Entity = null;
+					previousValue.Mailboxes.Remove(this);
+				}
+				this._sub_unit.Entity = value;
+				if ((value != null))
+				{
+					value.Mailboxes.Add(this);
+					this._SubUnitID = value.id;
+				}
+				else
+				{
+					this._SubUnitID = default(int);
+				}
+				this.SendPropertyChanged("sub_unit");
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
 	}
 }
 #pragma warning restore 1591

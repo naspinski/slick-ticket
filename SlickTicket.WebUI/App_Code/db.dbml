@@ -149,18 +149,6 @@
       <Column Name="occured" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.Mailboxes" Member="Mailboxes">
-    <Type Name="Mailbox">
-      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="SubUnitID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Host" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="EmailAddress" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="UserName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="Password" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="Port" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="sub_unit_Mailbox" Member="sub_unit" ThisKey="SubUnitID" OtherKey="id" Type="sub_unit" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.sub_units" Member="sub_units">
     <Type Name="sub_unit">
       <Column Name="id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -176,6 +164,18 @@
       <Association Name="sub_unit_Mailbox" Member="Mailboxes" ThisKey="id" OtherKey="SubUnitID" Type="Mailbox" />
       <Association Name="security_level_sub_unit" Member="security_level" ThisKey="access_level" OtherKey="id" Type="security_level" IsForeignKey="true" />
       <Association Name="unit_sub_unit" Member="unit" ThisKey="unit_ref" OtherKey="id" Type="unit" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Mailboxes" Member="Mailboxes">
+    <Type Name="Mailbox">
+      <Column Name="Id" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="SubUnitID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Host" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="EmailAddress" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Port" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Association Name="sub_unit_Mailbox" Member="sub_unit" ThisKey="SubUnitID" OtherKey="id" Type="sub_unit" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>
