@@ -89,3 +89,26 @@ CREATE TABLE [dbo].[errors](
 	[details] [nvarchar](max) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
 	[occured] [datetime] NOT NULL
 ) ON [PRIMARY]
+
+/****** Object:  Table [dbo].[Mailboxes]    Script Date: 12/03/2009 12:45:13 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Mailboxes](
+	[Id] [int] IDENTITY(1,1) NOT NULL,
+	[SubUnitID] [int] NOT NULL,
+	[Host] [nvarchar](255) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[EmailAddress] [nvarchar](255) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[UserName] [nvarchar](255) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[Password] [nvarchar](255) COLLATE SQL_Latin1_General_CP1_CI_AS NOT NULL,
+	[Port] [int] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[Id] ASC
+)WITH (PAD_INDEX  = OFF, IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+ALTER TABLE [dbo].[Mailboxes]  WITH CHECK ADD FOREIGN KEY([SubUnitID])
+REFERENCES [dbo].[sub_units] ([id])

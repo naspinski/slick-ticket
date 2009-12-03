@@ -30,12 +30,12 @@ namespace SlickTicket.DomainModel
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void Insertallowed_email_domain(allowed_email_domain instance);
-    partial void Updateallowed_email_domain(allowed_email_domain instance);
-    partial void Deleteallowed_email_domain(allowed_email_domain instance);
     partial void Insertuser(user instance);
     partial void Updateuser(user instance);
     partial void Deleteuser(user instance);
+    partial void Insertallowed_email_domain(allowed_email_domain instance);
+    partial void Updateallowed_email_domain(allowed_email_domain instance);
+    partial void Deleteallowed_email_domain(allowed_email_domain instance);
     partial void Insertattachment(attachment instance);
     partial void Updateattachment(attachment instance);
     partial void Deleteattachment(attachment instance);
@@ -48,6 +48,9 @@ namespace SlickTicket.DomainModel
     partial void Insertfaq(faq instance);
     partial void Updatefaq(faq instance);
     partial void Deletefaq(faq instance);
+    partial void InsertMailbox(Mailbox instance);
+    partial void UpdateMailbox(Mailbox instance);
+    partial void DeleteMailbox(Mailbox instance);
     partial void Insertpriority(priority instance);
     partial void Updatepriority(priority instance);
     partial void Deletepriority(priority instance);
@@ -104,19 +107,19 @@ namespace SlickTicket.DomainModel
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<allowed_email_domain> allowed_email_domains
-		{
-			get
-			{
-				return this.GetTable<allowed_email_domain>();
-			}
-		}
-		
 		public System.Data.Linq.Table<user> users
 		{
 			get
 			{
 				return this.GetTable<user>();
+			}
+		}
+		
+		public System.Data.Linq.Table<allowed_email_domain> allowed_email_domains
+		{
+			get
+			{
+				return this.GetTable<allowed_email_domain>();
 			}
 		}
 		
@@ -149,6 +152,14 @@ namespace SlickTicket.DomainModel
 			get
 			{
 				return this.GetTable<faq>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Mailbox> Mailboxes
+		{
+			get
+			{
+				return this.GetTable<Mailbox>();
 			}
 		}
 		
@@ -213,92 +224,6 @@ namespace SlickTicket.DomainModel
 			get
 			{
 				return this.GetTable<user_group>();
-			}
-		}
-	}
-	
-	[Table(Name="dbo.allowed_email_domains")]
-	public partial class allowed_email_domain : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _id;
-		
-		private string _domain;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void OndomainChanging(string value);
-    partial void OndomainChanged();
-    #endregion
-		
-		public allowed_email_domain()
-		{
-			OnCreated();
-		}
-		
-		[Column(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int id
-		{
-			get
-			{
-				return this._id;
-			}
-			set
-			{
-				if ((this._id != value))
-				{
-					this.OnidChanging(value);
-					this.SendPropertyChanging();
-					this._id = value;
-					this.SendPropertyChanged("id");
-					this.OnidChanged();
-				}
-			}
-		}
-		
-		[Column(Storage="_domain", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string domain
-		{
-			get
-			{
-				return this._domain;
-			}
-			set
-			{
-				if ((this._domain != value))
-				{
-					this.OndomainChanging(value);
-					this.SendPropertyChanging();
-					this._domain = value;
-					this.SendPropertyChanged("domain");
-					this.OndomainChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
@@ -579,6 +504,92 @@ namespace SlickTicket.DomainModel
 		{
 			this.SendPropertyChanging();
 			entity.user = null;
+		}
+	}
+	
+	[Table(Name="dbo.allowed_email_domains")]
+	public partial class allowed_email_domain : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id;
+		
+		private string _domain;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void OndomainChanging(string value);
+    partial void OndomainChanged();
+    #endregion
+		
+		public allowed_email_domain()
+		{
+			OnCreated();
+		}
+		
+		[Column(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id
+		{
+			get
+			{
+				return this._id;
+			}
+			set
+			{
+				if ((this._id != value))
+				{
+					this.OnidChanging(value);
+					this.SendPropertyChanging();
+					this._id = value;
+					this.SendPropertyChanged("id");
+					this.OnidChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_domain", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string domain
+		{
+			get
+			{
+				return this._domain;
+			}
+			set
+			{
+				if ((this._domain != value))
+				{
+					this.OndomainChanging(value);
+					this.SendPropertyChanging();
+					this._domain = value;
+					this.SendPropertyChanged("domain");
+					this.OndomainChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	
@@ -1601,6 +1612,253 @@ namespace SlickTicket.DomainModel
 		}
 	}
 	
+	[Table(Name="dbo.Mailboxes")]
+	public partial class Mailbox : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _Id;
+		
+		private int _SubUnitID;
+		
+		private string _Host;
+		
+		private string _EmailAddress;
+		
+		private string _UserName;
+		
+		private string _Password;
+		
+		private int _Port;
+		
+		private EntityRef<sub_unit> _sub_unit;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnSubUnitIDChanging(int value);
+    partial void OnSubUnitIDChanged();
+    partial void OnHostChanging(string value);
+    partial void OnHostChanged();
+    partial void OnEmailAddressChanging(string value);
+    partial void OnEmailAddressChanged();
+    partial void OnUserNameChanging(string value);
+    partial void OnUserNameChanged();
+    partial void OnPasswordChanging(string value);
+    partial void OnPasswordChanged();
+    partial void OnPortChanging(int value);
+    partial void OnPortChanged();
+    #endregion
+		
+		public Mailbox()
+		{
+			this._sub_unit = default(EntityRef<sub_unit>);
+			OnCreated();
+		}
+		
+		[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int Id
+		{
+			get
+			{
+				return this._Id;
+			}
+			set
+			{
+				if ((this._Id != value))
+				{
+					this.OnIdChanging(value);
+					this.SendPropertyChanging();
+					this._Id = value;
+					this.SendPropertyChanged("Id");
+					this.OnIdChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_SubUnitID", DbType="Int NOT NULL")]
+		public int SubUnitID
+		{
+			get
+			{
+				return this._SubUnitID;
+			}
+			set
+			{
+				if ((this._SubUnitID != value))
+				{
+					if (this._sub_unit.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSubUnitIDChanging(value);
+					this.SendPropertyChanging();
+					this._SubUnitID = value;
+					this.SendPropertyChanged("SubUnitID");
+					this.OnSubUnitIDChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Host", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Host
+		{
+			get
+			{
+				return this._Host;
+			}
+			set
+			{
+				if ((this._Host != value))
+				{
+					this.OnHostChanging(value);
+					this.SendPropertyChanging();
+					this._Host = value;
+					this.SendPropertyChanged("Host");
+					this.OnHostChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_EmailAddress", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string EmailAddress
+		{
+			get
+			{
+				return this._EmailAddress;
+			}
+			set
+			{
+				if ((this._EmailAddress != value))
+				{
+					this.OnEmailAddressChanging(value);
+					this.SendPropertyChanging();
+					this._EmailAddress = value;
+					this.SendPropertyChanged("EmailAddress");
+					this.OnEmailAddressChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_UserName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this.OnUserNameChanging(value);
+					this.SendPropertyChanging();
+					this._UserName = value;
+					this.SendPropertyChanged("UserName");
+					this.OnUserNameChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Password", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string Password
+		{
+			get
+			{
+				return this._Password;
+			}
+			set
+			{
+				if ((this._Password != value))
+				{
+					this.OnPasswordChanging(value);
+					this.SendPropertyChanging();
+					this._Password = value;
+					this.SendPropertyChanged("Password");
+					this.OnPasswordChanged();
+				}
+			}
+		}
+		
+		[Column(Storage="_Port", DbType="Int NOT NULL")]
+		public int Port
+		{
+			get
+			{
+				return this._Port;
+			}
+			set
+			{
+				if ((this._Port != value))
+				{
+					this.OnPortChanging(value);
+					this.SendPropertyChanging();
+					this._Port = value;
+					this.SendPropertyChanged("Port");
+					this.OnPortChanged();
+				}
+			}
+		}
+		
+		[Association(Name="sub_unit_Mailbox", Storage="_sub_unit", ThisKey="SubUnitID", OtherKey="id", IsForeignKey=true)]
+		public sub_unit sub_unit
+		{
+			get
+			{
+				return this._sub_unit.Entity;
+			}
+			set
+			{
+				sub_unit previousValue = this._sub_unit.Entity;
+				if (((previousValue != value) 
+							|| (this._sub_unit.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._sub_unit.Entity = null;
+						previousValue.Mailboxes.Remove(this);
+					}
+					this._sub_unit.Entity = value;
+					if ((value != null))
+					{
+						value.Mailboxes.Add(this);
+						this._SubUnitID = value.id;
+					}
+					else
+					{
+						this._SubUnitID = default(int);
+					}
+					this.SendPropertyChanged("sub_unit");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
 	[Table(Name="dbo.priority")]
 	public partial class priority : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2421,6 +2679,8 @@ namespace SlickTicket.DomainModel
 		
 		private EntitySet<comment> _comments;
 		
+		private EntitySet<Mailbox> _Mailboxes;
+		
 		private EntitySet<ticket> _tickets;
 		
 		private EntitySet<ticket> _tickets1;
@@ -2451,6 +2711,7 @@ namespace SlickTicket.DomainModel
 		{
 			this._users = new EntitySet<user>(new Action<user>(this.attach_users), new Action<user>(this.detach_users));
 			this._comments = new EntitySet<comment>(new Action<comment>(this.attach_comments), new Action<comment>(this.detach_comments));
+			this._Mailboxes = new EntitySet<Mailbox>(new Action<Mailbox>(this.attach_Mailboxes), new Action<Mailbox>(this.detach_Mailboxes));
 			this._tickets = new EntitySet<ticket>(new Action<ticket>(this.attach_tickets), new Action<ticket>(this.detach_tickets));
 			this._tickets1 = new EntitySet<ticket>(new Action<ticket>(this.attach_tickets1), new Action<ticket>(this.detach_tickets1));
 			this._tickets2 = new EntitySet<ticket>(new Action<ticket>(this.attach_tickets2), new Action<ticket>(this.detach_tickets2));
@@ -2590,6 +2851,19 @@ namespace SlickTicket.DomainModel
 			set
 			{
 				this._comments.Assign(value);
+			}
+		}
+		
+		[Association(Name="sub_unit_Mailbox", Storage="_Mailboxes", ThisKey="id", OtherKey="SubUnitID")]
+		public EntitySet<Mailbox> Mailboxes
+		{
+			get
+			{
+				return this._Mailboxes;
+			}
+			set
+			{
+				this._Mailboxes.Assign(value);
 			}
 		}
 		
@@ -2739,6 +3013,18 @@ namespace SlickTicket.DomainModel
 		}
 		
 		private void detach_comments(comment entity)
+		{
+			this.SendPropertyChanging();
+			entity.sub_unit = null;
+		}
+		
+		private void attach_Mailboxes(Mailbox entity)
+		{
+			this.SendPropertyChanging();
+			entity.sub_unit = this;
+		}
+		
+		private void detach_Mailboxes(Mailbox entity)
 		{
 			this.SendPropertyChanging();
 			entity.sub_unit = null;
