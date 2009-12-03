@@ -13,19 +13,19 @@ namespace SlickTicket.DomainModel
 
         public class Email
         {
-            public static bool New(string email, string title, string details, IEnumerable<FileStream> attachments, string attachmentDirectory)
-            { return New(new stDataContext(), email, title, details, attachments, attachmentDirectory); }
-            public static bool New(stDataContext db, string email, string title, string details, IEnumerable<FileStream> attachments, string attachmentDirectory)
+            public static bool New(string senders_email, string title, string details, IEnumerable<FileStream> attachments, string attachmentDirectory)
+            { return New(new stDataContext(), senders_email, title, details, attachments, attachmentDirectory); }
+            public static bool New(stDataContext db, string senders_email, string title, string details, IEnumerable<FileStream> attachments, string attachmentDirectory)
             {
                 try
                 {
-                    user u = User.GetFromEmail(email);
+                    user u = User.GetFromEmail(senders_email);
                     Ticket.New(db, title, details, 1, Unit.Default, u, attachments, attachmentDirectory);
                     return true;
                 }
                 catch (Exception ex)
                 {
-                    ex.Data.Add("email", email);
+                    ex.Data.Add("email", senders_email);
                     ex.Data.Add("attachmentDirectory", attachmentDirectory);
                     ex.Data.Add("title", title);
                     ex.Data.Add("details", details);

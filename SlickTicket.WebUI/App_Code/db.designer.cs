@@ -50,9 +50,6 @@ public partial class dbDataContext : System.Data.Linq.DataContext
   partial void Insertstyle(style instance);
   partial void Updatestyle(style instance);
   partial void Deletestyle(style instance);
-  partial void Insertsub_unit(sub_unit instance);
-  partial void Updatesub_unit(sub_unit instance);
-  partial void Deletesub_unit(sub_unit instance);
   partial void Insertunit(unit instance);
   partial void Updateunit(unit instance);
   partial void Deleteunit(unit instance);
@@ -71,6 +68,12 @@ public partial class dbDataContext : System.Data.Linq.DataContext
   partial void Inserterror(error instance);
   partial void Updateerror(error instance);
   partial void Deleteerror(error instance);
+  partial void InsertMailbox(Mailbox instance);
+  partial void UpdateMailbox(Mailbox instance);
+  partial void DeleteMailbox(Mailbox instance);
+  partial void Insertsub_unit(sub_unit instance);
+  partial void Updatesub_unit(sub_unit instance);
+  partial void Deletesub_unit(sub_unit instance);
   #endregion
 	
 	public dbDataContext() : 
@@ -159,14 +162,6 @@ public partial class dbDataContext : System.Data.Linq.DataContext
 		}
 	}
 	
-	public System.Data.Linq.Table<sub_unit> sub_units
-	{
-		get
-		{
-			return this.GetTable<sub_unit>();
-		}
-	}
-	
 	public System.Data.Linq.Table<unit> units
 	{
 		get
@@ -212,6 +207,22 @@ public partial class dbDataContext : System.Data.Linq.DataContext
 		get
 		{
 			return this.GetTable<error>();
+		}
+	}
+	
+	public System.Data.Linq.Table<Mailbox> Mailboxes
+	{
+		get
+		{
+			return this.GetTable<Mailbox>();
+		}
+	}
+	
+	public System.Data.Linq.Table<sub_unit> sub_units
+	{
+		get
+		{
+			return this.GetTable<sub_unit>();
 		}
 	}
 }
@@ -869,9 +880,9 @@ public partial class security_level : INotifyPropertyChanging, INotifyPropertyCh
 	
 	private string _security_level_description;
 	
-	private EntitySet<sub_unit> _sub_units;
-	
 	private EntitySet<user_group> _user_groups;
+	
+	private EntitySet<sub_unit> _sub_units;
 	
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -887,8 +898,8 @@ public partial class security_level : INotifyPropertyChanging, INotifyPropertyCh
 	
 	public security_level()
 	{
-		this._sub_units = new EntitySet<sub_unit>(new Action<sub_unit>(this.attach_sub_units), new Action<sub_unit>(this.detach_sub_units));
 		this._user_groups = new EntitySet<user_group>(new Action<user_group>(this.attach_user_groups), new Action<user_group>(this.detach_user_groups));
+		this._sub_units = new EntitySet<sub_unit>(new Action<sub_unit>(this.attach_sub_units), new Action<sub_unit>(this.detach_sub_units));
 		OnCreated();
 	}
 	
@@ -952,19 +963,6 @@ public partial class security_level : INotifyPropertyChanging, INotifyPropertyCh
 		}
 	}
 	
-	[Association(Name="security_level_sub_unit", Storage="_sub_units", ThisKey="id", OtherKey="access_level")]
-	public EntitySet<sub_unit> sub_units
-	{
-		get
-		{
-			return this._sub_units;
-		}
-		set
-		{
-			this._sub_units.Assign(value);
-		}
-	}
-	
 	[Association(Name="security_level_user_group", Storage="_user_groups", ThisKey="id", OtherKey="security_level")]
 	public EntitySet<user_group> user_groups
 	{
@@ -975,6 +973,19 @@ public partial class security_level : INotifyPropertyChanging, INotifyPropertyCh
 		set
 		{
 			this._user_groups.Assign(value);
+		}
+	}
+	
+	[Association(Name="security_level_sub_unit", Storage="_sub_units", ThisKey="id", OtherKey="access_level")]
+	public EntitySet<sub_unit> sub_units
+	{
+		get
+		{
+			return this._sub_units;
+		}
+		set
+		{
+			this._sub_units.Assign(value);
 		}
 	}
 	
@@ -998,18 +1009,6 @@ public partial class security_level : INotifyPropertyChanging, INotifyPropertyCh
 		}
 	}
 	
-	private void attach_sub_units(sub_unit entity)
-	{
-		this.SendPropertyChanging();
-		entity.security_level = this;
-	}
-	
-	private void detach_sub_units(sub_unit entity)
-	{
-		this.SendPropertyChanging();
-		entity.security_level = null;
-	}
-	
 	private void attach_user_groups(user_group entity)
 	{
 		this.SendPropertyChanging();
@@ -1020,6 +1019,18 @@ public partial class security_level : INotifyPropertyChanging, INotifyPropertyCh
 	{
 		this.SendPropertyChanging();
 		entity.security_level1 = null;
+	}
+	
+	private void attach_sub_units(sub_unit entity)
+	{
+		this.SendPropertyChanging();
+		entity.security_level = this;
+	}
+	
+	private void detach_sub_units(sub_unit entity)
+	{
+		this.SendPropertyChanging();
+		entity.security_level = null;
 	}
 }
 
@@ -1491,386 +1502,6 @@ public partial class style : INotifyPropertyChanging, INotifyPropertyChanged
 	}
 }
 
-[Table(Name="dbo.sub_units")]
-public partial class sub_unit : INotifyPropertyChanging, INotifyPropertyChanged
-{
-	
-	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-	
-	private int _id;
-	
-	private int _unit_ref;
-	
-	private string _sub_unit_name;
-	
-	private int _access_level;
-	
-	private string _mailto;
-	
-	private EntitySet<user> _users;
-	
-	private EntitySet<ticket> _tickets;
-	
-	private EntitySet<ticket> _tickets1;
-	
-	private EntitySet<ticket> _tickets2;
-	
-	private EntitySet<comment> _comments;
-	
-	private EntityRef<security_level> _security_level;
-	
-	private EntityRef<unit> _unit;
-	
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnidChanging(int value);
-    partial void OnidChanged();
-    partial void Onunit_refChanging(int value);
-    partial void Onunit_refChanged();
-    partial void Onsub_unit_nameChanging(string value);
-    partial void Onsub_unit_nameChanged();
-    partial void Onaccess_levelChanging(int value);
-    partial void Onaccess_levelChanged();
-    partial void OnmailtoChanging(string value);
-    partial void OnmailtoChanged();
-    #endregion
-	
-	public sub_unit()
-	{
-		this._users = new EntitySet<user>(new Action<user>(this.attach_users), new Action<user>(this.detach_users));
-		this._tickets = new EntitySet<ticket>(new Action<ticket>(this.attach_tickets), new Action<ticket>(this.detach_tickets));
-		this._tickets1 = new EntitySet<ticket>(new Action<ticket>(this.attach_tickets1), new Action<ticket>(this.detach_tickets1));
-		this._tickets2 = new EntitySet<ticket>(new Action<ticket>(this.attach_tickets2), new Action<ticket>(this.detach_tickets2));
-		this._comments = new EntitySet<comment>(new Action<comment>(this.attach_comments), new Action<comment>(this.detach_comments));
-		this._security_level = default(EntityRef<security_level>);
-		this._unit = default(EntityRef<unit>);
-		OnCreated();
-	}
-	
-	[Column(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-	public int id
-	{
-		get
-		{
-			return this._id;
-		}
-		set
-		{
-			if ((this._id != value))
-			{
-				this.OnidChanging(value);
-				this.SendPropertyChanging();
-				this._id = value;
-				this.SendPropertyChanged("id");
-				this.OnidChanged();
-			}
-		}
-	}
-	
-	[Column(Storage="_unit_ref", DbType="Int NOT NULL")]
-	public int unit_ref
-	{
-		get
-		{
-			return this._unit_ref;
-		}
-		set
-		{
-			if ((this._unit_ref != value))
-			{
-				if (this._unit.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.Onunit_refChanging(value);
-				this.SendPropertyChanging();
-				this._unit_ref = value;
-				this.SendPropertyChanged("unit_ref");
-				this.Onunit_refChanged();
-			}
-		}
-	}
-	
-	[Column(Storage="_sub_unit_name", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
-	public string sub_unit_name
-	{
-		get
-		{
-			return this._sub_unit_name;
-		}
-		set
-		{
-			if ((this._sub_unit_name != value))
-			{
-				this.Onsub_unit_nameChanging(value);
-				this.SendPropertyChanging();
-				this._sub_unit_name = value;
-				this.SendPropertyChanged("sub_unit_name");
-				this.Onsub_unit_nameChanged();
-			}
-		}
-	}
-	
-	[Column(Storage="_access_level", DbType="Int NOT NULL")]
-	public int access_level
-	{
-		get
-		{
-			return this._access_level;
-		}
-		set
-		{
-			if ((this._access_level != value))
-			{
-				if (this._security_level.HasLoadedOrAssignedValue)
-				{
-					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-				}
-				this.Onaccess_levelChanging(value);
-				this.SendPropertyChanging();
-				this._access_level = value;
-				this.SendPropertyChanged("access_level");
-				this.Onaccess_levelChanged();
-			}
-		}
-	}
-	
-	[Column(Storage="_mailto", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
-	public string mailto
-	{
-		get
-		{
-			return this._mailto;
-		}
-		set
-		{
-			if ((this._mailto != value))
-			{
-				this.OnmailtoChanging(value);
-				this.SendPropertyChanging();
-				this._mailto = value;
-				this.SendPropertyChanged("mailto");
-				this.OnmailtoChanged();
-			}
-		}
-	}
-	
-	[Association(Name="sub_unit_user", Storage="_users", ThisKey="id", OtherKey="sub_unit")]
-	public EntitySet<user> users
-	{
-		get
-		{
-			return this._users;
-		}
-		set
-		{
-			this._users.Assign(value);
-		}
-	}
-	
-	[Association(Name="sub_unit_ticket", Storage="_tickets", ThisKey="id", OtherKey="assigned_to_group")]
-	public EntitySet<ticket> tickets
-	{
-		get
-		{
-			return this._tickets;
-		}
-		set
-		{
-			this._tickets.Assign(value);
-		}
-	}
-	
-	[Association(Name="sub_unit_ticket1", Storage="_tickets1", ThisKey="id", OtherKey="assigned_to_group_last")]
-	public EntitySet<ticket> tickets1
-	{
-		get
-		{
-			return this._tickets1;
-		}
-		set
-		{
-			this._tickets1.Assign(value);
-		}
-	}
-	
-	[Association(Name="sub_unit_ticket2", Storage="_tickets2", ThisKey="id", OtherKey="originating_group")]
-	public EntitySet<ticket> tickets2
-	{
-		get
-		{
-			return this._tickets2;
-		}
-		set
-		{
-			this._tickets2.Assign(value);
-		}
-	}
-	
-	[Association(Name="sub_unit_comment", Storage="_comments", ThisKey="id", OtherKey="assigned_to")]
-	public EntitySet<comment> comments
-	{
-		get
-		{
-			return this._comments;
-		}
-		set
-		{
-			this._comments.Assign(value);
-		}
-	}
-	
-	[Association(Name="security_level_sub_unit", Storage="_security_level", ThisKey="access_level", OtherKey="id", IsForeignKey=true)]
-	public security_level security_level
-	{
-		get
-		{
-			return this._security_level.Entity;
-		}
-		set
-		{
-			security_level previousValue = this._security_level.Entity;
-			if (((previousValue != value) 
-						|| (this._security_level.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._security_level.Entity = null;
-					previousValue.sub_units.Remove(this);
-				}
-				this._security_level.Entity = value;
-				if ((value != null))
-				{
-					value.sub_units.Add(this);
-					this._access_level = value.id;
-				}
-				else
-				{
-					this._access_level = default(int);
-				}
-				this.SendPropertyChanged("security_level");
-			}
-		}
-	}
-	
-	[Association(Name="unit_sub_unit", Storage="_unit", ThisKey="unit_ref", OtherKey="id", IsForeignKey=true)]
-	public unit unit
-	{
-		get
-		{
-			return this._unit.Entity;
-		}
-		set
-		{
-			unit previousValue = this._unit.Entity;
-			if (((previousValue != value) 
-						|| (this._unit.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._unit.Entity = null;
-					previousValue.sub_units.Remove(this);
-				}
-				this._unit.Entity = value;
-				if ((value != null))
-				{
-					value.sub_units.Add(this);
-					this._unit_ref = value.id;
-				}
-				else
-				{
-					this._unit_ref = default(int);
-				}
-				this.SendPropertyChanged("unit");
-			}
-		}
-	}
-	
-	public event PropertyChangingEventHandler PropertyChanging;
-	
-	public event PropertyChangedEventHandler PropertyChanged;
-	
-	protected virtual void SendPropertyChanging()
-	{
-		if ((this.PropertyChanging != null))
-		{
-			this.PropertyChanging(this, emptyChangingEventArgs);
-		}
-	}
-	
-	protected virtual void SendPropertyChanged(String propertyName)
-	{
-		if ((this.PropertyChanged != null))
-		{
-			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-		}
-	}
-	
-	private void attach_users(user entity)
-	{
-		this.SendPropertyChanging();
-		entity.sub_unit1 = this;
-	}
-	
-	private void detach_users(user entity)
-	{
-		this.SendPropertyChanging();
-		entity.sub_unit1 = null;
-	}
-	
-	private void attach_tickets(ticket entity)
-	{
-		this.SendPropertyChanging();
-		entity.sub_unit = this;
-	}
-	
-	private void detach_tickets(ticket entity)
-	{
-		this.SendPropertyChanging();
-		entity.sub_unit = null;
-	}
-	
-	private void attach_tickets1(ticket entity)
-	{
-		this.SendPropertyChanging();
-		entity.sub_unit1 = this;
-	}
-	
-	private void detach_tickets1(ticket entity)
-	{
-		this.SendPropertyChanging();
-		entity.sub_unit1 = null;
-	}
-	
-	private void attach_tickets2(ticket entity)
-	{
-		this.SendPropertyChanging();
-		entity.sub_unit2 = this;
-	}
-	
-	private void detach_tickets2(ticket entity)
-	{
-		this.SendPropertyChanging();
-		entity.sub_unit2 = null;
-	}
-	
-	private void attach_comments(comment entity)
-	{
-		this.SendPropertyChanging();
-		entity.sub_unit = this;
-	}
-	
-	private void detach_comments(comment entity)
-	{
-		this.SendPropertyChanging();
-		entity.sub_unit = null;
-	}
-}
-
 [Table(Name="dbo.units")]
 public partial class unit : INotifyPropertyChanging, INotifyPropertyChanged
 {
@@ -2172,17 +1803,17 @@ public partial class ticket : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private EntitySet<attachment> _attachments;
 	
-	private EntityRef<sub_unit> _sub_unit;
-	
-	private EntityRef<sub_unit> _sub_unit1;
-	
-	private EntityRef<sub_unit> _sub_unit2;
-	
 	private EntityRef<priority> _priority1;
 	
 	private EntityRef<user> _user;
 	
 	private EntityRef<statuse> _statuse;
+	
+	private EntityRef<sub_unit> _sub_unit;
+	
+	private EntityRef<sub_unit> _sub_unit1;
+	
+	private EntityRef<sub_unit> _sub_unit2;
 	
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2220,12 +1851,12 @@ public partial class ticket : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		this._comments = new EntitySet<comment>(new Action<comment>(this.attach_comments), new Action<comment>(this.detach_comments));
 		this._attachments = new EntitySet<attachment>(new Action<attachment>(this.attach_attachments), new Action<attachment>(this.detach_attachments));
-		this._sub_unit = default(EntityRef<sub_unit>);
-		this._sub_unit1 = default(EntityRef<sub_unit>);
-		this._sub_unit2 = default(EntityRef<sub_unit>);
 		this._priority1 = default(EntityRef<priority>);
 		this._user = default(EntityRef<user>);
 		this._statuse = default(EntityRef<statuse>);
+		this._sub_unit = default(EntityRef<sub_unit>);
+		this._sub_unit1 = default(EntityRef<sub_unit>);
+		this._sub_unit2 = default(EntityRef<sub_unit>);
 		OnCreated();
 	}
 	
@@ -2539,108 +2170,6 @@ public partial class ticket : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[Association(Name="sub_unit_ticket", Storage="_sub_unit", ThisKey="assigned_to_group", OtherKey="id", IsForeignKey=true)]
-	public sub_unit sub_unit
-	{
-		get
-		{
-			return this._sub_unit.Entity;
-		}
-		set
-		{
-			sub_unit previousValue = this._sub_unit.Entity;
-			if (((previousValue != value) 
-						|| (this._sub_unit.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._sub_unit.Entity = null;
-					previousValue.tickets.Remove(this);
-				}
-				this._sub_unit.Entity = value;
-				if ((value != null))
-				{
-					value.tickets.Add(this);
-					this._assigned_to_group = value.id;
-				}
-				else
-				{
-					this._assigned_to_group = default(int);
-				}
-				this.SendPropertyChanged("sub_unit");
-			}
-		}
-	}
-	
-	[Association(Name="sub_unit_ticket1", Storage="_sub_unit1", ThisKey="assigned_to_group_last", OtherKey="id", IsForeignKey=true)]
-	public sub_unit sub_unit1
-	{
-		get
-		{
-			return this._sub_unit1.Entity;
-		}
-		set
-		{
-			sub_unit previousValue = this._sub_unit1.Entity;
-			if (((previousValue != value) 
-						|| (this._sub_unit1.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._sub_unit1.Entity = null;
-					previousValue.tickets1.Remove(this);
-				}
-				this._sub_unit1.Entity = value;
-				if ((value != null))
-				{
-					value.tickets1.Add(this);
-					this._assigned_to_group_last = value.id;
-				}
-				else
-				{
-					this._assigned_to_group_last = default(Nullable<int>);
-				}
-				this.SendPropertyChanged("sub_unit1");
-			}
-		}
-	}
-	
-	[Association(Name="sub_unit_ticket2", Storage="_sub_unit2", ThisKey="originating_group", OtherKey="id", IsForeignKey=true)]
-	public sub_unit sub_unit2
-	{
-		get
-		{
-			return this._sub_unit2.Entity;
-		}
-		set
-		{
-			sub_unit previousValue = this._sub_unit2.Entity;
-			if (((previousValue != value) 
-						|| (this._sub_unit2.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._sub_unit2.Entity = null;
-					previousValue.tickets2.Remove(this);
-				}
-				this._sub_unit2.Entity = value;
-				if ((value != null))
-				{
-					value.tickets2.Add(this);
-					this._originating_group = value.id;
-				}
-				else
-				{
-					this._originating_group = default(int);
-				}
-				this.SendPropertyChanged("sub_unit2");
-			}
-		}
-	}
-	
 	[Association(Name="priority_ticket", Storage="_priority1", ThisKey="priority", OtherKey="id", IsForeignKey=true)]
 	public priority priority1
 	{
@@ -2743,6 +2272,108 @@ public partial class ticket : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
+	[Association(Name="sub_unit_ticket", Storage="_sub_unit", ThisKey="assigned_to_group", OtherKey="id", IsForeignKey=true)]
+	public sub_unit sub_unit
+	{
+		get
+		{
+			return this._sub_unit.Entity;
+		}
+		set
+		{
+			sub_unit previousValue = this._sub_unit.Entity;
+			if (((previousValue != value) 
+						|| (this._sub_unit.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._sub_unit.Entity = null;
+					previousValue.tickets.Remove(this);
+				}
+				this._sub_unit.Entity = value;
+				if ((value != null))
+				{
+					value.tickets.Add(this);
+					this._assigned_to_group = value.id;
+				}
+				else
+				{
+					this._assigned_to_group = default(int);
+				}
+				this.SendPropertyChanged("sub_unit");
+			}
+		}
+	}
+	
+	[Association(Name="sub_unit_ticket1", Storage="_sub_unit1", ThisKey="assigned_to_group_last", OtherKey="id", IsForeignKey=true)]
+	public sub_unit sub_unit1
+	{
+		get
+		{
+			return this._sub_unit1.Entity;
+		}
+		set
+		{
+			sub_unit previousValue = this._sub_unit1.Entity;
+			if (((previousValue != value) 
+						|| (this._sub_unit1.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._sub_unit1.Entity = null;
+					previousValue.tickets1.Remove(this);
+				}
+				this._sub_unit1.Entity = value;
+				if ((value != null))
+				{
+					value.tickets1.Add(this);
+					this._assigned_to_group_last = value.id;
+				}
+				else
+				{
+					this._assigned_to_group_last = default(Nullable<int>);
+				}
+				this.SendPropertyChanged("sub_unit1");
+			}
+		}
+	}
+	
+	[Association(Name="sub_unit_ticket2", Storage="_sub_unit2", ThisKey="originating_group", OtherKey="id", IsForeignKey=true)]
+	public sub_unit sub_unit2
+	{
+		get
+		{
+			return this._sub_unit2.Entity;
+		}
+		set
+		{
+			sub_unit previousValue = this._sub_unit2.Entity;
+			if (((previousValue != value) 
+						|| (this._sub_unit2.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._sub_unit2.Entity = null;
+					previousValue.tickets2.Remove(this);
+				}
+				this._sub_unit2.Entity = value;
+				if ((value != null))
+				{
+					value.tickets2.Add(this);
+					this._originating_group = value.id;
+				}
+				else
+				{
+					this._originating_group = default(int);
+				}
+				this.SendPropertyChanged("sub_unit2");
+			}
+		}
+	}
+	
 	public event PropertyChangingEventHandler PropertyChanging;
 	
 	public event PropertyChangedEventHandler PropertyChanged;
@@ -2814,8 +2445,6 @@ public partial class comment : INotifyPropertyChanging, INotifyPropertyChanged
 	
 	private EntitySet<attachment> _attachments;
 	
-	private EntityRef<sub_unit> _sub_unit;
-	
 	private EntityRef<priority> _priority;
 	
 	private EntityRef<statuse> _statuse;
@@ -2823,6 +2452,8 @@ public partial class comment : INotifyPropertyChanging, INotifyPropertyChanged
 	private EntityRef<user> _user;
 	
 	private EntityRef<ticket> _ticket;
+	
+	private EntityRef<sub_unit> _sub_unit;
 	
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -2851,11 +2482,11 @@ public partial class comment : INotifyPropertyChanging, INotifyPropertyChanged
 	public comment()
 	{
 		this._attachments = new EntitySet<attachment>(new Action<attachment>(this.attach_attachments), new Action<attachment>(this.detach_attachments));
-		this._sub_unit = default(EntityRef<sub_unit>);
 		this._priority = default(EntityRef<priority>);
 		this._statuse = default(EntityRef<statuse>);
 		this._user = default(EntityRef<user>);
 		this._ticket = default(EntityRef<ticket>);
+		this._sub_unit = default(EntityRef<sub_unit>);
 		OnCreated();
 	}
 	
@@ -3072,40 +2703,6 @@ public partial class comment : INotifyPropertyChanging, INotifyPropertyChanged
 		}
 	}
 	
-	[Association(Name="sub_unit_comment", Storage="_sub_unit", ThisKey="assigned_to", OtherKey="id", IsForeignKey=true)]
-	public sub_unit sub_unit
-	{
-		get
-		{
-			return this._sub_unit.Entity;
-		}
-		set
-		{
-			sub_unit previousValue = this._sub_unit.Entity;
-			if (((previousValue != value) 
-						|| (this._sub_unit.HasLoadedOrAssignedValue == false)))
-			{
-				this.SendPropertyChanging();
-				if ((previousValue != null))
-				{
-					this._sub_unit.Entity = null;
-					previousValue.comments.Remove(this);
-				}
-				this._sub_unit.Entity = value;
-				if ((value != null))
-				{
-					value.comments.Add(this);
-					this._assigned_to = value.id;
-				}
-				else
-				{
-					this._assigned_to = default(int);
-				}
-				this.SendPropertyChanged("sub_unit");
-			}
-		}
-	}
-	
 	[Association(Name="priority_comment", Storage="_priority", ThisKey="priority_id", OtherKey="id", IsForeignKey=true)]
 	public priority priority
 	{
@@ -3238,6 +2835,40 @@ public partial class comment : INotifyPropertyChanging, INotifyPropertyChanged
 					this._ticket_ref = default(int);
 				}
 				this.SendPropertyChanged("ticket");
+			}
+		}
+	}
+	
+	[Association(Name="sub_unit_comment", Storage="_sub_unit", ThisKey="assigned_to", OtherKey="id", IsForeignKey=true)]
+	public sub_unit sub_unit
+	{
+		get
+		{
+			return this._sub_unit.Entity;
+		}
+		set
+		{
+			sub_unit previousValue = this._sub_unit.Entity;
+			if (((previousValue != value) 
+						|| (this._sub_unit.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._sub_unit.Entity = null;
+					previousValue.comments.Remove(this);
+				}
+				this._sub_unit.Entity = value;
+				if ((value != null))
+				{
+					value.comments.Add(this);
+					this._assigned_to = value.id;
+				}
+				else
+				{
+					this._assigned_to = default(int);
+				}
+				this.SendPropertyChanged("sub_unit");
 			}
 		}
 	}
@@ -3694,6 +3325,661 @@ public partial class error : INotifyPropertyChanging, INotifyPropertyChanged
 		{
 			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 		}
+	}
+}
+
+[Table(Name="dbo.Mailboxes")]
+public partial class Mailbox : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _Id;
+	
+	private int _SubUnitID;
+	
+	private string _Host;
+	
+	private string _EmailAddress;
+	
+	private string _UserName;
+	
+	private string _Password;
+	
+	private int _Port;
+	
+	private EntityRef<sub_unit> _sub_unit;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnIdChanging(int value);
+    partial void OnIdChanged();
+    partial void OnSubUnitIDChanging(int value);
+    partial void OnSubUnitIDChanged();
+    partial void OnHostChanging(string value);
+    partial void OnHostChanged();
+    partial void OnEmailAddressChanging(string value);
+    partial void OnEmailAddressChanged();
+    partial void OnUserNameChanging(string value);
+    partial void OnUserNameChanged();
+    partial void OnPasswordChanging(string value);
+    partial void OnPasswordChanged();
+    partial void OnPortChanging(int value);
+    partial void OnPortChanged();
+    #endregion
+	
+	public Mailbox()
+	{
+		this._sub_unit = default(EntityRef<sub_unit>);
+		OnCreated();
+	}
+	
+	[Column(Storage="_Id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int Id
+	{
+		get
+		{
+			return this._Id;
+		}
+		set
+		{
+			if ((this._Id != value))
+			{
+				this.OnIdChanging(value);
+				this.SendPropertyChanging();
+				this._Id = value;
+				this.SendPropertyChanged("Id");
+				this.OnIdChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_SubUnitID", DbType="Int NOT NULL")]
+	public int SubUnitID
+	{
+		get
+		{
+			return this._SubUnitID;
+		}
+		set
+		{
+			if ((this._SubUnitID != value))
+			{
+				if (this._sub_unit.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.OnSubUnitIDChanging(value);
+				this.SendPropertyChanging();
+				this._SubUnitID = value;
+				this.SendPropertyChanged("SubUnitID");
+				this.OnSubUnitIDChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_Host", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+	public string Host
+	{
+		get
+		{
+			return this._Host;
+		}
+		set
+		{
+			if ((this._Host != value))
+			{
+				this.OnHostChanging(value);
+				this.SendPropertyChanging();
+				this._Host = value;
+				this.SendPropertyChanged("Host");
+				this.OnHostChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_EmailAddress", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+	public string EmailAddress
+	{
+		get
+		{
+			return this._EmailAddress;
+		}
+		set
+		{
+			if ((this._EmailAddress != value))
+			{
+				this.OnEmailAddressChanging(value);
+				this.SendPropertyChanging();
+				this._EmailAddress = value;
+				this.SendPropertyChanged("EmailAddress");
+				this.OnEmailAddressChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_UserName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+	public string UserName
+	{
+		get
+		{
+			return this._UserName;
+		}
+		set
+		{
+			if ((this._UserName != value))
+			{
+				this.OnUserNameChanging(value);
+				this.SendPropertyChanging();
+				this._UserName = value;
+				this.SendPropertyChanged("UserName");
+				this.OnUserNameChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_Password", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+	public string Password
+	{
+		get
+		{
+			return this._Password;
+		}
+		set
+		{
+			if ((this._Password != value))
+			{
+				this.OnPasswordChanging(value);
+				this.SendPropertyChanging();
+				this._Password = value;
+				this.SendPropertyChanged("Password");
+				this.OnPasswordChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_Port", DbType="Int NOT NULL")]
+	public int Port
+	{
+		get
+		{
+			return this._Port;
+		}
+		set
+		{
+			if ((this._Port != value))
+			{
+				this.OnPortChanging(value);
+				this.SendPropertyChanging();
+				this._Port = value;
+				this.SendPropertyChanged("Port");
+				this.OnPortChanged();
+			}
+		}
+	}
+	
+	[Association(Name="sub_unit_Mailbox", Storage="_sub_unit", ThisKey="SubUnitID", OtherKey="id", IsForeignKey=true)]
+	public sub_unit sub_unit
+	{
+		get
+		{
+			return this._sub_unit.Entity;
+		}
+		set
+		{
+			sub_unit previousValue = this._sub_unit.Entity;
+			if (((previousValue != value) 
+						|| (this._sub_unit.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._sub_unit.Entity = null;
+					previousValue.Mailboxes.Remove(this);
+				}
+				this._sub_unit.Entity = value;
+				if ((value != null))
+				{
+					value.Mailboxes.Add(this);
+					this._SubUnitID = value.id;
+				}
+				else
+				{
+					this._SubUnitID = default(int);
+				}
+				this.SendPropertyChanged("sub_unit");
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+}
+
+[Table(Name="dbo.sub_units")]
+public partial class sub_unit : INotifyPropertyChanging, INotifyPropertyChanged
+{
+	
+	private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+	
+	private int _id;
+	
+	private int _unit_ref;
+	
+	private string _sub_unit_name;
+	
+	private int _access_level;
+	
+	private string _mailto;
+	
+	private EntitySet<user> _users;
+	
+	private EntitySet<ticket> _tickets;
+	
+	private EntitySet<ticket> _tickets1;
+	
+	private EntitySet<ticket> _tickets2;
+	
+	private EntitySet<comment> _comments;
+	
+	private EntitySet<Mailbox> _Mailboxes;
+	
+	private EntityRef<security_level> _security_level;
+	
+	private EntityRef<unit> _unit;
+	
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnidChanging(int value);
+    partial void OnidChanged();
+    partial void Onunit_refChanging(int value);
+    partial void Onunit_refChanged();
+    partial void Onsub_unit_nameChanging(string value);
+    partial void Onsub_unit_nameChanged();
+    partial void Onaccess_levelChanging(int value);
+    partial void Onaccess_levelChanged();
+    partial void OnmailtoChanging(string value);
+    partial void OnmailtoChanged();
+    #endregion
+	
+	public sub_unit()
+	{
+		this._users = new EntitySet<user>(new Action<user>(this.attach_users), new Action<user>(this.detach_users));
+		this._tickets = new EntitySet<ticket>(new Action<ticket>(this.attach_tickets), new Action<ticket>(this.detach_tickets));
+		this._tickets1 = new EntitySet<ticket>(new Action<ticket>(this.attach_tickets1), new Action<ticket>(this.detach_tickets1));
+		this._tickets2 = new EntitySet<ticket>(new Action<ticket>(this.attach_tickets2), new Action<ticket>(this.detach_tickets2));
+		this._comments = new EntitySet<comment>(new Action<comment>(this.attach_comments), new Action<comment>(this.detach_comments));
+		this._Mailboxes = new EntitySet<Mailbox>(new Action<Mailbox>(this.attach_Mailboxes), new Action<Mailbox>(this.detach_Mailboxes));
+		this._security_level = default(EntityRef<security_level>);
+		this._unit = default(EntityRef<unit>);
+		OnCreated();
+	}
+	
+	[Column(Storage="_id", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+	public int id
+	{
+		get
+		{
+			return this._id;
+		}
+		set
+		{
+			if ((this._id != value))
+			{
+				this.OnidChanging(value);
+				this.SendPropertyChanging();
+				this._id = value;
+				this.SendPropertyChanged("id");
+				this.OnidChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_unit_ref", DbType="Int NOT NULL")]
+	public int unit_ref
+	{
+		get
+		{
+			return this._unit_ref;
+		}
+		set
+		{
+			if ((this._unit_ref != value))
+			{
+				if (this._unit.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.Onunit_refChanging(value);
+				this.SendPropertyChanging();
+				this._unit_ref = value;
+				this.SendPropertyChanged("unit_ref");
+				this.Onunit_refChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_sub_unit_name", DbType="NVarChar(MAX) NOT NULL", CanBeNull=false)]
+	public string sub_unit_name
+	{
+		get
+		{
+			return this._sub_unit_name;
+		}
+		set
+		{
+			if ((this._sub_unit_name != value))
+			{
+				this.Onsub_unit_nameChanging(value);
+				this.SendPropertyChanging();
+				this._sub_unit_name = value;
+				this.SendPropertyChanged("sub_unit_name");
+				this.Onsub_unit_nameChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_access_level", DbType="Int NOT NULL")]
+	public int access_level
+	{
+		get
+		{
+			return this._access_level;
+		}
+		set
+		{
+			if ((this._access_level != value))
+			{
+				if (this._security_level.HasLoadedOrAssignedValue)
+				{
+					throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+				}
+				this.Onaccess_levelChanging(value);
+				this.SendPropertyChanging();
+				this._access_level = value;
+				this.SendPropertyChanged("access_level");
+				this.Onaccess_levelChanged();
+			}
+		}
+	}
+	
+	[Column(Storage="_mailto", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+	public string mailto
+	{
+		get
+		{
+			return this._mailto;
+		}
+		set
+		{
+			if ((this._mailto != value))
+			{
+				this.OnmailtoChanging(value);
+				this.SendPropertyChanging();
+				this._mailto = value;
+				this.SendPropertyChanged("mailto");
+				this.OnmailtoChanged();
+			}
+		}
+	}
+	
+	[Association(Name="sub_unit_user", Storage="_users", ThisKey="id", OtherKey="sub_unit")]
+	public EntitySet<user> users
+	{
+		get
+		{
+			return this._users;
+		}
+		set
+		{
+			this._users.Assign(value);
+		}
+	}
+	
+	[Association(Name="sub_unit_ticket", Storage="_tickets", ThisKey="id", OtherKey="assigned_to_group")]
+	public EntitySet<ticket> tickets
+	{
+		get
+		{
+			return this._tickets;
+		}
+		set
+		{
+			this._tickets.Assign(value);
+		}
+	}
+	
+	[Association(Name="sub_unit_ticket1", Storage="_tickets1", ThisKey="id", OtherKey="assigned_to_group_last")]
+	public EntitySet<ticket> tickets1
+	{
+		get
+		{
+			return this._tickets1;
+		}
+		set
+		{
+			this._tickets1.Assign(value);
+		}
+	}
+	
+	[Association(Name="sub_unit_ticket2", Storage="_tickets2", ThisKey="id", OtherKey="originating_group")]
+	public EntitySet<ticket> tickets2
+	{
+		get
+		{
+			return this._tickets2;
+		}
+		set
+		{
+			this._tickets2.Assign(value);
+		}
+	}
+	
+	[Association(Name="sub_unit_comment", Storage="_comments", ThisKey="id", OtherKey="assigned_to")]
+	public EntitySet<comment> comments
+	{
+		get
+		{
+			return this._comments;
+		}
+		set
+		{
+			this._comments.Assign(value);
+		}
+	}
+	
+	[Association(Name="sub_unit_Mailbox", Storage="_Mailboxes", ThisKey="id", OtherKey="SubUnitID")]
+	public EntitySet<Mailbox> Mailboxes
+	{
+		get
+		{
+			return this._Mailboxes;
+		}
+		set
+		{
+			this._Mailboxes.Assign(value);
+		}
+	}
+	
+	[Association(Name="security_level_sub_unit", Storage="_security_level", ThisKey="access_level", OtherKey="id", IsForeignKey=true)]
+	public security_level security_level
+	{
+		get
+		{
+			return this._security_level.Entity;
+		}
+		set
+		{
+			security_level previousValue = this._security_level.Entity;
+			if (((previousValue != value) 
+						|| (this._security_level.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._security_level.Entity = null;
+					previousValue.sub_units.Remove(this);
+				}
+				this._security_level.Entity = value;
+				if ((value != null))
+				{
+					value.sub_units.Add(this);
+					this._access_level = value.id;
+				}
+				else
+				{
+					this._access_level = default(int);
+				}
+				this.SendPropertyChanged("security_level");
+			}
+		}
+	}
+	
+	[Association(Name="unit_sub_unit", Storage="_unit", ThisKey="unit_ref", OtherKey="id", IsForeignKey=true)]
+	public unit unit
+	{
+		get
+		{
+			return this._unit.Entity;
+		}
+		set
+		{
+			unit previousValue = this._unit.Entity;
+			if (((previousValue != value) 
+						|| (this._unit.HasLoadedOrAssignedValue == false)))
+			{
+				this.SendPropertyChanging();
+				if ((previousValue != null))
+				{
+					this._unit.Entity = null;
+					previousValue.sub_units.Remove(this);
+				}
+				this._unit.Entity = value;
+				if ((value != null))
+				{
+					value.sub_units.Add(this);
+					this._unit_ref = value.id;
+				}
+				else
+				{
+					this._unit_ref = default(int);
+				}
+				this.SendPropertyChanged("unit");
+			}
+		}
+	}
+	
+	public event PropertyChangingEventHandler PropertyChanging;
+	
+	public event PropertyChangedEventHandler PropertyChanged;
+	
+	protected virtual void SendPropertyChanging()
+	{
+		if ((this.PropertyChanging != null))
+		{
+			this.PropertyChanging(this, emptyChangingEventArgs);
+		}
+	}
+	
+	protected virtual void SendPropertyChanged(String propertyName)
+	{
+		if ((this.PropertyChanged != null))
+		{
+			this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+		}
+	}
+	
+	private void attach_users(user entity)
+	{
+		this.SendPropertyChanging();
+		entity.sub_unit1 = this;
+	}
+	
+	private void detach_users(user entity)
+	{
+		this.SendPropertyChanging();
+		entity.sub_unit1 = null;
+	}
+	
+	private void attach_tickets(ticket entity)
+	{
+		this.SendPropertyChanging();
+		entity.sub_unit = this;
+	}
+	
+	private void detach_tickets(ticket entity)
+	{
+		this.SendPropertyChanging();
+		entity.sub_unit = null;
+	}
+	
+	private void attach_tickets1(ticket entity)
+	{
+		this.SendPropertyChanging();
+		entity.sub_unit1 = this;
+	}
+	
+	private void detach_tickets1(ticket entity)
+	{
+		this.SendPropertyChanging();
+		entity.sub_unit1 = null;
+	}
+	
+	private void attach_tickets2(ticket entity)
+	{
+		this.SendPropertyChanging();
+		entity.sub_unit2 = this;
+	}
+	
+	private void detach_tickets2(ticket entity)
+	{
+		this.SendPropertyChanging();
+		entity.sub_unit2 = null;
+	}
+	
+	private void attach_comments(comment entity)
+	{
+		this.SendPropertyChanging();
+		entity.sub_unit = this;
+	}
+	
+	private void detach_comments(comment entity)
+	{
+		this.SendPropertyChanging();
+		entity.sub_unit = null;
+	}
+	
+	private void attach_Mailboxes(Mailbox entity)
+	{
+		this.SendPropertyChanging();
+		entity.sub_unit = this;
+	}
+	
+	private void detach_Mailboxes(Mailbox entity)
+	{
+		this.SendPropertyChanging();
+		entity.sub_unit = null;
 	}
 }
 #pragma warning restore 1591
