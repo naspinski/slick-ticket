@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("SlickTicket.DomainModel")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("MNF-I")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("SlickTicket.DomainModel")]
-[assembly: AssemblyCopyright("Copyright © MNF-I 2009")]
+[assembly: AssemblyCopyright("Copyright © Stan Naspinski 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
