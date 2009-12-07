@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Threading;
 using System.Timers;
-using SlickTicket.EmailParser.Properties;
 using OpenPOP.MIMEParser;
 using OpenPOP.POP3;
+using SlickTicket.EmailParser.Properties;
 //POP3 Component from http://sourceforge.net/projects/hpop/
 
 
@@ -62,11 +63,11 @@ namespace SlickTicket.EmailParser
         #endregion
 
         #region Methods
-        public static void ParseEmails(Mailbox mbx)
+        public static void ParseEmails(DomainModel.Mailbox mbx)
         {
             POPClient pop3 = new POPClient();
             pop3.Connect(mbx.Host, mbx.Port);
-            pop3.Authenticate(mbx.User, mbx.Password);
+            pop3.Authenticate(mbx.EmailAddress, mbx.Password);
 
             int messageCount = pop3.GetMessageCount();
             int messageNumber = 0;
@@ -74,7 +75,7 @@ namespace SlickTicket.EmailParser
             while (messageNumber++ < messageCount)
             {
                 Message message = pop3.GetMessage(messageNumber, false);
-
+                DomainModel.attachment att;
                 string subject = message.Subject;
                 string from = message.FromEmail;
                 string body = message.MessageBody[0].ToString().Replace("\r\n", "<br>");
@@ -85,45 +86,39 @@ namespace SlickTicket.EmailParser
                     tid = Convert.ToInt32(subject.Substring((subject.IndexOf("[Ticket#") + 8), (subject.IndexOf("]")) - (subject.IndexOf("[Ticket#") + 8)));
                 }
 
-                //DomainModel.Ticket.
+
 
                 message.SaveAttachments(Settings.Default.AttachmentFolder);
+
+                foreach (string f in Directory.GetFiles(@"C:\temp\"))
+                {
+                    FileInfo file = new FileInfo(f);
+                    att = new DomainModel.attachment();
+                    att.attachment_size = file.Length.ToString();
+                    att.attachment_name = file.Name;
+                    att.active = true;
+                    att.ticket_ref = tid;
+                    FileStream fs = new FileStream(f, FileMode.Open);
+                    DomainModel.Attachment.Add(@"C:\temp\", GetFiles(@"C:\temp\"), att.ticket_ref, att.comment_ref);
+                }
+
+                //DomainModel.Ticket.Email eT = new SlickTicket.DomainModel.Ticket.Email();
+
                 bool success = pop3.DeleteMessage(messageNumber);
             }
-
             if (pop3.Connected)
             {
                 pop3.Disconnect();
             }
         }
-        #endregion
 
-        #region Objects
-        public class Mailbox
+        private static IEnumerable<FileStream> GetFiles(string directoryName)
         {
-            public string Host { get; set; }
-            public string EMailAdress { get; set; }
-            public string User { get; set; }
-            public string Password { get; set; }
-            public int Port { get; set; }
-        }
-        public class Ticket
-        {
-            public int id { get; set; }
-            public string title { get; set; }
-            public string details { get; set; }
-            public int submitter { get; set; }
-            public DateTime submitted { get; set; }
-            public DateTime last_action { get; set; }
-            public DateTime closed { get; set; }
-            public int assigned_to_group { get; set; }
-            public int assigned_to_group_last { get; set; }
-            public int ticket_status { get; set; }
-            public int priority { get; set; }
-            public int originating_group { get; set; }
-            public int active { get; set; }
-            public int owner { get; set; }
-            public int assigned_to { get; set; }
+            string[] fileNames = Directory.GetFiles(directoryName, "*.*", SearchOption.TopDirectoryOnly);
+            foreach (string name in fileNames)
+            {
+                yield return File.OpenRead(name);
+            }
         }
         #endregion
     }
