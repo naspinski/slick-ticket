@@ -13,7 +13,7 @@ using OpenPOP.MIMEParser;
 using OpenPOP.POP3;
 
 using SlickTicket.DomainModel;
-// POP3 Component from http://sourceforge.net/projects/hpop/
+// POP3 Component from http://sourceforge.net/projects/hpop/ s
 
 namespace SlickTicket.EmailParser
 {
