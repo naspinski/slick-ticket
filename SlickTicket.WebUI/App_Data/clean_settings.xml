@@ -12,4 +12,5 @@
   <email_notification>False</email_notification>
   <sidebar>right</sidebar>
   <installed>False</installed>
+  <pop3Intervall>5</pop3Intervall>
 </settings>
