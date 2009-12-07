@@ -11,6 +11,7 @@
   <domain_controller>YOUR_DOMAIN_CONTROLLER</domain_controller>
   <email_notification>True</email_notification>
   <email_notification_only_open_close>False</email_notification_only_open_close>
-  <sidebar>right</sidebar>
+  <sidebar>right</sidebar>  
   <installed>True</installed>
+  <pop3Intervall>5</pop3Intervall>
 </settings>
