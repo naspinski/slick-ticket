@@ -1,19 +1,12 @@
 ﻿using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.SqlClient;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Timers;
 using SlickTicket.EmailParser.Properties;
 using OpenPOP.MIMEParser;
 using OpenPOP.POP3;
+//POP3 Component from http://sourceforge.net/projects/hpop/
 
-using SlickTicket.DomainModel;
-// POP3 Component from http://sourceforge.net/projects/hpop/ s
 
 namespace SlickTicket.EmailParser
 {
