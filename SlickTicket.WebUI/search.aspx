@@ -5,6 +5,7 @@ Developed by Stan Naspinski - stan@naspinski.net
 http://naspinski.net
 --%>
 <%@ Page Title="Search" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="search.aspx.cs" Inherits="search" culture="auto" meta:resourcekey="PageResource1"%>
+<%@ Assembly Name="SlickTicket.DomainModel" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
@@ -136,10 +137,10 @@ http://naspinski.net
     </fieldset>
     
     <asp:LinqDataSource ID="ldsPriority" runat="server" 
-        ContextTypeName="dbDataContext" OrderBy="level" 
+        ContextTypeName="SlickTicket.DomainModel.stDataContext" OrderBy="level" 
         Select="new (id, priority_name)" TableName="priorities" />
     <asp:LinqDataSource ID="ldsStatus" runat="server" 
-        ContextTypeName="dbDataContext" OrderBy="status_order" 
+        ContextTypeName="SlickTicket.DomainModel.stDataContext" OrderBy="status_order" 
         Select="new (id, status_name)" TableName="statuses" />
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="sidebar" Runat="Server">

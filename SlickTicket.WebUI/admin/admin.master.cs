@@ -7,12 +7,13 @@ using System;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
+using SlickTicket.DomainModel;
 
 public partial class admin_admin : System.Web.UI.MasterPage
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!Users.Get(new dbDataContext(), Utils.UserName()).is_admin)
+        if (!CurrentUser.Get().IsAdmin)
             Response.Redirect("~/");
         if (Request.Url.ToString().ToLower().Contains("default.aspx"))
             pnlAdminMenu.Visible = false;

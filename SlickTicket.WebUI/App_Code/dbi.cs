@@ -4,6 +4,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using SlickTicket.DomainModel;
 
 /// <summary>
 /// Database Interaction Layer (dbi)
@@ -13,7 +14,7 @@ public class Dbi
 
     public class Statuses
     {
-        public static IEnumerable<statuse> List(dbDataContext db)
+        public static IEnumerable<statuse> List(stDataContext db)
         {
             return from p in db.statuses orderby p.status_order select p;
         }
@@ -21,7 +22,7 @@ public class Dbi
 
     public class Priorities
     {
-        public static IEnumerable<priority> List(dbDataContext db, int userAccessLevel)
+        public static IEnumerable<priority> List(stDataContext db, int userAccessLevel)
         {
             return from p in db.priorities where p.level <= userAccessLevel select p;
         }
@@ -29,7 +30,7 @@ public class Dbi
 
     public class AccessLevels
     {
-        public static IEnumerable<security_level> List(dbDataContext db, int lower_limit)
+        public static IEnumerable<security_level> List(stDataContext db, int lower_limit)
         {
             return from p in db.security_levels where p.id > lower_limit select p;
         }
@@ -37,7 +38,7 @@ public class Dbi
 
     public class Domains
     {
-        public static void Add(dbDataContext db, string domain)
+        public static void Add(stDataContext db, string domain)
         {
             allowed_email_domain aed = new allowed_email_domain();
             aed.domain = domain;

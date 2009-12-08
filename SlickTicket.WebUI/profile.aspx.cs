@@ -11,12 +11,14 @@ using System.Collections.Generic;
 using System.Data;
 using System.DirectoryServices;
 using System.Web.Hosting;
+using SlickTicket.DomainModel;
+using SlickTicket.DomainModel.Objects;
 
 public partial class profile : System.Web.UI.Page
 {
-    dbDataContext db;
+    stDataContext db = new stDataContext();
+    CurrentUser currentUser;
     string userName, prefix, domain;
-    bool userIsRegistered;
     int accessLevel;
     static string[] allowUserToEdit = { "telephoneNumber" };
     static string adsPath;
@@ -24,19 +26,13 @@ public partial class profile : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        currentUser = CurrentUser.Get();
         this.Title = Resources.Common.Profile;
         txtPhone.Focus();
-        db = new dbDataContext();
-        userName = Utils.UserName();
-        userIsRegistered = Users.Exists(db, userName);
-        List<string> groups = new List<string>();
-        try
-        {
-            groups = Utils.UserGroups();
-            accessLevel = Utils.AccessLevel().security_level;
-        }
-        catch { accessLevel = 0; }
+        db = new stDataContext();
+        userName = currentUser.UserName;
         bool emailIsRestricted = Utils.Settings.EmailIsRestricted();
+        accessLevel = currentUser.HighestAccessLevelGroup.security_level;
 
         ddlDomain.Visible = emailIsRestricted;
         txtDomain.Visible = !emailIsRestricted;
@@ -46,7 +42,7 @@ public partial class profile : System.Web.UI.Page
         if (!IsPostBack)
         {
             txtUserName.Text = userName;
-            var units = Groups.List(db, accessLevel);
+            var units = Groups.List(db, currentUser.HighestAccessLevelGroup.security_level);
             if (units.Count() < 1)
             {
                 ddlUnit.Items.Add(new ListItem(Resources.Common.NoGroups, "0"));
@@ -56,7 +52,7 @@ public partial class profile : System.Web.UI.Page
             foreach (unit u in _units.OrderBy(p => p.unit_name))
                 ddlUnit.Items.Add(new ListItem(u.unit_name, u.id.ToString()));
             Utils.PopulateSubUnits(db, ddlUnit, ddlSubUnit, accessLevel);
-            if (!userIsRegistered)
+            if (!currentUser.IsRegistered)
             {
                 if (string.IsNullOrEmpty(txtPhone.Text))
                 {
@@ -73,7 +69,7 @@ public partial class profile : System.Web.UI.Page
             }
             else
             {
-                user thisUser = Users.Get(db, userName);
+                user thisUser = currentUser.Details;
                 ddlUnit.SelectedIndex = ddlUnit.Items.IndexOf(ddlUnit.Items.FindByValue(thisUser.sub_unit1.unit.id.ToString()));
                 prefix = thisUser.email.Split(new char[] { '@' })[0];
                 domain = thisUser.email.Split(new char[] { '@' })[1];
@@ -90,7 +86,7 @@ public partial class profile : System.Web.UI.Page
             {
                 bool x = true;
                 string cssClass;
-                foreach (string s in groups)
+                foreach (string s in CurrentUser.ADGroups())
                 {
                     cssClass = x ? "alt_row" : string.Empty;
                     lblGroups.Text += "<div class='" + cssClass + "'>" + s + "</div>";
@@ -157,7 +153,7 @@ public partial class profile : System.Web.UI.Page
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         string email = txtEmail.Text + "@" + (txtDomain.Text.Length > 0 ? txtDomain.Text : ddlDomain.SelectedValue);
-        if (!userIsRegistered)
+        if (!currentUser.IsRegistered)
         {
             try
             {
@@ -175,5 +171,6 @@ public partial class profile : System.Web.UI.Page
             }
             catch (Exception ex) { lblProfileHeader.report(false, GetLocalResourceObject("ErrorSaving").ToString(), ex); }
         }
+        CurrentUser.Update();
     }
 }

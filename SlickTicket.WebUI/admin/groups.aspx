@@ -64,8 +64,8 @@ http://naspinski.net
                     </Columns>
                 </asp:GridView>
                 
-                <asp:LinqDataSource ID="ldsUnits" runat="server" ContextTypeName="dbDataContext" EnableDelete="True" EnableUpdate="True" OrderBy="unit_name" TableName="units" />
-                <asp:LinqDataSource ID="ldsAccessLevels" runat="server" ContextTypeName="dbDataContext" Select="new (id)" TableName="security_levels" />
+                <asp:LinqDataSource ID="ldsUnits" runat="server" ContextTypeName="SlickTicket.DomainModel.stDataContext" EnableDelete="True" EnableUpdate="True" OrderBy="unit_name" TableName="units" />
+                <asp:LinqDataSource ID="ldsAccessLevels" runat="server" ContextTypeName="SlickTicket.DomainModel.stDataContext" Select="new (id)" TableName="security_levels" />
                 
                 
                 <ajax:ModalPopupExtender ID="mpeNewUnit" runat="server" 
@@ -203,7 +203,7 @@ http://naspinski.net
                 </asp:GridView>
 
                 <asp:LinqDataSource ID="ldsSubUnits" runat="server" 
-                    ContextTypeName="dbDataContext" EnableDelete="True" EnableUpdate="True" 
+                    ContextTypeName="SlickTicket.DomainModel.stDataContext" EnableDelete="True" EnableUpdate="True" 
                     OrderBy="sub_unit_name" TableName="sub_units" Where="unit_ref == @unit_ref">
                     <WhereParameters>
                         <asp:ControlParameter ControlID="ddlUnitSelected" DefaultValue="0" 

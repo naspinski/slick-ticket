@@ -2,22 +2,22 @@
 //http://slick-ticket.com :: http://naspinski.net
 //Developed by Stan Naspinski - stan@naspinski.net
 
-
 using System;
 using System.Collections;
 using System.Linq;
 using System.Web.UI.WebControls;
+using SlickTicket.DomainModel;
 
 public partial class setup_active_directory : System.Web.UI.Page
 {
-    dbDataContext db;
+    stDataContext db;
     protected void Page_Load(object sender, EventArgs e)
     {
         bool done = bool.Parse(Setup.Settings.Get("active_directory"));
         lnkNext.Visible = done;
         lblFinished.Visible = done;
 
-        db = new dbDataContext();
+        db = new stDataContext();
         if (!IsPostBack)
         {
             foreach (security_level s in (from p in db.security_levels where p.id > 1 select p))

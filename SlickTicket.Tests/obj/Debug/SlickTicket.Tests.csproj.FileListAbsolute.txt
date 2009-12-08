@@ -17,3 +17,4 @@ C:\Documents and Settings\stan.naspinski\Desktop\ST Download\SlickTicket.Tests\o
 C:\Documents and Settings\stan.naspinski\Desktop\ST Download\SlickTicket.Tests\obj\Debug\SlickTicket.Tests.dll
 C:\Documents and Settings\stan.naspinski\Desktop\ST Download\SlickTicket.Tests\obj\Debug\SlickTicket.Tests.pdb
 C:\Documents and Settings\stan.naspinski\Desktop\Slick-Ticket\SlickTicket.Tests\bin\Debug\HtmlAgilityPack.dll
+C:\Documents and Settings\stan.naspinski\Desktop\Slick-Ticket\SlickTicket.Tests\bin\Debug\Naspinski.Utilities.dll

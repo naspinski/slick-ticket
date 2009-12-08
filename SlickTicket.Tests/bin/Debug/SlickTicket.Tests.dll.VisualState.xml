@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <VisualState xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ShowCheckBoxes="false">
-  <TopNode>[0-1001]SlickTicket.Tests.TicketsTests.New_ticket_error_fails</TopNode>
-  <SelectedNode>[0-1000]SlickTicket.Tests.TicketsTests</SelectedNode>
+  <TopNode>[0-1005]C:\Documents and Settings\stan.naspinski\Desktop\Slick-Ticket\SlickTicket.Tests\bin\Debug\SlickTicket.Tests.dll</TopNode>
+  <SelectedNode>[0-1005]C:\Documents and Settings\stan.naspinski\Desktop\Slick-Ticket\SlickTicket.Tests\bin\Debug\SlickTicket.Tests.dll</SelectedNode>
   <ExcludeCategories>false</ExcludeCategories>
   <Nodes>
-    <Node UniqueName="[0-1004]C:\Documents and Settings\stan.naspinski\Desktop\ST Download\SlickTicket.Tests\bin\Debug\SlickTicket.Tests.dll" Expanded="true" />
-    <Node UniqueName="[0-1005]SlickTicket" Expanded="true" />
-    <Node UniqueName="[0-1006]SlickTicket.Tests" Expanded="true" />
-    <Node UniqueName="[0-1000]SlickTicket.Tests.TicketsTests" Expanded="true" />
-    <Node UniqueName="[0-1002]SlickTicket.Tests.UsersTests" Expanded="true" />
+    <Node UniqueName="[0-1005]C:\Documents and Settings\stan.naspinski\Desktop\Slick-Ticket\SlickTicket.Tests\bin\Debug\SlickTicket.Tests.dll" Expanded="true" />
+    <Node UniqueName="[0-1006]SlickTicket" Expanded="true" />
+    <Node UniqueName="[0-1007]SlickTicket.Tests" Expanded="true" />
+    <Node UniqueName="[0-1008]SlickTicket.Tests.DomainModel" Expanded="true" />
+    <Node UniqueName="[0-1002]SlickTicket.Tests.DomainModel.HtmlFilterTests" Expanded="true" />
+    <Node UniqueName="[0-1009]SlickTicket.Tests.DomainModel.Objects" Expanded="true" />
+    <Node UniqueName="[0-1000]SlickTicket.Tests.DomainModel.Objects.UsersTests" Expanded="true" />
   </Nodes>
 </VisualState>

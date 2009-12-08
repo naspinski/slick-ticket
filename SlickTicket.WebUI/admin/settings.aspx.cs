@@ -9,15 +9,15 @@ using System.Text;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
 using SlickTicketExtensions;
+using SlickTicket.DomainModel;
 
 public partial class admin_settings : System.Web.UI.Page
 {
-    dbDataContext db;
+    stDataContext db = new stDataContext();
 
     protected void Page_Load(object sender, EventArgs e)
     {
         this.Title = Resources.Common.Admin + " - " + Resources.Common.Settings;
-        db = new dbDataContext();
 
         if (!IsPostBack)
         {

@@ -9,10 +9,11 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.IO;
+using SlickTicket.DomainModel;
 
 public partial class patch_convert_comments : System.Web.UI.Page
 {
-    dbDataContext db = new dbDataContext();
+    stDataContext db = new stDataContext();
     protected void Page_Load(object sender, EventArgs e)
     {
         bool done = bool.Parse(Setup.Patch.Get("comments"));

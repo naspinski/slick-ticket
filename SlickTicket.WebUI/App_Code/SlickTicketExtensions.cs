@@ -7,6 +7,7 @@ using System.Web.UI.WebControls;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using SlickTicket.DomainModel;
 
 /// <summary>
 /// extensions for calling from dbml objects

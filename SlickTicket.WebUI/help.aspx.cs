@@ -7,24 +7,16 @@ using System;
 using System.Web;
 using System.Web.UI.WebControls;
 using SlickTicketExtensions;
+using SlickTicket.DomainModel;
 
 public partial class info : System.Web.UI.Page
 {
-    dbDataContext db;
-    public bool isAdmin;
+    stDataContext db;
+    public CurrentUser currentUser;
     protected void Page_Load(object sender, EventArgs e)
     {
         this.Title = Resources.Common.Help;
-        db = new dbDataContext();
-
-        string userName = Utils.UserName();
-        try
-        {
-            user thisUser = Users.Get(db, userName);
-            if (thisUser.is_admin) isAdmin = true;
-        }
-        catch
-        { isAdmin = false; }
+        currentUser = CurrentUser.Get();
     }
 
     public string trimJunk(string fromThis)

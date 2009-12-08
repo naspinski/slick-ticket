@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using SlickTicket.DomainModel.Objects;
 
 namespace SlickTicket.DomainModel.Objects
 {
@@ -23,8 +24,8 @@ namespace SlickTicket.DomainModel.Objects
                 try
                 {
                     int assign_to = Mailbox.GetSubUnitId(db, mailbox_email);
-                    user u = User.GetFromEmail(senders_email);
-                    ticket t = Ticket.Get(db, ticket_id);
+                    user u = Users.GetFromEmail(senders_email);
+                    ticket t = Tickets.Get(db, ticket_id);
                     comment c = t.comments.Count > 0 ? t.comments.Last() : new comment() { status_id = t.ticket_status, priority_id = t.priority, assigned_to = t.assigned_to_group };
                     assign_to = assign_to != Unit.Default ? assign_to : c.assigned_to;
                     New(db, t, u, details, assign_to, c.priority_id, (c.status_id == 1 ? 3 : c.status_id), attachments, attachmentFolder);
@@ -64,11 +65,11 @@ namespace SlickTicket.DomainModel.Objects
             }
         }
 
-        public static void New(int ticket_id, int user_id, string details, int assigned_to, int priority, int status, IEnumerable<FileStream> attachments, string attachmentFolder)
-        { New(new stDataContext(), ticket_id, user_id, details, assigned_to, priority, status, attachments, attachmentFolder); }
-        public static void New(stDataContext db, int ticket_id, int user_id, string details, int assigned_to, int priority, int status, IEnumerable<FileStream> attachments, string attachmentFolder)
+        public static int New(int ticket_id, int user_id, string details, int assigned_to, int priority, int status, IEnumerable<FileStream> attachments, string attachmentFolder)
+        { return New(new stDataContext(), ticket_id, user_id, details, assigned_to, priority, status, attachments, attachmentFolder); }
+        public static int New(stDataContext db, int ticket_id, int user_id, string details, int assigned_to, int priority, int status, IEnumerable<FileStream> attachments, string attachmentFolder)
         {
-            Ticket.Update(db, ticket_id, status, priority, assigned_to);
+            Tickets.Update(db, ticket_id, status, priority, assigned_to);
             comment c = new comment()
             {
                 active = true,
@@ -83,6 +84,17 @@ namespace SlickTicket.DomainModel.Objects
             db.comments.InsertOnSubmit(c);
             db.SubmitChanges();
             Attachment.Add(db, attachmentFolder, attachments, ticket_id, c.id);
+            return c.id;
+        }
+
+        public static IEnumerable<comment> List(stDataContext db, int ticket_ref)
+        {
+            return from c in db.comments where c.ticket_ref == ticket_ref && c.active select c;
+        }
+
+        public static List<int> CommentingGroups(stDataContext db, int ticketID)
+        {
+            return (from c in db.comments where c.ticket_ref == ticketID && c.active select c.user.sub_unit).ToList();
         }
     }
 }

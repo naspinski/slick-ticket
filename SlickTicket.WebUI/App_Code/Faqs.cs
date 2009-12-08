@@ -14,7 +14,7 @@ using SlickTicket.DomainModel;
 /// </summary>
 public static class Faqs
 {
-    public static void Add(dbDataContext db, string q, string a)
+    public static void Add(stDataContext db, string q, string a)
     {
         faq f = new faq();
         f.title = HtmlFilter.Filter(q);
@@ -23,23 +23,23 @@ public static class Faqs
         db.SubmitChanges();
     }
 
-    public static void Delete(dbDataContext db, int id)
+    public static void Delete(stDataContext db, int id)
     {
         db.faqs.DeleteOnSubmit(Get(db, id));
         db.SubmitChanges();
     }
 
-    public static faq Get(dbDataContext db, int id)
+    public static faq Get(stDataContext db, int id)
     {
         return db.faqs.First(f => f.id == id);
     }
 
-    public static IEnumerable<faq> List(dbDataContext db)
+    public static IEnumerable<faq> List(stDataContext db)
     {
         return from p in db.faqs select p;
     }
 
-    public static void Edit(dbDataContext db, int id, string q, string a)
+    public static void Edit(stDataContext db, int id, string q, string a)
     {
         faq f = Get(db, id);
         f.title = HtmlFilter.Filter(q);
@@ -58,7 +58,7 @@ public static class Faqs
 
             foreach (XElement xe in faqs)
             {
-                dbDataContext db = new dbDataContext();
+                stDataContext db = new stDataContext();
                 faq f = new faq();
                 f.title = xe.FirstAttribute.Value;
                 f.body = xe.Value;
@@ -83,7 +83,7 @@ public static class Faqs
 
     public static XDocument Export()
     {
-        var faqs = Faqs.List(new dbDataContext());
+        var faqs = Faqs.List(new stDataContext());
         XDocument xDoc = new XDocument(new XDeclaration("1.0", "utf-8", "yes"));
         XElement root = new XElement("faqs");
         foreach (faq f in faqs)

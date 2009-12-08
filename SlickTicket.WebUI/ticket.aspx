@@ -95,7 +95,7 @@ http://naspinski.net
                     </asp:Repeater>
                 </div>
                 <asp:LinqDataSource ID="ldsAttachments" runat="server" 
-                    ContextTypeName="dbDataContext" OrderBy="attachment_name" 
+                    ContextTypeName="SlickTicket.DomainModel.stDataContext" OrderBy="attachment_name" 
                     Select="new (ticket_ref, attachment_name, attachment_size)" 
                     TableName="attachments" Where="ticket_ref == @ticket_ref AND comment_ref == null">
                     <WhereParameters>

@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Web;
+using System.Configuration;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
+using System.Xml.Linq;
+using System.Web.Configuration;
 
 /// <summary>
 /// Summary description for Settings
@@ -12,5 +15,15 @@ public static class Settings
     {
         get { return HttpContext.Current.Server.MapPath("~" + Utils.Settings.Get("attachments")); }
         set { Utils.Settings.Update("attachments", value); }
+    }
+
+    public static AuthenticationMode AuthenticationMode
+    {
+        get
+        {
+            Configuration config = WebConfigurationManager.OpenWebConfiguration("~");
+            SystemWebSectionGroup grp = (SystemWebSectionGroup)config.GetSectionGroup("system.web");
+            return grp.Authentication.Mode;
+        }
     }
 }

@@ -12,16 +12,18 @@ using System.Web.UI.WebControls;
 using System.Data;
 using System.Text;
 using SlickTicketExtensions;
+using SlickTicket.DomainModel;
+using SlickTicket.DomainModel.Objects;
 
 public partial class admin_stats : System.Web.UI.Page
 {
-    dbDataContext db;
+    stDataContext db;
     int max;
     public string thisUnit, thisSubUnit;
     protected void Page_Load(object sender, EventArgs e)
     {
         this.Title = Resources.Common.Admin + " - " + Resources.Common.Statistics;
-        db = new dbDataContext();
+        db = new stDataContext();
         if (!IsPostBack)
         {
             this.groups();

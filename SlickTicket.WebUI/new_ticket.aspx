@@ -27,6 +27,8 @@ http://naspinski.net
             <asp:Panel ID="pnlInput" runat="server" DefaultButton="btnSubmit" >
                 <asp:UpdatePanel ID="up" runat="server">
                     <ContentTemplate>
+                </ContentTemplate>
+            </asp:UpdatePanel>
                         <h3>
                             <span class="title_header larger"><asp:literal runat="server"  ID="litAssignTo" meta:resourcekey="litAssignToResource1" /></span>&nbsp
                         </h3>
@@ -71,8 +73,6 @@ http://naspinski.net
                                 </td>
                             </tr>
                         </table>
-                </ContentTemplate>
-            </asp:UpdatePanel>
             <h3>
             <span class="title_header"><asp:literal runat="server" ID="litDetails" meta:resourcekey="litDetailsResource1" /></span>&nbsp;
             </h3>

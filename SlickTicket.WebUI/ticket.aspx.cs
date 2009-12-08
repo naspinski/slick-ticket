@@ -11,10 +11,14 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using SlickTicketExtensions;
 using System.IO;
+using SlickTicket.DomainModel;
+using SlickTicket.DomainModel.Objects;
+using SlickTicket.DomainModel.Extensions;
 
 public partial class _ticket : System.Web.UI.Page
 {
-    dbDataContext db;
+    stDataContext db = new stDataContext();
+    CurrentUser currentUser;
     protected ticket t;
     int accessLevel;
     string userName;
@@ -22,10 +26,11 @@ public partial class _ticket : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        currentUser = CurrentUser.Get();
         n = Environment.NewLine;
         this.Title = Resources.Common.ViewTicket;
-        userName = Utils.UserName();
-        db = new dbDataContext();
+        userName = currentUser.UserName;
+        db = new stDataContext();
         txtGoToTicket.Focus();
         if (Request.QueryString["ticketID"] != null)
             populateTicket(Request.QueryString["ticketID"].ToString());
@@ -37,11 +42,10 @@ public partial class _ticket : System.Web.UI.Page
         try
         {
             bool userCanEditThisTicket = true;
-            user me = Users.Get(db, userName);
             t = Tickets.Get(db, Int32.Parse(ticketID));
-
+            
             ////populate comments
-            IEnumerable<comment> comments = Tickets.Comments.List(db, t.id);
+            IEnumerable<comment> comments = t.ActiveComments();
             StringBuilder sb = new StringBuilder();
             foreach (comment c in comments)
                 buildComments(c);
@@ -51,7 +55,7 @@ public partial class _ticket : System.Web.UI.Page
 
 
             //only do the user is at the right level... if not, read only
-            user_group ugAccessLevel = Utils.AccessLevel();
+            user_group ugAccessLevel = currentUser.HighestAccessLevelGroup;
             int intToPopATG = ugAccessLevel.security_level;
             accessLevel = intToPopATG;
             if (ugAccessLevel.security_level < t.sub_unit.access_level)
@@ -88,7 +92,7 @@ public partial class _ticket : System.Web.UI.Page
                     ddlPriority.Enabled = false;
                     ddlStatus.Enabled = false;
 
-                    if (me.sub_unit == t.user.sub_unit || Tickets.Comments.CommentingGroups(db, t.id).Contains(me.sub_unit))
+                    if (currentUser.Details.sub_unit == t.user.sub_unit || Comment.CommentingGroups(db, t.id).Contains(currentUser.Details.sub_unit))
                         lblReport.report(false, GetLocalResourceObject("CommentAttachClose").ToString(), null);
                     else
                     {
@@ -168,20 +172,20 @@ public partial class _ticket : System.Web.UI.Page
         try
         {
             FileUpload[] fuControls = new FileUpload[] { FileUpload1, FileUpload2, FileUpload3, FileUpload4, FileUpload5 };
-            user me = Users.Get(db, userName);
-            int commentID = Tickets.Comments.Add(db, txtDetails.Text, t.id, me.id, ddlPriority.SelectedValueToInt(), ddlStatus.SelectedValueToInt(), ddlSubUnit.SelectedValueToInt());
+            IEnumerable<FileStream> attachments = fuControls.GetFileStreams(Settings.AttachmentDirectory);
+            int commentID = Comment.New(db, t.id, currentUser.Details.id, txtDetails.Text, ddlSubUnit.SelectedValueToInt(), ddlPriority.SelectedValueToInt(), ddlStatus.SelectedValueToInt(), attachments, Settings.AttachmentDirectory);
+            fuControls.GetFileStreamsCleanup(Settings.AttachmentDirectory, attachments);
+                //Tickets.Comments.Add(db, txtDetails.Text, t.id, currentUser.Details.id, ddlPriority.SelectedValueToInt(), ddlStatus.SelectedValueToInt(), ddlSubUnit.SelectedValueToInt());
             int t_id = t.id;
 
-            dbDataContext db2 = new dbDataContext(); // have to get new dbdatacontext in order to chage the foreign key since it was already open
+            stDataContext db2 = new stDataContext(); // have to get new stDataContext in order to chage the foreign key since it was already open
 
             ticket _t = Tickets.Update(db2, t_id, Int32.Parse(ddlStatus.SelectedValue), Int32.Parse(ddlPriority.SelectedValue), Int32.Parse(ddlSubUnit.SelectedValue));
             bool new_or_closing_ticket = (t.statuse.id != 5 && _t.statuse.id == 5) || (t.statuse.id == 5 && _t.statuse.id == 4);
-            string fromGroup = me.sub_unit1.unit.unit_name + " - " + me.sub_unit1.sub_unit_name;
+            string fromGroup = currentUser.Details.sub_unit1.unit.unit_name + " - " + currentUser.Details.sub_unit1.sub_unit_name;
             string toGroup = _t.sub_unit.unit.unit_name + " - " + _t.sub_unit.sub_unit_name;
             string groupEmail = _t.assigned_to_group == _t.assigned_to_group_last ? "0" : t.sub_unit.mailto;
 
-            try { Tickets.Attachments.SaveMultiple(db2, fuControls, t_id, commentID); }
-            catch (Exception ex) { lblReport.report(false, error += " - " + GetLocalResourceObject("ErrorSaving").ToString(), ex); }
             if ((bool.Parse(Utils.Settings.Get("email_notification"))))
             {
                 if (new_or_closing_ticket || bool.Parse(Utils.Settings.Get("email_notification_only_open_close")) == false)

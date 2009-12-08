@@ -87,11 +87,16 @@ http://naspinski.net
                         </td>
                     </tr>
                     <tr>
+                        <% if (Settings.AuthenticationMode == System.Web.Configuration.AuthenticationMode.Windows) { %>
                         <td>
                             <br />
                             <asp:LinkButton ID="lbGroups" runat="server" CausesValidation="False" meta:resourcekey="lbGroupsResource1" />
+                            
                         </td>
                         <td>
+                        <% } else { %>
+                        <td colspan="2">
+                        <% } %>
                             <br />
                             <div style="text-align:center;">
                                 <asp:Button runat="server" ID="btnSubmit" CssClass="button" onclick="btnSubmit_Click" ValidationGroup="profile" 
@@ -102,7 +107,7 @@ http://naspinski.net
                 </table>
                 <br />
                 <asp:LinqDataSource ID="ldsDomains" runat="server" 
-                    ContextTypeName="dbDataContext" OrderBy="domain" 
+                    ContextTypeName="SlickTicket.DomainModel.stDataContext" OrderBy="domain" 
                     TableName="allowed_email_domains">
                 </asp:LinqDataSource>
             </fieldset>

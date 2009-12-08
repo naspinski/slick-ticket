@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using SlickTicket.DomainModel;
 
 public partial class patch_update_database : System.Web.UI.Page
 {
@@ -27,7 +28,7 @@ public partial class patch_update_database : System.Web.UI.Page
             StreamWriter sw = new StreamWriter(fileUrl, false);
             try
             {
-                dbDataContext db = new dbDataContext();
+                stDataContext db = new stDataContext();
                 int first_group = db.sub_units.First().id;
                 while (!sr.EndOfStream)
                     sw.WriteLine(sr.ReadLine().Replace("_REPLACE_", first_group.ToString()));

@@ -4,12 +4,13 @@
 
 
 using System;
+using SlickTicket.DomainModel;
 
 public partial class admin_controls_security_levels : System.Web.UI.UserControl
 {
     protected void Page_Load(object sender, EventArgs e)
     {
-        dbDataContext db = new dbDataContext();
+        stDataContext db = new stDataContext();
 
         string securityLevelExplanations = string.Empty;
         foreach (security_level sl in Dbi.AccessLevels.List(db, 0))

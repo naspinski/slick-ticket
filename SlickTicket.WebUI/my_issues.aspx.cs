@@ -13,34 +13,32 @@ using System.Reflection;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SlickTicket.DomainModel;
+using SlickTicket.DomainModel.Objects;
 
 public partial class my_issues : System.Web.UI.Page
 {
-    dbDataContext db;
-    string userName;
-    bool userIsRegistered;
+    stDataContext db = new stDataContext();
+    CurrentUser currentUser;
     IEnumerable<ticket> myTickets, groupTickets;
     public Dictionary<int, string> urgency = new Dictionary<int, string>();
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        currentUser = CurrentUser.Get();
         this.Title = Resources.Common.MyIssues;
         GridView[] gvs = new GridView[] { gvMy, gvGroup };
-        db = new dbDataContext();
-        userName = Utils.UserName();
-        userIsRegistered = Users.Exists(db, userName);
-        user me = Users.Get(db, userName);
-        lblMyGroup.Text = me.sub_unit1.unit.unit_name + " - " + me.sub_unit1.sub_unit_name;
-        txtSubmitter.Text = me.id.ToString();
-        txtGroup.Text = me.sub_unit.ToString();
+        lblMyGroup.Text = currentUser.Details.sub_unit1.unit.unit_name + " - " + currentUser.Details.sub_unit1.sub_unit_name;
+        txtSubmitter.Text = currentUser.Details.id.ToString();
+        txtGroup.Text = currentUser.Details.sub_unit.ToString();
 
         urgency.Add(1, "transparent");
         urgency.Add(2, "#ffe800;color:#666666;");
         urgency.Add(3, "#ff7700");
         urgency.Add(4, "#ff2f00");
 
-        myTickets = Tickets.MyTickets(db, me.id);
-        groupTickets = Tickets.MyGroupsTickets(db, me);
+        myTickets = Tickets.MyTickets(db, currentUser.Details.id);
+        groupTickets = Tickets.MyGroupsTickets(db, currentUser.Details);
 
         if (!IsPostBack)
         {
