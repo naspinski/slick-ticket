@@ -174,13 +174,11 @@ public partial class _ticket : System.Web.UI.Page
             FileUpload[] fuControls = new FileUpload[] { FileUpload1, FileUpload2, FileUpload3, FileUpload4, FileUpload5 };
             IEnumerable<FileStream> attachments = fuControls.GetFileStreams(Settings.AttachmentDirectory);
             int commentID = Comments.New(db, t.id, currentUser.Details.id, txtDetails.Text, ddlSubUnit.SelectedValueToInt(), ddlPriority.SelectedValueToInt(), ddlStatus.SelectedValueToInt(), attachments, Settings.AttachmentDirectory);
-            fuControls.GetFileStreamsCleanup(Settings.AttachmentDirectory, attachments);
-                //Tickets.Comments.Add(db, txtDetails.Text, t.id, currentUser.Details.id, ddlPriority.SelectedValueToInt(), ddlStatus.SelectedValueToInt(), ddlSubUnit.SelectedValueToInt());
-            int t_id = t.id;
+            Attachments.TempFolderCleanup(Settings.AttachmentDirectory);
 
             stDataContext db2 = new stDataContext(); // have to get new stDataContext in order to chage the foreign key since it was already open
 
-            ticket _t = Tickets.Update(db2, t_id, Int32.Parse(ddlStatus.SelectedValue), Int32.Parse(ddlPriority.SelectedValue), Int32.Parse(ddlSubUnit.SelectedValue));
+            ticket _t = Tickets.Update(db2, t.id, Int32.Parse(ddlStatus.SelectedValue), Int32.Parse(ddlPriority.SelectedValue), Int32.Parse(ddlSubUnit.SelectedValue));
             bool new_or_closing_ticket = (t.statuse.id != 5 && _t.statuse.id == 5) || (t.statuse.id == 5 && _t.statuse.id == 4);
             string fromGroup = currentUser.Details.sub_unit1.unit.unit_name + " - " + currentUser.Details.sub_unit1.sub_unit_name;
             string toGroup = _t.sub_unit.unit.unit_name + " - " + _t.sub_unit.sub_unit_name;

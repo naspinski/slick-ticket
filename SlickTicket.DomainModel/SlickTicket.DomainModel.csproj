@@ -52,7 +52,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstract\ICurrentUser.cs" />
     <Compile Include="Extensions\TicketExtensions.cs" />
     <Compile Include="Extensions\WebControlExtensions.cs" />
     <Compile Include="HtmlFilter.cs" />
@@ -102,6 +101,9 @@
   <ItemGroup>
     <Content Include="bin\HtmlAgilityPack.dll" />
     <Content Include="bin\Naspinski.Utilities.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Abstract\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

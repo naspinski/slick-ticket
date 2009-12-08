@@ -58,7 +58,7 @@ public partial class new_ticket : System.Web.UI.Page
             FileUpload[] fuControls = new FileUpload[] { FileUpload1, FileUpload2, FileUpload3, FileUpload4, FileUpload5 };
             IEnumerable<FileStream> attachments = fuControls.GetFileStreams(Settings.AttachmentDirectory);
             ticket newTicket = Tickets.New(db, txtTopic.Text, txtDetails.Text, Int32.Parse(ddlPriority.SelectedValue), Int32.Parse(ddlSubUnit.SelectedValue), u, attachments, Settings.AttachmentDirectory);
-            fuControls.GetFileStreamsCleanup(Settings.AttachmentDirectory, attachments);
+            Attachments.TempFolderCleanup(Settings.AttachmentDirectory);
             
             string body = GetLocalResourceObject("ANew").ToString() + " " + ddlPriority.SelectedItem.Text+" "+ GetLocalResourceObject("TicketWasSubmittedBy").ToString()+" " + u.userName + " (" + u.sub_unit1.unit.unit_name + " - " + u.sub_unit1.sub_unit_name + ")" + n + n;
             body += newTicket.title + " [" + Resources.Common.TicketNumber + " #" + newTicket.id + "]" + n + n + Request.Url.OriginalString.Replace("new_ticket.aspx", string.Empty) + "ticket.aspx?ticketid=" + newTicket.id;
