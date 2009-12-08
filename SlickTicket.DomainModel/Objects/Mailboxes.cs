@@ -12,21 +12,21 @@ namespace SlickTicket.DomainModel.Objects
         public static int GetSubUnitId(stDataContext db, string email)
         {
             if (string.IsNullOrEmpty(email.Trim())) return Unit.Default;
-            Mailbox m = db.Mailboxes.FirstOrDefault(x => x.EmailAddress.ToLower().Trim() == email.ToLower().Trim());
+            SlickTicket.DomainModel.Mailbox m = db.Mailboxes.FirstOrDefault(x => x.EmailAddress.ToLower().Trim() == email.ToLower().Trim());
             if (m == null) return Unit.Default;
             return m.SubUnitID;
         }
 
-        public static Mailbox Get(int id)
+        public static SlickTicket.DomainModel.Mailbox Get(int id)
         { return Get(new stDataContext(), id); }
-        public static Mailbox Get(stDataContext db, int id)
+        public static SlickTicket.DomainModel.Mailbox Get(stDataContext db, int id)
         { return db.Mailboxes.FirstOrDefault(x => x.Id == id); }
 
         public static void New(string host, string email_address, string username, string password, int port, int sub_unit_id)
         { New(new stDataContext(), host, email_address, username, password, port, sub_unit_id); }
         public static void New(stDataContext db, string host, string email_address, string username, string password, int port, int sub_unit_id)
         {
-            Mailbox m = new Mailbox()
+            SlickTicket.DomainModel.Mailbox m = new SlickTicket.DomainModel.Mailbox()
             {
                 Host = host,
                 EmailAddress = email_address,
