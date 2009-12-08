@@ -8,6 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using SlickTicketExtensions;
 using SlickTicket.DomainModel;
+using SlickTicket.DomainModel.Objects;
 
 public partial class admin_units : System.Web.UI.Page
 {
@@ -24,7 +25,7 @@ public partial class admin_units : System.Web.UI.Page
             gvSubUnits.AlternatingRowStyle.BackColor = alt_color;
             gvUnits.HeaderStyle.BackColor = alt_color;
             gvUnits.AlternatingRowStyle.BackColor = alt_color;
-            foreach (security_level sl in Dbi.AccessLevels.List(db, 0))
+            foreach (security_level sl in Misc.AccessLevels.List(db, 0))
                 ddlSecurityLevel.Items.Add(new ListItem("[" + sl.id.ToString() + "] " + sl.security_level_name, sl.id.ToString()));
         }
     }
@@ -75,7 +76,7 @@ public partial class admin_units : System.Web.UI.Page
     {
         try
         {
-            Groups.Add(db, txtNewUnit.Text);
+            Units.Add(db, txtNewUnit.Text);
             lblUnitReport.report(true, "group Added", null);
 
             gvUnits.DataBind();
@@ -94,7 +95,7 @@ public partial class admin_units : System.Web.UI.Page
     {
         try
         {
-            Groups.SubGroups.Add(db, txtNewSubUnit.Text, Int32.Parse(ddlNewSubUnit.SelectedValue), Int32.Parse(ddlSecurityLevel.SelectedValue), txtMailto.Text);
+            Units.SubUnits.Add(db, txtNewSubUnit.Text, Int32.Parse(ddlNewSubUnit.SelectedValue), Int32.Parse(ddlSecurityLevel.SelectedValue), txtMailto.Text);
             lblSubUnitReport.report(true, "Sub-group added", null);
             gvSubUnits.DataBind();
         }

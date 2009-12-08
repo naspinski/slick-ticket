@@ -25,7 +25,7 @@ public partial class search : System.Web.UI.Page
         urgency.Add(4, "#ff2f00");
         if (!IsPostBack)
         {
-            var units = Groups.List(db, 10);
+            var units = Units.List(db, 10);
             foreach (unit u in units.OrderBy(p => p.unit_name))
                 ddlUnit.Items.Add(new ListItem(u.unit_name, u.id.ToString()));
             ddlUnit.Items.Insert(0, new ListItem(Resources.Common.Any, "0"));

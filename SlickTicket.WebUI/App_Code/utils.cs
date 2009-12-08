@@ -12,6 +12,7 @@ using System.Web;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
 using SlickTicket.DomainModel;
+using SlickTicket.DomainModel.Objects;
 
 /// <summary>
 ///  App Utilities
@@ -85,7 +86,7 @@ public class Utils
     public static void PopulateSubUnits(stDataContext db, DropDownList ddlFrom, DropDownList ddlTo, int accessLevel)
     {
         ddlTo.Items.Clear();
-        var sus = Groups.SubGroups.List(db, Int32.Parse(ddlFrom.SelectedValue), accessLevel);
+        var sus = Units.SubUnits.List(db, Int32.Parse(ddlFrom.SelectedValue), accessLevel);
         if (sus.Count() < 1)
             ddlTo.Items.Add(new ListItem("No sub-groups available to you", "0"));
         else

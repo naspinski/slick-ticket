@@ -31,8 +31,8 @@ public partial class new_ticket : System.Web.UI.Page
         catch { }
         if (!IsPostBack)
         {
-            foreach (priority p in Dbi.Priorities.List(db, 10)) ddlPriority.Items.Add(new ListItem(p.priority_name, p.id.ToString()));
-            var units = Groups.List(db, accessLevel);
+            foreach (priority p in Misc.Priorities.List(db, 10)) ddlPriority.Items.Add(new ListItem(p.priority_name, p.id.ToString()));
+            var units = Units.List(db, accessLevel);
             if (units.Count() < 1)
             {
                 // user has no privelege to post new tickets

@@ -7,6 +7,7 @@ using System;
 using System.Web.UI.WebControls;
 using SlickTicketExtensions;
 using SlickTicket.DomainModel;
+using SlickTicket.DomainModel.Objects;
 
 public partial class admin_user_groups : System.Web.UI.Page
 {
@@ -20,7 +21,7 @@ public partial class admin_user_groups : System.Web.UI.Page
             System.Drawing.Color alt_color = System.Drawing.ColorTranslator.FromHtml(Themes.Current(db).alt_rows);
             gvADGroups.HeaderStyle.BackColor = alt_color;
             gvADGroups.AlternatingRowStyle.BackColor = alt_color;
-            foreach (security_level sl in Dbi.AccessLevels.List(db, 0))
+            foreach (security_level sl in Misc.AccessLevels.List(db, 0))
                 ddlSecurityLevel.Items.Add(new ListItem("[" + sl.id.ToString() + "] " + sl.security_level_name, sl.id.ToString()));
         }
     }
@@ -28,7 +29,7 @@ public partial class admin_user_groups : System.Web.UI.Page
     {
         try
         {
-            Permissions.AddGroup(db, txtADGroup.Text, Int32.Parse(ddlSecurityLevel.SelectedValue));
+            PermissionGroups.AddGroup(db, txtADGroup.Text, Int32.Parse(ddlSecurityLevel.SelectedValue));
             lblReport.report(true, Resources.Common.Updated, null);
             txtADGroup.Text = string.Empty;
             ddlSecurityLevel.set("1");

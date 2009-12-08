@@ -8,8 +8,9 @@ using System.IO;
 using System.Text;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
-using SlickTicketExtensions;
 using SlickTicket.DomainModel;
+using SlickTicket.DomainModel.Objects;
+using SlickTicketExtensions;
 
 public partial class admin_settings : System.Web.UI.Page
 {
@@ -90,7 +91,7 @@ public partial class admin_settings : System.Web.UI.Page
         clear();
         try
         {
-            Dbi.Domains.Add(db, txtDomainAdd.Text);
+            Misc.Domains.Add(db, txtDomainAdd.Text);
              lblEmail.report(true, Resources.Common.Updated, null);
             txtDomainAdd.Text = string.Empty;
             gvDomains.DataBind();
@@ -224,8 +225,8 @@ public partial class admin_settings : System.Web.UI.Page
         Button clicked = (Button)sender;
         switch (clicked.ID)
         {
-            case "btnStyleImport": lblImportReport.Text = Styles.Import(fuImport.FileContent); break;
-            case "btnFaqImport": lblImportReport.Text = Faqs.Import(fuImport.FileContent); break;
+            case "btnStyleImport": lblImportReport.Text = Import.Styles(fuImport.FileContent); break;
+            case "btnFaqImport": lblImportReport.Text = Import.Faqs(fuImport.FileContent); break;
             default: lblImportReport.Text = "<div class='error'>" + Resources.Common.Error + "</div>"; break;
         }
 
@@ -240,7 +241,7 @@ public partial class admin_settings : System.Web.UI.Page
             XDocument x;
             if (clicked.ID.Equals("btnExportStyles"))
             {
-                x = Styles.Export();
+                x = Themes.Export();
                 filename = "SlickTicketThemes.xml";
             }
             else

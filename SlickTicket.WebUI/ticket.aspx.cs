@@ -70,11 +70,11 @@ public partial class _ticket : System.Web.UI.Page
                 btnClose.Visible = !(t.ticket_status == 5);
                 if (userCanEditThisTicket) // full edit privs
                 {
-                    foreach (priority p in Dbi.Priorities.List(db, 10)) ddlPriority.Items.Add(new ListItem(p.priority_name, p.id.ToString()));
-                    foreach (statuse s in Dbi.Statuses.List(db)) ddlStatus.Items.Add(new ListItem(s.status_name, s.id.ToString()));
+                    foreach (priority p in Misc.Priorities.List(db, 10)) ddlPriority.Items.Add(new ListItem(p.priority_name, p.id.ToString()));
+                    foreach (statuse s in Misc.Statuses.List(db)) ddlStatus.Items.Add(new ListItem(s.status_name, s.id.ToString()));
                     ddlStatus.set(t.ticket_status.ToString());
                     ddlPriority.set(t.priority.ToString());
-                    var units = Groups.List(db, accessLevel);
+                    var units = Units.List(db, accessLevel);
                     foreach (unit u in units.OrderBy(p => p.unit_name))
                         ddlUnit.Items.Add(new ListItem(u.unit_name, u.id.ToString()));
                     ddlUnit.set(t.sub_unit.unit.id.ToString());

@@ -37,9 +37,9 @@ public partial class admin_stats : System.Web.UI.Page
         dt.Columns.Add(new DataColumn("name", typeof(string)));
         dt.Columns.Add(new DataColumn("id", typeof(int)));
         dt.Columns.Add(new DataColumn("count", typeof(int)));
-        foreach (unit u in Groups.List(db, 10))
+        foreach (unit u in Units.List(db, 10))
         {
-            IEnumerable<ticket> tix = Groups.OpenTickets(db, u.id);
+            IEnumerable<ticket> tix = Units.OpenTickets(db, u.id);
             if (tix.Count() > max) max = tix.Count();
             DataRow row = dt.NewRow();
             try
@@ -73,7 +73,7 @@ public partial class admin_stats : System.Web.UI.Page
         currentGroup.Text = unit_ref.ToString();
         currentSubGroup.Text = "0";
         this.sub_groups(unit_ref);
-        this.displayStats(Groups.OpenTickets(db, unit_ref), Groups.ClosedTickets(db, unit_ref));
+        this.displayStats(Units.OpenTickets(db, unit_ref), Units.ClosedTickets(db, unit_ref));
         pnlGroups.Visible = false;
         pnlSubGroups.Visible = true;
         lblSubGroupDetails.Visible = false;
@@ -82,16 +82,16 @@ public partial class admin_stats : System.Web.UI.Page
 
     protected void sub_groups(int unit_ref)
     {
-        unit thisGroup = Groups.GetByID(db, unit_ref);
+        unit thisGroup = Units.GetByID(db, unit_ref);
         thisUnit = thisGroup.unit_name;
         max = 0;
         DataTable dt = new DataTable();
         dt.Columns.Add(new DataColumn("name", typeof(string)));
         dt.Columns.Add(new DataColumn("id", typeof(int)));
         dt.Columns.Add(new DataColumn("count", typeof(int)));
-        foreach (sub_unit u in Groups.SubGroups.List(db, unit_ref, 10))
+        foreach (sub_unit u in Units.SubUnits.List(db, unit_ref, 10))
         {
-            IEnumerable<ticket> tix = Groups.SubGroups.OpenTickets(db, u.id);
+            IEnumerable<ticket> tix = Units.SubUnits.OpenTickets(db, u.id);
             if (tix.Count() > max) max = tix.Count();
             DataRow row = dt.NewRow();
             try
@@ -124,12 +124,12 @@ public partial class admin_stats : System.Web.UI.Page
 
     protected void subDetails(int sub_unit_ref)
     {
-        sub_unit suClicked = Groups.SubGroups.GetByID(db, sub_unit_ref);
+        sub_unit suClicked = Units.SubUnits.GetByID(db, sub_unit_ref);
         thisUnit = suClicked.unit.unit_name;
         currentGroup.Text = suClicked.unit.id.ToString();
         thisSubUnit = suClicked.sub_unit_name;
 
-        this.displayStats(Groups.SubGroups.OpenTickets(db, sub_unit_ref), Groups.SubGroups.ClosedTickets(db, sub_unit_ref));
+        this.displayStats(Units.SubUnits.OpenTickets(db, sub_unit_ref), Units.SubUnits.ClosedTickets(db, sub_unit_ref));
     }
 
     protected void btnHome_Click(object sender, EventArgs e)
@@ -149,7 +149,7 @@ public partial class admin_stats : System.Web.UI.Page
         lblSubGroupDetails.Visible = false;
         rptSubGroups.Visible = true;
         currentSubGroup.Text = "0";
-        this.displayStats(Groups.OpenTickets(db, unit_ref), Groups.ClosedTickets(db, unit_ref));
+        this.displayStats(Units.OpenTickets(db, unit_ref), Units.ClosedTickets(db, unit_ref));
     }
 
     protected string getWidth(object input)

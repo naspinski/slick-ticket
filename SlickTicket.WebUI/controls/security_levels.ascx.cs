@@ -5,6 +5,7 @@
 
 using System;
 using SlickTicket.DomainModel;
+using SlickTicket.DomainModel.Objects;
 
 public partial class admin_controls_security_levels : System.Web.UI.UserControl
 {
@@ -13,7 +14,7 @@ public partial class admin_controls_security_levels : System.Web.UI.UserControl
         stDataContext db = new stDataContext();
 
         string securityLevelExplanations = string.Empty;
-        foreach (security_level sl in Dbi.AccessLevels.List(db, 0))
+        foreach (security_level sl in Misc.AccessLevels.List(db, 0))
         {
             
 
