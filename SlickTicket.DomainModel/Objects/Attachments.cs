@@ -36,9 +36,18 @@ namespace SlickTicket.DomainModel.Objects
                         submitted = DateTime.Now
                     };
                     db.attachments.InsertOnSubmit(a);
+                    file.Dispose();
+                    file.Close();
                 }
                 db.SubmitChanges();
             }
+        }
+
+        public static void TempFolderCleanup(string attachmentFolder)
+        {
+            string savePath = attachmentFolder + "temp\\";
+            foreach (var file in Directory.GetFiles(savePath))
+                File.Delete(file);
         }
     }
 }

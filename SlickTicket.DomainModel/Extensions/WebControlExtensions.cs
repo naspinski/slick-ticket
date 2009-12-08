@@ -25,13 +25,5 @@ namespace SlickTicket.DomainModel.Extensions
             }
             return attachments;
         }
-
-        public static void GetFileStreamsCleanup(this FileUpload[] fuControls, string attachmentFolder, IEnumerable<FileStream> attachments)
-        {
-            foreach (FileStream fs in attachments) { fs.Close(); fs.Dispose(); }
-            string savePath = attachmentFolder + "temp\\";
-            foreach (var file in Directory.GetFiles(savePath))
-                File.Delete(file);
-        }
     }
 }
