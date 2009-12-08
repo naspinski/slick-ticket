@@ -7,7 +7,7 @@ using Naspinski.Utilities;
 
 namespace SlickTicket.DomainModel.Objects
 {
-    public class Attachment
+    public class Attachments
     {
         public static void Add(string attachmentFolder, IEnumerable<FileStream> attachments, int ticket_id, int? comment_id)
         { Add(new stDataContext(), attachmentFolder, attachments, ticket_id, comment_id); }

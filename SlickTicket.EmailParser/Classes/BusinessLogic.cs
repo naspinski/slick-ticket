@@ -100,7 +100,7 @@ namespace SlickTicket.EmailParser
                     att.active = true;
                     att.ticket_ref = tid;
                     FileStream fs = new FileStream(f, FileMode.Open);
-                    DomainModel.Objects.Attachment.Add(@"C:\temp\", GetFiles(@"C:\temp\"), att.ticket_ref, att.comment_ref);
+                    DomainModel.Objects.Attachments.Add(@"C:\temp\", GetFiles(@"C:\temp\"), att.ticket_ref, att.comment_ref);
                 }
 
                 //DomainModel.Ticket.Email eT = new SlickTicket.DomainModel.Ticket.Email();

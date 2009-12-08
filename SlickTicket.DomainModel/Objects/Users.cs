@@ -32,7 +32,7 @@ namespace SlickTicket.DomainModel.Objects
                 u = GetFromUserName(db, OutsideUser);
                 if (u == null) // if this is the first time the dummy has been used, it makes the dummy user
                 {
-                    u = new user() { userName = OutsideUser, email = OutsideUser + "@unknown.com", sub_unit = Unit.Default, phone = "555-5555" };
+                    u = new user() { userName = OutsideUser, email = OutsideUser + "@unknown.com", sub_unit = Units.Default, phone = "555-5555" };
                     db.users.InsertOnSubmit(u);
                     db.SubmitChanges();
                 }
@@ -73,7 +73,7 @@ namespace SlickTicket.DomainModel.Objects
                     AdInfo.Email = searchString;
                     AdInfo.Phone = sr.Properties["telephonenumber"] == null ? "555-5555" : sr.Properties["telephonenumber"][0].ToString();
                     AdInfo.UserName = sr.Properties["samaccountname"][0].ToString();
-                    AdInfo.SubUnit = Unit.Default;
+                    AdInfo.SubUnit = Units.Default;
 
                     return AdInfo;
                 }

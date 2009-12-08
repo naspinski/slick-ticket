@@ -5,15 +5,15 @@ using System.Text;
 
 namespace SlickTicket.DomainModel.Objects
 {
-    public partial class Mailbox
+    public class Mailboxes
     {
         public static int GetSubUnitId(string email)
         { return GetSubUnitId(new stDataContext(), email); }
         public static int GetSubUnitId(stDataContext db, string email)
         {
-            if (string.IsNullOrEmpty(email.Trim())) return Unit.Default;
+            if (string.IsNullOrEmpty(email.Trim())) return Units.Default;
             SlickTicket.DomainModel.Mailbox m = db.Mailboxes.FirstOrDefault(x => x.EmailAddress.ToLower().Trim() == email.ToLower().Trim());
-            if (m == null) return Unit.Default;
+            if (m == null) return Units.Default;
             return m.SubUnitID;
         }
 

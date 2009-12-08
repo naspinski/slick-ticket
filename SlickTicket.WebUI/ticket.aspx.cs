@@ -92,7 +92,7 @@ public partial class _ticket : System.Web.UI.Page
                     ddlPriority.Enabled = false;
                     ddlStatus.Enabled = false;
 
-                    if (currentUser.Details.sub_unit == t.user.sub_unit || Comment.CommentingGroups(db, t.id).Contains(currentUser.Details.sub_unit))
+                    if (currentUser.Details.sub_unit == t.user.sub_unit || Comments.CommentingGroups(db, t.id).Contains(currentUser.Details.sub_unit))
                         lblReport.report(false, GetLocalResourceObject("CommentAttachClose").ToString(), null);
                     else
                     {
@@ -173,7 +173,7 @@ public partial class _ticket : System.Web.UI.Page
         {
             FileUpload[] fuControls = new FileUpload[] { FileUpload1, FileUpload2, FileUpload3, FileUpload4, FileUpload5 };
             IEnumerable<FileStream> attachments = fuControls.GetFileStreams(Settings.AttachmentDirectory);
-            int commentID = Comment.New(db, t.id, currentUser.Details.id, txtDetails.Text, ddlSubUnit.SelectedValueToInt(), ddlPriority.SelectedValueToInt(), ddlStatus.SelectedValueToInt(), attachments, Settings.AttachmentDirectory);
+            int commentID = Comments.New(db, t.id, currentUser.Details.id, txtDetails.Text, ddlSubUnit.SelectedValueToInt(), ddlPriority.SelectedValueToInt(), ddlStatus.SelectedValueToInt(), attachments, Settings.AttachmentDirectory);
             fuControls.GetFileStreamsCleanup(Settings.AttachmentDirectory, attachments);
                 //Tickets.Comments.Add(db, txtDetails.Text, t.id, currentUser.Details.id, ddlPriority.SelectedValueToInt(), ddlStatus.SelectedValueToInt(), ddlSubUnit.SelectedValueToInt());
             int t_id = t.id;
