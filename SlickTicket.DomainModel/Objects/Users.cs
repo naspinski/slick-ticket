@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.DirectoryServices;
 
-namespace SlickTicket.DomainModel
+namespace SlickTicket.DomainModel.Objects
 {
     public class User
     {

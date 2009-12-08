@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
+using System.Linq;
 
-namespace SlickTicket.DomainModel
+namespace SlickTicket.DomainModel.Objects
 {
     public class Attachment
     {
@@ -17,7 +16,7 @@ namespace SlickTicket.DomainModel
                 attachment a;
                 string filePath, fileName;
 
-                foreach(FileStream file in attachments)
+                foreach (FileStream file in attachments)
                 {
                     fileName = Path.GetFileName(file.Name);
                     filePath = Path.GetDirectoryName(attachmentFolder);
