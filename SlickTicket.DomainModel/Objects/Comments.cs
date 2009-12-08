@@ -7,7 +7,7 @@ using SlickTicket.DomainModel.Objects;
 
 namespace SlickTicket.DomainModel.Objects
 {
-    public class Comment
+    public class Comments
     {
         public class Email
         {
@@ -23,11 +23,11 @@ namespace SlickTicket.DomainModel.Objects
             {
                 try
                 {
-                    int assign_to = Mailbox.GetSubUnitId(db, mailbox_email);
+                    int assign_to = Mailboxes.GetSubUnitId(db, mailbox_email);
                     user u = Users.GetFromEmail(senders_email);
                     ticket t = Tickets.Get(db, ticket_id);
                     comment c = t.comments.Count > 0 ? t.comments.Last() : new comment() { status_id = t.ticket_status, priority_id = t.priority, assigned_to = t.assigned_to_group };
-                    assign_to = assign_to != Unit.Default ? assign_to : c.assigned_to;
+                    assign_to = assign_to != Units.Default ? assign_to : c.assigned_to;
                     New(db, t, u, details, assign_to, c.priority_id, (c.status_id == 1 ? 3 : c.status_id), attachments, attachmentFolder);
                     return true;
                 }
@@ -47,7 +47,7 @@ namespace SlickTicket.DomainModel.Objects
             {
                 try
                 {
-                    Comment.New(db, t.id, u.id, details, assigned_to, priority, status, attachments, attachmentFolder);
+                    Comments.New(db, t.id, u.id, details, assigned_to, priority, status, attachments, attachmentFolder);
                     return true;
                 }
                 catch (Exception ex)
@@ -83,7 +83,7 @@ namespace SlickTicket.DomainModel.Objects
             };
             db.comments.InsertOnSubmit(c);
             db.SubmitChanges();
-            Attachment.Add(db, attachmentFolder, attachments, ticket_id, c.id);
+            Attachments.Add(db, attachmentFolder, attachments, ticket_id, c.id);
             return c.id;
         }
 

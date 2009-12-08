@@ -25,7 +25,7 @@ namespace SlickTicket.DomainModel.Objects
             {
                 try
                 {
-                    Tickets.New(db, title, details, 1, Mailbox.GetSubUnitId(mailbox_email), Users.GetFromEmail(senders_email), attachments, attachmentFolder);
+                    Tickets.New(db, title, details, 1, Mailboxes.GetSubUnitId(mailbox_email), Users.GetFromEmail(senders_email), attachments, attachmentFolder);
                     return true;
                 }
                 catch (Exception ex)
@@ -59,7 +59,7 @@ namespace SlickTicket.DomainModel.Objects
             };
             db.tickets.InsertOnSubmit(t);
             db.SubmitChanges();
-            Attachment.Add(db, attachmentFolder, attachments, t.id, null);
+            Attachments.Add(db, attachmentFolder, attachments, t.id, null);
             return t;
         }
 
