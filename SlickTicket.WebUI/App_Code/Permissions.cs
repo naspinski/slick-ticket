@@ -4,6 +4,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 
 /// <summary>
 /// Summary description for Permissions
@@ -13,7 +14,7 @@ public static class Permissions
     public static void AddGroup(dbDataContext db, string ad_group, int access_level)
     {
         user_group ug = new user_group();
-        ug.ad_group = ad_group;
+        ug.ad_group = HttpUtility.HtmlEncode(ad_group);
         ug.security_level = access_level;
         db.user_groups.InsertOnSubmit(ug);
         db.SubmitChanges();

@@ -5,6 +5,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web;
 
 /// <summary>
 /// Summary description for Groups
@@ -29,7 +30,7 @@ public static class Groups
     public static void Add(dbDataContext db, string unitName)
     {
         unit newUnit = new unit();
-        newUnit.unit_name = unitName;
+        newUnit.unit_name = HttpUtility.HtmlEncode(unitName);
         db.units.InsertOnSubmit(newUnit);
         db.SubmitChanges();
     }
@@ -77,10 +78,10 @@ public static class Groups
         public static void Add(dbDataContext db, string subUnitName, int unit, int access_level, string email)
         {
             sub_unit newSubUnit = new sub_unit();
-            newSubUnit.sub_unit_name = subUnitName;
+            newSubUnit.sub_unit_name = HttpUtility.HtmlEncode(subUnitName);
             newSubUnit.unit_ref = unit;
             newSubUnit.access_level = access_level;
-            newSubUnit.mailto = email;
+            newSubUnit.mailto = HttpUtility.HtmlEncode(email);
             db.sub_units.InsertOnSubmit(newSubUnit);
             db.SubmitChanges();
         }

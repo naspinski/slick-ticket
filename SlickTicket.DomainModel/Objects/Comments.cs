@@ -73,7 +73,7 @@ namespace SlickTicket.DomainModel.Objects
             {
                 active = true,
                 assigned_to = assigned_to,
-                comment1 = HttpUtility.HtmlEncode(details),
+                comment1 = HtmlFilter.Filter(details),
                 priority_id = priority,
                 status_id = status,
                 submitted = DateTime.Now,

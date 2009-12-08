@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.UI.WebControls;
+using SlickTicket.DomainModel;
 
 /// <summary>
 /// Summary description for Tickets
@@ -39,8 +40,8 @@ public static class Tickets
     public static ticket Add(dbDataContext db, string title, string details, int assign_to_group, int _priority, int submitter, int originating_group)
     {
         ticket newTicket = new ticket();
-        newTicket.title = title;
-        newTicket.details = details;
+        newTicket.title = HtmlFilter.Filter(title);
+        newTicket.details = HtmlFilter.Filter(details);
         newTicket.closed = NullDate;
         newTicket.submitter = submitter;
         newTicket.submitted = DateTime.Now;
@@ -196,7 +197,7 @@ public static class Tickets
         {
             comment c = new comment();
             c.submitter = userID;
-            c.comment1 = _comment;
+            c.comment1 = HtmlFilter.Filter(_comment);
             c.submitted = DateTime.Now;
             c.ticket_ref = ticket_ref;
             c.priority_id = priorityID;

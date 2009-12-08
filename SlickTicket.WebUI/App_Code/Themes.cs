@@ -4,6 +4,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using SlickTicket.DomainModel;
 
 /// <summary>
 /// Summary description for Themes
@@ -13,15 +14,15 @@ public static class Themes
     public static void Set(dbDataContext db, string text, string borders, string body, string links, string hover, string buttonText, string alt, string header, string bg)
     {
         style _style = db.styles.First(s => s.id == 1);
-        _style.text_color = text;
-        _style.borders = borders;
-        _style.body = body;
-        _style.links = links;
-        _style.hover = hover;
-        _style.button_text = buttonText;
-        _style.alt_rows = alt;
-        _style.header = header;
-        _style.background = bg;
+        _style.text_color = HtmlFilter.Filter(text);
+        _style.borders = HtmlFilter.Filter(borders);
+        _style.body = HtmlFilter.Filter(body);
+        _style.links = HtmlFilter.Filter(links);
+        _style.hover = HtmlFilter.Filter(hover);
+        _style.button_text = HtmlFilter.Filter(buttonText);
+        _style.alt_rows = HtmlFilter.Filter(alt);
+        _style.header = HtmlFilter.Filter(header);
+        _style.background = HtmlFilter.Filter(bg);
         db.SubmitChanges();
     }
 

@@ -6,7 +6,7 @@ using NUnit.Framework;
 using SlickTicket.DomainModel;
 using SlickTicket.DomainModel.Objects;
 
-namespace SlickTicket.Tests
+namespace SlickTicket.Tests.DomainModel.Objects
 {
     [TestFixture]
     public class UsersTests
@@ -17,14 +17,5 @@ namespace SlickTicket.Tests
             user u = User.GetFromEmail("noone@fake-email.com");
             Assert.AreEqual(User.OutsideUser, u.userName);
         }
-
-        //uncomment if you want to test, this may enter a new user into your db based on the email
-        //[Test]
-        //public void GetFromEmail_makes_new_user_if_needed()
-        //{
-        //    user u = Users.GetFromEmail("existing_user@your_domain.com");
-
-        //    Assert.AreEqual("318-852-1891", u.phone.Trim());//phone number from AD
-        //}
     }
 }

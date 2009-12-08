@@ -38,6 +38,5 @@ namespace SlickTicket.DomainModel.Objects
                 db.SubmitChanges();
             }
         }
-
     }
 }

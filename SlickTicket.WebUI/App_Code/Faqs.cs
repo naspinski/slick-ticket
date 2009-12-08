@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
+using SlickTicket.DomainModel;
 
 /// <summary>
 /// Summary description for Faqs
@@ -16,8 +17,8 @@ public static class Faqs
     public static void Add(dbDataContext db, string q, string a)
     {
         faq f = new faq();
-        f.title = q;
-        f.body = a;
+        f.title = HtmlFilter.Filter(q);
+        f.body = HtmlFilter.Filter(a);
         db.faqs.InsertOnSubmit(f);
         db.SubmitChanges();
     }
@@ -41,8 +42,8 @@ public static class Faqs
     public static void Edit(dbDataContext db, int id, string q, string a)
     {
         faq f = Get(db, id);
-        f.title = q;
-        f.body = a;
+        f.title = HtmlFilter.Filter(q);
+        f.body = HtmlFilter.Filter(a);
         db.SubmitChanges();
     }
 
