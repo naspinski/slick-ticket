@@ -50,9 +50,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DomainModel\HtmlFilterTests.cs" />
+    <Compile Include="DomainModel\Objects\TicketsTests.cs" />
+    <Compile Include="DomainModel\Objects\UsersTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TicketsTests.cs" />
-    <Compile Include="UsersTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SlickTicket.DomainModel\SlickTicket.DomainModel.csproj">

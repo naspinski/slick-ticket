@@ -47,7 +47,7 @@ namespace SlickTicket.DomainModel.Objects
                 active = true,
                 assigned_to_group = assigned_to,
                 closed = NullDate,
-                details = HttpUtility.HtmlEncode(details),
+                details = HtmlFilter.Filter(details),
                 last_action = DateTime.Now,
                 originating_group = u.sub_unit,
                 priority = priority,

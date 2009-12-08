@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Xml.Linq;
+using SlickTicket.DomainModel;
 
 /// <summary>
 /// Summary description for Styles
@@ -31,16 +32,16 @@ public static class Styles
                 {
                     styleAttributes.Add(xa.Name.ToString(), xa.Value);
                 }
-                s.alt_rows = styleAttributes["alt_rows"];
-                s.background = styleAttributes["background"];
-                s.body = styleAttributes["body"];
-                s.borders = styleAttributes["borders"];
-                s.button_text = styleAttributes["button_text"];
-                s.header = styleAttributes["header"];
-                s.hover = styleAttributes["hover"];
-                s.links = styleAttributes["links"];
-                s.style_name = styleAttributes["style_name"];
-                s.text_color = styleAttributes["text_color"];
+                s.alt_rows = HtmlFilter.Filter(styleAttributes["alt_rows"]);
+                s.background = HtmlFilter.Filter(styleAttributes["background"]);
+                s.body = HtmlFilter.Filter(styleAttributes["body"]);
+                s.borders = HtmlFilter.Filter(styleAttributes["borders"]);
+                s.button_text = HtmlFilter.Filter(styleAttributes["button_text"]);
+                s.header = HtmlFilter.Filter(styleAttributes["header"]);
+                s.hover = HtmlFilter.Filter(styleAttributes["hover"]);
+                s.links = HtmlFilter.Filter(styleAttributes["links"]);
+                s.style_name = HtmlFilter.Filter(styleAttributes["style_name"]);
+                s.text_color = HtmlFilter.Filter(styleAttributes["text_color"]);
                 db.styles.InsertOnSubmit(s);
                 try
                 {

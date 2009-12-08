@@ -27,7 +27,7 @@ public static class Users
     {
         user newUser = new user();
         newUser.userName = name;
-        newUser.email = email;
+        newUser.email = HttpUtility.HtmlEncode(email);
         newUser.phone = phone;
         newUser.sub_unit = _sub_unit;
         db.users.InsertOnSubmit(newUser);

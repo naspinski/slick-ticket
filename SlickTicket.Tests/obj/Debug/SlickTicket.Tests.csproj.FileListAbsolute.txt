@@ -16,3 +16,4 @@ C:\Documents and Settings\stan.naspinski\Desktop\ST Download\SlickTicket.Tests\b
 C:\Documents and Settings\stan.naspinski\Desktop\ST Download\SlickTicket.Tests\obj\Debug\ResolveAssemblyReference.cache
 C:\Documents and Settings\stan.naspinski\Desktop\ST Download\SlickTicket.Tests\obj\Debug\SlickTicket.Tests.dll
 C:\Documents and Settings\stan.naspinski\Desktop\ST Download\SlickTicket.Tests\obj\Debug\SlickTicket.Tests.pdb
+C:\Documents and Settings\stan.naspinski\Desktop\Slick-Ticket\SlickTicket.Tests\bin\Debug\HtmlAgilityPack.dll

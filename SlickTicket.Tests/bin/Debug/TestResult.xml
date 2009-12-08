@@ -1,17 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <!--This file represents the results of running a test suite-->
-<test-results name="C:\Documents and Settings\stan.naspinski\Desktop\ST Download\SlickTicket.Tests\bin\Debug\SlickTicket.Tests.dll" total="1" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2009-12-02" time="10:49:07">
-  <environment nunit-version="2.5.2.9222" clr-version="2.0.50727.3082" os-version="Microsoft Windows NT 5.1.2600 Service Pack 3" platform="Win32NT" cwd="C:\Documents and Settings\stan.naspinski\Desktop\ST Download\SlickTicket.Tests\bin\Debug" machine-name="N-IZ-23-40EF6A" user="stan.naspinski" user-domain="IRAQ" />
+<test-results name="C:\Documents and Settings\stan.naspinski\Desktop\Slick-Ticket\SlickTicket.Tests\bin\Debug\SlickTicket.Tests.dll" total="3" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2009-12-08" time="10:12:56">
+  <environment nunit-version="2.5.2.9222" clr-version="2.0.50727.3082" os-version="Microsoft Windows NT 5.1.2600 Service Pack 3" platform="Win32NT" cwd="C:\Documents and Settings\stan.naspinski\Desktop\Slick-Ticket\SlickTicket.Tests\bin\Debug" machine-name="N-IZ-23-40EF6A" user="stan.naspinski" user-domain="IRAQ" />
   <culture-info current-culture="en-US" current-uiculture="en-US" />
-  <test-suite name="C:\Documents and Settings\stan.naspinski\Desktop\ST Download\SlickTicket.Tests\bin\Debug\SlickTicket.Tests.dll" executed="True" success="True" time="30.984" asserts="0">
+  <test-suite name="C:\Documents and Settings\stan.naspinski\Desktop\Slick-Ticket\SlickTicket.Tests\bin\Debug\SlickTicket.Tests.dll" executed="True" success="True" time="1.875" asserts="0">
     <results>
-      <test-suite name="SlickTicket" executed="True" success="True" time="30.969" asserts="0">
+      <test-suite name="SlickTicket" executed="True" success="True" time="1.875" asserts="0">
         <results>
-          <test-suite name="Tests" executed="True" success="True" time="30.969" asserts="0">
+          <test-suite name="Tests" executed="True" success="True" time="1.875" asserts="0">
             <results>
-              <test-suite name="AttachmentsTests" executed="True" success="True" time="30.953" asserts="0">
+              <test-suite name="DomainModel" executed="True" success="True" time="1.875" asserts="0">
                 <results>
-                  <test-case name="SlickTicket.Tests.AttachmentsTests.Add_works" executed="True" success="True" time="30.953" asserts="0" />
+                  <test-suite name="HtmlFilterTests" executed="True" success="True" time="0.234" asserts="0">
+                    <results>
+                      <test-case name="SlickTicket.Tests.DomainModel.HtmlFilterTests.Filter_takes_out_script_tags" executed="True" success="True" time="0.188" asserts="1" />
+                      <test-case name="SlickTicket.Tests.DomainModel.HtmlFilterTests.Filter_wont_change_text" executed="True" success="True" time="0.031" asserts="1" />
+                    </results>
+                  </test-suite>
+                  <test-suite name="Objects" executed="True" success="True" time="1.625" asserts="0">
+                    <results>
+                      <test-suite name="UsersTests" executed="True" success="True" time="1.625" asserts="0">
+                        <results>
+                          <test-case name="SlickTicket.Tests.DomainModel.Objects.UsersTests.Non_existant_user_gets_dummy_user" executed="True" success="True" time="1.625" asserts="1" />
+                        </results>
+                      </test-suite>
+                    </results>
+                  </test-suite>
                 </results>
               </test-suite>
             </results>
