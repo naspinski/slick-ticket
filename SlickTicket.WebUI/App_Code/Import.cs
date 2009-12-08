@@ -1,20 +1,51 @@
-﻿//Slick-Ticket v2.0 - 2009
-//http://slick-ticket.com :: http://naspinski.net
-//Developed by Stan Naspinski - stan@naspinski.net
-
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
+using System.Web;
+using System.IO;
 using System.Xml.Linq;
 using SlickTicket.DomainModel;
 
 /// <summary>
-/// Summary description for Styles
+/// Summary description for Import
 /// </summary>
-public static class Styles
+public class Import
 {
-    public static string Import(Stream xmlFile)
+    public static string Faqs(Stream xmlFile)
+    {
+        string output = string.Empty;
+        try
+        {
+            TextReader rdr = new StreamReader(xmlFile);
+            XElement x = XElement.Load(rdr);
+            var faqs = from p in x.Descendants("faq") select p;
+
+            foreach (XElement xe in faqs)
+            {
+                stDataContext db = new stDataContext();
+                faq f = new faq();
+                f.title = xe.FirstAttribute.Value;
+                f.body = xe.Value;
+                db.faqs.InsertOnSubmit(f);
+                try
+                {
+                    db.SubmitChanges(); //inefficient to submit each time, *but* this will tell which faqs got inserted and which didn't
+                    output += "<div class='success'>-" + xe.FirstAttribute.Value + " " + Resources.Common.Updated + "</div>";
+                }
+                catch// (Exception ex)
+                {
+                    output += "<div class='error'>" + Resources.Common.Error + " " + xe.FirstAttribute.Value + "</div>";
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            output = "<div class='error'>" + Resources.Common.Error + ": <div class='sub_error'>" + ex.Message + "</div></div>";
+        }
+        return output;
+    }
+
+    public static string Styles(Stream xmlFile)
     {
         string output = string.Empty;
         try
@@ -59,29 +90,5 @@ public static class Styles
             output = "<div class='error'>" + Resources.Common.Error + ": <div class='sub_error'>" + ex.Message + "</div></div>";
         }
         return output;
-    }
-
-    public static XDocument Export()
-    {
-        var styles = Themes.List(new stDataContext());
-        XDocument xDoc = new XDocument(new XDeclaration("1.0", "utf-8", "yes"));
-        XElement root = new XElement("styles");
-        foreach (style s in styles)
-        {
-            XElement xeStyle = new XElement("style");
-            xeStyle.Add(new XAttribute("style_name", s.style_name));
-            xeStyle.Add(new XAttribute("text_color", s.text_color));
-            xeStyle.Add(new XAttribute("borders", s.borders));
-            xeStyle.Add(new XAttribute("body", s.body));
-            xeStyle.Add(new XAttribute("links", s.links));
-            xeStyle.Add(new XAttribute("hover", s.hover));
-            xeStyle.Add(new XAttribute("button_text", s.button_text));
-            xeStyle.Add(new XAttribute("header", s.header));
-            xeStyle.Add(new XAttribute("alt_rows", s.alt_rows));
-            xeStyle.Add(new XAttribute("background", s.background));
-            root.Add(xeStyle);
-        }
-        xDoc.Add(root);
-        return xDoc;
     }
 }

@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.IO;
 using System.Net;
 using System.Text;
+using SlickTicket.DomainModel.Objects;
 
 public partial class setup_build_database : System.Web.UI.Page
 {
@@ -69,10 +70,10 @@ public partial class setup_build_database : System.Web.UI.Page
             }
 
             //fills styles
-            string nothing = Styles.Import(stream);
+            string nothing = Import.Styles(stream);
 
             //fills faq
-            Faqs.Import(FAQstream);
+            Import.Faqs(FAQstream);
 
             Setup.Settings.Update("db_creation", "True");
             lblOutput.Text += "Tables built successfully";

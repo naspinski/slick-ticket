@@ -42,13 +42,13 @@ public partial class profile : System.Web.UI.Page
         if (!IsPostBack)
         {
             txtUserName.Text = userName;
-            var units = Groups.List(db, currentUser.HighestAccessLevelGroup.security_level);
+            var units = Units.List(db, currentUser.HighestAccessLevelGroup.security_level);
             if (units.Count() < 1)
             {
                 ddlUnit.Items.Add(new ListItem(Resources.Common.NoGroups, "0"));
                 lblProfileHeader.report(false, Resources.Common.NoGroupsExplanation + "<a href='contact.aspx'>" + Resources.Common.Contact.ToLower() + "</a><br /><br />", null);
             }
-            var _units = Groups.List(db, accessLevel);
+            var _units = Units.List(db, accessLevel);
             foreach (unit u in _units.OrderBy(p => p.unit_name))
                 ddlUnit.Items.Add(new ListItem(u.unit_name, u.id.ToString()));
             Utils.PopulateSubUnits(db, ddlUnit, ddlSubUnit, accessLevel);

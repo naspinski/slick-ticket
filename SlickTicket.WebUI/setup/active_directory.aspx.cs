@@ -7,6 +7,7 @@ using System.Collections;
 using System.Linq;
 using System.Web.UI.WebControls;
 using SlickTicket.DomainModel;
+using SlickTicket.DomainModel.Objects;
 
 public partial class setup_active_directory : System.Web.UI.Page
 {
@@ -46,7 +47,7 @@ public partial class setup_active_directory : System.Web.UI.Page
     {
         try
         {
-            Permissions.AddGroup(db, ddlAD.SelectedValue, Int32.Parse(ddlLevels.SelectedValue));
+            PermissionGroups.AddGroup(db, ddlAD.SelectedValue, Int32.Parse(ddlLevels.SelectedValue));
             gvADGroups.DataBind();
             lblError.Text = string.Empty;
             lnkNext.Visible = true;

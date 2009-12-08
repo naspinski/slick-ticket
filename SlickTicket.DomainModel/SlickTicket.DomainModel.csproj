@@ -59,7 +59,11 @@
     <Compile Include="Objects\Attachments.cs" />
     <Compile Include="Objects\Comments.cs" />
     <Compile Include="Objects\Errors.cs" />
+    <Compile Include="Objects\Faqs.cs" />
     <Compile Include="Objects\Mailboxes.cs" />
+    <Compile Include="Objects\Misc.cs" />
+    <Compile Include="Objects\PermissionGroups.cs" />
+    <Compile Include="Objects\Themes.cs" />
     <Compile Include="Objects\Tickets.cs" />
     <Compile Include="Objects\Units.cs" />
     <Compile Include="Objects\Users.cs" />

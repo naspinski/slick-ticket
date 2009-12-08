@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.UI.WebControls;
 using SlickTicketExtensions;
 using SlickTicket.DomainModel;
+using SlickTicket.DomainModel.Objects;
 
 public partial class info : System.Web.UI.Page
 {
