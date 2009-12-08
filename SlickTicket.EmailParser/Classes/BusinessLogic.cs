@@ -6,6 +6,7 @@ using System.Timers;
 using OpenPOP.MIMEParser;
 using OpenPOP.POP3;
 using SlickTicket.EmailParser.Properties;
+using SlickTicket.DomainModel;
 //POP3 Component from http://sourceforge.net/projects/hpop/
 
 
@@ -99,7 +100,7 @@ namespace SlickTicket.EmailParser
                     att.active = true;
                     att.ticket_ref = tid;
                     FileStream fs = new FileStream(f, FileMode.Open);
-                    DomainModel.Attachment.Add(@"C:\temp\", GetFiles(@"C:\temp\"), att.ticket_ref, att.comment_ref);
+                    DomainModel.Objects.Attachment.Add(@"C:\temp\", GetFiles(@"C:\temp\"), att.ticket_ref, att.comment_ref);
                 }
 
                 //DomainModel.Ticket.Email eT = new SlickTicket.DomainModel.Ticket.Email();
