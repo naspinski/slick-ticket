@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.DirectoryServices;
+using System.Web;
 
 namespace SlickTicket.DomainModel.Objects
 {
-    public class User
+    public class Users
     {
         public static string OutsideUser { get { return "outside.user"; } }
 
@@ -28,10 +29,10 @@ namespace SlickTicket.DomainModel.Objects
             }
             catch //if they are an outside user (no it AD) it will push them to a default dummy account
             {
-                u = GetFromUserName(db, User.OutsideUser);
+                u = GetFromUserName(db, OutsideUser);
                 if (u == null) // if this is the first time the dummy has been used, it makes the dummy user
                 {
-                    u = new user() { userName = User.OutsideUser, email = User.OutsideUser + "@unknown.com", sub_unit = Unit.Default, phone = "555-5555" };
+                    u = new user() { userName = OutsideUser, email = OutsideUser + "@unknown.com", sub_unit = Unit.Default, phone = "555-5555" };
                     db.users.InsertOnSubmit(u);
                     db.SubmitChanges();
                 }
@@ -101,6 +102,41 @@ namespace SlickTicket.DomainModel.Objects
                     return ds.FindOne();
                 }
             }
+        }
+
+        public static void Add(stDataContext db, string name, string email, string phone, int _sub_unit)
+        {
+            user newUser = new user();
+            newUser.userName = name;
+            newUser.email = HttpUtility.HtmlEncode(email);
+            newUser.phone = phone;
+            newUser.sub_unit = _sub_unit;
+            db.users.InsertOnSubmit(newUser);
+            db.SubmitChanges();
+            if (newUser.id == 1) newUser.is_admin = true;
+            db.SubmitChanges();
+        }
+
+        public static void Update(stDataContext db, string name, string email, string phone, int _sub_unit)
+        {
+            user thisUser = db.users.First(u => u.userName.Equals(name));
+            thisUser.userName = name;
+            thisUser.email = HttpUtility.HtmlEncode(email);
+            thisUser.phone = phone;
+            thisUser.sub_unit = _sub_unit;
+            db.SubmitChanges();
+        }
+
+        public static IEnumerable<user> allInUnit(stDataContext db, int unitID)
+        {
+            return from p in db.users where p.sub_unit1.unit_ref == unitID select p;
+        }
+
+        public static void FlipAdmin(stDataContext db, int userID)
+        {
+            user u = db.users.First(p => p.id == userID);
+            u.is_admin = !u.is_admin;
+            db.SubmitChanges();
         }
     }
 }

@@ -9,17 +9,13 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using SlickTicket.DomainModel;
 
 public partial class _Default : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
         this.Title = Resources.Common.Dashboard;
-        dbDataContext db = new dbDataContext();
-        string userName = Utils.UserName();
-        bool showAdmin;
-        try{ showAdmin = Users.Get(db, userName).is_admin; }
-        catch{ showAdmin = false; }
-        pnlAdmin.Visible = showAdmin;
+        pnlAdmin.Visible = CurrentUser.Get().IsAdmin;
     }
 }

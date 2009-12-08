@@ -8,22 +8,26 @@ using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using SlickTicketExtensions;
+using SlickTicket.DomainModel;
+using SlickTicket.DomainModel.Extensions;
+using SlickTicket.DomainModel.Objects;
+using System.IO;
+using System.Collections.Generic;
 
 public partial class new_ticket : System.Web.UI.Page
 {
-    dbDataContext db;
-    string userName;
+    stDataContext db = new stDataContext();
+    CurrentUser currentUser;
     int accessLevel;
     string n = Environment.NewLine;
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        currentUser = CurrentUser.Get();
         this.Title = Resources.Common.NewTicket;
-        db = new dbDataContext();
-        userName = Utils.UserName();
 
         ddlUnit.Focus();
-        try{ accessLevel = Utils.AccessLevel().security_level1.id; }
+        try{ accessLevel = currentUser.HighestAccessLevelGroup.security_level1.id; }
         catch { }
         if (!IsPostBack)
         {
@@ -48,13 +52,14 @@ public partial class new_ticket : System.Web.UI.Page
     protected void btnSubmit_Click(object sender, EventArgs e)
     {
         pnlInput.Style.Add(HtmlTextWriterStyle.Display, "none");
-        user u = Users.Get(db, userName);
+        user u = currentUser.Details;
         try
         {
-            ticket newTicket = Tickets.Add(db, Server.HtmlEncode(txtTopic.Text), txtDetails.Text, Int32.Parse(ddlSubUnit.SelectedValue), Int32.Parse(ddlPriority.SelectedValue), u.id, u.sub_unit);
-
             FileUpload[] fuControls = new FileUpload[] { FileUpload1, FileUpload2, FileUpload3, FileUpload4, FileUpload5 };
-            Tickets.Attachments.SaveMultiple(db, fuControls, newTicket.id, 0);
+            IEnumerable<FileStream> attachments = fuControls.GetFileStreams(Settings.AttachmentDirectory);
+            ticket newTicket = Tickets.New(db, txtTopic.Text, txtDetails.Text, Int32.Parse(ddlPriority.SelectedValue), Int32.Parse(ddlSubUnit.SelectedValue), u, attachments, Settings.AttachmentDirectory);
+            fuControls.GetFileStreamsCleanup(Settings.AttachmentDirectory, attachments);
+            
             string body = GetLocalResourceObject("ANew").ToString() + " " + ddlPriority.SelectedItem.Text+" "+ GetLocalResourceObject("TicketWasSubmittedBy").ToString()+" " + u.userName + " (" + u.sub_unit1.unit.unit_name + " - " + u.sub_unit1.sub_unit_name + ")" + n + n;
             body += newTicket.title + " [" + Resources.Common.TicketNumber + " #" + newTicket.id + "]" + n + n + Request.Url.OriginalString.Replace("new_ticket.aspx", string.Empty) + "ticket.aspx?ticketid=" + newTicket.id;
            

@@ -22,7 +22,7 @@ using System.Reflection;
 
 
 [System.Data.Linq.Mapping.DatabaseAttribute(Name="SlickTicket")]
-public partial class dbDataContext : System.Data.Linq.DataContext
+public partial class stDataContext : System.Data.Linq.DataContext
 {
 	
 	private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -70,31 +70,31 @@ public partial class dbDataContext : System.Data.Linq.DataContext
   partial void Deleteattachment(attachment instance);
   #endregion
 	
-	public dbDataContext() : 
+	public stDataContext() : 
 			base(global::System.Configuration.ConfigurationManager.ConnectionStrings["SlickTicket"].ConnectionString, mappingSource)
 	{
 		OnCreated();
 	}
 	
-	public dbDataContext(string connection) : 
+	public stDataContext(string connection) : 
 			base(connection, mappingSource)
 	{
 		OnCreated();
 	}
 	
-	public dbDataContext(System.Data.IDbConnection connection) : 
+	public stDataContext(System.Data.IDbConnection connection) : 
 			base(connection, mappingSource)
 	{
 		OnCreated();
 	}
 	
-	public dbDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+	public stDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 			base(connection, mappingSource)
 	{
 		OnCreated();
 	}
 	
-	public dbDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+	public stDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 			base(connection, mappingSource)
 	{
 		OnCreated();

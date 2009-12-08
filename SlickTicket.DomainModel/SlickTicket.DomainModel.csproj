@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="HtmlAgilityPack, Version=1.3.9.1, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL" />
+    <Reference Include="Naspinski.Utilities, Version=0.1.3627.33368, Culture=neutral, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
@@ -51,7 +52,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Extensions.cs" />
+    <Compile Include="Abstract\ICurrentUser.cs" />
+    <Compile Include="Extensions\TicketExtensions.cs" />
+    <Compile Include="Extensions\WebControlExtensions.cs" />
     <Compile Include="HtmlFilter.cs" />
     <Compile Include="Objects\Attachments.cs" />
     <Compile Include="Objects\Comments.cs" />
@@ -94,6 +97,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="bin\HtmlAgilityPack.dll" />
+    <Content Include="bin\Naspinski.Utilities.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -7,6 +7,8 @@ using System;
 using System.Text;
 using System.Web.UI.WebControls;
 using SlickTicketExtensions;
+using SlickTicket.DomainModel;
+using SlickTicket.DomainModel.Objects;
 
 public partial class admin_users : System.Web.UI.Page
 {
@@ -15,10 +17,10 @@ public partial class admin_users : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        userName = Utils.UserName();
+        userName = CurrentUser.Get().UserName;
         if(!IsPostBack)
         {
-            System.Drawing.Color alt_color = System.Drawing.ColorTranslator.FromHtml(Themes.Current(new dbDataContext()).alt_rows);
+            System.Drawing.Color alt_color = System.Drawing.ColorTranslator.FromHtml(Themes.Current(new stDataContext()).alt_rows);
             gvUsers.HeaderStyle.BackColor = alt_color;
             gvUsers.AlternatingRowStyle.BackColor = alt_color;
         }
@@ -39,7 +41,7 @@ public partial class admin_users : System.Web.UI.Page
         {
             GridViewRow row = (GridViewRow)((CheckBox)sender).NamingContainer;
             int userID = Int32.Parse(gvUsers.DataKeys[row.RowIndex].Value.ToString());
-            Users.FlipAdmin(new dbDataContext(), userID);
+            Users.FlipAdmin(new stDataContext(), userID);
         }
         catch (Exception ex)
         {

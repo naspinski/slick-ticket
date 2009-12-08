@@ -5,6 +5,7 @@ Developed by Stan Naspinski - stan@naspinski.net
 http://naspinski.net
 --%>
 <%@ Page Title="" Language="C#" MasterPageFile="~/setup/setup.master" AutoEventWireup="true" CodeFile="active_directory.aspx.cs" Inherits="setup_active_directory" %>
+<%@ Assembly Name="SlickTicket.DomainModel" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 </asp:Content>
@@ -45,7 +46,7 @@ http://naspinski.net
             </asp:GridView>
             
             <asp:LinqDataSource ID="ldsADGroups" runat="server" 
-                ContextTypeName="dbDataContext" 
+                ContextTypeName="SlickTicket.DomainModel.stDataContext" 
                 OrderBy="security_level, ad_group" TableName="user_groups" />
             </div>
         </div>

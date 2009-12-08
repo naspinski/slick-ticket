@@ -63,7 +63,7 @@ http://naspinski.net
                     </Columns>
                 </asp:GridView>
                 <asp:LinqDataSource ID="ldsUsers" runat="server" 
-                    ContextTypeName="dbDataContext" EnableDelete="True" OrderBy="userName" TableName="users" 
+                    ContextTypeName="SlickTicket.DomainModel.stDataContext" EnableDelete="True" OrderBy="userName" TableName="users" 
                     Where="userName.StartsWith(@startsWith) && userName.Contains(@contains)">
                     <WhereParameters>
                         <asp:SessionParameter  Name="startsWith" SessionField="startswith"  Type="String" DefaultValue="" ConvertEmptyStringToNull="false" />

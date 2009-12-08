@@ -220,7 +220,7 @@ http://naspinski.net
                                 <AlternatingRowStyle BackColor="#EFF5FF" />
                             </asp:GridView>
                             <br />
-                            <asp:LinqDataSource ID="ldsDomains" runat="server" ContextTypeName="dbDataContext" EnableDelete="True" OrderBy="domain" 
+                            <asp:LinqDataSource ID="ldsDomains" runat="server" ContextTypeName="SlickTicket.DomainModel.stDataContext" EnableDelete="True" OrderBy="domain" 
                                 TableName="allowed_email_domains" />
                         </asp:Panel>
                     </asp:Panel>
@@ -295,7 +295,7 @@ http://naspinski.net
                             </asp:BoundField>
                         </Columns>
                     </asp:GridView>
-                    <asp:LinqDataSource ID="ldsAccessLevels" runat="server" ContextTypeName="dbDataContext" TableName="security_levels"  Where="id &gt; 0" EnableUpdate="True" />
+                    <asp:LinqDataSource ID="ldsAccessLevels" runat="server" ContextTypeName="SlickTicket.DomainModel.stDataContext" TableName="security_levels"  Where="id &gt; 0" EnableUpdate="True" />
                     <br />
                 </asp:Panel>
             </ContentTemplate>
@@ -373,7 +373,7 @@ http://naspinski.net
                     <asp:Button CssClass="button smaller"  runat="server" onclick="btnThemeDelete_Click" ID="btnThemeDelete" 
                         Visible="False" meta:resourcekey="btnThemeDeleteResource1" />
                     <asp:Label ID="lblThemeDelete" runat="server" /></span>    
-                <asp:LinqDataSource ID="ldsThemes" runat="server" ContextTypeName="dbDataContext" OrderBy="style_name" TableName="styles" Where="id &gt; @id" >
+                <asp:LinqDataSource ID="ldsThemes" runat="server" ContextTypeName="SlickTicket.DomainModel.stDataContext" OrderBy="style_name" TableName="styles" Where="id &gt; @id" >
                     <WhereParameters>
                         <asp:Parameter DefaultValue="2" Name="id" Type="Int32" />
                     </WhereParameters>

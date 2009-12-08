@@ -25,7 +25,7 @@ public static class Styles
 
             foreach (XElement xe in styles)
             {
-                dbDataContext db = new dbDataContext();
+                stDataContext db = new stDataContext();
                 Dictionary<string, string> styleAttributes = new Dictionary<string, string>();
                 style s = new style();
                 foreach (XAttribute xa in xe.Attributes())
@@ -63,7 +63,7 @@ public static class Styles
 
     public static XDocument Export()
     {
-        var styles = Themes.List(new dbDataContext());
+        var styles = Themes.List(new stDataContext());
         XDocument xDoc = new XDocument(new XDeclaration("1.0", "utf-8", "yes"));
         XElement root = new XElement("styles");
         foreach (style s in styles)

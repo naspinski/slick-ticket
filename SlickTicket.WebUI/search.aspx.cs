@@ -8,15 +8,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.UI.WebControls;
 using SlickTicketExtensions;
+using SlickTicket.DomainModel;
+using SlickTicket.DomainModel.Objects;
 
 public partial class search : System.Web.UI.Page
 {
-    dbDataContext db;
+    stDataContext db;
     public Dictionary<int, string> urgency = new Dictionary<int, string>();
     protected void Page_Load(object sender, EventArgs e)
     {
         this.Title = Resources.Common.Search;
-        db = new dbDataContext();
+        db = new stDataContext();
         urgency.Add(1, "transparent");
         urgency.Add(2, "#ffe800");
         urgency.Add(3, "#ff7700");
@@ -100,7 +102,7 @@ public partial class search : System.Web.UI.Page
         if(String.IsNullOrEmpty(txtUser.Text)) usr = -1;
         else
         {
-            try { usr = Users.Get(db, txtUser.Text).id; }
+            try { usr = Users.GetFromUserName(db, txtUser.Text).id; }
             catch { usr = 0; }
         }
 

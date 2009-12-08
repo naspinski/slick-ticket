@@ -6,14 +6,15 @@
 using System;
 using System.Web.UI.WebControls;
 using SlickTicketExtensions;
+using SlickTicket.DomainModel;
 
 public partial class admin_user_groups : System.Web.UI.Page
 {
-    dbDataContext db;
+    stDataContext db;
     protected void Page_Load(object sender, EventArgs e)
     {
         this.Title = Resources.Common.Admin + " - " + Resources.Common.Permissions;
-        db = new dbDataContext();
+        db = new stDataContext();
         if (!IsPostBack)
         {
             System.Drawing.Color alt_color = System.Drawing.ColorTranslator.FromHtml(Themes.Current(db).alt_rows);

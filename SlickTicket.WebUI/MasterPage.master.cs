@@ -8,12 +8,14 @@ using System.Linq;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
+using SlickTicket.DomainModel;
+using SlickTicket.DomainModel.Objects;
 
 public partial class MasterPage : System.Web.UI.MasterPage
 {
-    dbDataContext db;
-    bool userIsRegistered;
-    bool isAdmin;
+    stDataContext db;
+    //ICurrentUser currentUser;
+    CurrentUser currentUser;
 
     protected void Page_Load(object sender, EventArgs e)
     {
@@ -29,29 +31,33 @@ public partial class MasterPage : System.Web.UI.MasterPage
         lblTitle.Text = Utils.Settings.Get("title");
         imgTitle.ImageUrl = Utils.Settings.Get("image");
         if (Utils.Settings.Get("image").Length < 1) imgTitle.Visible = false;
-        db = new dbDataContext();
-        string userName = Utils.UserName();
-        userIsRegistered = Users.Exists(db, userName);
+        db = new stDataContext();
 
+        currentUser = CurrentUser.Get();
+        Session["currentuser"] = currentUser;
 
-        lblUserName.Controls.Add(new LiteralControl(userName));
+        if (!currentUser.IsRegistered)
+        {
+            string url = Request.Url.ToString();
+            if (!url.EndsWith("profile.aspx") && !url.Contains("help.aspx")) Response.Redirect("~/profile.aspx");
+        }
+
+        lblUserName.Controls.Add(new LiteralControl(currentUser.UserName));
         try
         {
-            user thisUser = Users.Get(db, userName);
             lblUserName.Controls.Add(new LiteralControl("<div class='smaller' style='font-weight:normal;'>"));
-            int myTickets = Tickets.MyTickets(db, thisUser.id).Count();
-            int groupTix = Tickets.MyGroupsTickets(db, thisUser).Count();
+            int myTickets = Tickets.MyTickets(db, currentUser.Details.id).Count();
+            int groupTix = Tickets.MyGroupsTickets(db, currentUser.Details).Count();
             this.myIssues(lblTickets, myTickets, groupTix);
             lblUserName.Controls.Add( new LiteralControl("</div>"));
-            if (thisUser.is_admin) isAdmin = true;
-            lblEmail.Text = "<a href='mailto:" + thisUser.email + "'>" + Utils.TrimForSideBar(thisUser.email, 25) + "</a>";
-            lblPhone.Text = thisUser.phone;
-            lblUnit.Controls.Add(new HyperLink() { Text = thisUser.sub_unit1.unit.unit_name, NavigateUrl = "~/search.aspx?group=" + thisUser.sub_unit1.unit_ref });
-            lblSubUnit.Controls.Add(new HyperLink() { Text = thisUser.sub_unit1.sub_unit_name, NavigateUrl = "~/search.aspx?group=" + thisUser.sub_unit1.unit_ref + "&subgroup=" + thisUser.sub_unit });
-            //this.myIssues(lblSubUnit,  Tickets.MyGroupsTickets(db, thisUser).Count());
+            lblEmail.Text = "<a href='mailto:" + currentUser.Details.email + "'>" + Utils.TrimForSideBar(currentUser.Details.email, 25) + "</a>";
+            lblPhone.Text = currentUser.Details.phone;
+            lblUnit.Controls.Add(new HyperLink() { Text = currentUser.Details.sub_unit1.unit.unit_name, NavigateUrl = "~/search.aspx?group=" + currentUser.Details.sub_unit1.unit_ref });
+            lblSubUnit.Controls.Add(new HyperLink() { Text = currentUser.Details.sub_unit1.sub_unit_name, NavigateUrl = "~/search.aspx?group=" + currentUser.Details.sub_unit1.unit_ref + "&subgroup=" + currentUser.Details.sub_unit });
+            //this.myIssues(lblSubUnit,  Tickets.MyGroupsTickets(db, currentUser.Details).Count());
             string accessName;
             int accessLevel;
-            user_group ugAccessLevel = Utils.AccessLevel();
+            var ugAccessLevel = currentUser.HighestAccessLevelGroup;
             if (ugAccessLevel == null)
             {
                 accessLevel = 0;
@@ -67,7 +73,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
         }
         catch
         {
-            userIsRegistered = false;
             lblPhone.CssClass = Resources.Common.Error;
             lblPhone.Text = GetLocalResourceObject("PleaseUpdate").ToString();
         }
@@ -119,7 +124,7 @@ public partial class MasterPage : System.Web.UI.MasterPage
                 if (count++ < xes.Count() -1) lblFooter.Controls.Add(new LiteralControl(" | "));
             }
         }
-        if (isAdmin)
+        if (currentUser.IsAdmin)
         {
             HyperLink hl = new HyperLink();
             hl.NavigateUrl = "~/admin/";

@@ -5,13 +5,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using SlickTicket.DomainModel;
 
 /// <summary>
 /// Summary description for Permissions
 /// </summary>
 public static class Permissions
 {
-    public static void AddGroup(dbDataContext db, string ad_group, int access_level)
+    public static void AddGroup(stDataContext db, string ad_group, int access_level)
     {
         user_group ug = new user_group();
         ug.ad_group = HttpUtility.HtmlEncode(ad_group);
@@ -20,7 +21,7 @@ public static class Permissions
         db.SubmitChanges();
     }
 
-    public static IEnumerable<user_group> List(dbDataContext db)
+    public static IEnumerable<user_group> List(stDataContext db)
     {
         return from p in db.user_groups select p;
     }

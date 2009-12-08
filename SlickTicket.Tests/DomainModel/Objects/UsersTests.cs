@@ -14,8 +14,8 @@ namespace SlickTicket.Tests.DomainModel.Objects
         [Test]
         public void Non_existant_user_gets_dummy_user()
         {
-            user u = User.GetFromEmail("noone@fake-email.com");
-            Assert.AreEqual(User.OutsideUser, u.userName);
+            user u = Users.GetFromEmail("noone@fake-email.com");
+            Assert.AreEqual(Users.OutsideUser, u.userName);
         }
     }
 }

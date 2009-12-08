@@ -78,11 +78,11 @@ http://naspinski.net
             </asp:GridView>
             
             <asp:LinqDataSource ID="ldsAccessLevels" runat="server" 
-                ContextTypeName="dbDataContext" EnableDelete="True" EnableUpdate="True" 
+                ContextTypeName="SlickTicket.DomainModel.stDataContext" EnableDelete="True" EnableUpdate="True" 
                 OrderBy="id" TableName="security_levels" />
             
             <asp:LinqDataSource ID="ldsADGroups" runat="server" 
-                ContextTypeName="dbDataContext" EnableDelete="True" EnableUpdate="True" 
+                ContextTypeName="SlickTicket.DomainModel.stDataContext" EnableDelete="True" EnableUpdate="True" 
                 OrderBy="security_level, ad_group" TableName="user_groups" />
             
             

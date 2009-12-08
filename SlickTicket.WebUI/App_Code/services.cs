@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Services;
 using System.Xml.Linq;
+using SlickTicket.DomainModel;
 
 /// <summary>
 /// Summary description for services
@@ -30,7 +31,7 @@ public class services : System.Web.Services.WebService {
     [System.Web.Script.Services.ScriptMethod]
     public string[] getUsers(string prefixText, int count)
     {
-        dbDataContext db = new dbDataContext();
+        stDataContext db = new stDataContext();
         return (from p in db.users where p.userName.ToLower().Contains(prefixText.ToLower()) select p.userName).ToArray();
     }
     

@@ -11,6 +11,7 @@ using System.Net.Mail;
 using System.Web;
 using System.Web.UI.WebControls;
 using System.Xml.Linq;
+using SlickTicket.DomainModel;
 
 /// <summary>
 ///  App Utilities
@@ -25,28 +26,6 @@ public class Utils
             int LastIndexOfSlash = url.LastIndexOf("/");
             return (LastIndexOfSlash > 0 ? url.Substring(0, LastIndexOfSlash) : url) + "/";
         }
-    }
-
-    public static List<string> UserGroups()
-    {
-        List<string> groups = new List<string>();
-        List<string> groups_share = new List<string>();
-        foreach (System.Security.Principal.IdentityReference group in System.Web.HttpContext.Current.Request.LogonUserIdentity.Groups)
-        {
-            string fullGroupName = group.Translate(typeof(System.Security.Principal.NTAccount)).ToString();
-            int slashIndex = fullGroupName.IndexOf("\\");
-            if (slashIndex > -1)
-                fullGroupName = fullGroupName.Substring(slashIndex + 1, fullGroupName.Length - slashIndex - 1);
-            groups.Add(fullGroupName);
-            groups_share.Add(fullGroupName);
-        }
-        return groups;
-    }
-
-    public static string UserName()
-    {
-        try { return (HttpContext.Current.User.Identity.Name.Split(new char[] { '\\' }))[1]; }
-        catch { return HttpContext.Current.User.Identity.Name; } // if the user is not on a domain
     }
 
     public static string TrimForSideBar(string trimThis, int toLength)
@@ -102,26 +81,8 @@ public class Utils
         SmtpClient smtp = new SmtpClient(Utils.Settings.Get("smtp"));
         smtp.Send(message);
     }
-    
-    public static user_group AccessLevel()
-    {
-        dbDataContext db = new dbDataContext();
-        try
-        {
-            try
-            { return (from p in Permissions.List(db) where UserGroups().Contains(p.ad_group) orderby p.security_level descending select p).FirstOrDefault(); }
-            catch
-            { return db.user_groups.First(); }
-        }
-        catch
-        {
-            user_group dummy = new user_group();
-            dummy.id = 0;
-            return dummy;
-        }
-    }
 
-    public static void PopulateSubUnits(dbDataContext db, DropDownList ddlFrom, DropDownList ddlTo, int accessLevel)
+    public static void PopulateSubUnits(stDataContext db, DropDownList ddlFrom, DropDownList ddlTo, int accessLevel)
     {
         ddlTo.Items.Clear();
         var sus = Groups.SubGroups.List(db, Int32.Parse(ddlFrom.SelectedValue), accessLevel);

@@ -53,7 +53,7 @@ http://naspinski.net
                     <fieldset class="inner_color">
                         <h2>
                             <span class="faq">
-                                <% if (isAdmin) { %>
+                                <% if (currentUser.IsAdmin) { %>
                                    <span class="smaller">
                                         <asp:Button ID="btnEdit" style="padding:3px;"  CssClass="smaller button" runat="server"  CommandArgument='<%# Eval("id") %>' 
                                         OnClick="btnEdit_Click" meta:resourcekey="btnEditResource1" />
@@ -78,7 +78,7 @@ http://naspinski.net
                     <div class="divider"></div>
                 </ItemTemplate>
             </asp:Repeater>   
-            <asp:LinqDataSource ID="lds" runat="server" ContextTypeName="dbDataContext" 
+            <asp:LinqDataSource ID="lds" runat="server" ContextTypeName="SlickTicket.DomainModel.stDataContext" 
                 OrderBy="title" TableName="faqs" />
             
             <ajax:ModalPopupExtender ID="mpe" runat="server" TargetControlID="btnNew" 
