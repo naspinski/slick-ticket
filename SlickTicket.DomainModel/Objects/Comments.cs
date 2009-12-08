@@ -1,11 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
+using System.Linq;
 using System.Web;
 
-namespace SlickTicket.DomainModel
+namespace SlickTicket.DomainModel.Objects
 {
     public class Comment
     {
@@ -52,13 +51,13 @@ namespace SlickTicket.DomainModel
                 }
                 catch (Exception ex)
                 {
-                    ex.Data.Add("ticket",t.id);
+                    ex.Data.Add("ticket", t.id);
                     ex.Data.Add("details", details);
                     ex.Data.Add("assigned_to", assigned_to);
                     ex.Data.Add("priority", priority);
-                    ex.Data.Add("status",status);
-                    ex.Data.Add("attachment count",attachments.Count());
-                    ex.Data.Add("attachmentFolder",attachmentFolder);
+                    ex.Data.Add("status", status);
+                    ex.Data.Add("attachment count", attachments.Count());
+                    ex.Data.Add("attachmentFolder", attachmentFolder);
                     Errors.New("Comment.Email.New", ex);
                     return false;
                 }

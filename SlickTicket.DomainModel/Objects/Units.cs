@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 
-namespace SlickTicket.DomainModel
+namespace SlickTicket.DomainModel.Objects
 {
-    public class Unit
+    class Units
     {
         public static int Default //defaults to the lowest permission subgroup
         { get { return new stDataContext().sub_units.OrderBy(x => x.access_level).First().id; } }

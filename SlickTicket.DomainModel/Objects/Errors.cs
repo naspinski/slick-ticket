@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 
-namespace SlickTicket.DomainModel
+namespace SlickTicket.DomainModel.Objects
 {
     public class Errors
     {
@@ -15,8 +12,8 @@ namespace SlickTicket.DomainModel
         {
             error e = new error() { title = title_prefix + " - " + exception.Message, occured = DateTime.Now };
             e.details = "Exception.Data - " + N;
-            foreach(var key in exception.Data.Keys)
-                    e.details += key.ToString() + ": " + exception.Data[key].ToString() + " " + N;
+            foreach (var key in exception.Data.Keys)
+                e.details += key.ToString() + ": " + exception.Data[key].ToString() + " " + N;
             db.errors.InsertOnSubmit(e);
             db.SubmitChanges();
         }
