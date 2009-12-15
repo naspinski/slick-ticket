@@ -101,7 +101,7 @@ namespace SlickTicket.EmailParser
                     }
                     else
                     {
-                        Comments.Email.New(m.FromEmail, ticket.id, body, GetFiles(@"C:\temp\"), @"C:\temp\");
+                        Comments.Email.New(m.FromEmail, ticket.id, body, GetFiles(pathToAttachments), pathToAttachments);
                     }
 
                     try
@@ -121,7 +121,7 @@ namespace SlickTicket.EmailParser
             }
             catch (Exception exp)
             {
-                Errors.New("ParseEmails()>END", exp);
+                Errors.New("ParseEmails() > END", exp);
             }
         }
 
