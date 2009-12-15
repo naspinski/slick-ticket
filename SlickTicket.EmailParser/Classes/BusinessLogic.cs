@@ -11,7 +11,7 @@ using SlickTicket.DomainModel;
 using SlickTicket.DomainModel.Objects;
 //POP3 Component from http://sourceforge.net/projects/hpop/
 
-// 15.12 8:13 <
+// 15.12 8:23a
 
 namespace SlickTicket.EmailParser
 {
