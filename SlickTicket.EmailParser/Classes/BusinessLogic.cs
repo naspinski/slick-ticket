@@ -81,18 +81,13 @@ namespace SlickTicket.EmailParser
                     string from = m.FromEmail;
                     string body = m.MessageBody[0].ToString().Replace("\r\n", "<br>");
                     string pathToAttachments = Settings.Default.AttachmentFolder + @"\" + System.Guid.NewGuid().ToString();
-
                     user u = Users.GetFromEmail(m.FromEmail);
-
 
                     int tid = 0;
                     if (subject.Contains("[Ticket#"))
-                    {
-                        tid = Convert.ToInt32(subject.Substring((subject.IndexOf("[Ticket#") + 8), (subject.IndexOf("]")) - (subject.IndexOf("[Ticket#") + 8)));
-                    }
+                    { tid = Convert.ToInt32(subject.Substring((subject.IndexOf("[Ticket#") + 8), (subject.IndexOf("]")) - (subject.IndexOf("[Ticket#") + 8))); }
 
                     DomainModel.ticket ticket = DomainModel.Objects.Tickets.Get(tid);
-
                     m.SaveAttachments(pathToAttachments);
 
                     if (ticket == null)
