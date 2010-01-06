@@ -44,7 +44,7 @@ namespace SlickTicket.EmailParser
         }
         private static void getMails()
         {
-            foreach (Mailbox mbx in Units.SubUnits.Get(0).Mailboxes)  // <<<< Is correct?
+            foreach (Mailbox mbx in Units.SubUnits.Get(0).Mailboxes)  // <<<< Is this correct?
             {
                 DoJob launcher = new DoJob(mbx);
                 new Thread(new ThreadStart(launcher.runApp)).Start();
@@ -78,7 +78,6 @@ namespace SlickTicket.EmailParser
                     string subject = m.Subject;
                     string from = m.FromEmail;
                     string body = m.MessageBody[0].ToString().Replace("\r\n", "<br>");
-                    string pathToAttachments = Settings.Default.AttachmentFolder + @"\" + System.Guid.NewGuid().ToString();
                     user u = Users.GetFromEmail(m.FromEmail);
 
                     int tid = 0;
@@ -86,11 +85,12 @@ namespace SlickTicket.EmailParser
                     { tid = Convert.ToInt32(subject.Substring((subject.IndexOf("[Ticket#") + 8), (subject.IndexOf("]")) - (subject.IndexOf("[Ticket#") + 8))); }
 
                     DomainModel.ticket ticket = DomainModel.Objects.Tickets.Get(tid);
+                    string pathToAttachments = "????????????????????" + @"\" + ticket.id.ToString();   // <<<< how to get the correct path?
                     m.SaveAttachments(pathToAttachments);
-
+                    
                     if (ticket == null)
                     {
-                        stDataContext db = new stDataContext();    // <<<<< ???
+                        stDataContext db = new stDataContext();     // <<<< Is this correct?
                         Tickets.New(db, m.Subject, body, 0, 0, u, GetFiles(pathToAttachments), pathToAttachments);
                     }
                     else
@@ -105,7 +105,7 @@ namespace SlickTicket.EmailParser
                     }
                     catch (Exception exp)
                     {
-                        Errors.New("Deleting Objects", exp);
+                        Errors.New("On deleting POP3 mail", exp);
                     }
                 }
                 if (pop3.Connected)

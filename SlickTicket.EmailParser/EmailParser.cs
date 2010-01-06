@@ -18,6 +18,7 @@ namespace SlickTicket.EmailParser
 
         protected override void OnStart(string[] args)
         {
+            BusinessLogic.StartParser();
         }
 
         protected override void OnStop()

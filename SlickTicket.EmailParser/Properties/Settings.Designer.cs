@@ -25,15 +25,6 @@ namespace SlickTicket.EmailParser.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("C:/Temp/MailAttachments/")]
-        public string AttachmentFolder {
-            get {
-                return ((string)(this["AttachmentFolder"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("300000")]
         public int Pop3Intervall {
             get {
