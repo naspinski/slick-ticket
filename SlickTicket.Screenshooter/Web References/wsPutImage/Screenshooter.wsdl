@@ -57,10 +57,10 @@
   </wsdl:binding>
   <wsdl:service name="Screenshooter">
     <wsdl:port name="ScreenshooterSoap" binding="tns:ScreenshooterSoap">
-      <soap:address location="http://tagvw8sw001.thebeecompany.com/Screenshooter.asmx" />
+      <soap:address location="http://myServer/Screenshooter.asmx" />
     </wsdl:port>
     <wsdl:port name="ScreenshooterSoap12" binding="tns:ScreenshooterSoap12">
-      <soap12:address location="http://tagvw8sw001.thebeecompany.com/Screenshooter.asmx" />
+      <soap12:address location="http://myServer/Screenshooter.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

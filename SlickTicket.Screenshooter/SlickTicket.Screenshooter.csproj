@@ -121,6 +121,9 @@
     <None Include="Resources\16-em-pencil.png" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="HowTo.txt" />
+  </ItemGroup>
+  <ItemGroup>
     <Folder Include="Service References\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
