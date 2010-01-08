@@ -1,0 +1,12 @@
+C:\Users\volkansenguel\Documents\Visual Studio 2008\Projects\Screenshooter\Screenshooter\obj\Debug\ResolveAssemblyReference.cache
+C:\Users\volkansenguel\Documents\Visual Studio 2008\Projects\Screenshooter\Screenshooter\obj\Debug\Screenshooter.csproj.GenerateResource.Cache
+C:\Users\volkansenguel\Documents\Visual Studio 2008\Projects\Screenshooter\Screenshooter\bin\Debug\SlickTicket.Screenshooter.exe.config
+C:\Users\volkansenguel\Documents\Visual Studio 2008\Projects\Screenshooter\Screenshooter\obj\Debug\SlickTicket.Screenshooter.Form1.resources
+C:\Users\volkansenguel\Documents\Visual Studio 2008\Projects\Screenshooter\Screenshooter\obj\Debug\SlickTicket.Screenshooter.Properties.Resources.resources
+C:\Users\volkansenguel\Documents\Visual Studio 2008\Projects\Screenshooter\Screenshooter\bin\Debug\SlickTicket.Screenshooter.exe
+C:\Users\volkansenguel\Documents\Visual Studio 2008\Projects\Screenshooter\Screenshooter\bin\Debug\SlickTicket.Screenshooter.pdb
+C:\Users\volkansenguel\Documents\Visual Studio 2008\Projects\Screenshooter\Screenshooter\obj\Debug\SlickTicket.Screenshooter.exe
+C:\Users\volkansenguel\Documents\Visual Studio 2008\Projects\Screenshooter\Screenshooter\obj\Debug\SlickTicket.Screenshooter.pdb
+C:\Users\volkansenguel\Documents\Visual Studio 2008\Projects\SlickTicket.Screenshooter\Screenshooter\bin\Debug\SlickTicket.Screenshooter.exe.config
+C:\Users\volkansenguel\Documents\Visual Studio 2008\Projects\SlickTicket.Screenshooter\Screenshooter\obj\Debug\SlickTicket.Screenshooter.exe
+C:\Users\volkansenguel\Documents\Visual Studio 2008\Projects\SlickTicket.Screenshooter\Screenshooter\obj\Debug\SlickTicket.Screenshooter.pdb

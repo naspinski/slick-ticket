@@ -28,6 +28,8 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "SlickTicket.WebUI", "SlickT
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlickTicket.EmailParser", "SlickTicket.EmailParser\SlickTicket.EmailParser.csproj", "{8D588D25-8F8A-4C36-8882-92809CF7ED00}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SlickTicket.Screenshooter", "SlickTicket.Screenshooter\SlickTicket.Screenshooter.csproj", "{1C14FCA8-B30C-4DEA-B1FB-9A16AC2932C8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -50,6 +52,10 @@ Global
 		{8D588D25-8F8A-4C36-8882-92809CF7ED00}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8D588D25-8F8A-4C36-8882-92809CF7ED00}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8D588D25-8F8A-4C36-8882-92809CF7ED00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C14FCA8-B30C-4DEA-B1FB-9A16AC2932C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C14FCA8-B30C-4DEA-B1FB-9A16AC2932C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C14FCA8-B30C-4DEA-B1FB-9A16AC2932C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C14FCA8-B30C-4DEA-B1FB-9A16AC2932C8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
