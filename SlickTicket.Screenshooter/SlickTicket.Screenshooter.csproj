@@ -121,7 +121,9 @@
     <None Include="Resources\16-em-pencil.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="HowTo.txt" />
+    <Content Include="HowTo.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Service References\" />
