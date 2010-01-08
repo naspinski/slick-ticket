@@ -6,10 +6,6 @@ namespace SlickTicket.Screenshooter
 {
     static class Program
     {
-        public static string homeURI = "";
-        /// <summary>
-        /// The main entry point for the application.
-        /// </summary>
         [STAThread]
         static void Main()
         {
