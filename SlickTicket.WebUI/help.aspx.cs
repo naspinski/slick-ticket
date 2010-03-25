@@ -16,6 +16,7 @@ public partial class info : System.Web.UI.Page
     public CurrentUser currentUser;
     protected void Page_Load(object sender, EventArgs e)
     {
+        db = new stDataContext();
         this.Title = Resources.Common.Help;
         currentUser = CurrentUser.Get();
     }
