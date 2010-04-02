@@ -23,7 +23,9 @@ http://naspinski.net
 
 Contributors:
 Dan Horrigan (dhorrigan)
+(MoPhat)
 
 Translators:
 Stefano Pranzo (Panatronic) - Italian
 Victor Martinez (vmartinez) - Spanish
+Wolfgang K. (KilowattW)- German
