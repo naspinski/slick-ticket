@@ -71,65 +71,66 @@ http://naspinski.net
                 </asp:GridView>
             </fieldset>
             <div class="divider"></div>
-            <h2 class="header">
-                <span class="title_header"><asp:Label ID="lblMyGroup" runat="server" /> 
-                    <asp:literal runat="server" Text="Tickets" ID="litTickets" 
-                    meta:resourcekey="litTicketsResource1" />
-                    <a href='javascript:void();' class='tooltip limited'><img src='images/info.png' alt='explanation' /><span class='border_color'>
-                        <q class='inner_color base_text'>
-                            <asp:literal runat="server" ID="litTeamTicketsTooltip" meta:resourcekey="litTeamTicketsTooltipResource1" />
-                        </q>
-                    </span></a>
-                </span>
-                <span class="clear"></span>
-            <span class="smaller"><asp:Label ID="lblReportGroup" runat="server" /></span>
-            </h2>
-            <fieldset class="inner_color">
-                <asp:GridView ID="gvGroup" runat="server" 
-                    AutoGenerateColumns="False"  CssClass="list" GridLines="None" 
-                    AllowSorting="True"  OnSorting="gv_Sorting" meta:resourcekey="gvGroupResource1" >
-                    <Columns>
-                        <asp:TemplateField HeaderText="Priority" SortExpression="priority" 
-                            meta:resourcekey="TemplateFieldResource1">
-                            <ItemTemplate>
-                                <div class="color_it" style="background:<%# urgency[Int32.Parse(Eval("priority").ToString())] %>"><%# Eval("priority1.priority_name") %></div>
-                            </ItemTemplate>
-                            <HeaderStyle Width="60px"></HeaderStyle>
-                        </asp:TemplateField>
+            <asp:Panel ID="pnlGroup" runat="server">
+                <h2 class="header">
+                    <span class="title_header"><asp:Label ID="lblMyGroup" runat="server" /> 
+                        <asp:literal runat="server" Text="Tickets" ID="litTickets" 
+                        meta:resourcekey="litTicketsResource1" />
+                        <a href='javascript:void();' class='tooltip limited'><img src='images/info.png' alt='explanation' /><span class='border_color'>
+                            <q class='inner_color base_text'>
+                                <asp:literal runat="server" ID="litTeamTicketsTooltip" meta:resourcekey="litTeamTicketsTooltipResource1" />
+                            </q>
+                        </span></a>
+                    </span>
+                    <span class="clear"></span>
+                    <span class="smaller"><asp:Label ID="lblReportGroup" runat="server" /></span>
+                </h2>
+                <fieldset class="inner_color">
+                    <asp:GridView ID="gvGroup" runat="server" 
+                        AutoGenerateColumns="False"  CssClass="list" GridLines="None" 
+                        AllowSorting="True"  OnSorting="gv_Sorting" meta:resourcekey="gvGroupResource1" >
+                        <Columns>
+                            <asp:TemplateField HeaderText="Priority" SortExpression="priority" 
+                                meta:resourcekey="TemplateFieldResource1">
+                                <ItemTemplate>
+                                    <div class="color_it" style="background:<%# urgency[Int32.Parse(Eval("priority").ToString())] %>"><%# Eval("priority1.priority_name") %></div>
+                                </ItemTemplate>
+                                <HeaderStyle Width="60px"></HeaderStyle>
+                            </asp:TemplateField>
                         
-                        <asp:TemplateField HeaderText="Ticket" SortExpression="title" 
-                            meta:resourcekey="TemplateFieldResource2">
-                            <ItemTemplate>
-                                <a class="tooltip large" href="ticket.aspx?ticketID=<%# Eval("id") %>">
-                                    <em><%# Utils.TrimForSideBar(Eval("title").ToString(), 50) %></em>
-                                    <span class='border_color'><q class='inner_color base_text'>
-                                            <div><b><%= Resources.Common.LastAction %>: </b><%# Convert.ToDateTime(Eval("last_action")).ToString()%></div>
-                                            <div><b><%= Resources.Common.TicketNumber %>: </b><%# Eval("id") %></div>
-                                            <div><b><%= Resources.Common.Submitter %>: </b><%# Eval("user.userName")%></div>
-                                            <div><b><%= Resources.Common.AssignedTo %>: </b><%# Eval("sub_unit.unit.unit_name") %> - <%# Eval("sub_unit.sub_unit_name") %></div>
-                                            <div><b><%= Resources.Common.OriginatingGroup %>: </b><%# Eval("user.sub_unit1.unit.unit_name") %> - <%# Eval("user.sub_unit1.sub_unit_name") %></div>
-                                    </q></span>
-                                </a>
-                            </ItemTemplate>
-                            <HeaderStyle Width="400px"></HeaderStyle>
-                        </asp:TemplateField>
+                            <asp:TemplateField HeaderText="Ticket" SortExpression="title" 
+                                meta:resourcekey="TemplateFieldResource2">
+                                <ItemTemplate>
+                                    <a class="tooltip large" href="ticket.aspx?ticketID=<%# Eval("id") %>">
+                                        <em><%# Utils.TrimForSideBar(Eval("title").ToString(), 50) %></em>
+                                        <span class='border_color'><q class='inner_color base_text'>
+                                                <div><b><%= Resources.Common.LastAction %>: </b><%# Convert.ToDateTime(Eval("last_action")).ToString()%></div>
+                                                <div><b><%= Resources.Common.TicketNumber %>: </b><%# Eval("id") %></div>
+                                                <div><b><%= Resources.Common.Submitter %>: </b><%# Eval("user.userName")%></div>
+                                                <div><b><%= Resources.Common.AssignedTo %>: </b><%# Eval("sub_unit.unit.unit_name") %> - <%# Eval("sub_unit.sub_unit_name") %></div>
+                                                <div><b><%= Resources.Common.OriginatingGroup %>: </b><%# Eval("user.sub_unit1.unit.unit_name") %> - <%# Eval("user.sub_unit1.sub_unit_name") %></div>
+                                        </q></span>
+                                    </a>
+                                </ItemTemplate>
+                                <HeaderStyle Width="400px"></HeaderStyle>
+                            </asp:TemplateField>
                         
-                        <asp:BoundField DataField="submitted" HeaderText="Submitted" SortExpression="submitted" DataFormatString="{0:d}" HtmlEncode="False" meta:resourcekey="BoundFieldResource1" >
-                            <HeaderStyle Width="80px" />
-                            <ItemStyle HorizontalAlign="Center" />
-                        </asp:BoundField>
+                            <asp:BoundField DataField="submitted" HeaderText="Submitted" SortExpression="submitted" DataFormatString="{0:d}" HtmlEncode="False" meta:resourcekey="BoundFieldResource1" >
+                                <HeaderStyle Width="80px" />
+                                <ItemStyle HorizontalAlign="Center" />
+                            </asp:BoundField>
                         
-                        <asp:TemplateField SortExpression="status" HeaderStyle-CssClass="center" meta:resourcekey="TemplateFieldResource3">
-                            <ItemTemplate>
-                                <div class="color_it"><%# Eval("statuse.status_name") %></div>
-                            </ItemTemplate>
-                            <HeaderStyle HorizontalAlign="Center" />
-                        </asp:TemplateField>
+                            <asp:TemplateField SortExpression="status" HeaderStyle-CssClass="center" meta:resourcekey="TemplateFieldResource3">
+                                <ItemTemplate>
+                                    <div class="color_it"><%# Eval("statuse.status_name") %></div>
+                                </ItemTemplate>
+                                <HeaderStyle HorizontalAlign="Center" />
+                            </asp:TemplateField>
                     
-                    </Columns>
-                </asp:GridView>
-            </fieldset>
-        
+                        </Columns>
+                    </asp:GridView>
+                </fieldset>
+            </asp:Panel>
         </ContentTemplate>
     </asp:UpdatePanel>
 </asp:Content>

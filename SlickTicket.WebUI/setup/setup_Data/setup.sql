@@ -22,9 +22,9 @@ GO
 SET ANSI_PADDING OFF
 
 
-INSERT INTO [dbo].[security_levels] VALUES ('Minimum', '')
+INSERT INTO [dbo].[security_levels] VALUES ('Limited Usage', '')
 GO
-INSERT INTO [dbo].[security_levels] VALUES ('', '')
+INSERT INTO [dbo].[security_levels] VALUES ('Minimum', '')
 GO
 INSERT INTO [dbo].[security_levels] VALUES ('', '')
 GO

@@ -37,8 +37,16 @@ public partial class my_issues : System.Web.UI.Page
         urgency.Add(3, "#ff7700");
         urgency.Add(4, "#ff2f00");
 
-        myTickets = Tickets.MyTickets(db, currentUser.Details.id);
-        groupTickets = Tickets.MyGroupsTickets(db, currentUser.Details);
+        if (currentUser.IsRestricted)
+        {
+            pnlGroup.Visible = false;
+            myTickets = Tickets.MyTicketsOnly(db, currentUser.Details.id);
+        }
+        else
+        {
+            myTickets = Tickets.MyTickets(db, currentUser.Details.id);
+            groupTickets = Tickets.MyGroupsTickets(db, currentUser.Details);
+        }
 
         if (!IsPostBack)
         {
@@ -50,8 +58,11 @@ public partial class my_issues : System.Web.UI.Page
             }
             gvMy.DataSource = myTickets;
             gvMy.DataBind();
-            gvGroup.DataSource = groupTickets;
-            gvGroup.DataBind();
+            if (!currentUser.IsRestricted)
+            {
+                gvGroup.DataSource = groupTickets;
+                gvGroup.DataBind();
+            }
         }
     }
 

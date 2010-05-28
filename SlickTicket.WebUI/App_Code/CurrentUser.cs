@@ -15,6 +15,7 @@ public class CurrentUser// : ICurrentUser
     public SlickTicket.DomainModel.user_group HighestAccessLevelGroup { get; set; }
     public bool IsRegistered { get; set; }
     public bool IsAdmin { get; set; }
+    public bool IsRestricted { get { return this.HighestAccessLevelGroup.security_level == 1 ? true : false; } }
 
     private CurrentUser()
     {
