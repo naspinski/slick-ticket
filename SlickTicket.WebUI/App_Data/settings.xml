@@ -2,7 +2,7 @@
 <settings>
   <title></title>
   <image>images/LOGO.png</image>
-  <restrict_email_addresses>True</restrict_email_addresses>
+  <restrict_email_addresses>False</restrict_email_addresses>
   <attachments>/attachments/</attachments>
   <admin_email>admin@your_domain.com</admin_email>
   <smtp>YOUR_SMTP_SERVER</smtp>
