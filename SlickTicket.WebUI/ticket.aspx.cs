@@ -112,8 +112,9 @@ public partial class _ticket : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-         //   lblTopReport.report(false, Resources.Common.Error + " - " + GetLocalResourceObject("NoTicket").ToString() + " " + Request.QueryString["ticketID"].ToString(), ex);
-            lblTopReport.report(false, ex.Message, null);
+            if(ex.Message.Contains("Object reference not set to an instance of an object."))
+                ex = new Exception(GetLocalResourceObject("NoTicket").ToString() + " " + Request.QueryString["ticketID"].ToString(), ex);
+            lblTopReport.report(false, "Error", ex);
             pnlDisplay.Visible = false;
         }
     }
