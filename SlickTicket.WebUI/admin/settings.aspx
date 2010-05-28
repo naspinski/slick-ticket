@@ -75,7 +75,7 @@ http://naspinski.net
                         <asp:Label ID="lblAttachmentReport" runat="server" />
                     </span>
                 </h4>
-                <asp:Panel runat="server" id="stdSettings" class="collapse" >
+                <asp:Panel runat="server" id="stdSettings" cssclass="collapse" >
                     <asp:Panel ID="pnlTitle" runat="server" DefaultButton="btnTitle" >
                         <h3 style="text-align:left;">
                             <asp:label ID="lblSystemTitle" runat="server" cssclass="title_header" meta:resourcekey="lblSystemTitleResource1" />
@@ -181,7 +181,7 @@ http://naspinski.net
                         </span>                        
                         <asp:Label ID="lblEmail" runat="server" meta:resourcekey="lblEmailResource1" />
                     </h4>
-                    <asp:Panel id="stdEmail" runat="server" class="collapse clear" >
+                    <asp:Panel id="stdEmail" runat="server" cssclass="collapse clear" >
                         <h3 class="clear">
                             <span class="title_header">
                                 <asp:CheckBox ID="chkEmail" runat="server" AutoPostBack="True" oncheckedchanged="chkEmail_CheckedChanged" 
@@ -278,7 +278,7 @@ http://naspinski.net
                     <span class="clear"></span>
                     <asp:Label ID="lblAccessReport" runat="server" />
                 </h4>
-                <asp:Panel ID="stdAccess" runat="server" class="collapse" >
+                <asp:Panel ID="stdAccess" runat="server" cssclass="collapse" >
                     <asp:GridView ID="gvAccessLevels" runat="server" AutoGenerateColumns="False" CssClass="list" 
                         DataKeyNames="id" DataSourceID="ldsAccessLevels" AllowSorting="True" GridLines="None" >
                         <Columns>
@@ -319,7 +319,7 @@ http://naspinski.net
             </span>
             <asp:Label ID="lblImportReport" style="text-align:left;" runat="server"  />
         </h4>
-        <asp:Panel ID="pnlImport" runat="server" class="collapse" >
+        <asp:Panel ID="pnlImport" runat="server" cssclass="collapse" >
             <h3 style="text-align:left;">
                 <asp:literal runat="server" ID="litImport" meta:resourcekey="litImportResource1" />
             </h3>
@@ -358,7 +358,7 @@ http://naspinski.net
             </span>
             <asp:Label ID="lblCAppearance" runat="server" meta:resourcekey="lblCAppearanceResource1" />
         </h4>
-        <asp:Panel ID="pnlAppearance" runat="server"  class="collapse" >
+        <asp:Panel ID="pnlAppearance" runat="server"  cssclass="collapse" >
             <h3 style="text-align:left;">
                 <asp:Literal runat="server" ID="litSideBar" meta:resourcekey="litSideBarResource1" />
                 <asp:RadioButton ID="left" runat="server" GroupName="radSidebar" CssClass="checkbox" meta:resourcekey="leftResource1" />
@@ -385,7 +385,7 @@ http://naspinski.net
             <h3 style="text-align:left;" class="clear">
                 <asp:Label ID="lblCustomize" runat="server" CssClass="link pointer" meta:resourcekey="lblCustomizeResource1" />
             </h3>
-            <asp:Panel ID="pnlCustomize" runat="server" class="collapse" >
+            <asp:Panel ID="pnlCustomize" runat="server" cssclass="collapse" >
             <div id="picker" style="float: right;"></div>
             <asp:ValidationSummary ID="valStyle" runat="server" CssClass="error_area border_color header" 
                 ValidationGroup="style" style="width:370px;" />
@@ -512,7 +512,7 @@ http://naspinski.net
                                 </q></span></a>
                             </span>
                         </h3>
-                        <asp:TextBox runat="server" ID="styleHeader" name="color4" cssclass="colorwell" meta:resourcekey="styleHeaderResource1" />
+                        <asp:TextBox runat="server" ID="styleHeader" cssclass="colorwell" meta:resourcekey="styleHeaderResource1" />
                     </td>
                     <td>
                         <h3>
@@ -523,7 +523,7 @@ http://naspinski.net
                                 </q></span></a>
                             </span>
                         </h3>
-                        <asp:TextBox runat="server" ID="styleAlternatingRows" name="color4" cssclass="colorwell" meta:resourcekey="styleAlternatingRowsResource1" />
+                        <asp:TextBox runat="server" ID="styleAlternatingRows"  cssclass="colorwell" meta:resourcekey="styleAlternatingRowsResource1" />
                     </td>
                     <td>
                         <h3>
@@ -534,7 +534,7 @@ http://naspinski.net
                                 </q></span></a>
                             </span>
                         </h3>
-                        <asp:TextBox runat="server" ID="styleBg" name="color4" cssclass="colorwell" meta:resourcekey="styleBgResource1" />
+                        <asp:TextBox runat="server" ID="styleBg" cssclass="colorwell" meta:resourcekey="styleBgResource1" />
                     </td>
                 </tr>
               </table>

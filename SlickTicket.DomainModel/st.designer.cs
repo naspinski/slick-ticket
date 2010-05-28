@@ -78,7 +78,7 @@ namespace SlickTicket.DomainModel
     #endregion
 		
 		public stDataContext() : 
-				base(global::SlickTickets.DomainModel.Properties.Settings.Default.SlickTicket, mappingSource)
+				base(global::SlickTicket.DomainModel.Properties.Settings.Default.SlickTicket, mappingSource)
 		{
 			OnCreated();
 		}

@@ -43,6 +43,11 @@ public partial class _ticket : System.Web.UI.Page
         {
             bool userCanEditThisTicket = true;
             t = Tickets.Get(db, Int32.Parse(ticketID));
+            user_group ugAccessLevel = currentUser.HighestAccessLevelGroup;
+
+            //if user is limited, they can only see their own tickets
+            if (ugAccessLevel.security_level < 2 && t.submitter != currentUser.Details.id) 
+                throw new InvalidOperationException(GetLocalResourceObject("LimitedUser").ToString() + " [" + ticketID + "]");
             
             ////populate comments
             IEnumerable<comment> comments = t.ActiveComments();
@@ -55,12 +60,11 @@ public partial class _ticket : System.Web.UI.Page
 
 
             //only do the user is at the right level... if not, read only
-            user_group ugAccessLevel = currentUser.HighestAccessLevelGroup;
             int intToPopATG = ugAccessLevel.security_level;
             accessLevel = intToPopATG;
             if (ugAccessLevel.security_level < t.sub_unit.access_level)
             {
-                intToPopATG = 10; //if the user has too low a level to change this ticket, thi s is set to 10;
+                intToPopATG = 10; //if the user has too low a level to change this ticket, this is set to 10;
                 userCanEditThisTicket = false;
             }
 
@@ -108,7 +112,8 @@ public partial class _ticket : System.Web.UI.Page
         }
         catch (Exception ex)
         {
-            lblTopReport.report(false, Resources.Common.Error + " - " + GetLocalResourceObject("NoTicket").ToString() + Request.QueryString["ticketID"].ToString(), ex);
+         //   lblTopReport.report(false, Resources.Common.Error + " - " + GetLocalResourceObject("NoTicket").ToString() + " " + Request.QueryString["ticketID"].ToString(), ex);
+            lblTopReport.report(false, ex.Message, null);
             pnlDisplay.Visible = false;
         }
     }

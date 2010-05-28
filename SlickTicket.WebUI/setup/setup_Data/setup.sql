@@ -22,7 +22,7 @@ GO
 SET ANSI_PADDING OFF
 
 
-INSERT INTO [dbo].[security_levels] VALUES ('Limited Usage', '')
+INSERT INTO [dbo].[security_levels] VALUES ('Limited Usage', 'Users can only submit/view their own tickets')
 GO
 INSERT INTO [dbo].[security_levels] VALUES ('Minimum', '')
 GO
