@@ -94,6 +94,11 @@ namespace SlickTicket.DomainModel.Objects
             return (from p in db.tickets where p.submitter == userID && p.statuse.id != 5 select p).Union(ICommentedIn(db, userID)).OrderByDescending(p => p.priority1.level).OrderBy(p => p.submitted);
         }
 
+        public static IEnumerable<ticket> MyTicketsOnly(stDataContext db, int userID)
+        {
+            return (from p in db.tickets where p.submitter == userID && p.statuse.id != 5 select p).OrderByDescending(p => p.priority1.level).OrderBy(p => p.submitted);
+        }
+
         public static IEnumerable<ticket> MyGroupsTickets(stDataContext db, user usr)
         {
             IEnumerable<ticket> groupTix = from p in db.tickets where p.submitter != usr.id && (p.assigned_to_group == usr.sub_unit || p.originating_group == usr.sub_unit) && p.closed == NullDate select p;
