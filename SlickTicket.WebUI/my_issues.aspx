@@ -1,7 +1,7 @@
 <%--
 Slick-Ticket v2.9 - 2010
 http://slick-ticket.com
-Developed by Stan Naspinski - stan[at]naspinski[dot]net
+Developed by Stan Naspinski - stan@naspinski.net
 http://naspinski.net
 --%>
 <%@ Page Title="My Issues" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="my_issues.aspx.cs" Inherits="my_issues" culture="auto" meta:resourcekey="PageResource1"%>

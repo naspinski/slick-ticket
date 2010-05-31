@@ -1,7 +1,7 @@
 ﻿<%--
 Slick-Ticket v2.9 - 2010
 http://slick-ticket.com
-Developed by Stan Naspinski - stan[at]naspinski[dot]net
+Developed by Stan Naspinski - stan@naspinski.net
 http://naspinski.net
 --%>
 <%@ Page Title="Administration Information" Language="C#" MasterPageFile="~/admin/admin.master" AutoEventWireup="true" CodeFile="info.aspx.cs" Inherits="admin_info" culture="auto" meta:resourcekey="PageResource1"%>

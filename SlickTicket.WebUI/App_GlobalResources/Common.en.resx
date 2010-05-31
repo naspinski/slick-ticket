@@ -286,7 +286,7 @@
     <comment>for use in table displays</comment>
   </data>
   <data name="Translator" xml:space="preserve">
-    <value>Stan Naspinski (stan[at]naspinski[dot]net)</value>
+    <value>Stan Naspinski (stan@naspinski.net)</value>
     <comment>Who Translated this language</comment>
   </data>
   <data name="Undefined" xml:space="preserve">

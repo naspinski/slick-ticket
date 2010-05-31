@@ -1,7 +1,7 @@
 ﻿<%--
 Slick-Ticket v2.9 - 2010
 http://slick-ticket.com
-Developed by Stan Naspinski - stan[at]naspinski[dot]net
+Developed by Stan Naspinski - stan@naspinski.net
 http://naspinski.net
 --%>
 <%@ Control Language="C#" AutoEventWireup="true" CodeFile="adminPanel.ascx.cs" Inherits="controls_adminPanel" %>
