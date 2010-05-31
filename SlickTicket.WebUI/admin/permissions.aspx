@@ -1,7 +1,7 @@
 ﻿<%--
 Slick-Ticket v2.9 - 2010
 http://slick-ticket.com
-Developed by Stan Naspinski - stan[at]naspinski[dot]net
+Developed by Stan Naspinski - stan@naspinski.net
 http://naspinski.net
 --%>
 <%@ Page Title="Administration - User Groups" Language="C#" MasterPageFile="~/admin/admin.master" AutoEventWireup="true" CodeFile="permissions.aspx.cs" meta:resourcekey="PageResource1"Inherits="admin_user_groups" %>
