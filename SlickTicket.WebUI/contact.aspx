@@ -1,7 +1,7 @@
 ﻿<%--
-Slick-Ticket v1.0 - 2008
+Slick-Ticket v2.9 - 2010
 http://slick-ticket.com
-Developed by Stan Naspinski - stan@naspinski.net
+Developed by Stan Naspinski - stan[at]naspinski[dot]net
 http://naspinski.net
 --%>
 <%@ Page Title="Contact Administrator" Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="contact.aspx.cs" Inherits="contact" culture="auto" meta:resourcekey="PageResource1"%>
