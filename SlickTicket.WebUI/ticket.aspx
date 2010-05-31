@@ -1,23 +1,23 @@
 ﻿<%--
-Slick-Ticket v1.0 - 2008
+Slick-Ticket v2.9 - 2010
 http://slick-ticket.com
-Developed by Stan Naspinski - stan@naspinski.net
+Developed by Stan Naspinski - stan[at]naspinski[dot]net
 http://naspinski.net
 --%>
 <%@ Page Title="View Ticket" Language="C#" ValidateRequest="false" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ticket.aspx.cs" Inherits="_ticket" culture="auto" meta:resourcekey="PageResource1"%>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" Runat="Server">
 
-    <script language="JavaScript" type="text/javascript" src="js/wysiwyg/scripts/wysiwyg.js" ></script>
-    <script language="JavaScript" type="text/javascript" src="js/wysiwyg/scripts/wysiwyg-settings.js"></script>
-     <script type="text/javascript">
-         var mysettings = new WYSIWYG.Settings();
-         WYSIWYG.attach('ctl00_body_txtDetails', mysettings); 
+    <script type="text/javascript" src="js/ckeditor/ckeditor_source.js"></script>
+    <script type="text/javascript">
+        $().ready(function () {
+            CKEDITOR.replace('ctl00_body_txtDetails', { toolbar: 'SlickTicket' });
+        });
 
-         function showHide(showDivId, hideDivId) {
-             document.getElementById(showDivId).style.display = 'block';
-             document.getElementById(hideDivId).style.display = 'none';
-         } 
+        function showHide(showDivId, hideDivId) {
+            document.getElementById(showDivId).style.display = 'block';
+            document.getElementById(hideDivId).style.display = 'none';
+        } 
     </script> 
     <link rel="Stylesheet" type="text/css" href="css/iconize.css" />
     

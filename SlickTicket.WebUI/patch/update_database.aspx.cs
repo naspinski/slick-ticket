@@ -1,6 +1,6 @@
 ﻿//Slick-Ticket v2.0 - 2009
 //http://slick-ticket.com :: http://naspinski.net
-//Developed by Stan Naspinski - stan@naspinski.net
+//Developed by Stan Naspinski - stan[at]naspinski[dot]net
 
 using System;
 using System.Configuration;

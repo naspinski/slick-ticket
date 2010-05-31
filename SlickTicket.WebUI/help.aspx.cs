@@ -1,6 +1,6 @@
 ﻿//Slick-Ticket v2.0 - 2009
 //http://slick-ticket.com :: http://naspinski.net
-//Developed by Stan Naspinski - stan@naspinski.net
+//Developed by Stan Naspinski - stan[at]naspinski[dot]net
 
 
 using System;
@@ -9,14 +9,18 @@ using System.Web.UI.WebControls;
 using SlickTicketExtensions;
 using SlickTicket.DomainModel;
 using SlickTicket.DomainModel.Objects;
+using System.Web.UI.HtmlControls;
 
 public partial class info : System.Web.UI.Page
 {
     stDataContext db;
     public CurrentUser currentUser;
+    HtmlGenericControl masterBody;
     protected void Page_Load(object sender, EventArgs e)
     {
         db = new stDataContext();
+        masterBody = (HtmlGenericControl)this.Master.FindControl("masterBody");
+        Page.ClientScript.RegisterStartupScript(this.GetType(), "alert", "ShowModal();", true);
         this.Title = Resources.Common.Help;
         currentUser = CurrentUser.Get();
     }
@@ -65,6 +69,8 @@ public partial class info : System.Web.UI.Page
         catch (Exception ex)
         { lblReport.report(false, Resources.Common.Error, ex); }
         btnSubmit.CommandArgument="0";
+
+        masterBody.Attributes.Remove("Onload");
     }
 
     protected void btnEdit_Click(object sender, EventArgs e)
@@ -74,12 +80,15 @@ public partial class info : System.Web.UI.Page
         txtQ.Text = f.title;
         txtA.Text = f.body;
         btnSubmit.CommandArgument = btn.CommandArgument.ToString();
-        mpe.Show();
+        var script = "$('#divPopup').jqmShow();";
+        masterBody.Attributes.Add("Onload", script);
     }
+
     protected void btnCancel_Click(object sender, EventArgs e)
     {
         txtQ.Text = string.Empty;
         txtA.Text = string.Empty;
         btnSubmit.CommandArgument = "0";
+        masterBody.Attributes.Remove("Onload");
     }
 }
