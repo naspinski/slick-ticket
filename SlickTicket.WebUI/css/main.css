@@ -1,6 +1,5 @@
 ﻿html {min-height:100%;}
 a{ text-decoration:none; }
-a:hover{ text-decoration:underline; }
 body { font-family:verdana; }
 h1,h2,h3,h4,h5,h6{ text-align:left; font-weight:bold; }
 h1{ padding: 10px 0 10px 15px;}
