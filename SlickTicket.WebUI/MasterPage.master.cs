@@ -19,8 +19,6 @@ public partial class MasterPage : System.Web.UI.MasterPage
 
     protected void Page_Load(object sender, EventArgs e)
     {
-        if (!Convert.ToBoolean(Utils.Settings.Get("installed"))) Response.Redirect("~/setup/");
-
         side_bar.CssClass = Utils.Settings.Get("sidebar");
         main_container.CssClass = Utils.Settings.Get("sidebar").Equals("left") ? "right" : "left";
 

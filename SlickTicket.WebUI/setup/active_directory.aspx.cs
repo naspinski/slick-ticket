@@ -53,7 +53,6 @@ public partial class setup_active_directory : System.Web.UI.Page
             lnkNext.Visible = true;
             lblFinished.Visible = true;
             Setup.Settings.Update("active_directory", "True");
-            Utils.Settings.Update("installed", "True");
         }
         catch (Exception ex)
         {
