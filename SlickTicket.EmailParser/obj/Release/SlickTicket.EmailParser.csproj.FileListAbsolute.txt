@@ -1,0 +1,17 @@
+D:\Documents and Settings\naspis\Desktop\Projects\SlickTicket\SlickTicket.EmailParser\bin\Release\_Service_Install.bat
+D:\Documents and Settings\naspis\Desktop\Projects\SlickTicket\SlickTicket.EmailParser\bin\Release\_Service_UnInstall.bat
+D:\Documents and Settings\naspis\Desktop\Projects\SlickTicket\SlickTicket.EmailParser\bin\Release\SlickTicket.EmailParser.exe.config
+D:\Documents and Settings\naspis\Desktop\Projects\SlickTicket\SlickTicket.EmailParser\bin\Release\SlickTicket.EmailParser.exe
+D:\Documents and Settings\naspis\Desktop\Projects\SlickTicket\SlickTicket.EmailParser\bin\Release\SlickTicket.EmailParser.pdb
+D:\Documents and Settings\naspis\Desktop\Projects\SlickTicket\SlickTicket.EmailParser\bin\Release\MIMEParser.dll
+D:\Documents and Settings\naspis\Desktop\Projects\SlickTicket\SlickTicket.EmailParser\bin\Release\OpenPOP.dll
+D:\Documents and Settings\naspis\Desktop\Projects\SlickTicket\SlickTicket.EmailParser\bin\Release\SlickTicket.DomainModel.dll
+D:\Documents and Settings\naspis\Desktop\Projects\SlickTicket\SlickTicket.EmailParser\bin\Release\HtmlAgilityPack.dll
+D:\Documents and Settings\naspis\Desktop\Projects\SlickTicket\SlickTicket.EmailParser\bin\Release\Naspinski.Utilities.dll
+D:\Documents and Settings\naspis\Desktop\Projects\SlickTicket\SlickTicket.EmailParser\bin\Release\SlickTicket.DomainModel.pdb
+D:\Documents and Settings\naspis\Desktop\Projects\SlickTicket\SlickTicket.EmailParser\obj\Release\ResolveAssemblyReference.cache
+D:\Documents and Settings\naspis\Desktop\Projects\SlickTicket\SlickTicket.EmailParser\obj\Release\SlickTicket.EmailParser.ProjectInstaller.resources
+D:\Documents and Settings\naspis\Desktop\Projects\SlickTicket\SlickTicket.EmailParser\obj\Release\GenerateResource-ResGen.read.1.tlog
+D:\Documents and Settings\naspis\Desktop\Projects\SlickTicket\SlickTicket.EmailParser\obj\Release\GenerateResource-ResGen.write.1.tlog
+D:\Documents and Settings\naspis\Desktop\Projects\SlickTicket\SlickTicket.EmailParser\obj\Release\SlickTicket.EmailParser.exe
+D:\Documents and Settings\naspis\Desktop\Projects\SlickTicket\SlickTicket.EmailParser\obj\Release\SlickTicket.EmailParser.pdb
