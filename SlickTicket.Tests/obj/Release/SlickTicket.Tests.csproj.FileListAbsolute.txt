@@ -8,3 +8,13 @@ D:\Documents and Settings\naspis\Desktop\Code\Slick-Ticket\SlickTicket.Tests\bin
 D:\Documents and Settings\naspis\Desktop\Code\Slick-Ticket\SlickTicket.Tests\bin\Release\SlickTicket.DomainModel.pdb
 D:\Documents and Settings\naspis\Desktop\Code\Slick-Ticket\SlickTicket.Tests\obj\Release\SlickTicket.Tests.dll
 D:\Documents and Settings\naspis\Desktop\Code\Slick-Ticket\SlickTicket.Tests\obj\Release\SlickTicket.Tests.pdb
+D:\Documents and Settings\naspis\Desktop\Projects\SlickTicket\SlickTicket.Tests\bin\Release\SlickTicket.Tests.dll
+D:\Documents and Settings\naspis\Desktop\Projects\SlickTicket\SlickTicket.Tests\bin\Release\SlickTicket.Tests.pdb
+D:\Documents and Settings\naspis\Desktop\Projects\SlickTicket\SlickTicket.Tests\bin\Release\nunit.framework.dll
+D:\Documents and Settings\naspis\Desktop\Projects\SlickTicket\SlickTicket.Tests\bin\Release\SlickTicket.DomainModel.dll
+D:\Documents and Settings\naspis\Desktop\Projects\SlickTicket\SlickTicket.Tests\bin\Release\HtmlAgilityPack.dll
+D:\Documents and Settings\naspis\Desktop\Projects\SlickTicket\SlickTicket.Tests\bin\Release\Naspinski.Utilities.dll
+D:\Documents and Settings\naspis\Desktop\Projects\SlickTicket\SlickTicket.Tests\bin\Release\SlickTicket.DomainModel.pdb
+D:\Documents and Settings\naspis\Desktop\Projects\SlickTicket\SlickTicket.Tests\obj\Release\ResolveAssemblyReference.cache
+D:\Documents and Settings\naspis\Desktop\Projects\SlickTicket\SlickTicket.Tests\obj\Release\SlickTicket.Tests.dll
+D:\Documents and Settings\naspis\Desktop\Projects\SlickTicket\SlickTicket.Tests\obj\Release\SlickTicket.Tests.pdb

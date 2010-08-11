@@ -28,4 +28,5 @@ Dan Horrigan (dhorrigan)
 Translators:
 Stefano Pranzo (Panatronic) - Italian
 Victor Martinez (vmartinez) - Spanish
-Wolfgang K. (KilowattW)- German
+Wolfgang K. (KilowattW) - German
+Iury Carlos - Brazilian
