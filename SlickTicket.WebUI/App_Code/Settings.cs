@@ -17,13 +17,17 @@ public static class Settings
         set { Utils.Settings.Update("attachments", value); }
     }
 
+    /// <summary>
+    /// not yet implemented
+    /// </summary>
     public static AuthenticationMode AuthenticationMode
     {
         get
         {
-            Configuration config = WebConfigurationManager.OpenWebConfiguration("~");
-            SystemWebSectionGroup grp = (SystemWebSectionGroup)config.GetSectionGroup("system.web");
-            return grp.Authentication.Mode;
+            return AuthenticationMode.Windows;
+            //Configuration config = WebConfigurationManager.OpenWebConfiguration("~");
+            //SystemWebSectionGroup grp = (SystemWebSectionGroup)config.GetSectionGroup("system.web");
+            //return grp.Authentication.Mode;
         }
     }
 }
